@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
-import Header from "../components/header"
+import Header from "../components/header/header"
 
 export default function Contact() {
   return (

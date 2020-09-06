@@ -4,8 +4,7 @@ import { useStaticQuery, Link, graphql } from "gatsby"
 
 import { rhythm } from "../utils/typography"
 import Navigation from "./navigation"
-
-export default function Layout({ children }) {
+export default function BlogLayout({ children }) {
 	const data = useStaticQuery(
 		graphql`
       query {
