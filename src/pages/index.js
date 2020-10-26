@@ -1,63 +1,45 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
-import PageLayout from "../components/page-layout"
-import Hero from "../components/hero/hero"
-import Image from "../components/image"
-import Navigation from "../components/navigation"
+import SEO from "../components/seo"
+import PageLayout from "../layouts/resume-layout"
 
-export default function Home({ data }) {
+import { rhythm } from "../utils/typography"
+import Basics from "../components/resume/basics"
+import About from "../components/resume/about"
+import Work from "../components/resume/work"
+import Projects from "../components/resume/projects"
+import Education from "../components/resume/education"
+
+
+export default function ResumePage({ data, pageContext }) {
+	const {
+		basics,
+		skills,
+		projects,
+		work,
+		education
+	} = data.resumeYaml;
+	console.log(pageContext.resume);
+
 	return (
-		<>
-			<Hero imgSrc={data.hero.publicURL}>
-				<PageLayout>
-					<Navigation />
-					<h1>Hi, I'm John Di Girolamo</h1>
-					<p>Welcome to my Site</p>
-					<p>Powered by Gatsby</p>
-					<div
-						css={css`
-							max-width: 7.5em
-						`}>
-						<Image imgName={fileNameExtension(data.profile)} />
-					</div>
-				</PageLayout>
-			</Hero>
-		</>
+		<PageLayout>
+			<SEO title={`Resume`} description={basics.name} />
+			<Basics data={{ basics, skills }} />
+
+			<section css={css`
+				background: white;
+				margin: 0;
+				margin-left: auto;
+				width: 100%;
+				max-width: calc(100% - 32em);
+				padding: ${rhythm(1.5)} ${rhythm(1.5)};
+				border-radius: 1em;
+			`}>
+				<About data={basics} />
+				<Projects data={projects} />
+				<Work data={work} />
+				<Education data={education} />
+			</section>
+		</PageLayout>
 	)
 }
-
-function fileNameExtension(file) {
-	return file.name + '.' + file.extension;
-}
-
-export const query = graphql`
-	query {
-		allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-			totalCount
-			edges {
-				node {
-					id
-					frontmatter {
-						title
-						date(formatString: "DD MMMM, YYYY")
-					}
-					fields {
-						slug
-					}
-					excerpt
-				}
-			}
-		}
-		hero: file(base: { eq: "homepage_hero.jpg" }) {
-			publicURL
-			extension
-			name
-		}
-		profile: file(base: { eq: "favicon.png" }) {
-			publicURL
-			extension
-			name
-		}
-	}
-`

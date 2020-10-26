@@ -8,3 +8,36 @@
 *:after {
 	box-sizing: border-box;
 }
+
+.Collapsible__trigger {
+	position: relative;
+}
+.Collapsible__trigger-icon {
+	position: absolute;
+	right: 1em;
+	top: 50%;
+	transform: translateY(-50%);
+	display: block;
+	transition: transform 300ms;
+}
+.is-open .Collapsible__trigger-icon {
+	transform: translateY(-50%) rotateZ(-180deg);
+}
+
+.Collapsible__contentInner--project {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: row nowrap;
+}
+
+img {
+	max-width: 100%;
+	vertical-align: bottom;
+}
+
+a {
+	overflow: hidden;
+	box-shadow: none;
+	text-decoration: none;
+}

@@ -1,21 +1,21 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { useStaticQuery, Link, graphql } from "gatsby"
+// import { useStaticQuery, graphql } from "gatsby"
 
 import { rhythm } from "../utils/typography"
 import Navigation from "./navigation"
 export default function BlogLayout({ children }) {
-	const data = useStaticQuery(
-		graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-	)
+	// const data = useStaticQuery(
+	// 	graphql`
+	//   query {
+	//     site {
+	//       siteMetadata {
+	//         title
+	//       }
+	//     }
+	//   }
+	// `
+	// )
 	return (
 		<div
 			css={css`

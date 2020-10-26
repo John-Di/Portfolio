@@ -2,7 +2,7 @@ import React from "react"
 import { css } from "@emotion/core"
 import { Link, graphql } from "gatsby"
 import { rhythm } from "../utils/typography"
-import PageLayout from "../components/page-layout"
+import PageLayout from "../layouts/page-layout"
 
 export default function Home({ data }) {
 	return (

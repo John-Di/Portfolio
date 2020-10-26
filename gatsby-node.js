@@ -48,6 +48,89 @@ exports.createPages = async ({ graphql, actions }) => {
 						fields {
 							slug
 						}
+						basics {
+							email
+							name
+							label
+							phone
+							url
+							summary
+							profiles {
+								url
+								color
+								network
+								platform
+								flavor
+							}
+						}
+						work {
+							description
+							endDate(formatString: "MMM, YYYY")
+							highlights
+							location
+							name
+							startDate(formatString: "MMM, YYYY")
+							position
+							summary
+							url
+						}
+						volunteer {
+							endDate(formatString: "MMM, YYYY")
+							highlights
+							organization
+							position
+							startDate(formatString: "MMM, YYYY")
+							summary
+							url
+						}
+						education {
+							area
+							endDate(formatString: "MMM, YYYY")
+							institution
+							startDate(formatString: "MMM, YYYY")
+							studyType
+						}
+						projects {
+							name
+							description
+							highlights
+							keywords
+							url
+							roles
+							entity
+							type
+							image
+						}
+						awards {
+							awarder
+							date(formatString: "MMM, YYYY")
+							summary
+							title
+						}
+						publications {
+							name
+							publisher
+							releaseDate(formatString: "MMM, YYYY")
+							summary
+							url
+						}
+						skills {
+							keywords
+							level
+							name
+						}
+						languages {
+							fluency
+							language
+						}
+						interests {
+							keywords
+							name
+						}
+						references {
+							name
+							reference
+						}
 					}
 				}
 			}
@@ -60,11 +143,12 @@ exports.createPages = async ({ graphql, actions }) => {
 		console.log("Resume Node", path.resolve(`./src/templates/resume.js`));
 		createPage({
 			path: node.fields.slug,
-			component: path.resolve(`./src/templates/page.js`),
+			component: path.resolve(`./src/templates/resume.js`),
 			context: {
 				// Data passed to context is available
 				// in page queries as GraphQL variables.
 				slug: node.fields.slug,
+				resume: node
 			},
 		})
 	});
