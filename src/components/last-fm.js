@@ -4,7 +4,7 @@ import { rhythm } from "../utils/typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeadphonesAlt } from "@fortawesome/free-solid-svg-icons";
 
-export default function Education({ userName, apiKey }) {
+export default function LastFm({ userName, apiKey }) {
 	const [lfmData, updateLfmData] = useState({});
 
 	const getCurrentTrack = () => {

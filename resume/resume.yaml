@@ -1,17 +1,11 @@
 basics:
-  name: Richard Hendriks
-  label: Programmer
+  name: John Di Girolamo
+  label: Front-End Developer,Game Developer
   image: ''
   email: richard.hendriks@mail.com
   phone: "(912) 555-4321"
   url: http://richardhendricks.example.com
-  summary: Richard hails from Tulsa. He has earned degrees from the University of
-    Oklahoma and Stanford. (Go Sooners and Cardinal!) Before starting Pied Piper,
-    he worked for Hooli as a part time software developer. While his work focuses
-    on applied information theory, mostly optimizing lossless compression schema of
-    both the length-limited and adaptive variants, his non-work interests range widely,
-    everything from quantum computing to chaos theory. He could tell you about it,
-    but THAT would NOT be a “length-limited” conversation!
+  summary: Senior Front-End Web Developer with 5 years of Shopify Plus experience in creating eCommerce. Storefront Solutions. Define and develop initial architecture, theme design, modifications, including on-going maintenance and support. Lead modest team of junior and intermediate developers in requirements gathering, risk assessment, and project handoffs. Works well both remotely and team environment. A continuous learner, strive to learn the latest technologies and methodologies in pursuit of peer recognition as SME.
   location:
     address: 2712 Broadway St
     postalCode: CA 94115
@@ -19,28 +13,73 @@ basics:
     countryCode: US
     region: California
   profiles:
-  - network: Twitter
-    username: neutralthoughts
-    url: ''
-  - network: SoundCloud
-    username: dandymusicnl
-    url: https://soundcloud.example.com/dandymusicnl
+  - network: LinkedIn
+    url: https://www.linkedin.com/in/john-di-girolamo/
+    color: '2867B2'
+    platform: linkedin
+    flavor: Follow me on LinkedIn
+  - network: Github
+    url: https://github.com/John-Di/
+    color: '333'
+    platform: github
+    flavor: Find me on Github
 work:
-- name: Pied Piper
+- name: Diff Agency
+  location: Montreal, Qc, Canada
+  position: Senior Front-End Developer
+  url: http://piedpiper.example.com
+  startDate: '2015-05-31'
+  endDate: '2020-03-31'
+  summary: Diff Agency is a Shopify Partner dedicated to all things Shopify from Front-End Custom Theming Solutions to Back-End ERP Systems and Integrations and everything in between.
+  highlights:
+  - Develop Shopify and Shopify Plus Storefront themes from the ground up with innovative solutions and workarounds including Collection Filtering and Sorting, Product Bundling, and Checkout Modifications
+  - Evolve and improve legacy implementations by introducing new features, optimizations, and best practices in coding
+  - Integrate custom in-house Shopify App solutions as well as 3rd Party Applications to further enrich the Front-End User eXperience with features such as Newsletter Marketing Campaigns, Product Reviews and Ratings, Advanced Filtering & Sorting, Advanced Product Search Catalogs, Instagram Feed, etc.
+  - Project planning and execution while leading a small team of 3 - 5 developers of varying skill levels
+  - Mentor new hires and junior developers bringing them up to speed on the ins and outs of the Shopify Platform as well as general front-end development and Diff specific standards and practices
+- name: Ericsson
   location: Palo Alto, CA
   description: Awesome compression company
-  position: CEO/President
+  position: Junior Innovation Professional Co-op
   url: http://piedpiper.example.com
-  startDate: '2013-12-01'
-  endDate: '2014-12-01'
+  startDate: '2014-05-31'
+  endDate: '2014-08-31'
   summary: Pied Piper is a multi-platform technology based on a proprietary universal
     compression algorithm that has consistently fielded high Weisman Scores™ that
     are not merely competitive, but approach the theoretical limit of lossless compression.
   highlights:
-  - Build an algorithm for artist to detect if their music was violating copy right
-    infringement laws
-  - Successfully won Techcrunch Disrupt
-  - Optimized an algorithm that holds the current world record for Weisman Scores
+  - Develop and integrate a new experimental node architecture which resulted in an 11% decrease of hardware storage space allocation
+  - Configuring and testing an IP Multimedia Subsystem (IMS) solution
+  - Producing technical documentation and presentation material for internal assessment
+- name: Radialpoint
+  location: Palo Alto, CA
+  description: Awesome compression company
+  position: Software Quality Assurance Intern
+  url: http://piedpiper.example.com
+  startDate: '2013-05-31'
+  endDate: '2013-08-31'
+  summary: Pied Piper is a multi-platform technology based on a proprietary universal
+    compression algorithm that has consistently fielded high Weisman Scores™ that
+    are not merely competitive, but approach the theoretical limit of lossless compression.
+  highlights:
+  - Designing and implementing test cases in collaboration with multiple Quality Assurance team across multiple departments
+  - Testing requirements (implicit and explicit), failure modes, quality factors and specifications, provide bug isolation and working closely with the development team to help identify root cause of and resolution of software defects
+  - Using a combination of scripted (analytic) and exploratory (heuristic) testing techniques in conducting QA on products
+  - Ensuring the documentation and communication of test results and issues (bugs) through an issue tracking system\n- Worked in an Agile environment following a Scrum methodology
+- name: Lockheed Martin
+  location: Palo Alto, CA
+  description: Awesome compression company
+  position: Systems and Software Engineer (Co-op)
+  url: http://piedpiper.example.com
+  startDate: '2013-05-31'
+  endDate: '2013-08-31'
+  summary: Pied Piper is a multi-platform technology based on a proprietary universal
+    compression algorithm that has consistently fielded high Weisman Scores™ that
+    are not merely competitive, but approach the theoretical limit of lossless compression.
+  highlights:
+  - Developing a log file data extraction and transcription script in Java to reduce the overhead of transcribing 10,000s lines of system logs from a .txt file to a formatted spreadsheet
+  - Conducting research on multiple GIS candidates and recorded results into an IRAD report
+  - Refactoring previous system’s framework in Java for integration of the new GIS system
 volunteer:
 - organization: CoderDojo
   position: Teacher
@@ -51,15 +90,16 @@ volunteer:
   highlights:
   - Awarded 'Teacher of the Month'
 education:
-- institution: University of Oklahoma
-  area: Information Technology
-  studyType: Bachelor
+- institution: Concordia University
+  area: Software Engineering w/ Gaming Option
+  studyType: Bachelor of Engineering (BEng)
   startDate: '2011-06-01'
   endDate: '2014-01-01'
-  gpa: '4.0'
-  courses:
-  - DB1101 - Basic SQL
-  - CS2011 - Java Introduction
+- institution: Vanier College
+  area: Computer Science and Mathematics
+  studyType: DEC in Sciences
+  startDate: '2011-06-01'
+  endDate: '2014-01-01'
 awards:
 - title: Digital Compression Pioneer Award
   date: '2014-11-01'
@@ -73,21 +113,48 @@ publications:
   summary: Innovative middle-out compression algorithm that changes the way we store
     data.
 skills:
-- name: Web Development
-  level: Master
+- name: Languages and Frameworks
+  level: ''
   keywords:
-  - HTML
-  - CSS
+  - HTML5
+  - CSS3
   - Javascript
-- name: Compression
-  level: Master
+  - Liquid
+  - SASS
+  - NodeJS
+  - ES6
+  - ReactJS
+  - C#
+  - Java
+- name: Development Tools and Environments
+  level: ''
   keywords:
-  - Mpeg
-  - MP4
-  - GIF
+  - Git
+  - Github
+  - Bitbucket
+  - Webpack
+  - Gatsby
+  - Netlify
+  - Unity
+  - Shopify
+- name: Methodologies and Tools
+  level: ''
+  keywords:
+  - Agile
+  - Scrum Master
+  - Jira
+  - Confluence
 languages:
 - language: English
   fluency: Native speaker
+- language: French
+  fluency: Fluent
+- language: Italian
+  fluency: Spoken
+- language: Spanish
+  fluency: Beginner
+- language: Japanese
+  fluency: Beginner
 interests:
 - name: Wildlife
   keywords:
@@ -99,25 +166,37 @@ references:
     consultant for Main St. Company proved that he will be a valuable addition to
     any company.
 projects:
-- name: Miss Direction
-  description: A mapping engine that misguides you
+- name: Hammy Hop
+  description: An endless runner starring Hammothy "Hammy" the Hamster. Earn points by eating sunflower seeds. Eating seeds will cause Hammy to poop. Eating poop lowers Hammy's health points while eating seeds replenishes his health. The game is over when Hammy's health gauge is empty.
   highlights:
-  - Won award at AIHacks 2016
-  - Built by all women team of newbie programmers
-  - Using modern technologies such as GoogleMaps, Chrome Extension and Javascript
+  - Designing, architecting and implementing game logic using the Unity Engine following the MVC principle through Event Handlers and Scriptable Objects thus reducing the complexity and couplings of objects and components.
+  - Integrating the Google Play Services allowing players to unlock Achievements and view the Leaderboard.
+  - Integrating Unity Ads allowing for passive revenue for players who opt to play for free
+  - Integrating Google Play Billing In-App Purchases allowing players the option of removing ads through a one-time payment
   keywords:
-  - GoogleMaps
-  - Chrome Extension
-  - Javascript
+  - Unity Engine
+  - C#
+  - Android
+  - Google Play Store
+  - Google Play Games
+  - Google Play Billing
+  - Google Play Services
+  - Unity Ads
   startDate: '2016-08-24'
   endDate: '2016-08-24'
-  url: missdirection.example.com
+  url: https://play.google.com/store/apps/details?id=com.FraGaming.HammyHop&hl=en_CA
   roles:
-  - Team lead
-  - Designer
-  entity: Smoogle
-  type: application
+  - Developer
+  - Artist
+  entity: Fra Gaming
+  type: Mobile Game
+  image: hammy_hop.jpg
+  social: 
+  - Facebook:
+    url: https://www.facebook.com/HammyHop
+  - Instagram: 
+    url: https://www.instagram.com/hammyhop/
 meta:
-  canonical: https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json
+  canonical: https://parmijohn.com/resume
   version: v1.0.0
-  lastModified: '2017-12-24T15:53:00'
+  lastModified: '2020-09-10T17:23:00'

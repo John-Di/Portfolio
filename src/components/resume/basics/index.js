@@ -54,7 +54,6 @@ export default function Basics({ data }) {
 			<p css={css`
 				margin: ${rhythm(0.75)} 0 0;
 			`}>{roles}</p>
-			<LastFm userName="Parmijohn" apiKey="192a920c481c3f62398e29c9cca2e7b9" />
 			<Skills data={skills} />
 			<Social data={basics.profiles} />
 		</div >
