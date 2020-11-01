@@ -65,8 +65,9 @@ export const PROJECT_HIGHLIGHTS = styled.ul`
 `;
 
 export const PROJECT_KEYWORDS = styled.ul`
-	padding-left: ${rhythm(1.25)};
+	margin-top: ${rhythm(1.25)};
 	margin-bottom: 0;
+	padding-left: 0;
 `;
 
 export const PROJECT_KEYWORD = styled.li`

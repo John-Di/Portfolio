@@ -12,6 +12,7 @@ export const TOGGLE_NAME = styled.h3`
 `;
 
 export const TOGGLE_ICON = styled.h3`
+	display: inline-block;
 	margin-left: 1em;
 	margin-right: 0.25em;
 	position: relative;

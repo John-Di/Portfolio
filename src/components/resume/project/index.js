@@ -57,6 +57,7 @@ export default function Project({ data }) {
 						{highlights.map((highlight, i) => <li key={`highlight_${i}`}>{highlight}</li>)}
 					</PROJECT_HIGHLIGHTS>
 				</CollapsibleSection>
+				<hr />
 				<PROJECT_KEYWORDS>
 					{
 						keywords.map((keyword, i) => (
