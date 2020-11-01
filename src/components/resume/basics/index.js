@@ -5,33 +5,16 @@ import LastFm from "../../last-fm";
 import Image from "../../image";
 import Skills from "../skills";
 import Social from "../social";
+import {
+	BASICS,
+	IMAGE_WRAPPER,
+	H1,
+	ROLES
+} from './styles';
 
 export default function Basics({ data, pageContext }) {
 	const { basics, skills } = pageContext.resume;
 	console.log(basics);
-
-	const wrapper = css`
-		background: white;
-		position: fixed;
-		text-align: center;
-		border-radius: 1em;
-		margin: 0;
-		white-space: nowrap;
-		padding: ${rhythm(1)};
-		max-width: 30em;
-		width: 100%;
-	`;
-
-	const profile_image = (
-		<div css={css`
-			border-radius: 50%;
-			margin: 0 auto;
-			max-width: 8em;
-			overflow: hidden;
-		`}>
-			<Image imgName="me.jpg" />
-		</div>
-	);
 
 	let p = new DOMParser();
 	let d = p.parseFromString('&bull;', 'text/html');
@@ -46,16 +29,14 @@ export default function Basics({ data, pageContext }) {
 	), null);
 
 	return (
-		<div css={wrapper}>
-			{profile_image}
-			<h1 css={css`
-					margin-top: ${rhythm(1)}
-				`}>{basics.name}</h1>
-			<p css={css`
-				margin: ${rhythm(0.75)} 0 0;
-			`}>{roles}</p>
+		<BASICS>
+			<IMAGE_WRAPPER>
+				<Image imgName="me.jpg" />
+			</IMAGE_WRAPPER>
+			<H1>{basics.name}</H1>
+			<ROLES>{roles}</ROLES>
 			<Skills data={skills} />
 			<Social data={basics.profiles} />
-		</div >
+		</BASICS >
 	)
 }

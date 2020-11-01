@@ -1,19 +1,17 @@
 import React from "react";
-import styled from 'styled-components';
-import { useStaticQuery, withPrefix, graphql } from "gatsby"
-import { Layout } from './styles';
+import SEO from "../../components/seo";
+import Basics from "../../components/resume/basics";
+import About from "../../components/resume/about";
+import ResumeLayout from "../../layouts/resume-layout";
 
-import { rhythm } from "../utils/typography"
-// import Navigation from "./navigation"
 
-export default function Resume({ data, children }) {
-
-	const ResumeLayout = styled(Layout)`
-		background-image: url(${withPrefix(data.hero.publicURL)});
-	`;
+export default function Resume({ data, pageContext }) {
+	const { basics } = pageContext.resume;
 	return (
 		<ResumeLayout>
-			{children}
+			<SEO title={`Resume`} description={basics.name} />
+			<Basics data={data} pageContext={pageContext} />
+			<About data={data} pageContext={pageContext} />
 		</ResumeLayout>
 	)
 }
