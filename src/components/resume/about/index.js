@@ -1,9 +1,9 @@
 import React from "react";
+import Summary from "../summary";
+import Career from "../career";
+import Projects from "../projects";
+import Education from "../education";
 import { SECTION } from './styles';
-import Summary from "../summary"
-import Career from "../career"
-import Projects from "../projects"
-import Education from "../education"
 
 export default function About({ data, pageContext }) {
 	const {

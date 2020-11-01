@@ -2,6 +2,9 @@ import React from "react";
 import { css } from "@emotion/core";
 import Work from "../work";
 import CollapsibleSection from "../collapsible-section";
+import {
+	HR
+} from './styles';
 
 export default function Career({ data }) {
 	const work = data;
@@ -18,10 +21,7 @@ export default function Career({ data }) {
 					.reduce((acc, curr) => acc === null ? curr : (
 						<>
 							{acc}
-							<hr css={css`
-								max-width: 50%;
-								margin-right: auto;
-							`} />
+							<HR />
 							{curr}
 						</>
 					), null)

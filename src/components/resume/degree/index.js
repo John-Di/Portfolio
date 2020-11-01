@@ -1,9 +1,13 @@
 import React from "react";
-import { css } from "@emotion/core";
-import { rhythm } from "../../../utils/typography";
 import Moment from 'react-moment';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+import {
+	DEGREE,
+	NAME,
+	DURATION_WRAPPER,
+	DURATION,
+	FONTAWESOMEICON
+} from './styles';
 
 export default function DegreeEntry({ data }) {
 	const degree = data;
@@ -14,33 +18,14 @@ export default function DegreeEntry({ data }) {
 		/>;
 
 	return (
-		<div css={css`
-				margin-bottom: ${rhythm(0.75)};
-		`}>
-			<h3 css={css`
-				display: inline-block;
-				"margin": 0 auto ${rhythm(0.75)};
-				"width": "100%";
-			`}>
-				{degree.studyType}
-			</h3>
-			<span css={css`
-				margin-left: 1em;
-				margin-right: 0.25em;
-				position: relative;
-			`}>
-				<FontAwesomeIcon icon={faCalendar} color="#49586d" css={css`
-					height: 100%;
-					width: 100%;
-				`} />
-				<span css={css`
-					margin-left: 0.5em;
-					margin-right: 0.25em;
-					position: relative;
-				`}>{degree.startDate} - {degree.endDate}</span>
-			</span>
+		<DEGREE>
+			<NAME>{degree.studyType}</NAME>
+			<DURATION_WRAPPER>
+				<FONTAWESOMEICON icon={faCalendar} color="#49586d" />
+				<DURATION>{degree.startDate} - {degree.endDate}</DURATION>
+			</DURATION_WRAPPER>
 			<br />
 				- <span>{degree.area}</span> | <span>{degree.institution}</span>
-		</div>
+		</DEGREE>
 	)
 }
