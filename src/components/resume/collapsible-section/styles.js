@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { rhythm } from "../../../utils/typography"
+import { rhythm } from "../../../utils/typography";
 
 export const Trigger = styled.div`
 	position: relative;

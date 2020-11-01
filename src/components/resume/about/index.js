@@ -1,16 +1,24 @@
 import React from "react";
-import CollapsibleSection from "../collapsible-section";
-import { P, ParentTrigger } from './styles';
+import { SECTION } from './styles';
+import Summary from "../summary"
+import Career from "../career"
+import Projects from "../projects"
+import Education from "../education"
 
-export default function About({ data }) {
-	const basics = data;
-	console.log(basics);
-	const label = (<h2>About</h2>);
+export default function About({ data, pageContext }) {
+	const {
+		basics,
+		projects,
+		work,
+		education
+	} = pageContext.resume;
 
 	return (
-		<CollapsibleSection speed={200} label={label} triggerStyles={ParentTrigger}>
-			<hr />
-			<P>{basics.summary}</P>
-		</CollapsibleSection>
+		<SECTION>
+			<Summary data={basics} />
+			<Projects data={projects} />
+			<Career data={work} />
+			<Education data={education} />
+		</SECTION>
 	)
 }

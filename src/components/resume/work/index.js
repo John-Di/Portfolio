@@ -1,10 +1,14 @@
 import React from "react";
-import { css } from "@emotion/core";
 import { rhythm } from "../../../utils/typography"
 import CollapsibleSection from "../collapsible-section";
 import Moment from 'react-moment';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+	TOGGLE_NAME,
+	TOGGLE_ICON,
+	FONTAWESOMEICON,
+	CAREER
+} from './styles';
 
 Moment.globalLocale = 'en-ca';
 
@@ -17,19 +21,10 @@ export default function Work({ data }) {
 		/>;
 	const label = (
 		<>
-			<h3 css={css`
-				display: inline-block;
-			`}>{work.position}</h3>
-			<span css={css`
-				margin-left: 1em;
-				margin-right: 0.25em;
-				position: relative;
-			`}>
-				<FontAwesomeIcon icon={faClock} color="#49586d" css={css`
-					height: 100%;
-					width: 100%;
-				`} />
-			</span>
+			<TOGGLE_NAME>{work.position}</TOGGLE_NAME>
+			<TOGGLE_ICON>
+				<FONTAWESOMEICON icon={faClock} color="#49586d" />
+			</TOGGLE_ICON>
 			<Moment add={{ months: 1 }} subtract={{ days: 1 }} duration={work.startDate}
 				date={work.endDate}
 			/>
@@ -46,11 +41,9 @@ export default function Work({ data }) {
 			{/* <p>
 				{work.summary}
 			</p> */}
-			<ul css={css`
-					padding-left: ${rhythm(1.25)};
-				`}>
+			<CAREER>
 				{work.highlights.map((highlight, i) => <li key={`highlight_${i}`}>{highlight}</li>)}
-			</ul>
+			</CAREER>
 		</CollapsibleSection>
 	)
 }

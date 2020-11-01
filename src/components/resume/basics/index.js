@@ -6,8 +6,8 @@ import Image from "../../image";
 import Skills from "../skills";
 import Social from "../social";
 
-export default function Basics({ data }) {
-	const { basics, skills } = data;
+export default function Basics({ data, pageContext }) {
+	const { basics, skills } = pageContext.resume;
 	console.log(basics);
 
 	const wrapper = css`

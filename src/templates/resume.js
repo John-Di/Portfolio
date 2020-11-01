@@ -5,18 +5,16 @@ import SEO from "../components/seo"
 import ResumeLayout from '../layouts/resume-layout';
 import Basics from "../components/resume/basics";
 import About from "../components/resume/about";
-import Career from "../components/resume/career";
-import Projects from "../components/resume/projects";
-import Education from "../components/resume/education";
 
-export default function ResumeTemplate({ pageContext: { resume } }) {
+export default function ResumeTemplate({ data, pageContext }) {
+	console.log(data, pageContext);
 	const {
 		basics,
 		skills,
 		projects,
 		work,
 		education
-	} = resume;
+	} = pageContext.resume;
 
 	const Resume = styled.section`
 		background: white;
@@ -31,14 +29,8 @@ export default function ResumeTemplate({ pageContext: { resume } }) {
 	return (
 		<ResumeLayout>
 			<SEO title={`Resume`} description={basics.name} />
-			<Basics data={{ basics, skills }} />
-
-			<Resume>
-				<About data={basics} />
-				<Projects data={projects} />
-				<Career data={work} />
-				<Education data={education} />
-			</Resume>
+			<Basics data={data} pageContext={pageContext} />
+			<About data={data} pageContext={pageContext} />
 		</ResumeLayout>
 	)
 }

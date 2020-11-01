@@ -1,18 +1,27 @@
 import styled from 'styled-components';
 import { rhythm } from "../../../utils/typography"
 
-export const P = styled.p`
-	margin: 0 auto;
-	width: 100%;
+export const TOGGLE_NAME = styled.h3`
+	display: inline-block;
 `;
 
-export const ParentTrigger = {
-	'marginTop': 0,
-	'cursor': 'pointer'
-};
+export const TOGGLE_ICON = styled.span`
+	display: inline-block;
 
-export const ChildTrigger = {
-	"cursor": "pointer",
-	"margin": `0 auto ${rhythm(0.75)}`,
-	"width": "100%"
-};
+	&::before {
+		content: '';
+		padding: 0 0.5em;
+		height: 100%;
+		display: inline-block;
+	}
+`;
+
+export const SECTION = styled.section`
+	background: white;
+	margin: 0;
+	margin-left: auto;
+	width: 100%;
+	max-width: calc(100% - 32em);
+	padding: ${rhythm(1.5)} ${rhythm(1.5)};
+	border-radius: 1em;
+`;

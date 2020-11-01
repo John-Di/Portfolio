@@ -6,12 +6,18 @@
 
 module.exports = {
 	siteMetadata: {
-		title: `Pandas Eating Lots`,
-		description: `A simple description about pandas eating lots...`,
+		title: `John Di Girolamo`,
+		description: `My personal website acting as both a Portfolio and a Development Sandbox`,
 		author: `John Di Girolamo`,
 	},
 	plugins: [
-		`gatsby-transformer-yaml`,
+		{
+			resolve: `gatsby-transformer-yaml-plus`,
+			options: {
+				enableRemark: true,
+				markdownPreface: 'md//',
+			}
+		},
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
@@ -72,5 +78,14 @@ module.exports = {
 				pathToConfigModule: `src/utils/typography`,
 			},
 		},
+		{
+			resolve: "gatsby-plugin-react-svg",
+			options: {
+				rule: {
+					include: /svgs/ // See below to configure properly
+				}
+			}
+		},
+		`gatsby-plugin-fontawesome-css`
 	],
 }
