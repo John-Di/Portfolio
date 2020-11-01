@@ -10,7 +10,7 @@ export default function Resume({ data = YAMLData, pageContext }) {
 	let resume = YAMLData;
 
 	if ('basics' in pageContext) {
-		resume = pageContext
+		resume = pageContext;
 	}
 
 	const { basics } = resume;
