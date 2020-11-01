@@ -14,16 +14,13 @@ import {
 
 export default function Basics({ data, resume }) {
 	const { basics, skills } = resume;
-	console.log(basics);
 
-	let p = new DOMParser();
-	let d = p.parseFromString('&bull;', 'text/html');
 	let roles = basics.label.split(',').reduce((acc, curr) => acc === null ? curr : (
 		<>
 			{acc}
 			<span css={css`
 				margin: 0 ${rhythm(0.25)};
-			`}>{d.documentElement.textContent}</span>
+			`}>&bull;</span>
 			{curr}
 		</>
 	), null);

@@ -40,12 +40,12 @@ export default function Navigation({ children }) {
 				Blogs
       </Link>
 			<Link
-				to={`/about/`}
+				to={`/resume/`}
 				css={css`
           float: right;
         `}
 			>
-				About
+				Resume
       </Link>
 			{children}
 		</nav>
