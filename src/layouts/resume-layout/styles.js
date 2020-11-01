@@ -13,6 +13,7 @@ export const Layout = styled.div`
 		left: 0;
 		right: 0;
 		bottom: 0;
+		background-image: url(${props => props.background});
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;

@@ -1,7 +1,7 @@
 import React from "react";
-import styled from 'styled-components';
 import { useStaticQuery, withPrefix, graphql } from "gatsby";
 import { Layout } from './styles';
+import background from '../../images/homepage_hero.jpg';
 
 // import Navigation from "./navigation"
 
@@ -22,15 +22,10 @@ export default function ResumeLayout({ children }) {
 			}
 			`
 	);
-
-	const LayoutWithBackground = styled(Layout)`
-		&::before {
-			background-image: url(${withPrefix(data.hero.publicURL)});
-		}
-	`;
+	console.log(data.hero.publicURL, background);
 	return (
-		<LayoutWithBackground>
+		<Layout background={withPrefix(data.hero.publicURL ? data.hero.publicURL : background)}>
 			{children}
-		</LayoutWithBackground>
+		</Layout>
 	)
 }
