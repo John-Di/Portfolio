@@ -1,4 +1,6 @@
 const path = require(`path`)
+const fs = require("fs")
+const yaml = require("js-yaml")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
@@ -138,20 +140,32 @@ exports.createPages = async ({ graphql, actions }) => {
 	`)
 
 
-	console.log("Results", result);
-	result.data.allResumeYaml.edges.forEach(({ node }) => {
-		console.log("Resume Node", path.resolve(`./src/templates/resume.js`));
+	let ymlDoc = yaml.safeLoad(fs.readFileSync("./resume/resume.yaml", "utf-8"));
+	ymlDoc = Array.isArray(ymlDoc) ? ymlDoc : [ymlDoc];
+
+	ymlDoc.forEach(resume => {
 		createPage({
-			path: node.fields.slug,
-			component: path.resolve(`./src/templates/resume.js`),
+			path: resume.path,
+			component: require.resolve("./src/templates/resume.js"),
 			context: {
-				// Data passed to context is available
-				// in page queries as GraphQL variables.
-				slug: node.fields.slug,
-				resume: node
+				pageContext: resume,
+				slug: resume.path,
 			},
 		})
-	});
+	})
+
+	// result.data.allResumeYaml.edges.forEach(({ node }) => {
+	// 	createPage({
+	// 		path: node.fields.slug,
+	// 		component: path.resolve(`./src/templates/resume.js`),
+	// 		context: {
+	// 			// Data passed to context is available
+	// 			// in page queries as GraphQL variables.
+	// 			slug: node.fields.slug,
+	// 			resume: node
+	// 		},
+	// 	})
+	// });
 
 	// result.data.allMarkdownRemark.edges.forEach(({ node }) => {
 	// 	createPage({

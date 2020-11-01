@@ -5,13 +5,13 @@ import Projects from "../projects";
 import Education from "../education";
 import { SECTION } from './styles';
 
-export default function About({ data, pageContext }) {
+export default function About({ data, resume }) {
 	const {
 		basics,
 		projects,
 		work,
 		education
-	} = pageContext.resume;
+	} = resume;
 
 	return (
 		<SECTION>

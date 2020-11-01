@@ -1,3 +1,4 @@
+path: "/resume"
 basics:
   name: John Di Girolamo
   label: Front-End Developer,Game Developer
@@ -197,6 +198,6 @@ projects:
   - Instagram: 
     url: https://www.instagram.com/hammyhop/
 meta:
-  canonical: https://parmijohn.com/resume
+  canonical: https://johndigirolamo.me/resume
   version: v1.0.0
   lastModified: '2020-09-10T17:23:00'

@@ -12,8 +12,8 @@ import {
 	ROLES
 } from './styles';
 
-export default function Basics({ data, pageContext }) {
-	const { basics, skills } = pageContext.resume;
+export default function Basics({ data, resume }) {
+	const { basics, skills } = resume;
 	console.log(basics);
 
 	let p = new DOMParser();
