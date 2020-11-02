@@ -1,9 +1,8 @@
 import React from "react";
-import CollapsibleSection from "../collapsible-section";
+import CollapsibleSection from "../../collapsible-section";
 import {
 	P,
-	PARENT_TRIGGER,
-	CHILD_TRIGGER
+	PARENT_TRIGGER
 } from './styles';
 
 export default function Summary({ data }) {

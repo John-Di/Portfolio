@@ -2,6 +2,8 @@ import React from "react"
 import { css } from "@emotion/core"
 import { rhythm } from "../../../utils/typography";
 import LastFm from "../../last-fm";
+import CollapsibleSection from "../../collapsible-section";
+import { PARENT_TRIGGER } from "../../collapsible-section/styles";
 import Image from "../../image";
 import Skills from "../skills";
 import Social from "../social";
@@ -27,13 +29,27 @@ export default function Basics({ data, resume }) {
 
 	return (
 		<BASICS>
-			<IMAGE_WRAPPER>
-				<Image imgName="me.jpg" />
-			</IMAGE_WRAPPER>
-			<H1>{basics.name}</H1>
-			<ROLES>{roles}</ROLES>
-			<Skills data={skills} />
-			<Social data={basics.profiles} />
+			<CollapsibleSection
+				speed={200}
+				triggerTagName="div"
+				triggerStyles={PARENT_TRIGGER}
+				label={
+					(
+						<>
+
+							<IMAGE_WRAPPER>
+								<Image imgName="me.jpg" />
+							</IMAGE_WRAPPER>
+							<H1>{basics.name}</H1>
+							<ROLES>{roles}</ROLES>
+						</>
+					)
+
+				}
+			>
+				<Skills data={skills} />
+				<Social data={basics.profiles} />
+			</CollapsibleSection>
 		</BASICS >
 	)
 }

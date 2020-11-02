@@ -19,6 +19,9 @@ wordpress2016Theme.overrideThemeStyles = ({ rhythm }, options) => ({
 		marginTop: rhythm(0.5),
 		marginBottom: rhythm(0.5),
 		fontSize: rhythm(0.6)
+	},
+	'img': {
+		marginBottom: 0
 	}
 })
 

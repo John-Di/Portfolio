@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { rhythm } from "../../../utils/typography";
 
 export const HR = styled.hr`
-	margin: 0 0 ${rhythm(1)};
+	margin: ${rhythm(0.5)} 0 ${rhythm(0.75)};
 `;
 
 export const SOCIAL_LIST = styled.ul`
@@ -10,6 +10,10 @@ export const SOCIAL_LIST = styled.ul`
 	text-align: center;
 	line-height: 1;
 	margin: 0;
+
+	@media print { 
+		display: none;
+	}
 
 	&::after {
 		content: '';

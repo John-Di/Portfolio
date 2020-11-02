@@ -168,7 +168,7 @@ references:
     any company.
 projects:
 - name: Hammy Hop
-  type: Mobile Game,Android
+  type: Mobile Game
   description: An endless runner starring Hammothy "Hammy" the Hamster. Earn points by eating sunflower seeds. Eating seeds will cause Hammy to poop. Eating poop lowers Hammy's health points while eating seeds replenishes his health. The game is over when Hammy's health gauge is empty.
   highlights:
   - Designing, architecting and implementing game logic using the Unity Engine following the MVC principle through Event Handlers and Scriptable Objects thus reducing the complexity and couplings of objects and components.

@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/core";
 import Project from "../project";
-import CollapsibleSection from "../collapsible-section";
+import CollapsibleSection from "../../collapsible-section";
 
 export default function Projects({ data }) {
 	const projects = data;

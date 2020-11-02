@@ -1,7 +1,6 @@
 import React from "react";
-import { css } from "@emotion/core";
 import { rhythm } from "../../../utils/typography"
-import CollapsibleSection from "../collapsible-section";
+import CollapsibleSection from "../../collapsible-section";
 import Image from "../../image";
 import {
 	TOGGLE_NAME,
@@ -56,15 +55,15 @@ export default function Project({ data }) {
 					<PROJECT_HIGHLIGHTS>
 						{highlights.map((highlight, i) => <li key={`highlight_${i}`}>{highlight}</li>)}
 					</PROJECT_HIGHLIGHTS>
+					<hr />
+					<PROJECT_KEYWORDS>
+						{
+							keywords.map((keyword, i) => (
+								<PROJECT_KEYWORD key={`keyword_${i}`}>{keyword}</PROJECT_KEYWORD>
+							))
+						}
+					</PROJECT_KEYWORDS>
 				</CollapsibleSection>
-				<hr />
-				<PROJECT_KEYWORDS>
-					{
-						keywords.map((keyword, i) => (
-							<PROJECT_KEYWORD key={`keyword_${i}`}>{keyword}</PROJECT_KEYWORD>
-						))
-					}
-				</PROJECT_KEYWORDS>
 			</PROJECT>
 		</CollapsibleSection>
 	)

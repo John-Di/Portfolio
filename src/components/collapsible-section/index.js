@@ -4,7 +4,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Trigger } from './styles';
 
-export default function CollapsibleSection({ speed = 400, label, triggerStyles = {}, children, contentInnerClassName }) {
+export default function CollapsibleSection({ speed = 400, label, triggerStyles = {}, children, contentInnerClassName, triggerTagName = 'span', className = null }) {
 	const trigger = (
 		<Trigger>
 			{label} <FontAwesomeIcon className="Collapsible__trigger-icon" icon={faChevronDown} />
@@ -14,9 +14,10 @@ export default function CollapsibleSection({ speed = 400, label, triggerStyles =
 	return (
 		<Collapsible
 			// contentContainerTagName={"details"}
-			// triggerTagName={"summary"}
+			className={className}
+			triggerTagName={triggerTagName}
 			trigger={trigger}
-			open={true}
+			open={false}
 			transitionTime={speed}
 			triggerStyle={triggerStyles}
 			contentInnerClassName={contentInnerClassName}

@@ -1,7 +1,6 @@
 import React from "react";
-import { css } from "@emotion/core";
 import DegreeEntry from "../degree";
-import CollapsibleSection from "../collapsible-section";
+import CollapsibleSection from "../../collapsible-section";
 
 export default function Education({ data }) {
 	const education = data;

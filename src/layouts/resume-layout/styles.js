@@ -18,6 +18,10 @@ export const Layout = styled.div`
 		background-size: cover;
 		background-repeat: no-repeat;
 		z-index: -1;
+
+		@media print { 
+			background: none;
+		}
 	}
 
 	&::after {

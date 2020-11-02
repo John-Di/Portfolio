@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import {
 	DEGREE,
+	DEGREE_DESC,
 	NAME,
 	DURATION_WRAPPER,
 	DURATION,
@@ -20,12 +21,14 @@ export default function DegreeEntry({ data }) {
 	return (
 		<DEGREE>
 			<NAME>{degree.studyType}</NAME>
+			<br />
+			<DEGREE_DESC>
+				- <span>{degree.area}</span> | <span>{degree.institution}</span>
+			</DEGREE_DESC>
 			<DURATION_WRAPPER>
 				<FONTAWESOMEICON icon={faCalendar} color="#49586d" />
 				<DURATION>{degree.startDate} - {degree.endDate}</DURATION>
 			</DURATION_WRAPPER>
-			<br />
-				- <span>{degree.area}</span> | <span>{degree.institution}</span>
 		</DEGREE>
 	)
 }

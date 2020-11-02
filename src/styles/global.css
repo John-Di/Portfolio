@@ -9,6 +9,16 @@
 	box-sizing: border-box;
 }
 
+.Collapsible--work .Collapsible__trigger-icon {
+	top: 75%;
+}
+
+@media (min-width: 1024px) {
+	.Collapsible--work .Collapsible__trigger-icon {
+		top: 50%;
+	}
+}
+
 .Collapsible__trigger {
 	position: relative;
 }
