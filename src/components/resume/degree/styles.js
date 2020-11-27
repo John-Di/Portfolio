@@ -8,7 +8,10 @@ export const DEGREE = styled.div`
 	margin-bottom: 1em;
 	width: 100%;
 	flex: 1 100%;
-	
+	display: flex;
+	flex-flow: column nowrap;
+
+
 	@media ${device.mobileXL} { 
 		width: 50%;
 		flex: 1 50%;
@@ -50,7 +53,6 @@ export const ICON_TEXT = styled(SPAN)`
 
 export const ICON_WRAPPER = styled(SPAN)`
 	display: inline-block;
-	min-width: 1.5em;
 	text-align: center;
 `;
 
@@ -60,5 +62,4 @@ export const DURATION = styled(ICON_TEXT)`
 
 export const FONTAWESOMEICON = styled(FontAwesomeIcon)`
 	height: 100%;
-	width: 1.25em;
 `;

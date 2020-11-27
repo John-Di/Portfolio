@@ -6,16 +6,16 @@ import {
 	TEXT
 } from './styles';
 
-export default function IconBullet({ icon, textContent, color = '#49586d', fontSize = '1em', gap = { regular: '1em' } }) {
+export default function IconBullet({ icon, textContent, color = '#49586d', textSize = '1em', gap = { regular: '1em' } }) {
 	let iconEl = icon ?
 		<ICON_WRAPPER gap={gap}>
 			<ICON icon={icon} color={color} />
 		</ICON_WRAPPER> : null;
 
-	let textEl = textContent ? <TEXT textSize={fontSize}>{textContent}</TEXT> : null;
+	let textEl = textContent ? <TEXT textSize={textSize}>{textContent}</TEXT> : null;
 
 	let el = icon || textEl ?
-		<WRAPPER>
+		<WRAPPER textSize={textSize}>
 			{iconEl}
 			{textEl}
 		</WRAPPER> : null;

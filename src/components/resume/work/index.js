@@ -43,7 +43,6 @@ export default function Work({ data }) {
 		<TOGGLE>
 			<IconBullet
 				icon={faLaptopCode}
-				color={`#49586d`}
 				textContent={work.position}
 				gap={{
 					regular: '0.75em',
@@ -91,7 +90,6 @@ export default function Work({ data }) {
 						<EMPLOYER>{work.name}</EMPLOYER>
 						<IconBullet
 							icon={faCalendar}
-							color={`#49586d`}
 							textSize={`0.875em`}
 							gap={`0.5em`}
 							textContent={

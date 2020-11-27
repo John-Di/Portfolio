@@ -5,6 +5,7 @@ import {
 	faCalendar,
 	faGraduationCap
 } from "@fortawesome/free-solid-svg-icons";
+import IconBullet from '../../../components/icon-bullet';
 import {
 	DEGREE,
 	DEGREE_DESC,
@@ -27,25 +28,21 @@ export default function DegreeEntry({ data }) {
 	return (
 		<DEGREE>
 			<NAME>{degree.studyType}</NAME>
-			<br />
-			<DEGREE_DESC>
-				<ICON_WRAPPER>
-					<FONTAWESOMEICON icon={faLaptopCode} color="#49586d" />
-				</ICON_WRAPPER>
-				<ICON_TEXT>{degree.area}</ICON_TEXT>
-			</DEGREE_DESC>
-			<DEGREE_DESC>
-				<ICON_WRAPPER>
-					<FONTAWESOMEICON icon={faGraduationCap} color="#49586d" />
-				</ICON_WRAPPER>
-				<ICON_TEXT>{degree.institution}</ICON_TEXT>
-			</DEGREE_DESC>
-			<DEGREE_DESC>
-				<ICON_WRAPPER>
-					<FONTAWESOMEICON icon={faCalendar} color="#49586d" />
-				</ICON_WRAPPER>
-				<ICON_TEXT>{degree.startDate} - {degree.endDate}</ICON_TEXT>
-			</DEGREE_DESC>
+			<IconBullet
+				icon={faLaptopCode}
+				textSize={`0.75em`}
+				textContent={`${degree.area}`}
+			/>
+			<IconBullet
+				icon={faGraduationCap}
+				textSize={`0.75em`}
+				textContent={`${degree.institution}`}
+			/>
+			<IconBullet
+				icon={faCalendar}
+				textSize={`0.75em`}
+				textContent={`${degree.startDate} - ${degree.endDate}`}
+			/>
 		</DEGREE>
 	)
 }
