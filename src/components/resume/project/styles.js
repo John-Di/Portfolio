@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 import { rhythm } from "../../../utils/typography";
 import { device } from '../../../utils/variables';
+import {
+	H2,
+	DIVIDER,
+	KEYWORDS,
+	KEYWORD
+} from '../../../layouts/resume-layout/styles';
 
-export const TOGGLE_NAME = styled.h3`
+export const TOGGLE_NAME = styled(H2)`
 	display: inline-block;
+	font-size: 0.875em;
+	margin-top: 0.625em;
+	margin-bottom: 0.625em;
 `;
 
 export const TOGGLE_ICON = styled.span`
@@ -18,6 +27,7 @@ export const TOGGLE_ICON = styled.span`
 `;
 
 export const TOGGLE_ICON_DASH = styled(TOGGLE_ICON)`
+	font-size: 0.875em;
 	&::before {
 		content: '-';
 	}
@@ -29,17 +39,17 @@ export const PROJECT = styled.div`
 	padding: 0;
 
 	@media ${device.laptop} { 
-		padding: ${rhythm(0.75)} ${rhythm(1.25)};
+		padding: 0.984375em 1.640625em;
 	}
 
 	.Collapsible {
 		width: 100%;
-		margin-top: ${rhythm(0.5)};
-		padding-left: ${rhythm(0.5)};
+		margin-top: 0.65625em;
+		padding-left: 0.65625em;
 
 		@media ${device.laptop} { 
 			margin-top: 0;
-			padding-left: ${rhythm(0.75)};
+			padding-left: 0.984375em;
 		}
 	}
 
@@ -50,9 +60,9 @@ export const IMAGE_WRAPPER = styled.a`
 	float: left;
 	width: 80px;
 	height: 80px;
-	margin-top: ${rhythm(0.25)};
-	margin-right: ${rhythm(0.5)};
-	margin-bottom: ${rhythm(0.25)};
+	margin-top: 0.328125em;
+	margin-right: 0.65625em;
+	margin-bottom: 0.328125em;
 	transition: opacity 0.3s ease 0s;
 
 	&:hover {
@@ -68,17 +78,17 @@ export const IMAGE_WRAPPER = styled.a`
 		width: 200px;
 		height: 200px;
 		margin-top: 0;
-		margin-right: ${rhythm(1.25)};
-		margin-bottom: ${rhythm(1.25)};
+		margin-right: 1.640625em;
+		margin-bottom: 1.640625em;
 	}
 `;
 
 export const PROJECT_DESC = styled.div`
 	margin-top: 0;
-	margin-bottom: ${rhythm(0.25)};
+	margin-bottom: 0.328125em;
 
 	@media ${device.laptop} { 
-		margin-top: ${rhythm(1.25)};
+		margin-top: 1.640625em;
 		margin-bottom: 0;	
 	}
 
@@ -89,37 +99,47 @@ export const PROJECT_DESC = styled.div`
 	}
 `;
 
+export const HR = styled(DIVIDER)`
+	margin-right: 5em;
+	margin-top: 1.3125em;
+`;
+
 export const PROJECT_HIGHLIGHTS = styled.ul`
-	padding-left: ${rhythm(0.75)};
+	padding-left: 0.984375em;
 	margin: 0;
 
 	@media ${device.laptop} { 
-		padding-left: ${rhythm(1.25)};
+		padding-left: 1.640625em;
 	}
 `;
 
-export const PROJECT_KEYWORDS = styled.ul`
+export const PROJECT_KEYWORDS = styled(KEYWORDS)`
 	margin: 0;
-	padding-left: 0;
-	margin-top: ${rhythm(0.25)};
-
-	@media ${device.laptop} { 
-		padding-left: ${rhythm(1.25)};
-		margin-top: ${rhythm(1.25)};
-	}
 `;
 
-export const PROJECT_KEYWORD = styled.li`
-	display: inline-block;
-	margin-right: 0.25em;
-	padding: 0.1em 0.25em;
-	background: #1975ca;
-	color: white;
-	border-radius: 0.125em;
-	margin-bottom: ${rhythm(0.25)};
+// styled.ul`
+// 	margin: 0;
+// 	padding-left: 0;
+// 	margin-top: 0.328125em;
 
-	@media ${device.laptop} { 
-		padding: 0.2em 0.5em;
-		margin-bottom: ${rhythm(0.75)};
-	}
-`;
+// 	@media ${device.laptop} { 
+// 		padding-left: 1.640625em;
+// 		margin-top: 1.640625em;
+// 	}
+// `;
+
+export const PROJECT_KEYWORD = KEYWORD;
+// styled.li`
+// 	display: inline-block;
+// 	margin-right: 0.25em;
+// 	padding: 0.1em 0.25em;
+// 	background: #1975ca;
+// 	color: white;
+// 	border-radius: 0.125em;
+// 	margin-bottom: 0.328125em;
+
+// 	@media ${device.laptop} { 
+// 		padding: 0.2em 0.5em;
+// 		margin-bottom: 0.984375em;
+// 	}
+// `;

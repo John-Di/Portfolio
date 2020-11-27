@@ -1,10 +1,11 @@
 import React from "react";
+import Keyword from '../keyword';
 import {
 	HR,
 	SKILL_LIST,
 	SKILL,
 	KEYWORDS,
-	KEYWORD
+	CATEGORY
 } from './styles';
 
 export default function Skills({ data }) {
@@ -18,12 +19,12 @@ export default function Skills({ data }) {
 			<SKILL_LIST>
 				{skills.map((category, i) => {
 					return <SKILL key={`skill_section_${i}`}>
-						<span><strong>{category.name}</strong>:</span>
+						<CATEGORY><strong>{category.name}</strong>:</CATEGORY>
 						<br />
 						<KEYWORDS>
 							{
 								category.keywords.map((skill, j) => (
-									<KEYWORD key={`skill_name_${j}`}>{skill}</KEYWORD>
+									<Keyword key={`skill_name_${j}`}>{skill}</Keyword>
 								))
 							}
 						</KEYWORDS>

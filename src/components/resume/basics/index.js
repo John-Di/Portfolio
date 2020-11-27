@@ -10,7 +10,7 @@ import Social from "../social";
 import {
 	BASICS,
 	IMAGE_WRAPPER,
-	H1,
+	NAME,
 	ROLES
 } from './styles';
 
@@ -21,7 +21,7 @@ export default function Basics({ data, resume }) {
 		<>
 			{acc}
 			<span css={css`
-				margin: 0 ${rhythm(0.25)};
+				margin: 0 0.328125em;
 			`}>&bull;</span>
 			{curr}
 		</>
@@ -36,15 +36,13 @@ export default function Basics({ data, resume }) {
 				label={
 					(
 						<>
-
 							<IMAGE_WRAPPER>
 								<Image imgName="me.jpg" />
 							</IMAGE_WRAPPER>
-							<H1>{basics.name}</H1>
+							<NAME>{basics.name}</NAME>
 							<ROLES>{roles}</ROLES>
 						</>
 					)
-
 				}
 			>
 				<Skills data={skills} />

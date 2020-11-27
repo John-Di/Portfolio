@@ -14,7 +14,7 @@ export const LINK = styled.a`
 	}
 
 	svg {
-		width: ${rhythm(1.5)};
-		height: ${rhythm(1.5)}; 
+		width: 1.96875em;
+		height: 1.96875em; 
 	}
 `;

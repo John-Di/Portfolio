@@ -22,8 +22,8 @@ export default function PageLayout({ children }) {
 			css={css`
 				margin: 0 auto;
 				max-width: 1440px;
-				padding: ${rhythm(2)};
-				padding-top: ${rhythm(1.5)};
+				padding: 2.625em;
+				padding-top: 1.96875em;
 			`}
 		>
 			{children}

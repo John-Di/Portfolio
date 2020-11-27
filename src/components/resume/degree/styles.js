@@ -2,9 +2,17 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { rhythm } from "../../../utils/typography";
 import { device } from '../../../utils/variables';
+import { H2, H3, SPAN, P, LI } from '../../../layouts/resume-layout/styles';
 
-export const DEGREE = styled.section`
-	margin-bottom: ${rhythm(0.75)};
+export const DEGREE = styled.div`
+	margin-bottom: 1em;
+	width: 100%;
+	flex: 1 100%;
+	
+	@media ${device.mobileXL} { 
+		width: 50%;
+		flex: 1 50%;
+	}
 `;
 
 export const TOGGLE = styled.div`
@@ -16,31 +24,41 @@ export const TOGGLE = styled.div`
 	}
 `;
 
-export const NAME = styled.h3`
+export const NAME = styled(H3)`
 	display: inline-block;
-	"margin": 0 auto ${rhythm(0.75)};
-	"width": "100%";
+	font-size: 0.8125em;
+	font-weight: normal;
+	margin: 0.6875em auto;
+	width: 100%;
 `;
 
 export const DEGREE_DESC = styled.div`
-	margin-top: ${rhythm(0.25)};
-	padding-left: ${rhythm(0.75)};
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: start;
+	margin-top: 0.3125em;
+	font-size: 0.75em;
 `;
 
-export const DURATION_WRAPPER = styled.div`
-	margin-right: 0.25em;
-	position: relative;
-	margin-top: ${rhythm(0.5)};
-	padding-left: ${rhythm(0.75)};
+export const ALMAMATER = styled(SPAN)`
+	margin-left: 1.5em;
 `;
 
-export const DURATION = styled.span`
-	margin-left: 0.5em;
-	margin-right: 0.25em;
-	position: relative;
+export const ICON_TEXT = styled(SPAN)`
+	margin-left: 1em;
+`;
+
+export const ICON_WRAPPER = styled(SPAN)`
+	display: inline-block;
+	min-width: 1.5em;
+	text-align: center;
+`;
+
+export const DURATION = styled(ICON_TEXT)`
+	margin-left: 1em;
 `;
 
 export const FONTAWESOMEICON = styled(FontAwesomeIcon)`
 	height: 100%;
-	width: 100%;
+	width: 1.25em;
 `;

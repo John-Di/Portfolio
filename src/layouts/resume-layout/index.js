@@ -22,7 +22,7 @@ export default function ResumeLayout({ children }) {
 			}
 			`
 	);
-	console.log(data.hero.publicURL, background);
+
 	return (
 		<Layout background={withPrefix(data.hero.publicURL ? data.hero.publicURL : background)}>
 			{children}

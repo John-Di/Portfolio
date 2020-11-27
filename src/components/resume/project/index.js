@@ -4,7 +4,7 @@ import CollapsibleSection from "../../collapsible-section";
 import Image from "../../image";
 import {
 	TOGGLE_NAME,
-	TOGGLE_ICON,
+	HR,
 	TOGGLE_ICON_DASH,
 	PROJECT,
 	IMAGE_WRAPPER,
@@ -32,7 +32,7 @@ export default function Project({ data }) {
 	return (
 		<CollapsibleSection speed={200} label={label} triggerStyles={{
 			"cursor": "pointer",
-			"margin": `0 auto ${rhythm(0.75)}`,
+			"margin": `0 auto 0.984375em`,
 			"width": "100%"
 		}}
 			contentInnerClassName={`Collapsible__contentInner--project`}
@@ -47,7 +47,7 @@ export default function Project({ data }) {
 
 				<CollapsibleSection speed={200} label={roles_label} triggerStyles={{
 					"cursor": "pointer",
-					"margin": `0 auto ${rhythm(0.75)}`,
+					"margin": `0 auto 0.984375em`,
 					"width": "100%"
 				}}
 					contentInnerClassName={`Collapsible__contentInner--project-roles`}
@@ -55,7 +55,6 @@ export default function Project({ data }) {
 					<PROJECT_HIGHLIGHTS>
 						{highlights.map((highlight, i) => <li key={`highlight_${i}`}>{highlight}</li>)}
 					</PROJECT_HIGHLIGHTS>
-					<hr />
 					<PROJECT_KEYWORDS>
 						{
 							keywords.map((keyword, i) => (
@@ -64,6 +63,7 @@ export default function Project({ data }) {
 						}
 					</PROJECT_KEYWORDS>
 				</CollapsibleSection>
+				<HR />
 			</PROJECT>
 		</CollapsibleSection>
 	)

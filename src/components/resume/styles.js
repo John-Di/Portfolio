@@ -4,7 +4,7 @@ import { rhythm } from "../../utils/typography"
 export const Layout = styled.div`
 	margin: 0 auto;
 	max-width: 1440px;
-	padding: ${rhythm(0.5)};
+	padding: 0.65625em;
 
 	&::before {
 		content: '';

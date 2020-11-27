@@ -10,10 +10,14 @@
 }
 
 .Collapsible--work .Collapsible__trigger-icon {
-	top: 75%;
+	top: 50%;
 }
 
 @media (min-width: 1024px) {
+	.Collapsible--career > * > .Collapsible__contentInner {
+		padding: 1em 0;
+	}
+
 	.Collapsible--work .Collapsible__trigger-icon {
 		top: 50%;
 	}
@@ -34,6 +38,10 @@
 	transform: translateY(-50%) rotateZ(-180deg);
 }
 
+/* @media (max-width: 767px) { */
+
+/* } */
+
 .Collapsible__contentInner--project {
 	display: flex;
 	justify-content: center;
@@ -50,4 +58,14 @@ a {
 	overflow: hidden;
 	box-shadow: none;
 	text-decoration: none;
+}
+
+@media (max-width: 1023px) {
+	.Collapsible--career > * > .Collapsible__contentInner {
+		padding: 1em 0;
+	}
+
+	.Collapsible__trigger-icon {
+		right: 0.0625em;
+	}
 }

@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 import { rhythm } from "../../../utils/typography";
+import { SPAN } from '../../../layouts/resume-layout/styles';
+
+export const CATEGORY = styled(SPAN)`
+	font-size: 0.875em;
+`;
 
 export const HR = styled.hr`
-	margin: ${rhythm(1)} 0 ${rhythm(0.75)};
+	margin: 1.3125em 0 0.984375em;
 `;
 
 export const SKILL_LIST = styled.ul`
 	list-style: none;
 	line-height: 1;
 	margin: 0;
-	padding: 0 ${rhythm(0.5)};
+	padding: 0 0.65625em;
 
 	&::after {
 		content: '';
@@ -31,13 +36,4 @@ export const KEYWORDS = styled.ul`
 	margin: 0;
 	margin-top: 1em;
 	white-space: pre-wrap;
-`;
-
-export const KEYWORD = styled.li`
-	display: inline-block;
-	margin-right: 0.25em;
-	padding: 0.5em;
-	background: #1975ca;
-	color: white;
-	border-radius: 0.25em;
 `;

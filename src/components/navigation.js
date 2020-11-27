@@ -23,7 +23,7 @@ export default function Navigation({ children }) {
 			<Link to={`/`}>
 				<h3
 					css={css`
-            margin-bottom: ${rhythm(2)};
+            margin-bottom: 2.625em;
             display: inline-block;
             font-style: normal;
           `}

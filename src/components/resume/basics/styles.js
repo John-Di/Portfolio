@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 import { rhythm } from "../../../utils/typography";
 import { device } from '../../../utils/variables';
+import { H1 } from '../../../layouts/resume-layout/styles';
 
 export const BASICS = styled.section`
 	background: white;
 	text-align: center;
 	border-radius: 1em;
 	white-space: nowrap;
-	padding: ${rhythm(1)};
+	padding: 1.3125em;
 	width: 100%;
-	max-width: 30em;
-	margin: 0 auto ${rhythm(1)};
+	max-width: 22em;
+	margin: 0 auto 1.3125em;
 
 	@media ${device.laptop} { 
 		position: fixed;
@@ -18,7 +19,7 @@ export const BASICS = styled.section`
 	}
 
 	@media print {
-		margin: 0 auto ${rhythm(1)};
+		margin: 0 auto 1.3125em;
 		position: relative;
 
 		.Collapsible {
@@ -26,7 +27,7 @@ export const BASICS = styled.section`
 			flex-flow: row nowrap;
 			justify-content: center;
 			align-items: center;
-			max-height: ${rhythm(15)};
+			max-height: 19.6875em;
 		}
 	}
 
@@ -39,9 +40,9 @@ export const BASICS = styled.section`
 	.Collapsible__trigger-icon {
 		position: absolute;
 		right: 1em;
-		height: ${rhythm(1.5)};
-		width: ${rhythm(1.5)};
-		top: ${rhythm(0.5)};
+		height: 1.96875em;
+		width: 1.96875em;
+		top: 0.65625em;
 		display: block;
 		transition: transform 300ms;
 
@@ -65,11 +66,11 @@ export const IMAGE_WRAPPER = styled.div`
 	overflow: hidden;
 `;
 
-
-export const H1 = styled.h1`
-	margin-top: ${rhythm(1)}
+export const NAME = styled(H1)`
+	margin-top: 1.3125em;
 `;
 
 export const ROLES = styled.p`
-	margin: ${rhythm(0.75)} 0 0;
+	font-size: 0.875em;
+	margin: 1em 0 0;
 `

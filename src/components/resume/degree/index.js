@@ -1,13 +1,19 @@
 import React from "react";
 import Moment from 'react-moment';
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+import {
+	faLaptopCode,
+	faCalendar,
+	faGraduationCap
+} from "@fortawesome/free-solid-svg-icons";
 import {
 	DEGREE,
 	DEGREE_DESC,
 	NAME,
-	DURATION_WRAPPER,
+	ICON_WRAPPER,
 	DURATION,
-	FONTAWESOMEICON
+	FONTAWESOMEICON,
+	ALMAMATER,
+	ICON_TEXT
 } from './styles';
 
 export default function DegreeEntry({ data }) {
@@ -23,12 +29,23 @@ export default function DegreeEntry({ data }) {
 			<NAME>{degree.studyType}</NAME>
 			<br />
 			<DEGREE_DESC>
-				- <span>{degree.area}</span> | <span>{degree.institution}</span>
+				<ICON_WRAPPER>
+					<FONTAWESOMEICON icon={faLaptopCode} color="#49586d" />
+				</ICON_WRAPPER>
+				<ICON_TEXT>{degree.area}</ICON_TEXT>
 			</DEGREE_DESC>
-			<DURATION_WRAPPER>
-				<FONTAWESOMEICON icon={faCalendar} color="#49586d" />
-				<DURATION>{degree.startDate} - {degree.endDate}</DURATION>
-			</DURATION_WRAPPER>
+			<DEGREE_DESC>
+				<ICON_WRAPPER>
+					<FONTAWESOMEICON icon={faGraduationCap} color="#49586d" />
+				</ICON_WRAPPER>
+				<ICON_TEXT>{degree.institution}</ICON_TEXT>
+			</DEGREE_DESC>
+			<DEGREE_DESC>
+				<ICON_WRAPPER>
+					<FONTAWESOMEICON icon={faCalendar} color="#49586d" />
+				</ICON_WRAPPER>
+				<ICON_TEXT>{degree.startDate} - {degree.endDate}</ICON_TEXT>
+			</DEGREE_DESC>
 		</DEGREE>
 	)
 }

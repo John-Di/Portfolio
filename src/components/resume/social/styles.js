@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { rhythm } from "../../../utils/typography";
 
 export const HR = styled.hr`
-	margin: ${rhythm(0.5)} 0 ${rhythm(0.75)};
+	margin: 0.65625em 0 0.984375em;
 `;
 
 export const SOCIAL_LIST = styled.ul`
@@ -26,5 +26,5 @@ export const SOCIAL = styled.li`
 	line-height: 1;
 	margin: 0;
 	display: inline-block;
-	padding: 0 ${rhythm(0.5)};
+	padding: 0 0.65625em;
 `;

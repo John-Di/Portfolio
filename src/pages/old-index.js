@@ -2,28 +2,28 @@ import React from "react"
 import { graphql } from "gatsby"
 import { css } from "@emotion/core"
 import PageLayout from "../layouts/page-layout"
-import Hero from "../components/hero/hero"
+// import Hero from "../components/hero/hero"
 import Image from "../components/image"
 import Navigation from "../components/navigation"
 
 export default function Home({ data }) {
-	return (
-		<>
-			<Hero imgSrc={data.hero.publicURL}>
-				<PageLayout>
-					<Navigation />
-					<h1>Hi, I'm John Di Girolamo</h1>
-					<p>Welcome to my Site</p>
-					<p>Powered by Gatsby</p>
-					<div
-						css={css`
-							max-width: 7.5em
-						`}>
-						<Image imgName={fileNameExtension(data.profile)} />
-					</div>
-				</PageLayout>
-			</Hero>
-		</>
+	return (<></>
+		// <>
+		// 	<Hero imgSrc={data.hero.publicURL}>
+		// 		<PageLayout>
+		// 			<Navigation />
+		// 			<h1>Hi, I'm John Di Girolamo</h1>
+		// 			<p>Welcome to my Site</p>
+		// 			<p>Powered by Gatsby</p>
+		// 			<div
+		// 				css={css`
+		// 					max-width: 7.5em
+		// 				`}>
+		// 				<Image imgName={fileNameExtension(data.profile)} />
+		// 			</div>
+		// 		</PageLayout>
+		// 	</Hero>
+		// </>
 	)
 }
 
