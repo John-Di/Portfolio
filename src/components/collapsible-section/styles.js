@@ -4,6 +4,7 @@ import { rhythm } from "../../utils/typography"
 export const Trigger = styled.div`
 	position: relative;
 	cursor: pointer;
+	padding: 0.625em 0;
 
 	summary::-webkit-details-marker {
 		display: none;

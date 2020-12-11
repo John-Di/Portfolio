@@ -1,15 +1,21 @@
 import React from "react";
-import { rhythm } from "../../../utils/typography"
 import CollapsibleSection from "../../collapsible-section";
-import Image from "../../image";
+import InnerSection from "../inner-section";
+import ImageFloatText from '../image-float-text';
+import IconBullet from '../../../components/icon-bullet';
 import {
+	faGamepad,
+	faMobileAlt
+} from "@fortawesome/free-solid-svg-icons";
+import {
+	TYPE,
+	TOGGLE,
 	TOGGLE_NAME,
-	HR,
 	TOGGLE_ICON_DASH,
 	PROJECT,
-	IMAGE_WRAPPER,
-	PROJECT_DESC,
-	PROJECT_HIGHLIGHTS,
+	DESCRIPTION,
+	DUTIES,
+	DUTY,
 	PROJECT_KEYWORDS,
 	PROJECT_KEYWORD
 } from './styles';
@@ -17,54 +23,62 @@ import {
 export default function Project({ data }) {
 	const { name, type, description, url, highlights, keywords, image, roles } = data;
 	const label = (
-		<>
-			<TOGGLE_NAME>{name}</TOGGLE_NAME>
-			<TOGGLE_ICON_DASH>{type.replace(',', ' | ')}</TOGGLE_ICON_DASH>
-		</>
-	);
-	const roles_label = (
-		<>
-			<TOGGLE_NAME>{`Roles`}</TOGGLE_NAME>
-			<TOGGLE_ICON_DASH>{roles.join(', ')}</TOGGLE_ICON_DASH>
-		</>
+		<TOGGLE>
+			<IconBullet
+				icon={faGamepad}
+				textContent={name}
+				gap={{
+					regular: '0.75em',
+					resp: {
+						device: 'tablet',
+						value: '0.875em'
+					}
+				}}
+			/>
+			<TYPE>
+				<IconBullet
+					icon={faMobileAlt}
+					textContent={type}
+					gap={{
+						regular: '0.75em',
+						resp: {
+							device: 'tablet',
+							value: '0.875em'
+						}
+					}}
+				/>
+			</TYPE>
+		</TOGGLE>
 	);
 
 	return (
-		<CollapsibleSection speed={200} label={label} triggerStyles={{
-			"cursor": "pointer",
-			"margin": `0 auto 0.984375em`,
-			"width": "100%"
-		}}
-			contentInnerClassName={`Collapsible__contentInner--project`}
+		<InnerSection
+			heading={label}
+			className={'Collapsible__contentInner--project'}
 		>
-			<PROJECT>
-				<IMAGE_WRAPPER href={url} target="_blank" >
-					<Image Tag="a" imgName={image} />
-				</IMAGE_WRAPPER>
-				<PROJECT_DESC>
-					{description}
-				</PROJECT_DESC>
-
-				<CollapsibleSection speed={200} label={roles_label} triggerStyles={{
-					"cursor": "pointer",
-					"margin": `0 auto 0.984375em`,
-					"width": "100%"
-				}}
-					contentInnerClassName={`Collapsible__contentInner--project-roles`}
-				>
-					<PROJECT_HIGHLIGHTS>
-						{highlights.map((highlight, i) => <li key={`highlight_${i}`}>{highlight}</li>)}
-					</PROJECT_HIGHLIGHTS>
-					<PROJECT_KEYWORDS>
-						{
-							keywords.map((keyword, i) => (
-								<PROJECT_KEYWORD key={`keyword_${i}`}>{keyword}</PROJECT_KEYWORD>
-							))
-						}
-					</PROJECT_KEYWORDS>
-				</CollapsibleSection>
-				<HR />
-			</PROJECT>
-		</CollapsibleSection>
+			<ImageFloatText
+				url={url}
+				image={image}
+			>
+				<DESCRIPTION>{description}</DESCRIPTION>
+				<PROJECT_KEYWORDS>
+					{
+						roles.map((role, i) => (
+							<PROJECT_KEYWORD key={`keyword_${i}`}>{role}</PROJECT_KEYWORD>
+						))
+					}
+				</PROJECT_KEYWORDS>
+				<DUTIES>
+					{highlights.map((highlight, i) => <DUTY key={`highlight_${i}`}>{highlight}</DUTY>)}
+				</DUTIES>
+				<PROJECT_KEYWORDS>
+					{
+						keywords.map((keyword, i) => (
+							<PROJECT_KEYWORD key={`keyword_${i}`}>{keyword}</PROJECT_KEYWORD>
+						))
+					}
+				</PROJECT_KEYWORDS>
+			</ImageFloatText>
+		</InnerSection>
 	)
 }

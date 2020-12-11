@@ -5,49 +5,11 @@ import { device } from '../../../utils/variables';
 import { H2, H3, SPAN, P, LI, CLEARFIX } from '../../../layouts/resume-layout/styles';
 import { WRAPPER } from '../../duration/styles';
 
-export const DUTY = LI;
-
 export const INNER = styled.div`
-	padding: 1em 0;
-
-	@media ${device.mobileL} {
-		padding: 0.5em 1.5em;
-	}
-
 	${CLEARFIX}
 `;
 
-export const IMAGE_WRAPPER = styled.a`
-	display: block;
-	transition: opacity 0.3s ease 0s;
-	max-width: 10em;
-	width: 33.3333%;
-	margin: 1em auto 2em;
-
-	@media ${device.mobileXL} {
-		float: right;
-		width: 150px;
-		flex: 1 0 150px;
-		margin: 1em 1em 2em 4em;
-
-		${CLEARFIX}
-	}
-
-	@media ${device.desktop} {
-		flex: 1 0 60px;
-		width: 60px;
-	}
-
-	&:hover {
-		opacity: 0.75;
-	}
-
-	.gatsby-image-wrapper {
-		max-width: 100%;
-	
-	}
-`;
-export const DIV = styled.div`
+export const INFO = styled.div`
 	margin-bottom: 1em;
 	line-height: 1.1;
 `;
@@ -59,12 +21,20 @@ export const EMPLOYER = styled(P)`
 	text-transform: uppercase;
 	margin: 0;
 	line-height: 1.1;
-	margin-bottom: 0.75em;
-	margin-right: 1em;
+	margin-right: 0.5em;
 
-	@media ${device.mobileXL} { 
+	@media print, ${device.mobileXL} { 
 		display: inline-block;
 		margin-bottom: 0;
+	}
+
+	& + span {
+		display: inline-flex;
+		flex-flow: row nowrap;
+
+		@media print, ${device.max_mobileXL} {
+			margin-top: 0.5em;
+		}
 	}
 `;
 
@@ -72,7 +42,7 @@ export const TOGGLE = styled(H3)`
 	display: flex;
 	flex-flow: column nowrap;
 	font-size: 0.75em;
-	padding-right: 2.5em;
+	padding-right: 3.25em;
 	font-weight: normal;
 	justify-content: center;
 
@@ -89,11 +59,12 @@ export const TOGGLE = styled(H3)`
 				display: flex;
 				flex-flow: row nowrap;
 				align-items: start;
-				padding-bottom: 0.5em;
+				margin-bottom: 0.5em;
 			}
 
 			&:last-child {
-				margin-left: 2em;
+				display: inline-block;
+				margin-left: 1em;
 			}
 		}
 	}
@@ -103,24 +74,30 @@ export const TOGGLE = styled(H3)`
 		flex-flow: row nowrap;
 		justify-content: space-between;
 	}
+
+	@media print { 
+		justify-content: flex-start;
+		flex-flow: row nowrap;
+	}
 `;
 
 export const DURATION = styled(WRAPPER)`
 	margin-left: auto;
-`;
 
-export const TOGGLE_NAME = styled(SPAN)`
-	font-size: 1em;
-	display: inline-block;
-	line-height: 1.1;
-	margin-left: 0.5em;
-	margin-bottom: 0.5em;
+	@media print {
+		display: inline-block;
+		margin-left: 2em;
 
-	@media ${device.tablet} {
-		margin-bottom: 0;
-		min-width: 33.3333%;
+		&::before {
+			content: '(';
+		}
+
+		&::after {
+			content: ')';
+		}
 	}
 `;
+
 
 export const TOGGLE_ICON = styled.span`
 	display: inline-block;
@@ -137,10 +114,7 @@ export const TOGGLE_DURATION = styled.span`
 	}
 `;
 
-export const FONTAWESOMEICON = styled(FontAwesomeIcon)`
-	height: 100%;
-	width: 100%;
-`;
+export const DUTY = LI;
 
 export const CAREER = styled.ul`
 	margin-left: 0;
@@ -157,28 +131,4 @@ export const CONTENT = styled.div`
 `;
 
 
-export const DATE = styled(WRAPPER)`
-	margin-left: 0.75em;
-	font-size: 0.75em;
-	
-	@media ${device.max_tablet} {
-		display: inline-flex;
-		flex-flow: column nowrap;
-	}
-`;
-
-export const ICON_TEXT = styled(SPAN)`
-	font-size: 0.875em;
-	margin: 0;
-`;
-
-export const ICON_WRAPPER = styled(SPAN)`
-	display: inline-block;
-	min-width: 1.5em;
-	text-align: center;
-`;
-
-export const DATE_ICON = styled(FontAwesomeIcon)`
-	height: 100%;
-	width: 1.25em;
-`;
+export const DATE = WRAPPER;

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import { rhythm } from "../../../utils/typography";
-import { H2 } from '../../../layouts/resume-layout/styles';
+import {
+	H2,
+	P
+} from '../../../layouts/resume-layout/styles';
 
 export const HEADING = H2;
 
-export const P = styled.p`
+export const PARAGRAPH = styled(P)`
 	margin: 0 auto;
-    margin-top: calc(1.3125em - 1px);
 	width: 100%;
 `;
 

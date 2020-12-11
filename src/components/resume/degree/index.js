@@ -8,13 +8,7 @@ import {
 import IconBullet from '../../../components/icon-bullet';
 import {
 	DEGREE,
-	DEGREE_DESC,
-	NAME,
-	ICON_WRAPPER,
-	DURATION,
-	FONTAWESOMEICON,
-	ALMAMATER,
-	ICON_TEXT
+	NAME
 } from './styles';
 
 export default function DegreeEntry({ data }) {

@@ -14,7 +14,7 @@
 }
 
 @media (min-width: 1024px) {
-	.Collapsible--career > * > .Collapsible__contentInner {
+	.Collapsible > * > .Collapsible__contentInner {
 		padding: 1em 0;
 	}
 
@@ -42,13 +42,6 @@
 
 /* } */
 
-.Collapsible__contentInner--project {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-flow: row nowrap;
-}
-
 img {
 	max-width: 100%;
 	vertical-align: bottom;
@@ -67,5 +60,11 @@ a {
 
 	.Collapsible__trigger-icon {
 		right: 0.0625em;
+	}
+}
+
+@media print {
+	.Collapsible--career .Collapsible__contentInner > div > div:nth-child(even) {
+		page-break-after: always;
 	}
 }

@@ -11,7 +11,8 @@ import {
 	BASICS,
 	IMAGE_WRAPPER,
 	NAME,
-	ROLES
+	ROLES,
+	PRINT
 } from './styles';
 
 export default function Basics({ data, resume }) {
@@ -48,6 +49,7 @@ export default function Basics({ data, resume }) {
 				<Skills data={skills} />
 				<Social data={basics.profiles} />
 			</CollapsibleSection>
+			<PRINT onClick={() => window.print()}>Print</PRINT>
 		</BASICS >
 	)
 }

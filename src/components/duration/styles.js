@@ -21,10 +21,6 @@ export const WRAPPER = styled(SPAN)`
 	margin-left: 0;
 	position: relative;
 	display: inline-block;
-
-	@media ${device.laptop} { 
-		margin-left: 2em;
-	}
 `;
 
 export const FONTAWESOMEICON = styled(FontAwesomeIcon)`

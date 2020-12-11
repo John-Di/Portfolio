@@ -3,10 +3,77 @@ import { rhythm } from "../../../utils/typography";
 import { device } from '../../../utils/variables';
 import {
 	H2,
+	H3,
 	DIVIDER,
 	KEYWORDS,
-	KEYWORD
+	KEYWORD,
+	P,
+	SPAN,
+	UL,
+	LI
 } from '../../../layouts/resume-layout/styles';
+
+export const TYPE = styled(SPAN)`
+	position: relative;
+	margin-left: auto;
+`;
+
+export const TOGGLE = styled(H3)`
+	display: flex;
+	flex-flow: column nowrap;
+	font-size: 0.75em;
+	padding-right: 3.25em;
+	font-weight: normal;
+	justify-content: center;
+
+	@media ${device.max_mobileXL} {
+		span > span:first-child {
+			// display: none;
+		}
+
+		> span {
+			display: block;
+			line-height: 1.5;
+
+			&:first-child {
+				display: flex;
+				flex-flow: row nowrap;
+				align-items: start;
+				margin-bottom: 0.5em;
+			}
+
+			&:last-child {
+				margin-left: 0;
+				@media ${device.mobileXL} {
+					margin-left: 2.5em;
+				}
+
+				@media print {
+					display: inline-block;
+					margin-left: 1em;
+					&::before {
+						content: '(';
+					}
+			
+					&::after {
+						content: ')';
+					}
+				}
+			}
+		}
+	}
+
+	@media ${device.mobileXL} { 
+		font-size: 0.875em;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+	}
+
+	@media print { 
+		justify-content: flex-start;
+		flex-flow: row nowrap;
+	}
+`;
 
 export const TOGGLE_NAME = styled(H2)`
 	display: inline-block;
@@ -37,22 +104,6 @@ export const PROJECT = styled.div`
 	max-width: 100%;
 	flex: 1 100%;
 	padding: 0;
-
-	@media ${device.laptop} { 
-		padding: 0.984375em 1.640625em;
-	}
-
-	.Collapsible {
-		width: 100%;
-		margin-top: 0.65625em;
-		padding-left: 0.65625em;
-
-		@media ${device.laptop} { 
-			margin-top: 0;
-			padding-left: 0.984375em;
-		}
-	}
-
 `;
 
 export const IMAGE_WRAPPER = styled.a`
@@ -60,9 +111,9 @@ export const IMAGE_WRAPPER = styled.a`
 	float: left;
 	width: 80px;
 	height: 80px;
-	margin-top: 0.328125em;
-	margin-right: 0.65625em;
-	margin-bottom: 0.328125em;
+	margin-top: 0.3125em;
+	margin-right: 0.625em;
+	margin-bottom: 0.3125em;
 	transition: opacity 0.3s ease 0s;
 
 	&:hover {
@@ -78,25 +129,26 @@ export const IMAGE_WRAPPER = styled.a`
 		width: 200px;
 		height: 200px;
 		margin-top: 0;
-		margin-right: 1.640625em;
-		margin-bottom: 1.640625em;
+		margin-right: 1.625em;
+		margin-bottom: 1.625em;
 	}
 `;
 
-export const PROJECT_DESC = styled.div`
-	margin-top: 0;
-	margin-bottom: 0.328125em;
-
-	@media ${device.laptop} { 
-		margin-top: 1.640625em;
-		margin-bottom: 0;	
-	}
-
+export const DESCRIPTION = styled(P)`
+	margin: 0;
 	&::after {
 		content: '';
 		display: table;
 		clear: both;
 	}
+`;
+
+export const DUTY = LI;
+
+export const DUTIES = styled.ul`
+	list-style-position: outside;
+	margin: 0;
+	padding-left: 1em;
 `;
 
 export const HR = styled(DIVIDER)`
@@ -105,16 +157,12 @@ export const HR = styled(DIVIDER)`
 `;
 
 export const PROJECT_HIGHLIGHTS = styled.ul`
-	padding-left: 0.984375em;
 	margin: 0;
-
-	@media ${device.laptop} { 
-		padding-left: 1.640625em;
-	}
 `;
 
 export const PROJECT_KEYWORDS = styled(KEYWORDS)`
-	margin: 0;
+	padding-left: 0;
+	margin-top: 0.875em;
 `;
 
 // styled.ul`
@@ -123,8 +171,8 @@ export const PROJECT_KEYWORDS = styled(KEYWORDS)`
 // 	margin-top: 0.328125em;
 
 // 	@media ${device.laptop} { 
-// 		padding-left: 1.640625em;
-// 		margin-top: 1.640625em;
+// 		padding-left: 1.625em;
+// 		margin-top: 1.625em;
 // 	}
 // `;
 

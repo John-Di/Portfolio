@@ -7,14 +7,14 @@ export const CATEGORY = styled(SPAN)`
 `;
 
 export const HR = styled.hr`
-	margin: 1.3125em 0 0.984375em;
+	margin: 0;
 `;
 
 export const SKILL_LIST = styled.ul`
 	list-style: none;
 	line-height: 1;
 	margin: 0;
-	padding: 0 0.65625em;
+	padding: 0.9375em 0 0.65625em;
 
 	&::after {
 		content: '';

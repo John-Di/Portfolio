@@ -3,16 +3,16 @@ basics:
   name: John Di Girolamo
   label: Front-End Developer,Game Developer
   image: ''
-  email: richard.hendriks@mail.com
+  email: ''
   phone: "(912) 555-4321"
-  url: http://richardhendricks.example.com
-  summary: Senior Front-End Web Developer with 5 years of Shopify Plus experience in creating eCommerce. Storefront Solutions. Define and develop initial architecture, theme design, modifications, including on-going maintenance and support. Lead modest team of junior and intermediate developers in requirements gathering, risk assessment, and project handoffs. Works well both remotely and team environment. A continuous learner, strive to learn the latest technologies and methodologies in pursuit of peer recognition as SME.
+  url: http://johndigirolamo.me
+  summary: Senior Front-End Web Developer with 6 years of Shopify Plus experience in creating eCommerce Storefront Solutions. Strong knowledge of Shopify Theme development through HTML, CSS, Javascript/ES6 with some familiarity with Headless React JS solutions through the use of the Storefront API. Apart from eCommerce, has a strong passion for Video Game Design and Development having publish the game "Hammy Hop" to the Google Play Store in 2020. 
   location:
-    address: 2712 Broadway St
-    postalCode: CA 94115
-    city: San Francisco
-    countryCode: US
-    region: California
+    address: ''
+    postalCode: ''
+    city: ''
+    countryCode: ''
+    region: ''
   profiles:
   - network: LinkedIn
     url: https://www.linkedin.com/in/john-di-girolamo/
@@ -28,8 +28,9 @@ work:
 - name: Diff Agency
   location: Montreal, Qc, Canada
   position: Senior Front-End Developer
-  url: http://piedpiper.example.com
-  startDate: '2015-05-31'
+  url: http://diffagency.com
+  image: 'diff.webp'
+  startDate: '2015-05-01'
   endDate: '2020-03-31'
   summary: Diff Agency is a Shopify Partner dedicated to all things Shopify from Front-End Custom Theming Solutions to Back-End ERP Systems and Integrations and everything in between.
   highlights:
@@ -42,8 +43,9 @@ work:
   location: Palo Alto, CA
   description: Awesome compression company
   position: Junior Innovation Professional Co-op
-  url: http://piedpiper.example.com
-  startDate: '2014-05-31'
+  url: http://ericsson.com
+  image: 'ericsson.png'
+  startDate: '2014-05-01'
   endDate: '2014-08-31'
   summary: Pied Piper is a multi-platform technology based on a proprietary universal
     compression algorithm that has consistently fielded high Weisman Scores™ that
@@ -56,8 +58,9 @@ work:
   location: Palo Alto, CA
   description: Awesome compression company
   position: Software Quality Assurance Intern
-  url: http://piedpiper.example.com
-  startDate: '2013-05-31'
+  url: http://radialpoint.com
+  image: 'radialpoint.jpg'
+  startDate: '2013-05-01'
   endDate: '2013-08-31'
   summary: Pied Piper is a multi-platform technology based on a proprietary universal
     compression algorithm that has consistently fielded high Weisman Scores™ that
@@ -71,8 +74,9 @@ work:
   location: Palo Alto, CA
   description: Awesome compression company
   position: Systems and Software Engineer (Co-op)
-  url: http://piedpiper.example.com
-  startDate: '2013-05-31'
+  url: http://lockheedmartin.com
+  image: 'lockheed.jpg'
+  startDate: '2013-05-01'
   endDate: '2013-08-31'
   summary: Pied Piper is a multi-platform technology based on a proprietary universal
     compression algorithm that has consistently fielded high Weisman Scores™ that
@@ -94,8 +98,8 @@ education:
 - institution: Concordia University
   area: Software Engineering w/ Gaming Option
   studyType: Bachelor of Engineering (BEng)
-  startDate: '2011-06-01'
-  endDate: '2014-01-01'
+  startDate: '2011-08-01'
+  endDate: '2015-06-30'
 - institution: Vanier College
   area: Computer Science and Mathematics
   studyType: DEC in Sciences

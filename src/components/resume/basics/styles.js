@@ -13,6 +13,11 @@ export const BASICS = styled.section`
 	max-width: 22em;
 	margin: 0 auto 1.3125em;
 
+	@media print { 
+		margin: 0 auto;
+		padding: 0;
+	}
+
 	@media ${device.laptop} { 
 		position: fixed;
 		margin: 0;
@@ -74,3 +79,30 @@ export const ROLES = styled.p`
 	font-size: 0.875em;
 	margin: 1em 0 0;
 `
+export const PRINT = styled.button`
+	display: none;
+	border: 2px solid white;
+	margin: 0;
+	cursor: pointer;
+	padding: 0.5em;
+	background: #1975ca;
+	color: white;
+	border-radius: 0.25em;
+	width: 10em;
+	position: absolute;
+	bottom: -4em;
+	left: 50%;
+	transform: translateX(-50%);
+	
+	&:hover {
+		opacity: 0.8;
+	}
+
+	@media ${device.laptop} {
+		display: block;
+	}
+
+	@media print {
+		display: none;
+	}
+`;

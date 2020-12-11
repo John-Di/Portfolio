@@ -53,12 +53,12 @@ export const H1 = styled.h1`
 `;
 export const H2 = styled.h2`
 	font-size: 1em;
-	margin: 2em auto 0.625em;
+	margin: 0;
 	line-height: 1.1;
 `;
 export const H3 = styled.h3`
 	font-size: 0.8125em;
-	margin: 0.6875em auto;
+	margin: 0;
 	line-height: 1.1;
 `;
 export const HR = styled.hr`
@@ -67,7 +67,7 @@ export const HR = styled.hr`
 export const P = styled.p`
 	font-size: 0.75em;
 	margin: 1em 0;
-	line-height: 1.3125;
+	line-height: 1.75;
 `;
 export const SPAN = styled.span`
 	margin: 0;
@@ -76,7 +76,7 @@ export const SPAN = styled.span`
 export const LI = styled.li`
 	font-size: 0.75em;
 	margin: 1em 0;
-	line-height: 1.3125;
+	line-height: 1.75;
 `;
 export const KEYWORDS = styled.ul`
 	list-style: none;
@@ -84,16 +84,14 @@ export const KEYWORDS = styled.ul`
 	padding: 0;
 	display: inline-block;
 	margin: 0;
-	margin-top: 1em;
 	white-space: pre-wrap;
-
-	margin: 0;
 	padding-left: 0;
-	margin-top: 0.328125em;
+	margin-top: 0.3125em;
+	margin-left: 0;
+	list-style-position: outside;
 
-	@media ${device.laptop} { 
-		padding-left: 1.640625em;
-		margin-top: 1.640625em;
+	@media ${device.laptop} {
+		margin-top: 1.625em;
 	}
 `;
 

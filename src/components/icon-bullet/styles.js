@@ -16,12 +16,6 @@ export const ICON_WRAPPER = styled(SPAN)`
 	font-size: inherit;
 	text-align: center;
 	width: 1.75em;
-	margin-right: ${props => props.gap.regular};
-
-	${props => props.gap.resp ?
-		`@media ${device[props.gap.resp.device]} {
-			margin-right: ${props.gap.resp.value};
-		}` : ''}
 `;
 
 export const ICON = styled(FontAwesomeIcon)`
