@@ -1,7 +1,5 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { rhythm } from "../../../utils/typography";
-import LastFm from "../../last-fm";
 import CollapsibleSection from "../../collapsible-section";
 import { PARENT_TRIGGER } from "../../collapsible-section/styles";
 import Image from "../../image";

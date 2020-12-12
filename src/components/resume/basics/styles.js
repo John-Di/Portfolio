@@ -38,7 +38,7 @@ export const BASICS = styled.section`
 
 	.Collapsible__trigger {
 		@media ${device.laptop} { 
-			cursor: auto !important;
+			cursor: auto;
 		}
 	}
 

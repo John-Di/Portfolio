@@ -1,10 +1,14 @@
 import styled from 'styled-components';
-import { rhythm } from "../../utils/typography"
+import { device } from '../../utils/variables';
 
 export const Trigger = styled.div`
 	position: relative;
 	cursor: pointer;
 	padding: 0.625em 0;
+
+	@media ${device.laptop} {
+		cursor: auto;
+	}
 
 	summary::-webkit-details-marker {
 		display: none;
