@@ -31,6 +31,7 @@ export default function Basics({ data, resume }) {
 			<CollapsibleSection
 				speed={200}
 				triggerTagName="div"
+				className={'Collapsible--basics'}
 				triggerStyles={PARENT_TRIGGER}
 				label={
 					(

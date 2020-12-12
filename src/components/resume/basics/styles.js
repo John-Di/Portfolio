@@ -36,9 +36,9 @@ export const BASICS = styled.section`
 		}
 	}
 
-	.Collapsible__trigger {
+	.Collapsible--basics .Collapsible__trigger {
 		@media ${device.laptop} { 
-			cursor: auto;
+			cursor: auto !important;
 		}
 	}
 
@@ -57,7 +57,6 @@ export const BASICS = styled.section`
 	}
 
 	.Collapsible__contentOuter {
-
 		@media ${device.laptop} { 
 			height: auto !important;
 		}

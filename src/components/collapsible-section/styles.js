@@ -6,13 +6,15 @@ export const Trigger = styled.div`
 	cursor: pointer;
 	padding: 0.625em 0;
 
-	@media ${device.laptop} {
-		cursor: auto;
-	}
-
 	summary::-webkit-details-marker {
 		display: none;
-	}		
+	}
+
+	.Collapsible--basics & {
+		@media ${device.laptop} { 
+			cursor: auto !important;
+		}
+	}
 `;
 
 export const ParentTrigger = styled(Trigger)`
