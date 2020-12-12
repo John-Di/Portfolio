@@ -16,8 +16,8 @@ export default function About({ data, resume }) {
 	return (
 		<SECTION>
 			<Summary data={basics} />
-			<Projects data={projects} />
 			<Career data={work} />
+			<Projects data={projects} />
 			<Education data={education} />
 		</SECTION>
 	)
