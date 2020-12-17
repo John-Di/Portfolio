@@ -1,7 +1,6 @@
 import React from "react";
 import { useStaticQuery, withPrefix, graphql } from "gatsby";
 import Section from '../../components/section';
-import HomepageContainer from '../../components/homepage-container';
 import background from '../../images/homepage_hero.jpg';
 import {
 	randomColor
@@ -53,63 +52,23 @@ export default function Homepage({ pageContext }) {
 			<Section
 				hasPadding={false}
 			>
-				<HomepageContainer>{contentMaker(1)}</HomepageContainer>
-				{/* <HomepageContainer elements={[<CONTAINER><h1>Homepage</h1></CONTAINER>]} /> */}
+				{contentMaker(1)}
 			</Section>
 			<Section
 				maxWidth={'1440px'}
 				hasPadding={false}
 			>
-				<HomepageContainer>{contentMaker(Math.floor(Math.random() * 3) + 1)}</HomepageContainer>
-				{/* <HomepageContainer elements={[<CONTAINER><h1>Homepage</h1></CONTAINER>]} /> */}
+				{contentMaker(Math.floor(Math.random() * 3) + 1)}
 			</Section>
 			<Section
 			>
-				<HomepageContainer>{contentMaker(Math.floor(Math.random() * 3) + 1)}</HomepageContainer>
-				{/* <HomepageContainer elements={[<CONTAINER><h1>Homepage</h1></CONTAINER>]} /> */}
+				{contentMaker(Math.floor(Math.random() * 3) + 1)}
 			</Section>
 			<Section
 				maxWidth={'1440px'}
 			>
-				<HomepageContainer>{contentMaker(1)}</HomepageContainer>
-				{/* <HomepageContainer elements={[<CONTAINER><h1>Homepage</h1></CONTAINER>]} /> */}
+				{contentMaker(1)}
 			</Section>
-			{/* <PageWidthBanner backgroundColor='#FFFFF0'>
-				<HomepageContainer elements={second.slice(0, 3)} />
-			</PageWidthBanner>
-			<PageWidthSection backgroundColor='#FF0FF0'>
-				<HomepageContainer elements={second.slice(3, 5)} />
-			</PageWidthSection>
-			<PageWidthBanner
-				background={
-					withPrefix(data.hero.publicURL ? data.hero.publicURL : background)
-				}
-			>
-				<HomepageContainer elements={second} />
-			</PageWidthBanner> */}
-
-
-
-			{/* <FullWidthSection
-				background={
-					withPrefix(data.hero.publicURL ? data.hero.publicURL : background)
-				}
-			>
-				<HomepageContainer>pages/index.js</HomepageContainer>
-			</FullWidthSection>
-			<PageWidthSection
-				background={
-					withPrefix(data.hero.publicURL ? data.hero.publicURL : background)
-				}
-			>
-				<HomepageContainer>pages/index.js</HomepageContainer>
-			</PageWidthSection>
-			<FullWidthSection backgroundColor='#FFFF00'>
-				<HomepageContainer>pages/index.js</HomepageContainer>
-			</FullWidthSection>
-			<PageWidthSection backgroundColor='#FFFF00'>
-				<HomepageContainer>pages/index.js</HomepageContainer>
-			</PageWidthSection> */}
 		</ARTICLE>
 	)
 }

@@ -4,10 +4,10 @@ import {
 	INNER
 } from './styles';
 
-export default function Section({ children, maxWidth = '100%', background, hasPadding = true }) {
+export default function Section({ children, maxWidth = '100%', background, bkcolor, hasPadding = true }) {
 
 	return (
-		<SECTION maxWidth={maxWidth} background={background} hasPadding={hasPadding}>
+		<SECTION maxWidth={maxWidth} background={background} hasPadding={hasPadding} bkcolor={bkcolor}>
 			{children}
 		</SECTION>
 	)

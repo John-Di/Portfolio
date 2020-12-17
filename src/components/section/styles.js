@@ -26,6 +26,12 @@ export const SECTION = styled.section`
 	${props => props.bkcolor && `
 		background-color: ${props.bkcolor};
 	`};
+
+	@media ${device.laptop} {
+		flex-direction: row;
+		flex-wrap: ${props => props.children && (props.children.length > 4 ? 'wrap' : 'nowrap')};
+	}
+	${CLEARFIX}
 `;
 
 export const INNER = styled.div`
