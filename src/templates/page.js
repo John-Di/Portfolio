@@ -1,11 +1,10 @@
-import React from "react"
-import PageLayout from "../layouts/page-layout"
-import Resume from "../components/resume"
+import React from "react";
+import Index from '../pages/index';
 
-export default function Page() {
+export default function Page({ data, pageContext }) {
+	console.log(data, pageContext);
+
 	return (
-		<PageLayout>
-			<Resume />
-		</PageLayout>
+		<Index data={data} pageContext={pageContext} />
 	)
 }

@@ -9,7 +9,7 @@ export const idealTextColor = bgColor => {
 	var bgDelta = (components.R * 0.299) + (components.G * 0.587) + (components.B * 0.114);
 
 	return ((255 - bgDelta) < nThreshold) ? "#000000" : "#ffffff";
-}
+};
 
 export const getRGBComponents = color => {
 
@@ -22,4 +22,10 @@ export const getRGBComponents = color => {
 		G: parseInt(g, 16),
 		B: parseInt(b, 16)
 	};
-}
+};
+
+export const randomImage = seed => `https://picsum.photos/seed/${seed}/800/800`;
+export const randomIntegerEx = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+export const randomIntegerIn = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+export const returnBool = () => Math.random() < 0.5;

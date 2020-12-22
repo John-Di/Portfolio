@@ -1,12 +1,13 @@
-import React from "react"
-import PageWidthSection from "../components/page-width-section";
-import background from '../images/homepage_hero.jpg';
+import React from "react";
+import StyleGuide from './style-guide';
+import {
+	MAIN
+} from './styles';
 
-
-export default function StyleGuide({ data, pageContext }) {
+export default function StyleGuidePage({ data, pageContext }) {
 	return (
-		<PageWidthSection background={background}>
-			<h1>Hello World</h1>
-		</PageWidthSection>
+		<MAIN>
+			<StyleGuide />
+		</MAIN>
 	)
 }

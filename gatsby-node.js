@@ -25,9 +25,14 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-	const { createPage } = actions
+	const { createPage } = actions;
 	const result = await graphql(`
 		query MarkdownQuery {
+			allSitePage {
+				nodes {
+					path
+				}
+			}
 			allMarkdownRemark {
 				edges {
 					node {
@@ -154,18 +159,32 @@ exports.createPages = async ({ graphql, actions }) => {
 		})
 	})
 
-	// result.data.allResumeYaml.edges.forEach(({ node }) => {
-	// 	createPage({
-	// 		path: node.fields.slug,
-	// 		component: path.resolve(`./src/templates/resume.js`),
-	// 		context: {
-	// 			// Data passed to context is available
-	// 			// in page queries as GraphQL variables.
-	// 			slug: node.fields.slug,
-	// 			resume: node
-	// 		},
-	// 	})
-	// });
+	// createPage({
+	// 	path: resume.path,
+	// 	component: require.resolve("./src/templates/resume.js"),
+	// 	context: {
+	// 		pageContext: resume,
+	// 		slug: resume.path,
+	// 	},
+	// })
+	console.log(...result.data.allSitePage.nodes);
+	result.data.allSitePage.nodes.filter(n => n).forEach(({ node }) => {
+		console.log(node);
+		if (!node || !node.path) {
+			return;
+		}
+		console.log(node);
+		createPage({
+			path: node.path,
+			component: path.resolve(`./src/templates/page.js`),
+			context: {
+				// Data passed to context is available
+				// in page queries as GraphQL variables.
+				slug: node.fields.slug,
+				resume: node
+			},
+		})
+	});
 
 	// result.data.allMarkdownRemark.edges.forEach(({ node }) => {
 	// 	createPage({
