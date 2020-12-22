@@ -68,7 +68,7 @@ export default function StyleGuide({ pageContext }) {
 				{contentMaker(1, dummyJSX)}
 			</Section>
 			{
-				contentMaker(randomIntegerIn(1, 10), (length, n, i) => {
+				contentMaker(randomIntegerIn(3, 10), (length, n, i) => {
 					return (
 						<Section
 							maxWidth={'1440px'}
