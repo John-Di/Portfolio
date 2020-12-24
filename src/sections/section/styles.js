@@ -25,8 +25,8 @@ export const SECTION = styled.section`
 		background-repeat: no-repeat;
 	`};
 
-	${props => props.bkcolor && `
-		background-color: ${props.bkcolor};
+	${props => props.backgroundColor && `
+		background-color: ${props.backgroundColor};
 	`};
 
 	@media ${device.mobileXL} {

@@ -30,9 +30,9 @@ export const CONTAINER = styled.div`
 		flex-direction: row;
 	}
 
-	${props => props.bkcolor && `
-		background-color: ${props.bkcolor};
-		color: ${idealTextColor(props.bkcolor)}
+	${props => props.backgroundColor && `
+		background-color: ${props.backgroundColor};
+		color: ${idealTextColor(props.backgroundColor)}
 	`};
 
 	${props => props.cols && `
@@ -47,13 +47,13 @@ export const CONTAINER = styled.div`
 		}
 	`};
 	
-	${props => props.bkimage && `
+	${props => props.backgroundImage && `
 		display: flex;
 		padding: 0;
 		
 		&::${props.image_first ? `before` : `after`} {
 			content: '';
-			background-image: url('${props.bkimage}');
+			background-image: url('${props.backgroundImage}');
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;

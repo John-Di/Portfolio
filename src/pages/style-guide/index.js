@@ -2,11 +2,6 @@ import React from "react";
 import { useStaticQuery, withPrefix, graphql } from "gatsby";
 import Section from '../../sections/section';
 import {
-	ARTICLE,
-	CONTAINER,
-	CONTENT
-} from './styles';
-import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
@@ -14,33 +9,46 @@ import {
 	returnBool
 } from '../../utils/randoms';
 import {
-	contentMaker
+	ARTICLE
+} from './styles';
+import TextWithMedia from '../../components/text-with-media';
+import {
+	contentMaker,
+	reduceJSXList
 } from '../../utils/dom-builder';
 
-
-let dummyJSX = (content_length, k, index) => {
+const generateDummyElement = (content_length, k, index) => {
 	const NUM_COLS = Math.min(4, content_length);
 	console.log(content_length, index);
-	let image = randomImage(content_length + index + randomIntegerEx(0, 10000)),
-		color = randomColor(),
-		image_first = returnBool();
+	let image_first = returnBool(),
+		accentColor = randomColor(),
+		image = randomImage(randomIntegerEx(0, 10000) + index)
 	console.log(image_first, index);
 	return (
-		<CONTAINER
+		<TextWithMedia
 			key={`content_${(1 + index) * content_length}`}
 			cols={NUM_COLS}
-			bkcolor={`${color}`}
-			bkimage={`${image}`}
+			backgroundColor={`${accentColor}`}
+			backgroundImage={`${image}`}
 			image_first={`${image_first}`}
 			reversed={!!index}
 		>
-			<CONTENT withMedia={!!image}>
-				<h2 style={{}}>This is just a Portfolio of sorts</h2>
-				<p>Just for the time being...</p>
-			</CONTENT>
-		</CONTAINER>
+			<h2>This is just a Portfolio of sorts</h2>
+			<p>Just for the time being...</p>
+		</TextWithMedia>
 	)
 }
+
+const generateSectionContent = (length, k, index) => {
+	let content_length = randomIntegerIn(2, 4);
+	return (
+		<Section maxWidth={'100%'} hasPadding={false}>
+			{contentMaker(content_length, generateDummyElement.bind(this, content_length))}
+		</Section>
+	)
+};
+
+const generateSections = length => contentMaker(length, generateSectionContent.bind(this));
 
 export default function StyleGuide({ pageContext }) {
 	const data = useStaticQuery(
@@ -62,53 +70,9 @@ export default function StyleGuide({ pageContext }) {
 
 	return (
 		<ARTICLE>
-			<Section
-				hasPadding={false}
-			>
-				{contentMaker(1, dummyJSX)}
-			</Section>
-			{
-				contentMaker(randomIntegerIn(3, 10), (length, n, i) => {
-					return (
-						<Section
-							maxWidth={'1440px'}
-							hasPadding={false}
-						>
-							{
-								contentMaker(
-									randomIntegerEx(2, 5),
-									dummyJSX
-								)
-							}
-						</Section>
-					)
-				})
-			}
-			{/* <Section
-				maxWidth={'1440px'}
-				hasPadding={false}
-			>
-				{
-					contentMaker(
-						randomIntegerEx(2, 4),
-						dummyJSX
-					)
-				}
-			</Section>
-			<Section
-			>
-				{
-					contentMaker(
-						randomIntegerEx(2, 4),
-						dummyJSX
-					)
-				}
-			</Section> */}
-			<Section
-				maxWidth={'1440px'}
-			>
-				{contentMaker(1, dummyJSX)}
-			</Section>
+			{generateSectionContent(1)}
+			{generateSections(randomIntegerIn(4, 10))}
+			{generateSectionContent(1)}
 		</ARTICLE>
 	)
 }

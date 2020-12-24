@@ -4,16 +4,20 @@ import {
 	idealTextColor
 } from '../../utils/randoms';
 
-
-export const ARTICLE = styled.article`
-	margin: 0 auto;
-	width: 100%;
-	flex-grow: 1;
-`;
-
 export const CONTAINER = styled.div`
 	max-width: 100%;
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	
+	@media ${device.mobileXL} {
+		flex-direction: row${props => props.reversed ? `-reverse` : ``};
+		display: inline-flex;
+		align-items: stretch;
+	}
 
 	${props => props.backgroundColor && `
 		background-color: ${props.backgroundColor};
@@ -22,35 +26,19 @@ export const CONTAINER = styled.div`
 
 	${props => props.cols && `
 		flex: 1 100%;
-		display: block;
-		
+
 		@media ${device.mobileXL} {
 			float: left;
-			display: inline-block;
 		}
 
-		@media ${device.tablet} {
+		@media ${device.laptop} {
 			max-width: ${100 / props.cols}%;
 		}
 	`};
 	
 	${props => props.backgroundImage && `
 		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
-		justify-content: center;
-		align-items: center;
 		padding: 0;
-
-		@media ${device.mobileXL} {
-			display: inline-flex;
-			flex-direction: row;
-			align-items: stretch;
-		}
-
-		@media ${device.max_tablet} {
-			flex-direction: row${props.reversed ? `-reverse` : ``};
-		}
 		
 		&::${props.image_first ? `before` : `after`} {
 			content: '';
