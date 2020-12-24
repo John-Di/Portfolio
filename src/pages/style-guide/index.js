@@ -1,29 +1,31 @@
 import React from "react";
 import { useStaticQuery, withPrefix, graphql } from "gatsby";
 import Section from '../../sections/section';
+import FullWidthSection from '../../sections/full-width-section';
+import PageWidthSection from '../../sections/page-width-section';
+import FullWidthPaddedSection from '../../sections/full-width-padded-section';
+import PageWidthPaddedSection from '../../sections/page-width-padded-section';
 import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
 	randomIntegerIn,
-	returnBool
+	randomBool,
+	randomSection
 } from '../../utils/randoms';
 import {
 	ARTICLE
 } from './styles';
 import TextWithMedia from '../../components/text-with-media';
 import {
-	contentMaker,
-	reduceJSXList
+	contentMaker
 } from '../../utils/dom-builder';
 
 const generateDummyElement = (content_length, k, index) => {
 	const NUM_COLS = Math.min(4, content_length);
-	console.log(content_length, index);
-	let image_first = returnBool(),
+	let image_first = randomBool(),
 		accentColor = randomColor(),
 		image = randomImage(randomIntegerEx(0, 10000) + index)
-	console.log(image_first, index);
 	return (
 		<TextWithMedia
 			key={`content_${(1 + index) * content_length}`}
@@ -39,16 +41,20 @@ const generateDummyElement = (content_length, k, index) => {
 	)
 }
 
-const generateSectionContent = (length, k, index) => {
+const generateRandomSectionContent = (length, k, index) => {
 	let content_length = randomIntegerIn(2, 4);
-	return (
-		<Section maxWidth={'100%'} hasPadding={false}>
-			{contentMaker(content_length, generateDummyElement.bind(this, content_length))}
-		</Section>
-	)
+	let SectionComponent = randomSection();
+	return (<SectionComponent>{contentMaker(content_length, generateDummyElement.bind(this, content_length))}</SectionComponent>);
 };
 
-const generateSections = length => contentMaker(length, generateSectionContent.bind(this));
+const generateSectionContent = (length, SectionComponent = randomSection(), k, index) => {
+	let content_length = randomIntegerIn(2, 4);
+	return (<SectionComponent>{contentMaker(content_length, generateDummyElement.bind(this, content_length))}</SectionComponent>);
+};
+
+const generateSections = length => {
+	return contentMaker(length, generateRandomSectionContent.bind(this));
+}
 
 export default function StyleGuide({ pageContext }) {
 	const data = useStaticQuery(
@@ -70,9 +76,17 @@ export default function StyleGuide({ pageContext }) {
 
 	return (
 		<ARTICLE>
-			{generateSectionContent(1)}
+			<FullWidthSection>
+				{
+					generateSectionContent(1, generateDummyElement.bind(this, 1, FullWidthSection))
+				}
+			</FullWidthSection>
 			{generateSections(randomIntegerIn(4, 10))}
-			{generateSectionContent(1)}
+			<FullWidthSection>
+				{
+					generateSectionContent(1, generateDummyElement.bind(this, 1, FullWidthSection))
+				}
+			</FullWidthSection>
 		</ARTICLE>
 	)
 }

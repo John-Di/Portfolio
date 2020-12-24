@@ -1,3 +1,17 @@
+import FullWidthSection from '../sections/full-width-section';
+import PageWidthSection from '../sections/page-width-section';
+import FullWidthPaddedSection from '../sections/full-width-padded-section';
+import PageWidthPaddedSection from '../sections/page-width-padded-section';
+
+const SECTION_TYPES = [
+	PageWidthSection,
+	FullWidthSection,
+	PageWidthPaddedSection,
+	FullWidthPaddedSection
+];
+
+export const randomSection = () => SECTION_TYPES[randomIntegerEx(0, SECTION_TYPES.length)]
+
 export const randomColor = () => {
 	return `#${(0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)}`;
 };
@@ -28,4 +42,4 @@ export const randomImage = seed => `https://picsum.photos/seed/${seed}/800/800`;
 export const randomIntegerEx = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 export const randomIntegerIn = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-export const returnBool = () => Math.random() < 0.5;
+export const randomBool = () => Math.random() < 0.5;
