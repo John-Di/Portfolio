@@ -8,7 +8,7 @@ export const SECTION = styled.section`
 	flex-wrap: nowrap;
 	margin: 0 auto;
 	width: 100%;
-	max-width: ${props => props.maxWidth};
+	max-width: 100%;
 
 	${props => props.hasPadding && `
 		padding: 0;

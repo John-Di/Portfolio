@@ -1,10 +1,10 @@
 import React from "react";
-import Section from '../section';
+import { PAGE_WIDTH_PADDED_SECTION } from './styles';
 
 export default function PageWidthSection({ children }) {
 	return (
-		<Section maxWidth={'1440px'}>
+		<PAGE_WIDTH_PADDED_SECTION>
 			{children}
-		</Section>
+		</PAGE_WIDTH_PADDED_SECTION>
 	)
 }

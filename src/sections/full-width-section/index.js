@@ -1,10 +1,10 @@
 import React from "react";
-import Section from '../section';
+import { FULL_WIDTH_SECTION } from './styles';
 
 export default function FullWidthSection({ children }) {
 	return (
-		<Section maxWidth={'100%'} hasPadding={false}>
+		<FULL_WIDTH_SECTION>
 			{children}
-		</Section>
+		</FULL_WIDTH_SECTION>
 	)
 }
