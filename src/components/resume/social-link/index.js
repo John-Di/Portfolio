@@ -5,7 +5,7 @@ import {
 
 export default function SocialLink({ data, children }) {
 	const { url, color, flavor, network } = data;
-	console.log(data);
+	// console.log(data);
 	return (
 		<LINK
 			color={color}

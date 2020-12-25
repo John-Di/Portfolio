@@ -29,14 +29,28 @@ export const SECTION = styled.section`
 		background-color: ${props.backgroundColor};
 	`};
 
-	@media ${device.mobileXL} {
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
+	${props => {
+		if (props.cols > 2) {
+			return colBreak([
+				`${device.mobileL}`,
+				device.tablet
+			]);
+		} else if (props.cols > 1) {
+			return colBreak([device.mobileXL]);
 
-	@media ${device.laptop} {
-		flex-wrap: ${props => props.children && (props.children.length > 4 ? 'wrap' : 'nowrap')};
-	}
+		} else {
+			return colBreak([device.mobileL]);
+		}
+	}};
+
 
 	${CLEARFIX}
 `;
+
+const colBreak = (resolutions) => resolutions.reduce((acc, curr, i) => `
+	${acc}
+	@media ${curr} {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+`, '');

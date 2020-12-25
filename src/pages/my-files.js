@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import Navigation from "../components/navigation"
 
 export default function MyFiles({ data }) {
-	console.log(data)
+	// console.log(data)
 	return (
 		<Layout>
 			<Navigation />

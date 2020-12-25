@@ -41,16 +41,8 @@ const generateDummyElement = (content_length, k, index) => {
 	)
 }
 
-const generateRandomSectionContent = (length, k, index) => {
-	let content_length = randomIntegerIn(2, 4);
-	let SectionComponent = randomSection();
-	return (<SectionComponent>{contentMaker(content_length, generateDummyElement.bind(this, content_length))}</SectionComponent>);
-};
-
-const generateSectionContent = (length, SectionComponent = randomSection(), k, index) => {
-	let content_length = randomIntegerIn(2, 4);
-	return (<SectionComponent>{contentMaker(content_length, generateDummyElement.bind(this, content_length))}</SectionComponent>);
-};
+const generateRandomSectionContent = (length, k, index) => generateSectionContent(randomIntegerIn(2, 4), randomSection(), k, index);
+const generateSectionContent = (content_length = randomIntegerIn(2, 4), SectionComponent = randomSection(), k, index) => (<SectionComponent cols={content_length}>{contentMaker(content_length, generateDummyElement.bind(this, content_length))}</SectionComponent>);
 
 const generateSections = length => {
 	return contentMaker(length, generateRandomSectionContent.bind(this));
@@ -78,13 +70,13 @@ export default function StyleGuide({ pageContext }) {
 		<ARTICLE>
 			<FullWidthSection>
 				{
-					generateSectionContent(1, generateDummyElement.bind(this, 1, FullWidthSection))
+					generateSectionContent(1, generateDummyElement.bind(this, 1))
 				}
 			</FullWidthSection>
 			{generateSections(randomIntegerIn(4, 10))}
 			<FullWidthSection>
 				{
-					generateSectionContent(1, generateDummyElement.bind(this, 1, FullWidthSection))
+					generateSectionContent(1, generateDummyElement.bind(this, 1))
 				}
 			</FullWidthSection>
 		</ARTICLE>

@@ -60,13 +60,6 @@ export const CONTAINER = styled.div`
 			background-repeat: no-repeat;
 			padding-top: 100%;
 			width: 100%;
-
-			@media ${device.mobileXL} {
-				flex: 1 50%;
-				max-width: 50%;
-				min-height: 100%;
-				padding-top: 0;
-			}
 		}
 	`};
 `;
@@ -81,10 +74,5 @@ export const CONTENT = styled.div`
 
 	${props => props.withMedia && `
 		width: 100%;
-
-		@media ${device.mobileXL} {
-			flex: 1 50%;
-			max-width: 50%;
-		}
 	`};
 `;

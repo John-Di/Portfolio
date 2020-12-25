@@ -10,7 +10,7 @@ import {
 
 export default function Skills({ data }) {
 	const skills = data;
-	console.log(skills);
+	// console.log(skills);
 
 	return (
 		<section>
