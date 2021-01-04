@@ -5,7 +5,7 @@ import Homepage from '../../pages/homepage';
 import { rhythm } from "../../utils/typography"
 // import Navigation from "./navigation"
 
-export default function PageLayout({ children }) {
+export default function MainLayout({ children }) {
 	// const data = useStaticQuery(
 	// 	graphql`
 	// 		query {
@@ -17,7 +17,5 @@ export default function PageLayout({ children }) {
 	// 		}
 	// 		`
 	// )
-	return (
-		<Homepage />
-	)
+	return children
 }

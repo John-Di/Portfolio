@@ -169,11 +169,13 @@ exports.createPages = async ({ graphql, actions }) => {
 	// })
 	console.log(...result.data.allSitePage.nodes);
 	result.data.allSitePage.nodes.filter(n => n).forEach(({ node }) => {
+		console.log("It's a node!!!!", node);
 		console.log(node);
 		if (!node || !node.path) {
+			console.log("Nopeeee!!!!", node);
 			return;
 		}
-		console.log(node);
+		console.log("It's a node!!!!", node);
 		createPage({
 			path: node.path,
 			component: path.resolve(`./src/templates/page.js`),

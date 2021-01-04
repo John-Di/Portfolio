@@ -3,8 +3,11 @@ import { device } from '../../utils/variables';
 import {
 	idealTextColor
 } from '../../utils/randoms';
+import {
+	SQUARE
+} from '../../utils/mixins';
 
-export const TEXT_WITH_BACKGROUND = styled.div`
+export const TEXT_BLOCK = styled.div`
 	max-width: 100%;
 	width: 100%;
 	display: flex;
@@ -20,15 +23,27 @@ export const TEXT_WITH_BACKGROUND = styled.div`
 		color: ${idealTextColor(props.backgroundColor)}
 	`};
 
+
+	${props => props.isSquare ? `
+		&::before {
+			content: '';
+			padding-top: 100%;
+			width: 100%;
+		}
+	` : ''};	
+	
+
 	
 	${props => props.backgroundImage && `
 		flex: 1 100%;
-		max-width: 100%;
 		padding: 0;
-		background-image: url('${props.backgroundImage}');
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
+	
+		&::before {
+			background-image: url('${props.backgroundImage}');
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
 	`};
 
 	@media ${device.tablet} {
@@ -51,6 +66,11 @@ export const WRAPPER = styled.div`
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 `;
 
 export const CONTENT = styled.div`

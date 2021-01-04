@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import { SECTION } from '../../sections/section/styles';
 
-SECTION.hasPadding = false;
+SECTION.hasPadding = true;
 export const BANNER = styled(SECTION)`
-	min-height: 100vh;
+	max-width: 100%;
+	min-height: 50vh;
 
 	p {
 		@media ${device.tablet} {
