@@ -80,7 +80,7 @@ export default function StyleGuide({ pageContext }) {
 					reversed={!!0}
 					isEven={0 % 2 == 0}
 				>
-					<TextBlock >
+					<TextBlock>
 						<h2>This is just a Portfolio of sorts</h2>
 						<p>Just for the time being...</p>
 					</TextBlock>
