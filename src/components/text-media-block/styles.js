@@ -27,12 +27,13 @@ let responsive_layout = ({ cols = 1, backgroundColor, backgroundImage, image_lef
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: center;
+	text-align: center;
 	${SQUARE_BACKGROUND(backgroundColor, backgroundImage)}
 
 	${ADJACENT(`${device.mobileL} and ${device.max_tablet}`, image_left)}
 	${COLUMN_STACKED(`${device.tablet} and ${device.max_laptop}`, image_above)}
 	${COLUMN_STACKED(`${device.laptop} and ${device.max_desktop}`, image_above)}
-	${ADJACENT(`${device.desktop}`, image_above)}
+	${ADJACENT(`${device.desktop}`, false)}
 `;
 
 const COLUMN_STACKED = (resolution, image_above) => `

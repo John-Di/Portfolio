@@ -1,11 +1,14 @@
 export const BACKGROUND_PSEUDO = (backgroundColor, backgroundImage, isSquare = false, pseudo = 'before') => `
+	position: relative;
+
 	&::${pseudo} {
 		content: '';
 		width: 100%;
-
-		${isSquare ? `
-			padding-top: 100%;` : ''}
-
+		
+		${backgroundColor ? `
+			background-color: ${backgroundColor};
+		` : ''}
+		
 		${backgroundImage ? `
 			background-image: url('${backgroundImage}');
 			background-position: center;
@@ -13,9 +16,9 @@ export const BACKGROUND_PSEUDO = (backgroundColor, backgroundImage, isSquare = f
 			background-repeat: no-repeat;` :
 		''}
 
-		${backgroundColor ? `
-			background-color: ${backgroundColor}
-		` : ''}
+		${isSquare ? `
+			padding-top: 100%;` :
+		''}		
 	}
 `
 

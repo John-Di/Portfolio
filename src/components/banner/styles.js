@@ -6,14 +6,21 @@ SECTION.hasPadding = true;
 export const BANNER = styled(SECTION)`
 	max-width: 100%;
 	min-height: 50vh;
+	
+	text-align: ${props => log('textAlignment', ({ textAlignment }) => textAlignment, props) || 'center'};
+
+	@media ${device.tablet} {
+		text-align: ${props => props.textAlignment || 'left'};
+	}
 
 	p {
-		@media ${device.tablet} {
-			font-size: 72px;
-		}
-
-		@media ${device.laptop} {
-			font-size: 98px;
+		@media ${device.mobileL} {
+			line-height: 1.25;
 		}
 	}
 `;
+
+const log = (label, fn, { ...rest }) => {
+	console.log(label, rest);
+	return fn(rest);
+}

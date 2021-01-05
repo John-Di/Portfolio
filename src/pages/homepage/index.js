@@ -1,16 +1,55 @@
 import React from "react";
 import { useStaticQuery, withPrefix, graphql } from "gatsby";
-import Section from '../../sections/section';
+import MainLayout from '../../layouts/main-layout';
+import Grid from '../../layouts/grid';
+import TextBanner from '../../sections/text-banner';
+import HeroBanner from '../../sections/hero-banner';
+import TextBlock from '../../components/text-block';
+import TextMediaBlock from '../../components/text-media-block';
 import {
-	contentMaker
+	randomColor,
+	randomImage,
+	randomIntegerEx,
+	randomIntegerIn,
+	randomBool,
+	randomSection
 } from '../../utils/randoms';
 import {
-	ARTICLE,
-	CONTAINER,
-	CONTENT
+	ARTICLE
 } from './styles';
+import {
+	contentMaker
+} from '../../utils/dom-builder';
 
-export default function Homepage({ pageContext }) {
+
+const generateDummyHero = (content_length = 1, k, index = 0) => {
+	const NUM_COLS = Math.min(4, content_length);
+	let image_first = randomBool(),
+		accentColor = randomColor(),
+		image = randomImage(randomIntegerEx(0, 10000) + index, 1920, 1920);
+
+	let Inner = randomBool() ? TextBlock : TextMediaBlock;
+	let id = (1 + content_length) * content_length;
+
+	return (
+		<Inner
+			delayOffset={id * 100}
+			key={`content_${id}`}
+			cols={NUM_COLS}
+			backgroundColor={`${accentColor}`}
+			backgroundImage={`${image}`}
+			image_first={`${image_first}`}
+			reversed={!!index}
+		>
+			<h2>This is just a Portfolio of sorts</h2>
+			<p>Just for the time being...</p>
+		</Inner>
+	)
+}
+
+
+
+export default function StyleGuide({ pageContext }) {
 	const data = useStaticQuery(
 		graphql`
 			query {
@@ -27,41 +66,85 @@ export default function Homepage({ pageContext }) {
 			}
 			`
 	);
-
+	let i = 0;
 	return (
-		<ARTICLE>
-			<Section
-				hasPadding={false}
-			>
-				{contentMaker(1, CONTAINER, CONTENT)}
-			</Section>
-			<Section
-				maxWidth={'1440px'}
-				hasPadding={false}
-			>
-				{
-					contentMaker(
-						Math.floor(Math.random() * 2) + 2,
-						CONTAINER,
-						CONTENT
-					)
-				}
-			</Section>
-			<Section
-			>
-				{
-					contentMaker(
-						Math.floor(Math.random() * 2) + 2,
-						CONTAINER,
-						CONTENT
-					)
-				}
-			</Section>
-			<Section
-				maxWidth={'1440px'}
-			>
-				{contentMaker(1, CONTAINER, CONTENT)}
-			</Section>
-		</ARTICLE>
+		<MainLayout>
+			<ARTICLE>
+				<HeroBanner
+					key={0}
+					index={0}
+					cols={1}
+					backgroundColor={`${randomColor()}`}
+					backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
+					image_first={`${randomBool()}`}
+					reversed={!!0}
+					isEven={0 % 2 == 0}
+				>
+					<TextBlock >
+						<h2>This is just a Portfolio of sorts</h2>
+						<p>Just for the time being...</p>
+					</TextBlock>
+				</HeroBanner>
+				<TextBanner
+					textAlignment={'center'}
+				>
+					<h2>This is just a Portfolio of sorts</h2>
+					<p>Just for the time being...</p>
+				</TextBanner>
+				<Grid>
+					<TextMediaBlock
+						key={i}
+						index={i}
+						cols={4}
+						backgroundColor={`${randomColor()}`}
+						backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
+						image_first={`${randomBool()}`}
+						reversed={!!0}
+						isEven={0 % 2 == 0}
+					>
+						<h2>This is just a Portfolio of sorts</h2>
+						<p>Just for the time being...</p>
+					</TextMediaBlock>
+					<TextMediaBlock
+						key={i}
+						index={++i}
+						cols={4}
+						backgroundColor={`${randomColor()}`}
+						backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 2, 1920, 1920)}`}
+						image_first={`${randomBool()}`}
+						reversed={!!1}
+						isEven={1 % 2 == 0}
+					>
+						<h2>This is just a Portfolio of sorts</h2>
+						<p>Just for the time being...</p>
+					</TextMediaBlock>
+					<TextMediaBlock
+						index={++i}
+						cols={4}
+						backgroundColor={`${randomColor()}`}
+						backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 3, 1920, 1920)}`}
+						image_first={`${randomBool()}`}
+						reversed={!!0}
+						isEven={2 % 2 == 0}
+					>
+						<h2>This is just a Portfolio of sorts</h2>
+						<p>Just for the time being...</p>
+					</TextMediaBlock>
+					<TextMediaBlock
+						key={i}
+						index={++i}
+						cols={4}
+						backgroundColor={`${randomColor()}`}
+						backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 4, 1920, 1920)}`}
+						image_first={`${randomBool()}`}
+						reversed={!!1}
+						isEven={3 % 2 == 0}
+					>
+						<h2>This is just a Portfolio of sorts</h2>
+						<p>Just for the time being...</p>
+					</TextMediaBlock>
+				</Grid>
+			</ARTICLE>
+		</MainLayout>
 	)
 }

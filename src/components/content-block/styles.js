@@ -9,7 +9,7 @@ import {
 } from '../../utils/mixins';
 
 
-export const TEXT_BLOCK = styled.div`
+export const BLOCK = styled.div`
 	max-width: 100%;
 	width: 100%;
 	display: flex;
@@ -17,23 +17,23 @@ export const TEXT_BLOCK = styled.div`
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
-	flex: 1 100%;
+	text-align: center;
+	flex: 1 auto;
 
 	${props => props.backgroundColor && `
-		background-color: ${props.backgroundColor};
 		color: ${idealTextColor(props.backgroundColor)}
 	`};
 
-
-	${props => props.backgroundImage || props.isSquare ? BACKGROUND_PSEUDO('', props.backgroundImage, props.isSquare) : ''}
+	${props => BACKGROUND_PSEUDO(props.backgroundColor, props.backgroundImage, props.isSquare)}	
 
 	@media ${device.laptop} {
+		padding-top: 0;
 		justify-content: flex-start;
 		align-items: center;
 	}
 `;
 
-export const WRAPPER = styled.div`
+export const CONTAINER = styled.div`
 	flex: 1 auto;
 	width: 100%;
 	max-width: 1440px;
