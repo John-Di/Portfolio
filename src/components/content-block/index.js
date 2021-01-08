@@ -21,7 +21,9 @@ export default function ContentBlock({ backgroundColor = '', backgroundImage = '
 					data-aos={animated && 'fade-up'}
 					data-aos-delay={animated && `${750 + delayOffset}`}
 					data-aos-duration={animated && '1000'}
-				>{children}</CONTENT>
+				>
+					{children}
+				</CONTENT>
 			</CONTAINER>
 		</BLOCK>
 	);

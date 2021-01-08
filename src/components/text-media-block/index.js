@@ -1,35 +1,25 @@
 import React from "react";
 import TextBlock from '../text-block';
-import { device } from '../../utils/variables';
 import {
-	TEXT_MEDIA_BLOCK
+	TEXT_MEDIA_BLOCK,
+	COLUMN_STACKED,
+	ADJACENT
 } from './styles';
 
-export default function TextMediaBlock({ cols, backgroundColor, backgroundImage, image_first = true, reversed, children, delayOffset = 0, index = 0, isSquare = true }) {
-	// console.log('TextMediaBlock', cols, backgroundColor, backgroundImage, image_first, reversed, children);
-
-	let num_cols = cols ? cols : children.length;
-	// let font_color = 
-	let squareBreakpoints = num_cols > 1 ? [
-		`${device.mobileL} and ${device.max_tablet}`,
-		`${device.tablet} and ${device.max_laptop}`,
-		`${device.laptop} and ${device.max_laptopL}`,
-		device.laptopL
-	] : [
-			device.mobileL
-		];
-
-
+export default function TextMediaBlock({ backgroundColor, backgroundImage, responsive_rules = () => '', children, delayOffset = 0, index = 0, isSquare = true }) {
+	console.log("responsive_rules(index)", responsive_rules(index));
 
 	return (
 		<TEXT_MEDIA_BLOCK
-			cols={Math.min(num_cols, 4)}
+			className="text-media-block"
 			backgroundImage={backgroundImage}
 			backgroundColor={backgroundColor}
 			image_left={!(index % 2)}
 			image_above={!(index % 2)}
 			data-aos='fade-up'
+			isSquare={isSquare}
 			data-aos-anchor-placement="top-center"
+			responsive_rules={responsive_rules(index)}
 		>
 			<TextBlock
 				delayOffset={delayOffset}

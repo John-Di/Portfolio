@@ -8,13 +8,13 @@ export const SECTION = styled.section`
 	flex-wrap: nowrap;
 	margin: 0 auto;
 	width: 100%;
-	max-width: 100%;
+	max-width: ${props => props.maxWidth};
 
 	${props => props.hasPadding && `
 		padding: 0;
 	
 		@media ${device.laptop} {
-			padding: 0 4%;
+			padding: 0 8%;
 		}
 	`};
 	

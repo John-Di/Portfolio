@@ -1,49 +1,52 @@
 import React from "react";
-import { useStaticQuery, withPrefix, graphql } from "gatsby";
+import { device } from '../../utils/variables';
 import {
 	GRID,
 	ITEM
 } from './styles';
-import background from '../../images/homepage_hero.jpg';
 
 // import Navigation from "./navigation"
 
-const GENERATE_GRID = items => items.reduce((acc, curr, i) => (
-	<>
-		{acc}
-		<ITEM key={i} cols={items.length}>
-			{curr}
-		</ITEM>
-	</>
-), <></>)
+const RESPONSIVE_DEFAULTS = {
+	1: `
+		grid-template-columns: repeat(1, 1fr);
+	
+		@media ${device.laptop} {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	`,
+	2: `
+		grid-template-columns: repeat(1, 1fr);
+	
+		@media ${device.tablet} {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	`,
+	3: `
+		grid-template-columns: repeat(1, 1fr);
+	
+		@media ${device.tablet} {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	`,
+	4: `
+		grid-template-columns: repeat(1, 1fr);
+	
+		@media ${device.tablet} {
+			grid-template-columns: repeat(2, 1fr);
+		}
 
-const cloneElement = (child, index) => React.cloneElement(child, {
-	isEven: !(index % 2)
-})
+		@media ${device.laptop} {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	`
+};
 
-export default function Grid({ children }) {
-
-	let items = React.Children.map(children, cloneElement);
-
-	const data = useStaticQuery(
-		graphql`
-			query {
-				site {
-					siteMetadata {
-						title
-					}
-				}
-				hero: file(base: { eq: "homepage_hero.jpg" }) {
-					publicURL
-					extension
-					name
-				}
-			}
-			`
-	);
-
-	let num_col = Math.min(items.length, 4);
-	return (
-		<GRID cols={num_col}>{GENERATE_GRID(items)}</GRID>
+export default function Grid({ children, responsive_rules = {} }) {
+	const rules = !(Object.keys(responsive_rules).length === 0 && responsive_rules.constructor === Object) ? responsive_rules : RESPONSIVE_DEFAULTS
+	return children && (
+		<GRID className="grid" rules={rules}>
+			{children}
+		</GRID>
 	);
 }

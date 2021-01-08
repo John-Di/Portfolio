@@ -2,9 +2,9 @@ import React from "react";
 import Section from '../section';
 import { size } from '../../utils/variables';
 
-export default function PageWidthPaddedSection({ children }) {
+export default function PaddedSection({ children }) {
 	return (
-		<Section hasPadding={true} maxWidth={`${size.laptopL}px`}>
+		<Section hasPadding={true}>
 			{children}
 		</Section>
 	)

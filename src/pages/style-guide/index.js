@@ -1,12 +1,13 @@
 import React from "react";
 import { useStaticQuery, withPrefix, graphql } from "gatsby";
+import MainLayout from '../../layouts/main-layout';
+import Grid from '../../layouts/grid';
 import Section from '../../sections/section';
-import FullWidthSection from '../../sections/full-width-section';
-import PageWidthSection from '../../sections/page-width-section';
-import FullWidthPaddedSection from '../../sections/full-width-padded-section';
-import PageWidthPaddedSection from '../../sections/page-width-padded-section';
-import HeroBanner from '../../components/hero-banner';
-import TextWithBackground from '../../components/text-with-background';
+import TextBanner from '../../sections/text-banner';
+import HeroBanner from '../../sections/hero-banner';
+import TextBlock from '../../components/text-block';
+import TextMediaBlock from '../../components/text-media-block';
+import TextMediaGrid from '../../utils/randoms/text-media-grid';
 import {
 	randomColor,
 	randomImage,
@@ -18,59 +19,9 @@ import {
 import {
 	ARTICLE
 } from './styles';
-import TextWithMedia from '../../components/text-with-media';
-import {
-	contentMaker
-} from '../../utils/dom-builder';
-
-const generateDummySectionContent = (content_length, k, index) => {
-	const NUM_COLS = Math.min(4, content_length);
-	let image_first = randomBool(),
-		accentColor = randomColor(),
-		image = randomImage(randomIntegerEx(0, 10000) + index)
-	return (
-		<TextWithMedia
-			key={`content_${(1 + index) * content_length}`}
-			cols={NUM_COLS}
-			backgroundColor={`${accentColor}`}
-			backgroundImage={`${image}`}
-			image_first={`${image_first}`}
-			reversed={!!index}
-		>
-			<h2>This is just a Portfolio of sorts</h2>
-			<p>Just for the time being...</p>
-		</TextWithMedia>
-	)
-}
-
-const generateDummyHero = (content_length, k, index) => {
-	const NUM_COLS = Math.min(4, content_length);
-	let image_first = randomBool(),
-		accentColor = randomColor(),
-		image = randomImage(randomIntegerEx(0, 10000) + index);
-
-	let Inner = randomBool() ? TextWithBackground : TextWithMedia;
-	return (
-		<Inner
-			key={`content_${(1 + index) * content_length}`}
-			cols={NUM_COLS}
-			backgroundColor={`${accentColor}`}
-			backgroundImage={`${image}`}
-			image_first={`${image_first}`}
-			reversed={!!index}
-		>
-			<h2>This is just a Portfolio of sorts</h2>
-			<p>Just for the time being...</p>
-		</Inner>
-	)
-}
-
-const generateRandomSectionContent = (length, k, index) => generateSectionContent(randomIntegerIn(2, 4), randomSection(), k, index);
-const generateSectionContent = (content_length = randomIntegerIn(2, 4), SectionComponent = randomSection(), k, index) => (<SectionComponent cols={content_length}>{contentMaker(content_length, generateDummySectionContent.bind(this, content_length))}</SectionComponent>);
-
-const generateSections = length => {
-	return contentMaker(length, generateRandomSectionContent.bind(this));
-}
+import PaddedSection from "../../sections/padded-section";
+import PageWidthSection from "../../sections/page-width-section";
+import PageWidthPaddedSection from "../../sections/page-width-padded-section";
 
 export default function StyleGuide({ pageContext }) {
 	const data = useStaticQuery(
@@ -89,25 +40,41 @@ export default function StyleGuide({ pageContext }) {
 			}
 			`
 	);
-
+	let i = 0;
 	return (
-		<ARTICLE>
-			<HeroBanner>
-				{
-					generateSectionContent(1, generateDummyHero.bind(this, 1))
-				}
-			</HeroBanner>
-			<FullWidthSection>
-				{
-					generateSectionContent(1, generateDummySectionContent.bind(this, 1))
-				}
-			</FullWidthSection>
-			{generateSections(randomIntegerIn(4, 10))}
-			<FullWidthSection>
-				{
-					generateSectionContent(1, generateDummySectionContent.bind(this, 1))
-				}
-			</FullWidthSection>
-		</ARTICLE>
+		<MainLayout>
+			<ARTICLE>
+				<HeroBanner
+					index={0}
+					cols={1}
+					backgroundColor={`${randomColor()}`}
+					backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
+					image_first={`${randomBool()}`}
+					reversed={!!0}
+					isEven={0 % 2 == 0}
+				>
+					<TextBlock>
+						<h1>Style Guide</h1>
+						<p>Here's a Hero Banner</p>
+					</TextBlock>
+				</HeroBanner>
+				<TextBanner
+					textAlignment={'center'}
+				>
+					<h2>Sections and Components</h2>
+					<p>Including this Basic Text Banner Section</p>
+				</TextBanner>
+				<TextMediaGrid />
+				<TextMediaGrid />
+				<TextMediaGrid />
+				<TextMediaGrid />
+				<PageWidthSection>
+					<TextMediaGrid />
+				</PageWidthSection>
+				<PaddedSection>
+					<TextMediaGrid />
+				</PaddedSection>
+			</ARTICLE>
+		</MainLayout >
 	)
 }

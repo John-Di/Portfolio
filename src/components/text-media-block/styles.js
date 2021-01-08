@@ -8,16 +8,26 @@ import {
 	idealTextColor
 } from '../../utils/randoms';
 
-export const TEXT_MEDIA_BLOCK = styled.div`
-	${props => props.backgroundColor ? `
-		background-color: ${props.backgroundColor};
-		color: ${idealTextColor(props.backgroundColor)}
-	` : ''};
-	${props => responsive_layout(props)};
+
+export const COLUMN_STACKED = (resolution, image_above) => `
+	@media ${resolution} {
+		flex-direction: ${!image_above ? 'column-reverse' : 'column'};
+		max-width: 100%;
+	}
 `;
 
+export const ADJACENT = (resolution, image_left) => `
+	@media ${resolution} {
+		flex-direction: ${!image_left ? 'row-reverse' : 'row'};
 
-let responsive_layout = ({ cols = 1, backgroundColor, backgroundImage, image_left = true, image_above = true }) => `
+		&::before {
+			padding-top: 50%;
+			max-width: 50%;
+		}
+	}
+`;
+
+export const TEXT_MEDIA_BLOCK = styled.div`
 	width: 100%;
 	flex: 1 100%;
 	max-width: 100%;
@@ -28,28 +38,20 @@ let responsive_layout = ({ cols = 1, backgroundColor, backgroundImage, image_lef
 	flex-wrap: nowrap;
 	justify-content: center;
 	text-align: center;
-	${SQUARE_BACKGROUND(backgroundColor, backgroundImage)}
 
-	${ADJACENT(`${device.mobileL} and ${device.max_tablet}`, image_left)}
-	${COLUMN_STACKED(`${device.tablet} and ${device.max_laptop}`, image_above)}
-	${COLUMN_STACKED(`${device.laptop} and ${device.max_desktop}`, image_above)}
-	${ADJACENT(`${device.desktop}`, false)}
+	${props => propAssess(props)}
 `;
 
-const COLUMN_STACKED = (resolution, image_above) => `
-	@media ${resolution} {
-		flex-direction: ${!image_above ? 'column-reverse' : 'column'};
-		max-width: 100%;
-	}
-`;
+const propAssess = props => `
+	${background(props)}
+	${props.responsive_rules}
+`
 
-const ADJACENT = (resolution, image_left) => `
-	@media ${resolution} {
-		flex-direction: ${!image_left ? 'row-reverse' : 'row'};
-
-		&::before {
-			padding-top: 50%;
-			max-width: 50%;
-		}
-	}
-`;
+const background = ({ backgroundColor, backgroundImage, isSquare }) => `
+	${backgroundColor ? `
+		background-color: ${backgroundColor};
+		color: ${idealTextColor(backgroundColor)}
+		` : ''};
+	${isSquare && SQUARE_BACKGROUND(backgroundColor, backgroundImage)}
+	
+`

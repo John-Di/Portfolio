@@ -40,21 +40,8 @@ export const HERO_BANNER = styled(BANNER)`
 		}
 	}
 
+	h1,
 	h2 {
-			font-size: 22px;
-			line-height: 1.25;
-
-		@media ${device.tablet} {
-			font-size: 24px;
-			line-height: 1.25;
-		}
-
-		@media ${device.laptop} {
-			font-size: 32px;
-		}
-	}
-
-	p {
 		@media ${device.mobileL} {
 			font-size: 32px;
 			line-height: 1.25;
@@ -67,6 +54,20 @@ export const HERO_BANNER = styled(BANNER)`
 
 		@media ${device.laptopL} {
 			font-size: 72px;
+		}
+	}
+
+	p {
+			font-size: 22px;
+			line-height: 1.25;
+
+		@media ${device.tablet} {
+			font-size: 24px;
+			line-height: 1.25;
+		}
+
+		@media ${device.laptop} {
+			font-size: 32px;
 		}
 	}
 `;

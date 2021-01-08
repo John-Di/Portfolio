@@ -1,13 +1,13 @@
-import FullWidthSection from '../sections/full-width-section';
+import Section from '../sections/section';
 import PageWidthSection from '../sections/page-width-section';
-import FullWidthPaddedSection from '../sections/full-width-padded-section';
+import PaddedSection from '../sections/padded-section';
 import PageWidthPaddedSection from '../sections/page-width-padded-section';
 
 const SECTION_TYPES = [
 	PageWidthSection,
-	FullWidthSection,
+	Section,
 	PageWidthPaddedSection,
-	FullWidthPaddedSection
+	PaddedSection
 ];
 
 export const randomSection = () => SECTION_TYPES[randomIntegerEx(0, SECTION_TYPES.length)]

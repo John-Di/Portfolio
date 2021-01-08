@@ -1,10 +1,11 @@
 import React from "react";
-import { PAGE_WIDTH_SECTION } from './styles';
+import Section from '../section';
+import { size } from '../../utils/variables';
 
 export default function PageWidthSection({ children }) {
 	return (
-		<PAGE_WIDTH_SECTION>
+		<Section maxWidth={`${size.laptopL}px`}>
 			{children}
-		</PAGE_WIDTH_SECTION>
+		</Section>
 	)
 }
