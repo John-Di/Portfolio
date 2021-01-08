@@ -7,7 +7,7 @@ import TextBanner from '../../sections/text-banner';
 import HeroBanner from '../../sections/hero-banner';
 import TextBlock from '../../components/text-block';
 import TextMediaBlock from '../../components/text-media-block';
-import TextMediaGrid from '../../utils/randoms/text-media-grid';
+import TextMediaGrid from '../../sections/randoms/text-media-grid';
 import {
 	randomColor,
 	randomImage,

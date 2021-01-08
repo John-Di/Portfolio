@@ -1,7 +1,7 @@
-import Section from '../sections/section';
-import PageWidthSection from '../sections/page-width-section';
-import PaddedSection from '../sections/padded-section';
-import PageWidthPaddedSection from '../sections/page-width-padded-section';
+import Section from '../../sections/section';
+import PageWidthSection from '../../sections/page-width-section';
+import PaddedSection from '../../sections/padded-section';
+import PageWidthPaddedSection from '../../sections/page-width-padded-section';
 
 const SECTION_TYPES = [
 	PageWidthSection,
