@@ -40,8 +40,7 @@ const RESPONSIVE_DEFAULTS = {
 			}
 		`,
 		"items": (isFullWidth, isEven) => [
-			ADJACENT(`${device.mobileL} and ${device.max_laptopL}`, isEven),
-			COLUMN_STACKED(`${device.laptopL}`, isEven)
+			ADJACENT(`${device.mobileL}`, isEven)
 		].join('')
 	},
 	3: {
@@ -60,7 +59,8 @@ const RESPONSIVE_DEFAULTS = {
 			ADJACENT(`${device.mobileL} and ${device.max_tablet}`, isEven),
 			COLUMN_STACKED(`${device.tablet} and ${device.max_laptopL}`, isEven),
 			`${isFullWidth ? '' : COLUMN_STACKED(`${device.laptop} and ${device.max_laptopL}`, isEven)}`,
-			COLUMN_STACKED(`${device.laptopL}`, isEven)
+			`${isFullWidth ? ADJACENT(`${device.laptopL}`, false) : COLUMN_STACKED(`${device.laptopL}`, isEven)}`
+
 		].join('')
 	},
 	4: {
@@ -108,7 +108,7 @@ export default function TextMediaGrid({ responsive = {} }) {
 								reversed={!!1}
 								isFullWidth={!sectionWidth && !hasPadding}
 								responsive_rules={responsive_rules[length].items}
-								isEven={index % 2 == 0}
+								isEven={index % 2 === 0}
 							>
 								<h2>Text Media {index + 1}/{length}</h2>
 								<p>Just for the time being...</p>

@@ -28,7 +28,7 @@ export const HERO_BANNER = styled(BANNER)`
 
 	&::before {
 		padding-top: 0;
-		flex: 0 75%;	
+		flex: 0 ${2 * 100 / 3}%;	
 	}
 
 	@media ${device.tablet} {
@@ -43,8 +43,13 @@ export const HERO_BANNER = styled(BANNER)`
 	h1,
 	h2 {
 		@media ${device.mobileL} {
+			margin-top: 1.75rem;
 			font-size: 32px;
 			line-height: 1.25;
+		}
+
+		@media ${device.max_tablet} {
+			margin-top: 1.75rem;
 		}
 
 		@media ${device.laptop} {

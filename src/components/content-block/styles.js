@@ -24,7 +24,7 @@ export const BLOCK = styled.div`
 		color: ${idealTextColor(props.backgroundColor)}
 	`};
 
-	${props => BACKGROUND_PSEUDO(props.backgroundColor, props.backgroundImage, props.isSquare)}	
+	${props => BACKGROUND_PSEUDO(props.isSquare, props.backgroundColor, props.backgroundImage)}	
 
 	@media ${device.laptop} {
 		padding-top: 0;

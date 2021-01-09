@@ -37,9 +37,15 @@ export const getRGBComponents = color => {
 		B: parseInt(b, 16)
 	};
 };
+const getRandomImage = (seed, width = 800, height = 800) => `https://picsum.photos/seed/${seed}/${width}/${height}`;
 
-export const randomImage = (seed, width = 800, height = 800) => `https://picsum.photos/seed/${seed}/${width}/${height}`;
+export const randomImage = (index = 0) => getRandomImage(randomIntegerEx(0, 10000) + index, 1920, 1920);
 export const randomIntegerEx = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 export const randomIntegerIn = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 export const randomBool = () => Math.random() < 0.5;
+
+export const randomImageArray = () => Array.from({
+	length: randomIntegerIn(4, 8)
+},
+	(k, i) => getRandomImage(randomIntegerEx(0, 10000) + i, 1920, 1920))

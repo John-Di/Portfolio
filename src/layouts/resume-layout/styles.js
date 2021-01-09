@@ -39,17 +39,17 @@ export const CLEARFIX = `
 		clear: both;
 	}
 `
+// border-left-width: ${rhythm(0.5)};
+// border-right-width: ${rhythm(0.25)};
+// border-bottom-width: ${rhythm(0.5)};
+// border-top-width: ${rhythm(0.75)};
+// margin: ${rhythm(1)} ${rhythm(1.25)} ${rhythm(1.5)} ${rhythm(1.75)};
+// margin: ${rhythm(2)} ${rhythm(2.25)} ${rhythm(2.5)} ${rhythm(2.75)};
 
 export const H1 = styled.h1`
 	font-size: 1.5em;
 	margin: 2.2969em auto 0.5em;
 	line-height: 1.1;
-	// border-left-width: ${rhythm(0.5)};
-	// border-right-width: ${rhythm(0.25)};
-	// border-bottom-width: ${rhythm(0.5)};
-	// border-top-width: ${rhythm(0.75)};
-	// margin: ${rhythm(1)} ${rhythm(1.25)} ${rhythm(1.5)} ${rhythm(1.75)};
-	// margin: ${rhythm(2)} ${rhythm(2.25)} ${rhythm(2.5)} ${rhythm(2.75)};
 `;
 export const H2 = styled.h2`
 	font-size: 1em;

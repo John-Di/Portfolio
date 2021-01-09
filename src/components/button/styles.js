@@ -9,6 +9,7 @@ const RESET = `
 `;
 
 export const BUTTON = styled.button`
+	cursor: pointer;
 	${RESET}	
 	${props => assessProps(props)}
 
@@ -34,7 +35,7 @@ const assessTheme = ({ theme, modest = false }) => {
 			letter-spacing: 0.2px;
 			
 			${modest.isModest ? '' : `border-width: 0.25em;`}
-			padding:${modest.isModest ? '0.5em 2em' : `1em 2em`};
+			padding:${modest.isModest ? '0.25em 2em' : `0.75em 2em`};
 		`;
 	}
 };
