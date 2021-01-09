@@ -6,20 +6,20 @@ import {
 	ADJACENT
 } from './styles';
 
-export default function TextMediaBlock({ backgroundColor, backgroundImage, responsive_rules = () => '', children, delayOffset = 0, index = 0, isSquare = true }) {
-	console.log("responsive_rules(index)", responsive_rules(index));
-
+export default function TextMediaBlock({ backgroundColor, backgroundImage, responsive_rules = () => '', children, delayOffset = 0, isEven = true, isSquare = true, isFullWidth }) {
+	console.log(isFullWidth, isEven)
 	return (
 		<TEXT_MEDIA_BLOCK
 			className="text-media-block"
 			backgroundImage={backgroundImage}
 			backgroundColor={backgroundColor}
-			image_left={!(index % 2)}
-			image_above={!(index % 2)}
+			image_left={isEven}
+			image_above={isEven}
 			data-aos='fade-up'
 			isSquare={isSquare}
 			data-aos-anchor-placement="top-center"
-			responsive_rules={responsive_rules(index)}
+			responsive_rules={responsive_rules(isFullWidth, isEven)}
+			isEven={isEven}
 		>
 			<TextBlock
 				delayOffset={delayOffset}

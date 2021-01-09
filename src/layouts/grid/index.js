@@ -1,8 +1,7 @@
 import React from "react";
 import { device } from '../../utils/variables';
 import {
-	GRID,
-	ITEM
+	GRID
 } from './styles';
 
 // import Navigation from "./navigation"

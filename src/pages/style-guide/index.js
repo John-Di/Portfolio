@@ -8,6 +8,7 @@ import HeroBanner from '../../sections/hero-banner';
 import TextBlock from '../../components/text-block';
 import TextMediaBlock from '../../components/text-media-block';
 import TextMediaGrid from '../../sections/randoms/text-media-grid';
+import FancyCTA from '../../components/fancy-cta';
 import {
 	randomColor,
 	randomImage,
@@ -41,13 +42,14 @@ export default function StyleGuide({ pageContext }) {
 			`
 	);
 	let i = 0;
+	let heroBannerColor = randomColor();
 	return (
 		<MainLayout>
 			<ARTICLE>
 				<HeroBanner
 					index={0}
 					cols={1}
-					backgroundColor={`${randomColor()}`}
+					backgroundColor={`${heroBannerColor}`}
 					backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
 					image_first={`${randomBool()}`}
 					reversed={!!0}
@@ -56,6 +58,9 @@ export default function StyleGuide({ pageContext }) {
 					<TextBlock>
 						<h1>Style Guide</h1>
 						<p>Here's a Hero Banner</p>
+						<FancyCTA
+							parentBackgroundColor={heroBannerColor}
+						>Learn More</FancyCTA>
 					</TextBlock>
 				</HeroBanner>
 				<TextBanner
@@ -68,12 +73,10 @@ export default function StyleGuide({ pageContext }) {
 				<TextMediaGrid />
 				<TextMediaGrid />
 				<TextMediaGrid />
-				<PageWidthSection>
-					<TextMediaGrid />
-				</PageWidthSection>
-				<PaddedSection>
-					<TextMediaGrid />
-				</PaddedSection>
+				<TextMediaGrid />
+				<TextMediaGrid />
+				<TextMediaGrid />
+				<TextMediaGrid />
 			</ARTICLE>
 		</MainLayout >
 	)
