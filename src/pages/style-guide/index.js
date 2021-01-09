@@ -67,16 +67,46 @@ export default function StyleGuide({ pageContext }) {
 					<h2>Sections and Components</h2>
 					<p>Including this Basic Text Banner Section</p>
 				</TextBanner>
-				<TextMediaGrid />
 				<ImageGallerySection
 					images={imageArray}
 				/>
+				<TextBanner
+					textAlignment={'center'}
+				>
+					<h2>Sections and Components</h2>
+					<p>Including this Basic Text Banner Section</p>
+				</TextBanner>
 				<TextMediaGrid />
 				<TextMediaGrid />
+				<TextBanner
+					textAlignment={'center'}
+				>
+					<h2>Sections and Components</h2>
+					<p>Including this Basic Text Banner Section</p>
+				</TextBanner>
 				<TextMediaGrid />
 				<TextMediaGrid />
+				<TextBanner
+					textAlignment={'center'}
+				>
+					<h2>Sections and Components</h2>
+					<p>Including this Basic Text Banner Section</p>
+				</TextBanner>
+				<TextMediaGrid />
+				<TextBanner
+					textAlignment={'center'}
+				>
+					<h2>Sections and Components</h2>
+					<p>Including this Basic Text Banner Section</p>
+				</TextBanner>
 				<TextMediaGrid />
 				<TextMediaGrid />
+				<TextBanner
+					textAlignment={'center'}
+				>
+					<h2>Sections and Components</h2>
+					<p>Including this Basic Text Banner Section</p>
+				</TextBanner>
 				<TextMediaGrid />
 			</ARTICLE>
 		</MainLayout >

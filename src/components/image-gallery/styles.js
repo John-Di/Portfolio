@@ -6,6 +6,8 @@ import {
 	SQUARE_BACKGROUND
 } from '../../utils/mixins';
 
+const gap = 0.25;
+
 export const WRAPPER = styled.div`
 	height: 100%;
 	width: 100%;
@@ -28,7 +30,10 @@ export const GALLERY = styled.div`
 `;
 
 export const NAVIGATION = styled.div`
-	margin: 2em -0.25em 0;
+
+	@media ${device.tablet} {
+		margin: 2em -${gap}em 0;
+	}
 
 	${CLEARFIX}
 
@@ -38,7 +43,6 @@ export const NAVIGATION = styled.div`
 
 export const MAIN_IMAGE = styled.div`
 	grid-area: a;
-	background: red;
 	${SQUARE_BACKGROUND()}
 `;
 
@@ -59,20 +63,45 @@ export const THUMBNAIL = styled.button`
 	margin: 0;
 	padding: 0;
 	border: 0;
+	outline: none;
 	background: none;
 	cursor: pointer;
 	grid-area: b;
-	margin: 0 0.25em;
-	max-width: calc(20% - 0.5em);
+	margin: 0;
+	max-width: ${props => props.maxWidth}%;
 	display: inline-block;
 	vertical-align: bottom;
 	width: 100%;
 	overflow: hidden;
-	${SQUARE_BACKGROUND()}
+	${SQUARE_BACKGROUND('#d4d4d4')}
 
-	&:hover img {
-		transform: scale(1.25);
+	@media ${device.tablet} {
+		border: 2px solid transparent;
+		margin: 0 ${gap}em;
+		max-width: calc(${props => props.maxWidth}% - ${gap * 2}em);
+
+		&.current,
+		&:hover,
+		&:focus {
+			border: 2px solid #000000;
+		}
 	}
+
+	&:not(.current) img {
+		${props => props.transparency ? `opacity : ${props.transparency};` : ''}
+	}
+
+	&:hover { 
+		img {
+			transform: scale(1.25);
+		}
+	}	
+
+	&:not(.current):hover { 
+		img {
+			opacity: 1;
+		}
+	}	
 `
 
 export const IMG = styled.img`
@@ -87,5 +116,5 @@ export const IMG = styled.img`
 	bottom: 0;
 	margin: 0;
 	height: 100%;
-	transition: transform 0.15s ease-in 0s;
+	transition: transform 0.15s ease-in 0s, opacity 0.15s ease-in 0s;
 `

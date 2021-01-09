@@ -35,12 +35,13 @@ const RESPONSIVE_DEFAULTS = {
 	2: {
 		"grid": () => `
 			grid-template-columns: repeat(1, 1fr);
+
 			@media ${device.laptopL} {
 				grid-template-columns: repeat(2, 1fr);
 			}
 		`,
 		"items": (isFullWidth, isEven) => [
-			ADJACENT(`${device.mobileL}`, isEven)
+			ADJACENT(`${device.mobileXL}`, isEven)
 		].join('')
 	},
 	3: {
@@ -56,9 +57,9 @@ const RESPONSIVE_DEFAULTS = {
 			}
 		`,
 		"items": (isFullWidth, isEven) => [
-			ADJACENT(`${device.mobileL} and ${device.max_tablet}`, isEven),
-			COLUMN_STACKED(`${device.tablet} and ${device.max_laptopL}`, isEven),
-			`${isFullWidth ? '' : COLUMN_STACKED(`${device.laptop} and ${device.max_laptopL}`, isEven)}`,
+			ADJACENT(`${device.mobileXL} and ${device.max_tablet}`, isEven),
+			COLUMN_STACKED(`${device.tablet} ${!isFullWidth ? `and  ${device.max_laptopL}` : ''}`, isEven),
+			`${!isFullWidth ? '' : COLUMN_STACKED(`${device.laptop} and ${device.max_laptopL}`, isEven)}`,
 			`${isFullWidth ? ADJACENT(`${device.laptopL}`, false) : COLUMN_STACKED(`${device.laptopL}`, isEven)}`
 
 		].join('')
@@ -76,17 +77,16 @@ const RESPONSIVE_DEFAULTS = {
 			}
 		`,
 		"items": (isFullWidth, isEven) => [
-			ADJACENT(`${device.mobileL} and ${device.max_tablet}`, isEven),
-			COLUMN_STACKED(`${device.tablet} and ${device.max_laptop}`, isEven),
-			`${isFullWidth ? ADJACENT(`${device.laptop}`, false) : COLUMN_STACKED(`${device.laptop} and ${device.max_laptopL}`, isEven)}`,
-			COLUMN_STACKED(`${device.laptopL}`, isEven)
+			ADJACENT(`${device.mobileXL} and ${device.max_tablet}`, isEven),
+			COLUMN_STACKED(`${device.tablet} ${!isFullWidth ? `and  ${device.max_laptopL}` : ''}`, isEven),
+			`${!isFullWidth ? '' : COLUMN_STACKED(`${device.laptop} and ${device.max_laptopL}`, isEven)}`,
+			`${isFullWidth ? ADJACENT(`${device.laptopL}`, false) : COLUMN_STACKED(`${device.laptopL}`, isEven)}`
 		].join('')
 	}
 };
 
-export default function TextMediaGrid({ responsive = {} }) {
+export default function TextMediaGrid({ responsive = {}, col_count = randomIntegerIn(1, 4) }) {
 
-	let col_count = randomIntegerIn(1, 4);
 	let responsive_rules = !(Object.keys(responsive).length === 0 && responsive.constructor === Object) ? responsive : RESPONSIVE_DEFAULTS;
 	let sectionWidth = Math.random() < 0.3333,
 		hasPadding = Math.random() < 0.3333;
