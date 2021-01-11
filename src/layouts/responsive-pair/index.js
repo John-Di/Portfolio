@@ -20,7 +20,6 @@ export default function ResponsivePair({
 	backgroundImage,
 	isSquare,
 	innerPadding = false,
-	isFlipped = false,
 	adjacentBreakpoints = [
 		{
 			bp: `${device.tablet}`,
@@ -47,7 +46,6 @@ export default function ResponsivePair({
 			isFlippedLarge={isFlippedLarge}
 			hasPseudo={items.length === 1}
 			pseudo={pseudo}
-			isFlipped={isFlipped}
 			backgroundColor={backgroundColor}
 			backgroundImage={backgroundImage}
 			isSquare={isSquare}

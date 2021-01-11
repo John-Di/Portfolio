@@ -16,7 +16,7 @@ export const WRAPPER = styled.div`
 	${props => props.hasPadding && `
 		padding: 4em 0;
 
-		@media ${device.tablet} {
+		@media ${device.laptop} {
 			padding: 8em 0;
 		}
 	` || ''}

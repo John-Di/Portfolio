@@ -5,7 +5,7 @@ import { CLEARFIX } from '../resume-layout/styles';
 
 const sideBySide = `
 	float: left;
-	display: inline-block;
+	display: inline-flex;
 	max-width: 50%;
 	flex: 1 50%;
 	vertical-align: bottom;
