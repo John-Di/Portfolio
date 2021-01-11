@@ -26,10 +26,10 @@ export default function ImageGallerySection({ children, images, half = false }) 
 					children,
 					<ImageGallery images={images} style={{ height: '50vh' }} />
 				] : [
-					<ImageGallery images={images} style={{ height: '50vh' }} />
+					<ImageGallery images={images} hasPadding={randomBool()} style={{ height: '50vh' }} />
 				]).filter(n => n)
 			} />
-		: <ImageGallery images={images} hasPadding={randomBool()} maxWidth={`${size.tablet}px`} style={{ height: '50vh' }} />;
+		: <ImageGallery images={images} hasPadding={true} maxWidth={`${size.tablet}px`} style={{ height: '50vh' }} />;
 
 
 	return (

@@ -23,17 +23,17 @@ const veticalStacked = `
 `;
 
 const pairLayout = ({ hasPaddingSmall = false, hasPaddingLarge = false, isEven, isFlippedSmall = false, isFlippedLarge = false, adjacentBreakpoints, stackedBreakpoints }) => `
-	flex-flow: ${isFlippedSmall && `column-reverse` || `column`};
+	flex-flow: ${isFlippedSmall ? `column-reverse` : `column`};
 
 	${hasPaddingSmall && `
 		padding: 4em 0;
-	`};
+	` || ''};
 
 	${hasPaddingLarge && `
 		@media ${device.tablet} {
 			padding: 8em 0;
 		}
-	`}
+	` || ''}
 
 	${adjacentBreakpoints.reduce((acc, rule, i) => `
 		${acc}

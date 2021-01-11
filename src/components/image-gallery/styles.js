@@ -42,7 +42,7 @@ export const GALLERY = styled.div`
 
 export const NAVIGATION = styled.div`
 
-	@media ${device.tablet} {
+	@media ${device.laptop} {
 		margin: 2em -${gap}em 0;
 	}
 
@@ -101,7 +101,7 @@ export const THUMBNAIL = styled.button`
 		background-color: #d4d4d4;
 	}
 
-	@media ${device.tablet} {
+	@media ${device.laptop} {
 		border: 2px solid transparent;
 		margin: 0 ${gap}em;
 		max-width: calc(${props => props.maxWidth}% - ${gap * 2}em);
