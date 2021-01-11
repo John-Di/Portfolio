@@ -1,8 +1,8 @@
-export const BACKGROUND_PSEUDO = (isSquare = false, backgroundColor = null, backgroundImage = null, pseudo = 'before') => `
+export const BACKGROUND_PSEUDO = ({ isSquare = false, backgroundColor = null, overlay, backgroundImage = null, pseudo = 'before' }) => `
 	position: relative;
 
 	&::${pseudo} {
-		content: '';
+		${overlay ? `content: '';` : ``}
 		width: 100%;
 		display: block;
 		
@@ -23,7 +23,7 @@ export const BACKGROUND_PSEUDO = (isSquare = false, backgroundColor = null, back
 	}
 `
 
-export const SQUARE_BACKGROUND = (...args) => BACKGROUND_PSEUDO(true, ...args);
+export const SQUARE_BACKGROUND = (props) => BACKGROUND_PSEUDO({ isSquare: true, ...props });
 
 export const LOG_IT = (name = 'logit', callback) => {
 	console.log(name, callback);

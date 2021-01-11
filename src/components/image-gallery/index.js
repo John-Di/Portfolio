@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { size, device } from '../../utils/variables';
 import { contentMaker } from '../../utils/dom-builder';
-
+import {
+	COLUMN_STACKED,
+	ADJACENT
+} from '../../components/text-media-block/styles';
 import {
 	WRAPPER,
 	GALLERY,
@@ -11,7 +15,7 @@ import {
 	IMG
 } from './styles';
 
-export default function ImageGallery({ children, maxWidth = '100%', images = [], scroll = true }) {
+export default function ImageGallery({ children, maxWidth = '100%', images = [], scroll = true, hasPadding = false }) {
 	const [index, setIndex] = useState(0);
 
 	let thumbnails = contentMaker(
@@ -22,7 +26,7 @@ export default function ImageGallery({ children, maxWidth = '100%', images = [],
 				scroll={scroll}
 				transparency={1 / 2}
 				onClick={() => setIndex(i)}
-				maxWidth={1 / Math.min(images.length, 5) * 100}
+				maxWidth={100 / Math.min(images.length, 5)}
 			>
 				<IMG src={images[i]} />
 			</THUMBNAIL>
@@ -33,7 +37,7 @@ export default function ImageGallery({ children, maxWidth = '100%', images = [],
 
 
 	return (
-		<WRAPPER className="image-gallery-wrapper">
+		<WRAPPER className="image-gallery-wrapper" hasPadding={hasPadding}>
 			<GALLERY maxWidth={maxWidth} className="image-gallery">
 				<MAIN_IMAGE className="image-gallery__main-image">
 					<IMG src={images[index]} />

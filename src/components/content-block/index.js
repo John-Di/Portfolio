@@ -5,8 +5,8 @@ import {
 	CONTENT
 } from './styles';
 
-export default function ContentBlock({ backgroundColor = '', backgroundImage = '', children, animated = true, delayOffset = 0, isSquare }) {
-
+export default function ContentBlock({ backgroundColor = '', backgroundImage = '', children, animated = true, delayOffset = 0, isSquare, overlay = false }) {
+	console.log('ContentBlock', backgroundImage);
 	return (
 		<BLOCK
 			className="text-block"
@@ -14,8 +14,10 @@ export default function ContentBlock({ backgroundColor = '', backgroundImage = '
 			backgroundImage={backgroundImage}
 			delayOffset={delayOffset}
 			isSquare={isSquare}
+			overlay={overlay}
 		>
 			<CONTAINER
+				overlay={overlay}
 			>
 				<CONTENT
 					data-aos={animated && 'fade-up'}

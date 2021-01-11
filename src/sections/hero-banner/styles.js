@@ -78,4 +78,4 @@ export const HERO_BANNER = styled(BANNER)`
 `;
 
 
-const RESPONSIVE_SQUARING = ({ squareImage, backgroundColor, backgroundImage }) => squareImage ? SQUARE_BACKGROUND(backgroundColor, backgroundImage) : BACKGROUND_PSEUDO(backgroundColor, backgroundImage)
+const RESPONSIVE_SQUARING = (props) => props.squareImage ? SQUARE_BACKGROUND(props) : BACKGROUND_PSEUDO(props)

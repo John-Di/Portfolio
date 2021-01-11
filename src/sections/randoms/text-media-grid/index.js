@@ -91,7 +91,6 @@ export default function TextMediaGrid({ responsive = {}, col_count = randomInteg
 	let sectionWidth = Math.random() < 0.3333,
 		hasPadding = Math.random() < 0.3333;
 
-	console.log("TextMediaGrid isFullWidth", !sectionWidth || !hasPadding);
 	return (
 		<Section maxWidth={sectionWidth ? '1440px' : '100%'} hasPadding={hasPadding}>
 			<Grid responsive_rules={[responsive_rules[col_count].grid(randomBool())].join(',')}>
@@ -104,8 +103,6 @@ export default function TextMediaGrid({ responsive = {}, col_count = randomInteg
 								index={index}
 								backgroundColor={`${background}`}
 								backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + index, 1920, 1920)}`}
-								image_first={`${randomBool()}`}
-								reversed={!!1}
 								isFullWidth={!sectionWidth && !hasPadding}
 								responsive_rules={responsive_rules[length].items}
 								isEven={index % 2 === 0}

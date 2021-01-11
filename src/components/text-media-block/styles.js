@@ -39,19 +39,20 @@ export const TEXT_MEDIA_BLOCK = styled.div`
 	justify-content: center;
 	text-align: center;
 
+	&::before {
+		content: '';
+	}
 	${props => propAssess(props)}
 `;
 
 const propAssess = props => `
-	${background(props)}
 	${props.responsive_rules}
 `
 
-const background = ({ backgroundColor, backgroundImage, isSquare }) => `
+const background = ({ backgroundColor, backgroundImage, isSquare, overlay }) => `
 	${backgroundColor ? `
 		background-color: ${backgroundColor};
 		color: ${idealTextColor(backgroundColor)}
 		` : ''};
-	${isSquare && SQUARE_BACKGROUND(backgroundColor, backgroundImage)}
 	
 `

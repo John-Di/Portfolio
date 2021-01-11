@@ -7,7 +7,7 @@ export const BANNER = styled(SECTION)`
 	max-width: 100%;
 	min-height: 50vh;
 	
-	text-align: ${props => log('textAlignment', ({ textAlignment }) => textAlignment, props) || 'center'};
+	text-align: ${props => props.textAlignment || 'center'};
 
 	@media ${device.tablet} {
 		text-align: ${props => props.textAlignment || 'left'};

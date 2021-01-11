@@ -43,7 +43,7 @@ export const randomImage = (index = 0) => getRandomImage(randomIntegerEx(0, 1000
 export const randomIntegerEx = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 export const randomIntegerIn = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-export const randomBool = () => Math.random() < 0.5;
+export const randomBool = (threshold = 0.5) => Math.random() < threshold;
 
 export const randomImageArray = () => Array.from({
 	length: randomIntegerIn(4, 8)

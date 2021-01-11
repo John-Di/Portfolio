@@ -12,17 +12,28 @@ export const WRAPPER = styled.div`
 	height: 100%;
 	width: 100%;
 	margin: 0 auto;
-	max-width: ${size.tablet}px;
 
-	@media ${device.tablet} {
-		margin: 8em auto;
-	}
+	${props => props.hasPadding && `
+		padding: 4em 0;
+
+		@media ${device.tablet} {
+			padding: 8em 0;
+		}
+	` || ''}
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const GALLERY = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
+	max-width: ${props => props.maxWidth};
+	margin: auto;
+	width: 100%;
 	
 	${CLEARFIX}
 	@supports not (display:grid) {
@@ -43,7 +54,14 @@ export const NAVIGATION = styled.div`
 
 export const MAIN_IMAGE = styled.div`
 	grid-area: a;
-	${SQUARE_BACKGROUND()}
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		padding-top: 100%;
+		width: 100%;
+	}
 `;
 
 export const SCROLLABLE = styled.div`
@@ -73,7 +91,15 @@ export const THUMBNAIL = styled.button`
 	vertical-align: bottom;
 	width: 100%;
 	overflow: hidden;
-	${SQUARE_BACKGROUND('#d4d4d4')}
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		padding-top: 100%;
+		width: 100%;
+		background-color: #d4d4d4;
+	}
 
 	@media ${device.tablet} {
 		border: 2px solid transparent;
@@ -83,7 +109,7 @@ export const THUMBNAIL = styled.button`
 		&.current,
 		&:hover,
 		&:focus {
-			border: 2px solid #000000;
+			border: 2px solid transparent;
 		}
 	}
 

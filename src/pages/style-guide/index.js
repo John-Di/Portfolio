@@ -4,6 +4,8 @@ import MainLayout from '../../layouts/main-layout';
 import TextBanner from '../../sections/text-banner';
 import HeroBanner from '../../sections/hero-banner';
 import TextBlock from '../../components/text-block';
+import TextMediaBlock from '../../components/text-media-block';
+import Section from '../../sections/section';
 import TextMediaGrid from '../../sections/randoms/text-media-grid';
 import FancyCTA from '../../components/fancy-cta';
 import ImageGallerySection from '../../sections/image-gallery-section';
@@ -39,8 +41,7 @@ export default function StyleGuide({ pageContext }) {
 	let i = 0;
 	let heroBannerColor = randomColor();
 	let imageArray = randomImageArray();
-	console.log('randomImageArray', imageArray);
-
+	let test = randomColor();
 	return (
 		<MainLayout>
 			<ARTICLE>
@@ -67,8 +68,18 @@ export default function StyleGuide({ pageContext }) {
 					<h2>Sections and Components</h2>
 					<p>Including this Basic Text Banner Section</p>
 				</TextBanner>
+				<TextMediaBlock
+					backgroundColor={`${test}`}
+					backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 2, 1920, 1920)}`}
+				>
+					<h2>Text Media Block</h2>
+					<p>Just for the time being...</p>
+					<FancyCTA
+						parentBackgroundColor={test}
+					>Learn More</FancyCTA>
+				</TextMediaBlock>
 				<ImageGallerySection
-					images={imageArray}
+					images={randomImageArray()}
 				/>
 				<TextBanner
 					textAlignment={'center'}
@@ -76,37 +87,15 @@ export default function StyleGuide({ pageContext }) {
 					<h2>Sections and Components</h2>
 					<p>Including this Basic Text Banner Section</p>
 				</TextBanner>
-				<TextMediaGrid />
-				<TextMediaGrid />
-				<TextBanner
-					textAlignment={'center'}
+				<ImageGallerySection
+					images={randomImageArray()}
 				>
-					<h2>Sections and Components</h2>
-					<p>Including this Basic Text Banner Section</p>
-				</TextBanner>
-				<TextMediaGrid />
-				<TextMediaGrid />
-				<TextBanner
-					textAlignment={'center'}
-				>
-					<h2>Sections and Components</h2>
-					<p>Including this Basic Text Banner Section</p>
-				</TextBanner>
-				<TextMediaGrid />
-				<TextBanner
-					textAlignment={'center'}
-				>
-					<h2>Sections and Components</h2>
-					<p>Including this Basic Text Banner Section</p>
-				</TextBanner>
-				<TextMediaGrid />
-				<TextMediaGrid />
-				<TextBanner
-					textAlignment={'center'}
-				>
-					<h2>Sections and Components</h2>
-					<p>Including this Basic Text Banner Section</p>
-				</TextBanner>
+					<TextBlock overlay={true}>
+						<h1>Simple Image Gallery</h1>
+						<p>Isn't it cute?</p>
+						<FancyCTA>Click me</FancyCTA>
+					</TextBlock>
+				</ImageGallerySection>
 				<TextMediaGrid />
 			</ARTICLE>
 		</MainLayout >

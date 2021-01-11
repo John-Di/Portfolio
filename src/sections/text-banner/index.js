@@ -5,7 +5,6 @@ import {
 	TEXT_BANNER
 } from './styles';
 export default function TextBanner({ children }) {
-	console.log('TextBanner');
 	return (
 		<TEXT_BANNER
 			textAlignment={'center'}>
