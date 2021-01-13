@@ -65,4 +65,5 @@ export const CONTAINER = styled.div`
 
 export const CONTENT = styled.div`
 	padding: 0;
+	color: ${props => props.textColor};
 `;

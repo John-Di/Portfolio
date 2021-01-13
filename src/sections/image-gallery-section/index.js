@@ -17,8 +17,8 @@ export default function ImageGallerySection({ children, images, half = false }) 
 
 	const inner = half || children ?
 		<ResponsivePair
-			hasPaddingSmall={randomBool()}
-			hasPaddingLarge={randomBool()}
+			hasPaddingSmall={false}
+			hasPaddingLarge={true}
 			isFlippedSmall={randomBool(0.75)}
 			isFlippedLarge={randomBool(1 / 3)}
 			items={(children ?
@@ -26,7 +26,7 @@ export default function ImageGallerySection({ children, images, half = false }) 
 					children,
 					<ImageGallery images={images} style={{ height: '50vh' }} />
 				] : [
-					<ImageGallery images={images} hasPadding={randomBool()} style={{ height: '50vh' }} />
+					<ImageGallery images={images} hasPadding={true} style={{ height: '50vh' }} />
 				]).filter(n => n)
 			} />
 		: <ImageGallery images={images} hasPadding={true} maxWidth={`${size.tablet}px`} style={{ height: '50vh' }} />;
@@ -35,6 +35,6 @@ export default function ImageGallerySection({ children, images, half = false }) 
 	return (
 		<Section maxWidth={`${size.laptopL}px`} hasPadding={true}>
 			{inner}
-		</Section >
+		</Section>
 	);
 }

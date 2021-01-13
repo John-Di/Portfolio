@@ -1,8 +1,25 @@
 import React from "react";
 import TextBlock from '../text-block';
 import ResponsivePair from '../../layouts/responsive-pair';
+import {
+	idealTextColor
+} from '../../utils/randoms';
+import { device } from '../../utils/variables';
 
-export default function TextMediaBlock({ backgroundColor, backgroundImage, responsive_rules = () => '', children, delayOffset = 0, isEven = true, isSquare = true, isFullWidth, hasPadding = false }) {
+const ADJ_BP_DEFAULTS = [
+	{
+		bp: `${device.mobileXL}`,
+		alternates: true
+	}
+];
+
+const STK_BP_DEFAULTS = [];
+
+
+export default function TextMediaBlock({ backgroundColor, backgroundImage, children, delayOffset = 0, isEven = false, isSquare = true, isFullWidth, hasPadding = false, adjacentBreakpoints, stackedBreakpoints }) {
+
+	let textColor = idealTextColor(backgroundColor || `#FFFFFF`);
+
 	return (
 		<ResponsivePair
 			className="text-media-block"
@@ -14,8 +31,9 @@ export default function TextMediaBlock({ backgroundColor, backgroundImage, respo
 			backgroundColor={backgroundColor}
 			backgroundImage={backgroundImage}
 			isSquare={isSquare}
-			responsive_rules={responsive_rules(isFullWidth, isEven)}
 			isFullWidth={isFullWidth}
+			adjacentBreakpoints={adjacentBreakpoints || ADJ_BP_DEFAULTS}
+			stackedBreakpoints={stackedBreakpoints || STK_BP_DEFAULTS}
 			// data-aos='fade-up'
 			// data-aos-anchor-placement="top-center"
 			items={[
@@ -23,6 +41,7 @@ export default function TextMediaBlock({ backgroundColor, backgroundImage, respo
 					delayOffset={delayOffset}
 					isSquare={isSquare}
 					overlay={true}
+					textColor={textColor}
 				>
 					{children}
 				</TextBlock>)]} />

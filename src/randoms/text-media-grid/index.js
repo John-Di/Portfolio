@@ -1,23 +1,22 @@
 import React from "react";
-import Section from '../../section';
-import TextMediaBlock from '../../../components/text-media-block';
-import { size, device } from '../../../utils/variables';
-import Grid from '../../../layouts/grid';
-import GridItem from '../../../components/grid-item';
-import { contentMaker } from '../../../utils/dom-builder';
-import FancyCTA from '../../../components/fancy-cta';
+import Section from '../../sections/section';
+import TextMediaBlock from '../../components/text-media-block';
+import { size, device } from '../../utils/variables';
+import Grid from '../../layouts/grid';
+import GridItem from '../../components/grid-item';
+import { contentMaker } from '../../utils/dom-builder';
+import FancyCTA from '../../components/fancy-cta';
 import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
 	randomIntegerIn,
-	randomBool,
-	randomSection
-} from '../../../utils/randoms';
+	randomBool
+} from '../../utils/randoms';
 import {
 	COLUMN_STACKED,
 	ADJACENT
-} from '../../../components/text-media-block/styles';
+} from '../../components/text-media-block/styles';
 
 const RESPONSIVE_DEFAULTS = {
 	1: {

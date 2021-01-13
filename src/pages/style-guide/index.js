@@ -5,8 +5,11 @@ import TextBanner from '../../sections/text-banner';
 import HeroBanner from '../../sections/hero-banner';
 import TextBlock from '../../components/text-block';
 import TextMediaBlock from '../../components/text-media-block';
+import OnePairSection from '../../sections/one-pair-section';
+import TwoPairSection from '../../sections/two-pair-section';
+import FourPairSection from '../../sections/four-pair-section';
 import Section from '../../sections/section';
-import TextMediaGrid from '../../sections/randoms/text-media-grid';
+import TextMediaGrid from '../../randoms/text-media-grid';
 import FancyCTA from '../../components/fancy-cta';
 import ImageGallerySection from '../../sections/image-gallery-section';
 import {
@@ -68,16 +71,10 @@ export default function StyleGuide({ pageContext }) {
 					<h2>Sections and Components</h2>
 					<p>Including this Basic Text Banner Section</p>
 				</TextBanner>
-				<TextMediaBlock
-					backgroundColor={`${test}`}
-					backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 2, 1920, 1920)}`}
-				>
-					<h2>Text Media Block</h2>
-					<p>Just for the time being...</p>
-					<FancyCTA
-						parentBackgroundColor={test}
-					>Learn More</FancyCTA>
-				</TextMediaBlock>
+				<FourPairSection />
+				<FourPairSection />
+				<FourPairSection />
+				<FourPairSection />
 				<ImageGallerySection
 					images={randomImageArray()}
 				/>
@@ -87,6 +84,9 @@ export default function StyleGuide({ pageContext }) {
 					<h2>Sections and Components</h2>
 					<p>Including this Basic Text Banner Section</p>
 				</TextBanner>
+				<TwoPairSection />
+				<OnePairSection />
+				<TwoPairSection />
 				<ImageGallerySection
 					images={randomImageArray()}
 				>

@@ -3,43 +3,42 @@ import { rhythm } from "../../utils/typography";
 import { device } from '../../utils/variables';
 import { CLEARFIX } from '../resume-layout/styles';
 
-const sideBySide = `
-	float: left;
-	display: inline-flex;
-	max-width: 50%;
-	flex: 1 50%;
-	vertical-align: bottom;
-`;
+const sideBySide = (acc, rule, i) => `
+	${acc}
 
-const veticalStacked = ` 
-	flex: 1 100%;
-	max-width: 100%;
-	max-height: 100%;
-	height: 100%;
-	width: 100%;
-		
-	@supports not (display:grid) {
+	@media ${rule.bp} {
+		float: left;
+		display: inline-flex;
+		max-width: 50%;
+		flex: 1 50%;
+		vertical-align: bottom;
 	}
 `;
 
-const pairLayout = ({ hasPaddingSmall = false, hasPaddingLarge = false, isEven, isFlippedSmall = false, isFlippedLarge = false, adjacentBreakpoints, stackedBreakpoints }) => `
-	flex-flow: ${isFlippedSmall ? `column-reverse` : `column`};
+const veticalStacked = (acc, rule, i) => `
+	${acc}
 
-	${hasPaddingSmall && `
-		padding: 4em 0;
-	` || ''};
-
-	${hasPaddingLarge && `
-		@media ${device.tablet} {
-			padding: 8em 0;
+	@media ${rule.bp} {
+		flex: 1 100%;
+		max-width: 100%;
+		max-height: 100%;
+		height: 100%;
+		width: 100%;
+			
+		@supports not (display:grid) {
 		}
-	` || ''}
+	}
+`;
 
+const pairLayout = ({ isEven = false, isFlipped, adjacentBreakpoints, stackedBreakpoints }) => `
+	flex-flow: ${isFlipped ? `column-reverse` : `column`};
 	${adjacentBreakpoints.reduce((acc, rule, i) => `
 		${acc}
 		
 		@media ${rule.bp} {
-			flex-direction: ${isEven || isFlippedLarge ? `row-reverse` : `row`};
+			${rule.alternates && isEven ? `
+				flex-direction: row-reverse;
+			` : `flex-direction: row;`}
 		}
 	`, '')}
 
@@ -47,36 +46,31 @@ const pairLayout = ({ hasPaddingSmall = false, hasPaddingLarge = false, isEven, 
 		${acc}
 		
 		@media ${rule.bp} {
-			flex-direction: ${isEven || isFlippedLarge ? `column-reverse` : `column`};
+			${rule.alternates && isEven ? `
+				flex-direction: column;
+			` : `flex-direction: column-reverse;`}
 		}
 	`, '')}
 `;
 
-const pairItemRules = (ajdacent, stacked) => `
-	${veticalStacked}
 
-	${ajdacent.reduce((acc, rule, i) => `
-			${acc}
 
-			@media ${rule.bp} {
-					${sideBySide}
-				}
-		`, ``)
-	}
+const pairItemRules = (adjacent, stacked) => `
+	flex: 1 100%;
+	max-width: 100%;
+	max-height: 100%;
+	height: 100%;
+	width: 100%;
 
-	${stacked.reduce((acc, rule, i) => `
-			${acc}
+	${adjacent.reduce(sideBySide, ``)}
 
-			@media ${rule.bp} {
-				${veticalStacked}
-			}
-		`, ``)
+	${stacked.reduce(veticalStacked, ``)
 	}
 `;
 
-const generatePseudo = ({ pseudo = 'before', adjacentBreakpoints, stackedBreakpoints, backgroundColor = '', backgroundImage = '', isSquare, minHeight = '50vh' }) => `
+const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpoints, backgroundColor = '', backgroundImage = '', isSquare, minHeight = '50vh' }) => `
 	position: relative;
-	&::before {
+	&::${pseudo} {
 		content: '';
 		display: block;
 
@@ -90,19 +84,47 @@ const generatePseudo = ({ pseudo = 'before', adjacentBreakpoints, stackedBreakpo
 
 		${isSquare ? `
 			padding-top: 100%;
-
-			@media ${device.tablet} {
-				padding-top: 50%;
-			}
 		` : `
 			min-height: ${minHeight};
-
-			@media ${device.tablet} {
-				padding-top: 0;
-			}
 		`}		
+
+		${adjacentBreakpoints.reduce((acc, rule, i) => `
+			${acc}
+			
+			@media ${rule.bp} {
+				${isSquare && `
+					padding-top: 50%;
+				`}
+			}
+		`, '')}
+
+		${stackedBreakpoints.reduce((acc, rule, i) => `
+			${acc}
+			
+			@media ${rule.bp} {
+				${isSquare && `
+					padding-top: 100%;
+					min-height: unset;
+				`}
+			}
+		`, '')}
 	}
 `;
+
+const assessProps = (props) => `
+
+	${props.hasPaddingSmall ? `
+		padding: 4em 0;
+	` : ''}
+
+	${props.hasPaddingLarge ? `
+		@media ${device.laptop} {
+			padding: 8em 0;
+		}
+	` : ''}
+
+	${pairLayout(props)}
+`
 
 export const LAYOUT = styled.div`
 	display: flex;
@@ -122,7 +144,7 @@ export const LAYOUT = styled.div`
 	`}
 
 	${props => props.hasPseudo && generatePseudo(props)}
-	${props => pairLayout(props)}
+	${props => assessProps(props)}
 `;
 
 export const ITEM = styled.div`

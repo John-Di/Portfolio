@@ -22,7 +22,7 @@ export default function ResponsivePair({
 	innerPadding = false,
 	adjacentBreakpoints = [
 		{
-			bp: `${device.tablet}`,
+			bp: `${device.mobileXL}`,
 			alternates: true
 		}
 	],
