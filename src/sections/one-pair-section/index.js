@@ -17,7 +17,7 @@ const breakpoints = [
 	}
 ];
 
-export default function OnePairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
+export default function OnePairSection(isFullWidth = true, maxWidth = size.laptopL, hasPadding = false) {
 	let backgroundColor = randomColor();
 	isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
 	hasPadding = !isFullWidth;

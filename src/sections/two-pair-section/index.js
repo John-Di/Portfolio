@@ -26,7 +26,7 @@ const breakpoints = [
 	}
 ];
 
-export default function TwoPairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
+export default function TwoPairSection(isFullWidth, maxWidth = size.laptopL, hasPadding) {
 	isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
 	hasPadding = !isFullWidth;
 	console.log('TwoPairSection', isFullWidth, isFullWidth ? `Two Full Width` : `Two Page Width`, 'padding', hasPadding);

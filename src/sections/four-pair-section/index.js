@@ -44,7 +44,7 @@ const breakpoints = {
 }
 
 
-export default function FourPairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
+export default function FourPairSection(isFullWidth, maxWidth = size.laptopL, hasPadding) {
 	isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
 	hasPadding = !isFullWidth;
 	console.log('FourPairSection', isFullWidth, isFullWidth ? `Four Full Width` : `Four Page Width`, 'padding', hasPadding);

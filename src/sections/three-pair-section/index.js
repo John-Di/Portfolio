@@ -51,7 +51,7 @@ const breakpoints = {
 	}
 }
 
-export default function ThreePairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
+export default function ThreePairSection(isFullWidth, maxWidth = size.laptopL, hasPadding) {
 	isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
 	hasPadding = !isFullWidth;
 	console.log('ThreePairSection', isFullWidth, isFullWidth ? `Three Full Width` : `Three Page Width`, 'padding', hasPadding);
