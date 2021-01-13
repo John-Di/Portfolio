@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { size, device } from '../../utils/variables';
-import { contentMaker } from '../../utils/dom-builder';
+import { arrayToJSX } from '../../utils/dom-builder';
 import {
 	COLUMN_STACKED,
 	ADJACENT
@@ -18,7 +18,7 @@ import {
 export default function ImageGallery({ children, maxWidth = '100%', images = [], scroll = true, hasPadding = false }) {
 	const [index, setIndex] = useState(0);
 
-	let thumbnails = contentMaker(
+	let thumbnails = arrayToJSX(
 		images.length,
 		(length, _, i) => (
 			<THUMBNAIL

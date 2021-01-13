@@ -4,7 +4,7 @@ import TextMediaBlock from '../../components/text-media-block';
 import { size, device } from '../../utils/variables';
 import Grid from '../../layouts/grid';
 import GridItem from '../../components/grid-item';
-import { contentMaker } from '../../utils/dom-builder';
+import { arrayToJSX } from '../../utils/dom-builder';
 import FancyCTA from '../../components/fancy-cta';
 import {
 	randomColor,
@@ -93,7 +93,7 @@ export default function TextMediaGrid({ responsive = {}, col_count = randomInteg
 	return (
 		<Section maxWidth={sectionWidth ? '1440px' : '100%'} hasPadding={hasPadding}>
 			<Grid responsive_rules={[responsive_rules[col_count].grid(randomBool())].join(',')}>
-				{contentMaker(col_count, (length, k, index) => {
+				{arrayToJSX(col_count, (length, k, index) => {
 					let background = randomColor();
 					return (
 						<GridItem key={index} maxWidth={100 / length}>

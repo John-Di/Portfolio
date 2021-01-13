@@ -3,6 +3,7 @@ import Section from '../section';
 import TextMediaBlock from '../../components/text-media-block';
 import FancyCTA from '../../components/fancy-cta';
 import ResponsivePair from '../../layouts/responsive-pair';
+import { jsxToArray } from '../../utils/dom-builder';
 import {
 	randomColor,
 	randomImage,
@@ -44,82 +45,45 @@ const breakpoints = {
 
 
 export default function FourPairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
-	let backgroundImage = randomImage(randomIntegerEx(0, 10000), 1920, 1920);
-	let backgroundColor = randomColor(),
-		backgroundColor2 = randomColor(),
-		backgroundColor3 = randomColor(),
-		backgroundColor4 = randomColor(),
-		i = 0;
-
 	return (
-		<Section maxWidth={maxWidth} hasPadding={hasPadding}>
+		<Section maxWidth={maxWidth} hasPadding={hasPadding} className="four-pair-section">
 			<ResponsivePair
 				adjacentBreakpoints={[{
 					bp: `${device.laptopL}`
 				}]}
-				items={[
-					<ResponsivePair
-						adjacentBreakpoints={[{
-							bp: `${device.laptop}`
-						}]}
-						items={[
-							<TextMediaBlock
-								backgroundColor={backgroundColor}
-								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
-								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
-								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
-							>
-								<h2>Text Media Block {++i}/4</h2>
-								<p>Just for the time being...</p>
-								<FancyCTA
-									parentBackgroundColor={backgroundColor}
-								>Learn More</FancyCTA>
-							</TextMediaBlock>,
-							<TextMediaBlock
-								backgroundColor={backgroundColor2}
-								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
-								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
-								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
-								isEven={true}
-							>
-								<h2>Text Media Block {++i}/4</h2>
-								<p>Just for the time being...</p>
-								<FancyCTA
-									parentBackgroundColor={backgroundColor2}
-								>Learn More</FancyCTA>
-							</TextMediaBlock>
-						]} />,
-					<ResponsivePair
-						adjacentBreakpoints={[{
-							bp: `${device.laptop}`
-						}]}
-						items={[
-							<TextMediaBlock
-								backgroundColor={backgroundColor3}
-								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
-								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
-								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
-							>
-								<h2>Text Media Block {++i}/4</h2>
-								<p>Just for the time being...</p>
-								<FancyCTA
-									parentBackgroundColor={backgroundColor3}
-								>Learn More</FancyCTA>
-							</TextMediaBlock>,
-							<TextMediaBlock
-								backgroundColor={backgroundColor4}
-								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
-								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
-								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
-								isEven={true}
-							>
-								<h2>Text Media Block {++i}/4</h2>
-								<p>Just for the time being...</p>
-								<FancyCTA
-									parentBackgroundColor={backgroundColor4}
-								>Learn More</FancyCTA>
-							</TextMediaBlock>
-						]} />]} />
+				items={
+					jsxToArray(2, (l, _, i) => (
+						<ResponsivePair
+							adjacentBreakpoints={[{
+								bp: `${device.laptop}`
+							}]}
+							items={
+								jsxToArray(2, (m, _, j) => {
+									let backgroundColor = randomColor();
+									let index = m * i + j;
+									let length = l * m;
+
+									return (
+										<TextMediaBlock
+											backgroundColor={backgroundColor}
+											backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
+											adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
+											stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
+											isEven={index % 2 === 0}
+										>
+											<h2>Text Media Block {index + 1}/{length}</h2>
+											<p>Just for the time being...</p>
+											<FancyCTA
+												parentBackgroundColor={backgroundColor}
+											>Learn More</FancyCTA>
+										</TextMediaBlock>
+									)
+								})
+							}
+						/>
+					))
+				}
+			/>
 		</Section>
 	);
 

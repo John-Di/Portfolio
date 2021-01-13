@@ -6,14 +6,11 @@ import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
-	randomIntegerIn,
-	randomBool,
-	randomImageArray,
-	idealTextColor
+	randomBool
 } from '../../utils/randoms';
 import { size, device } from '../../utils/variables';
 
-const ADJ_BP = [
+const breakpoints = [
 	{
 		bp: `${device.mobileXL}`,
 		alternates: true
@@ -21,14 +18,13 @@ const ADJ_BP = [
 ];
 
 export default function OnePairSection(maxWidth = size.laptopL, hasPadding = randomBool()) {
-	let backgroundImage = randomImage(randomIntegerEx(0, 10000), 1920, 1920);
 	let backgroundColor = randomColor();
 	return (
-		<Section maxWidth={maxWidth} hasPadding={hasPadding}>
+		<Section maxWidth={maxWidth} hasPadding={hasPadding} className="one-pair-section">
 			<TextMediaBlock
 				backgroundColor={backgroundColor}
-				backgroundImage={backgroundImage}
-				adjacentBreakpoints={ADJ_BP}
+				backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
+				adjacentBreakpoints={breakpoints}
 			>
 				<h2>Text Media Block</h2>
 				<p>Just for the time being...</p>

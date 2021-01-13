@@ -4,7 +4,7 @@ import {
 	ITEM
 } from './styles';
 import { device } from '../../utils/variables';
-import { contentMaker } from '../../utils/dom-builder';
+import { arrayToJSX } from '../../utils/dom-builder';
 
 
 export default function ResponsivePair({
@@ -55,6 +55,6 @@ export default function ResponsivePair({
 			stackedBreakpoints={stackedBreakpoints}
 			innerPadding={innerPadding}
 		>
-			{contentMaker(items.length, LAYOUT_ITEM)}
+			{arrayToJSX(items.length, LAYOUT_ITEM)}
 		</LAYOUT>);
 }
