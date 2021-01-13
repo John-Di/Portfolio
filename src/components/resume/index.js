@@ -1,5 +1,5 @@
 import React from "react";
-import YAMLData from "../../../resume/resume.yaml"
+import YAMLData from "../../../resume/resume.yaml";
 import SEO from "../../components/seo";
 import Basics from "../../components/resume/basics";
 import About from "../../components/resume/about";

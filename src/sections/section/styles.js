@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import { CLEARFIX } from '../../layouts/resume-layout/styles';
 
+console.log('section/styles/');
 
 export const HEADING = styled.div`
 	width: 100%;
