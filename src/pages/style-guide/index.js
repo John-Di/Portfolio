@@ -7,6 +7,7 @@ import TextBlock from '../../components/text-block';
 import TextMediaBlock from '../../components/text-media-block';
 import OnePairSection from '../../sections/one-pair-section';
 import TwoPairSection from '../../sections/two-pair-section';
+import ThreePairSection from '../../sections/three-pair-section';
 import FourPairSection from '../../sections/four-pair-section';
 import Section from '../../sections/section';
 import TextMediaGrid from '../../randoms/text-media-grid';
@@ -96,7 +97,8 @@ export default function StyleGuide({ pageContext }) {
 						<FancyCTA>Click me</FancyCTA>
 					</TextBlock>
 				</ImageGallerySection>
-				<TextMediaGrid />
+				<ThreePairSection />
+				<ThreePairSection />
 			</ARTICLE>
 		</MainLayout >
 	)
