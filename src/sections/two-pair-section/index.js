@@ -17,7 +17,11 @@ import { size, device } from '../../utils/variables';
 
 const breakpoints = [
 	{
-		bp: `${device.mobileXL}`,
+		bp: `${device.mobileXL} and ${device.max_laptopL}`,
+		alternates: true
+	},
+	{
+		bp: `${device.laptopL}`,
 		alternates: false
 	}
 ];
