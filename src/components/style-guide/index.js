@@ -3,15 +3,15 @@ import { useStaticQuery, withPrefix, graphql } from "gatsby";
 import MainLayout from '../../layouts/main-layout';
 import TextBanner from '../../sections/text-banner';
 import HeroBanner from '../../sections/hero-banner';
-import TextBlock from '../../components/text-block';
-import TextMediaBlock from '../../components/text-media-block';
+import TextBlock from '../text-block';
+import TextMediaBlock from '../text-media-block';
 import OnePairSection from '../../sections/one-pair-section';
 import TwoPairSection from '../../sections/two-pair-section';
 import ThreePairSection from '../../sections/three-pair-section';
 import FourPairSection from '../../sections/four-pair-section';
 import Section from '../../sections/section';
 import TextMediaGrid from '../../randoms/text-media-grid';
-import FancyCTA from '../../components/fancy-cta';
+import FancyCTA from '../fancy-cta';
 import ImageGallerySection from '../../sections/image-gallery-section';
 import {
 	randomColor,
