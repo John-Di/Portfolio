@@ -3,15 +3,11 @@ import Section from '../section';
 import TextMediaBlock from '../../components/text-media-block';
 import FancyCTA from '../../components/fancy-cta';
 import ResponsivePair from '../../layouts/responsive-pair';
-import TwoPairSection from '../two-pair-section';
 import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
-	randomIntegerIn,
-	randomBool,
-	randomImageArray,
-	idealTextColor
+	randomBool
 } from '../../utils/randoms';
 import { size, device } from '../../utils/variables';
 
@@ -69,7 +65,7 @@ export default function FourPairSection(isFullWidth = randomBool(), maxWidth = s
 						items={[
 							<TextMediaBlock
 								backgroundColor={backgroundColor}
-								// backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
+								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
 								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
 								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
 							>
@@ -81,7 +77,7 @@ export default function FourPairSection(isFullWidth = randomBool(), maxWidth = s
 							</TextMediaBlock>,
 							<TextMediaBlock
 								backgroundColor={backgroundColor2}
-								// backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
+								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
 								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
 								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
 								isEven={true}
@@ -100,7 +96,7 @@ export default function FourPairSection(isFullWidth = randomBool(), maxWidth = s
 						items={[
 							<TextMediaBlock
 								backgroundColor={backgroundColor3}
-								// backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
+								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
 								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
 								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
 							>
@@ -112,7 +108,7 @@ export default function FourPairSection(isFullWidth = randomBool(), maxWidth = s
 							</TextMediaBlock>,
 							<TextMediaBlock
 								backgroundColor={backgroundColor4}
-								// backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
+								backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
 								adjacentBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].adjacent}
 								stackedBreakpoints={breakpoints[isFullWidth ? 'fullWidth' : 'pageWidth'].stacked}
 								isEven={true}
