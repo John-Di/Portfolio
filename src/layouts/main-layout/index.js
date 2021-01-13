@@ -1,6 +1,6 @@
 import React from "react"
 import { css } from "@emotion/core"
-import Homepage from '../../pages/homepage';
+import Homepage from '../../components/homepage';
 
 import { rhythm } from "../../utils/typography"
 // import Navigation from "./navigation"
