@@ -24,6 +24,7 @@ export const HERO_BANNER = styled(BANNER)`
 	${props => props.backgroundColor ? `
 		color: ${idealTextColor(props.backgroundColor)}
 	` : ''};
+
 	${props => RESPONSIVE_SQUARING(props)}
 
 	&::before {
@@ -42,6 +43,10 @@ export const HERO_BANNER = styled(BANNER)`
 
 	h1,
 	h2 {
+
+		${props => props.backgroundColor ? `
+			color: ${idealTextColor(props.backgroundColor)}
+		` : ''};
 		@media ${device.mobileL} {
 			margin-top: 1.75rem;
 			font-size: 32px;
@@ -63,8 +68,13 @@ export const HERO_BANNER = styled(BANNER)`
 	}
 
 	p {
-			font-size: 22px;
-			line-height: 1.25;
+
+		${props => props.backgroundColor ? `
+			color: ${idealTextColor(props.backgroundColor)}
+		` : ''};
+
+		font-size: 22px;
+		line-height: 1.25;
 
 		@media ${device.tablet} {
 			font-size: 24px;

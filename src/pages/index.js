@@ -1,8 +1,8 @@
 import React from "react"
-import Homepage from './homepage';
+import Resume from "../components/resume";
 
 export default function Index({ data, pageContext }) {
 	return (
-		<Homepage />
+		<Resume data={data} pageContext={pageContext} />
 	)
 }
