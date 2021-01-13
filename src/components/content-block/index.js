@@ -6,7 +6,6 @@ import {
 } from './styles';
 
 export default function ContentBlock({ backgroundColor = '', backgroundImage = '', children, animated = true, delayOffset = 0, isSquare, overlay = false, textColor = '#000000' }) {
-	console.log('ContentBlock', backgroundImage);
 	return (
 		<BLOCK
 			className="text-block"

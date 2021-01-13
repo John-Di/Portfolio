@@ -44,8 +44,7 @@ export default function StyleGuide({ pageContext }) {
 	);
 	let i = 0;
 	let heroBannerColor = randomColor();
-	let imageArray = randomImageArray();
-	let test = randomColor();
+
 	return (
 		<MainLayout>
 			<ARTICLE>
@@ -53,6 +52,7 @@ export default function StyleGuide({ pageContext }) {
 					index={0}
 					cols={1}
 					backgroundColor={`${heroBannerColor}`}
+					text
 					backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
 					image_first={`${randomBool()}`}
 					reversed={!!0}
@@ -72,33 +72,30 @@ export default function StyleGuide({ pageContext }) {
 					<h2>Sections and Components</h2>
 					<p>Including this Basic Text Banner Section</p>
 				</TextBanner>
-				<FourPairSection />
-				<FourPairSection />
-				<FourPairSection />
-				<FourPairSection />
-				<ImageGallerySection
-					images={randomImageArray()}
-				/>
+				<OnePairSection isFullWidth={true} />
+				<OnePairSection isFullWidth={false} />
+				<TwoPairSection isFullWidth={true} />
+				<TwoPairSection isFullWidth={false} />
 				<TextBanner
 					textAlignment={'center'}
 				>
-					<h2>Sections and Components</h2>
-					<p>Including this Basic Text Banner Section</p>
+					<h2>Just a little White Space Break</h2>
+					<p>Enjoy the Image Gallery</p>
 				</TextBanner>
-				<TwoPairSection />
-				<OnePairSection />
-				<TwoPairSection />
 				<ImageGallerySection
 					images={randomImageArray()}
+				/>
+				<ThreePairSection isFullWidth={true} />
+				<ThreePairSection isFullWidth={false} />
+				<FourPairSection isFullWidth={true} />
+				<FourPairSection isFullWidth={false} />
+				<TextBanner
+					textAlignment={'center'}
 				>
-					<TextBlock overlay={true}>
-						<h1>Simple Image Gallery</h1>
-						<p>Isn't it cute?</p>
-						<FancyCTA>Click me</FancyCTA>
-					</TextBlock>
-				</ImageGallerySection>
-				<ThreePairSection />
-				<ThreePairSection />
+					<h2>That's it for now</h2>
+					<p>Try Mobile if you haven't already</p>
+				</TextBanner>
+				<OnePairSection isFullWidth={true} />
 			</ARTICLE>
 		</MainLayout >
 	)

@@ -26,15 +26,21 @@ const breakpoints = [
 	}
 ];
 
-export default function TwoPairSection(maxWidth = size.laptopL, hasPadding = randomBool()) {
+export default function TwoPairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
+	isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
+	hasPadding = !isFullWidth;
+	console.log('TwoPairSection', isFullWidth, isFullWidth ? `Two Full Width` : `Two Page Width`, 'padding', hasPadding);
 	return (
-		<Section maxWidth={maxWidth} hasPadding={hasPadding} className="two-pair-section">
+		<Section maxWidth={isFullWidth ? `100%` : maxWidth} hasPadding={hasPadding} className="two-pair-section"
+			heading={(<h1>Two Pair Section</h1>)}
+			subheading={(<h2>({isFullWidth ? `Two Full Width` : `Two Page Width`})</h2>)}>
 			<ResponsivePair
-				adjacentBreakpoints={[
-					{
-						bp: `${device.laptopL}`
-					}
-				]}
+				adjacentBreakpoints={
+					[
+						{
+							bp: `${device.laptopL}`
+						}
+					]}
 				items={
 					jsxToArray(2, (length, _, index) => {
 						let backgroundColor = randomColor();
@@ -54,7 +60,7 @@ export default function TwoPairSection(maxWidth = size.laptopL, hasPadding = ran
 						)
 					})
 				} />
-		</Section>
+		</Section >
 	);
 
 };

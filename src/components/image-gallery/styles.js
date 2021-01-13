@@ -14,10 +14,10 @@ export const WRAPPER = styled.div`
 	margin: 0 auto;
 
 	${props => props.hasPadding && `
-		padding: 4em 0;
+		padding: 4% 0;
 
 		@media ${device.laptop} {
-			padding: 8em 0;
+			padding: 8% 0;
 		}
 	` || ''}
 

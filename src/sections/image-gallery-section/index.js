@@ -1,17 +1,11 @@
 import React from "react";
 import Section from '../section';
-import { size, device } from '../../utils/variables';
 import ResponsivePair from '../../layouts/responsive-pair';
 import ImageGallery from '../../components/image-gallery';
-import { CONTENT } from './styles';
 import {
-	randomColor,
-	randomImage,
-	randomIntegerEx,
-	randomIntegerIn,
-	randomBool,
-	randomImageArray
+	randomBool
 } from '../../utils/randoms';
+import { size, device } from '../../utils/variables';
 
 export default function ImageGallerySection({ children, images, half = false }) {
 
@@ -33,8 +27,12 @@ export default function ImageGallerySection({ children, images, half = false }) 
 
 
 	return (
-		<Section maxWidth={`${size.laptopL}px`} hasPadding={true}>
+		<Section maxWidth={`${size.laptopL}px`} hasPadding={true}
+			hasMarginSmall={false}
+			hasMarginLarge={true}
+			heading={(<h1>Image Gallery Section</h1>)}
+			subheading={children && (<h2>with a Text Block</h2>)}>
 			{inner}
-		</Section>
+		</Section >
 	);
 }

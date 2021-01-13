@@ -45,12 +45,18 @@ const breakpoints = {
 
 
 export default function FourPairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
+	isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
+	hasPadding = !isFullWidth;
+	console.log('FourPairSection', isFullWidth, isFullWidth ? `Four Full Width` : `Four Page Width`, 'padding', hasPadding);
 	return (
-		<Section maxWidth={maxWidth} hasPadding={hasPadding} className="four-pair-section">
+		<Section maxWidth={isFullWidth ? `100%` : maxWidth} hasPadding={hasPadding} className="four-pair-section"
+			heading={(<h1>Four Pair Section</h1>)}
+			subheading={(<h2>({isFullWidth ? `Four Full Width` : `Four Page Width`})</h2>)}>
 			<ResponsivePair
-				adjacentBreakpoints={[{
-					bp: `${device.laptopL}`
-				}]}
+				adjacentBreakpoints={
+					[{
+						bp: `${device.laptopL}`
+					}]}
 				items={
 					jsxToArray(2, (l, _, i) => (
 						<ResponsivePair
@@ -84,7 +90,7 @@ export default function FourPairSection(isFullWidth = randomBool(), maxWidth = s
 					))
 				}
 			/>
-		</Section>
+		</Section >
 	);
 
 };

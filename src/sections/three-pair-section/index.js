@@ -52,12 +52,18 @@ const breakpoints = {
 }
 
 export default function ThreePairSection(isFullWidth = randomBool(), maxWidth = size.laptopL, hasPadding = randomBool()) {
+	isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
+	hasPadding = !isFullWidth;
+	console.log('ThreePairSection', isFullWidth, isFullWidth ? `Three Full Width` : `Three Page Width`, 'padding', hasPadding);
 	return (
-		<Section maxWidth={maxWidth} hasPadding={hasPadding} className="three-pair-section">
+		<Section maxWidth={isFullWidth ? `100%` : maxWidth} hasPadding={hasPadding} className="three-pair-section"
+			heading={(<h1>Three Pair Section</h1>)}
+			subheading={(<h2>({isFullWidth ? `Three Full Width` : `Three Page Width`})</h2>)}>
 			<ResponsivePair
-				adjacentBreakpoints={[{
-					bp: `${device.laptop}`
-				}]}
+				adjacentBreakpoints={
+					[{
+						bp: `${device.laptop}`
+					}]}
 				items={
 					jsxToArray(3, (length, _, index) => {
 						let backgroundColor = randomColor();
@@ -78,7 +84,7 @@ export default function ThreePairSection(isFullWidth = randomBool(), maxWidth = 
 						)
 					})
 				} />
-		</Section>
+		</Section >
 	);
 
 };
