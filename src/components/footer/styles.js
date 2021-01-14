@@ -4,7 +4,7 @@ import { SECTION } from '../../sections/section/styles';
 import {
 	randomColor,
 	idealTextColor
-} from '../../utils/randoms';
+} from '../../utils/IdealTextColor';
 
 let bk = randomColor();
 let fg = idealTextColor(bk);

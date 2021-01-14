@@ -11,6 +11,9 @@ import FourPairSection from '../../sections/four-pair-section';
 import FancyCTA from '../fancy-cta';
 import ImageGallerySection from '../../sections/image-gallery-section';
 import {
+	idealTextColor
+} from '../../utils/IdealTextColor';
+import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
@@ -60,7 +63,7 @@ export default function StyleGuide({ pageContext }) {
 						<h1>Style Guide</h1>
 						<p>Here's a Hero Banner</p>
 						<FancyCTA
-							parentColor={heroBannerColor}
+							parentColor={idealTextColor(heroBannerColor)}
 						>Learn More</FancyCTA>
 					</TextBlock>
 				</HeroBanner>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
 	idealTextColor
-} from '../../utils/randoms';
+} from '../../utils/IdealTextColor';
 
 const RESET = `
 	margin: 0;
@@ -35,14 +35,9 @@ const assessTheme = ({ theme, modest = { isModest: false }, parentColor = false,
 			${!modest.isModest && `border-width: 0.25em;`}
 			padding:${modest.isModest ? '0.25em 2em' : `0.75em 2em`};
 
-			${backgroundColor || parentColor ? `
-				background-color: ${backgroundColor};
-				color: ${idealTextColor(backgroundColor || parentColor)};
-				${borderColor ? `border-color: ${idealTextColor(backgroundColor || parentColor)}` : ``};
-			` : `
-				color: ${textColor};		
-				${borderColor ? `border-color: ${borderColor}` : ``};
-			`}
+			${backgroundColor ? `background-color: ${backgroundColor};` : ``}
+			${textColor ? `color: ${textColor};` : ``}
+			${borderColor ? `border-color: ${borderColor};` : ``}
 		`;
 	}
 };

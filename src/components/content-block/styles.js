@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import {
 	idealTextColor
-} from '../../utils/randoms';
+} from '../../utils/IdealTextColor';
 
 export const BLOCK = styled.div`
 	max-width: 100%;
@@ -55,14 +55,9 @@ export const CONTAINER = styled.div`
 `;
 
 const assessProps = ({ backgroundColor, textColor = `#000000` }) => `
-
-	${backgroundColor ? `
-		background-color: ${backgroundColor};
-		color: ${idealTextColor(backgroundColor)};				
-		` : `
-		color: ${textColor};		
-	`}
-`;
+	${backgroundColor ? `background-color: ${backgroundColor};` : ``}
+	${textColor ? `color: ${textColor};` : ``}
+`
 
 export const CONTENT = styled.div`
 	padding: 0;

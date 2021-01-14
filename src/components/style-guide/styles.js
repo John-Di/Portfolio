@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import {
 	idealTextColor
-} from '../../utils/randoms';
+} from '../../utils/IdealTextColor';
 
 
 export const ARTICLE = styled.article`

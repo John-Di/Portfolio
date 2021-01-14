@@ -4,6 +4,9 @@ import {
 	CONTAINER,
 	CONTENT
 } from './styles';
+import {
+	idealTextColor
+} from '../../utils/IdealTextColor';
 
 export default function ContentBlock({ backgroundColor = false, backgroundImage, children, animated = true, delayOffset = 0, isSquare, overlay = false, textColor = '#000000' }) {
 	return (
@@ -14,7 +17,7 @@ export default function ContentBlock({ backgroundColor = false, backgroundImage,
 			delayOffset={delayOffset}
 			isSquare={isSquare}
 			overlay={overlay}
-			textColor={textColor}
+			textColor={idealTextColor(backgroundColor)}
 		>
 			<CONTAINER
 				overlay={overlay}
@@ -24,7 +27,7 @@ export default function ContentBlock({ backgroundColor = false, backgroundImage,
 					data-aos-delay={animated && `${750 + delayOffset}`}
 					data-aos-duration={animated && '1000'}
 					backgroundColor={backgroundColor}
-					textColor={textColor}
+					textColor={idealTextColor(backgroundColor)}
 				>
 					{children}
 				</CONTENT>

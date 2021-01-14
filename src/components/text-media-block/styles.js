@@ -6,7 +6,7 @@ import {
 } from '../../utils/mixins';
 import {
 	idealTextColor
-} from '../../utils/randoms';
+} from '../../utils/IdealTextColor';
 
 
 export const COLUMN_STACKED = (resolution, image_above) => `

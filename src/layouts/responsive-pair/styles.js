@@ -3,7 +3,7 @@ import { device } from '../../utils/variables';
 import { CLEARFIX } from '../resume-layout/styles';
 import {
 	idealTextColor
-} from '../../utils/randoms';
+} from '../../utils/IdealTextColor';
 
 const sideBySide = (acc, rule, i) => `
 	${acc}

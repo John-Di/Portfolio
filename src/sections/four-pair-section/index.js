@@ -7,9 +7,11 @@ import { jsxToArray } from '../../utils/dom-builder';
 import {
 	randomColor,
 	randomImage,
-	randomIntegerEx,
-	randomBool
+	randomIntegerEx
 } from '../../utils/randoms';
+import {
+	idealTextColor
+} from '../../utils/IdealTextColor';
 import { size, device } from '../../utils/variables';
 
 const breakpoints = {
@@ -80,7 +82,7 @@ export default function FourPairSection(isFullWidth, maxWidth = size.laptopL, ha
 											<h2>Text Media Block {index + 1}/{length}</h2>
 											<p>Just for the time being...</p>
 											<FancyCTA
-												parentColor={backgroundColor}
+												textColor={idealTextColor(backgroundColor)}
 											>Learn More</FancyCTA>
 										</TextMediaBlock>
 									)

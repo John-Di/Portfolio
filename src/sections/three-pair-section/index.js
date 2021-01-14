@@ -9,6 +9,9 @@ import {
 	randomImage,
 	randomIntegerEx
 } from '../../utils/randoms';
+import {
+	idealTextColor
+} from '../../utils/IdealTextColor';
 import { size, device } from '../../utils/variables';
 
 const breakpoints = {
@@ -77,7 +80,7 @@ export default function ThreePairSection(isFullWidth, maxWidth = size.laptopL, h
 								<h2>Text Media Block {index + 1}/{length}</h2>
 								<p>Just for the time being...</p>
 								<FancyCTA
-									parentColor={backgroundColor}
+									textColor={idealTextColor(backgroundColor)}
 								>Learn More</FancyCTA>
 							</TextMediaBlock>
 						)

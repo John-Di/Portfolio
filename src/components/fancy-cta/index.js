@@ -2,11 +2,10 @@ import React from 'react';
 import Button from '../button';
 import {
 	idealTextColor
-} from '../../utils/randoms'
+} from '../../utils/IdealTextColor'
 
 export default function FancyCTA({ children, modest, parentColor, backgroundColor, textColor = "#000000", borderColor }) {
 
-	textColor = textColor ? textColor : idealTextColor(backgroundColor ? backgroundColor : parentColor);
 	borderColor = borderColor ? borderColor : textColor;
 
 	return (

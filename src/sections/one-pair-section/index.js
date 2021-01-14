@@ -8,6 +8,9 @@ import {
 	randomIntegerEx,
 	randomBool
 } from '../../utils/randoms';
+import {
+	idealTextColor
+} from '../../utils/IdealTextColor';
 import { size, device } from '../../utils/variables';
 
 const breakpoints = [
@@ -36,7 +39,7 @@ export default function OnePairSection(isFullWidth = true, maxWidth = size.lapto
 				<h2>Text Media Block</h2>
 				<p>Just for the time being...</p>
 				<FancyCTA
-					parentColor={backgroundColor}
+					textColor={idealTextColor(backgroundColor)}
 				>Learn More</FancyCTA>
 			</TextMediaBlock >
 		</Section >

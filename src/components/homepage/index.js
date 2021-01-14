@@ -11,6 +11,9 @@ import FourPairSection from '../../sections/four-pair-section';
 import FancyCTA from '../fancy-cta';
 import ImageGallerySection from '../../sections/image-gallery-section';
 import {
+	idealTextColor
+} from '../../utils/IdealTextColor';
+import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
@@ -48,7 +51,6 @@ export default function Homepage({ pageContext }) {
 					index={0}
 					cols={1}
 					backgroundColor={`${heroBannerColor}`}
-					text
 					backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
 					image_first={`${randomBool()}`}
 					reversed={!!0}
@@ -60,7 +62,7 @@ export default function Homepage({ pageContext }) {
 						<h1>Style Guide</h1>
 						<p>Here's a Hero Banner</p>
 						<FancyCTA
-							parentColor={heroBannerColor}
+							parentColor={idealTextColor(heroBannerColor)}
 						>Learn More</FancyCTA>
 					</TextBlock>
 				</HeroBanner>

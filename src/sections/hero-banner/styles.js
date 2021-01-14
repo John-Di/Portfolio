@@ -7,7 +7,7 @@ import {
 } from '../../utils/mixins';
 import {
 	idealTextColor
-} from '../../utils/randoms';
+} from '../../utils/IdealTextColor';
 
 export const HERO_BANNER = styled(BANNER)`
 	height: 100vh;

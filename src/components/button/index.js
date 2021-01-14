@@ -4,7 +4,6 @@ import {
 } from './styles';
 
 export default function Button({ children, backgroundColor, parentColor, textColor = `#000000`, borderColor, theme }) {
-
 	return (
 		<BUTTON
 			backgroundColor={backgroundColor}
