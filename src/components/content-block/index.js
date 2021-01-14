@@ -5,7 +5,7 @@ import {
 	CONTENT
 } from './styles';
 
-export default function ContentBlock({ backgroundColor = '', backgroundImage = '', children, animated = true, delayOffset = 0, isSquare, overlay = false, textColor = '#000000' }) {
+export default function ContentBlock({ backgroundColor = false, backgroundImage, children, animated = true, delayOffset = 0, isSquare, overlay = false, textColor = '#000000' }) {
 	return (
 		<BLOCK
 			className="text-block"
@@ -14,6 +14,7 @@ export default function ContentBlock({ backgroundColor = '', backgroundImage = '
 			delayOffset={delayOffset}
 			isSquare={isSquare}
 			overlay={overlay}
+			textColor={textColor}
 		>
 			<CONTAINER
 				overlay={overlay}
@@ -22,6 +23,7 @@ export default function ContentBlock({ backgroundColor = '', backgroundImage = '
 					data-aos={animated && 'fade-up'}
 					data-aos-delay={animated && `${750 + delayOffset}`}
 					data-aos-duration={animated && '1000'}
+					backgroundColor={backgroundColor}
 					textColor={textColor}
 				>
 					{children}

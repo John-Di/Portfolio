@@ -4,9 +4,9 @@ import {
 	idealTextColor
 } from '../../utils/randoms'
 
-export default function FancyCTA({ children, modest, parentBackgroundColor = '#ffffff', backgroundColor, textColor, borderColor }) {
+export default function FancyCTA({ children, modest, parentColor, backgroundColor, textColor = "#000000", borderColor }) {
 
-	textColor = textColor ? textColor : idealTextColor(backgroundColor ? backgroundColor : parentBackgroundColor);
+	textColor = textColor ? textColor : idealTextColor(backgroundColor ? backgroundColor : parentColor);
 	borderColor = borderColor ? borderColor : textColor;
 
 	return (

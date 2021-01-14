@@ -1,9 +1,6 @@
 import React from "react";
 import TextBlock from '../text-block';
 import ResponsivePair from '../../layouts/responsive-pair';
-import {
-	idealTextColor
-} from '../../utils/randoms';
 import { device } from '../../utils/variables';
 
 const ADJ_BP_DEFAULTS = [
@@ -16,9 +13,7 @@ const ADJ_BP_DEFAULTS = [
 const STK_BP_DEFAULTS = [];
 
 
-export default function TextMediaBlock({ backgroundColor, backgroundImage, children, delayOffset = 0, isEven = false, isSquare = true, isFullWidth, hasPadding = false, adjacentBreakpoints, stackedBreakpoints }) {
-
-	let textColor = idealTextColor(backgroundColor || `#FFFFFF`);
+export default function TextMediaBlock({ backgroundColor, backgroundImage, children, delayOffset = 0, isEven = false, isSquare = true, isFullWidth, hasPadding = false, adjacentBreakpoints, stackedBreakpoints, parentColor }) {
 
 	return (
 		<ResponsivePair
@@ -41,7 +36,7 @@ export default function TextMediaBlock({ backgroundColor, backgroundImage, child
 					delayOffset={delayOffset}
 					isSquare={isSquare}
 					overlay={true}
-					textColor={textColor}
+					backgroundColor={backgroundColor}
 				>
 					{children}
 				</TextBlock>)]} />

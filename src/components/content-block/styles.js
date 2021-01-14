@@ -16,10 +16,6 @@ export const BLOCK = styled.div`
 	flex: 1 auto;
 	position: relative;
 
-	${props => props.backgroundColor && `
-		color: ${idealTextColor(props.backgroundColor)}
-	`};
-
 	@media ${device.laptop} {
 		padding-top: 0;
 		justify-content: flex-start;
@@ -58,7 +54,17 @@ export const CONTAINER = styled.div`
 	`}
 `;
 
+const assessProps = ({ backgroundColor, textColor = `#000000` }) => `
+
+	${backgroundColor ? `
+		background-color: ${backgroundColor};
+		color: ${idealTextColor(backgroundColor)};				
+		` : `
+		color: ${textColor};		
+	`}
+`;
+
 export const CONTENT = styled.div`
 	padding: 0;
-	color: ${props => props.textColor};
+	${props => assessProps(props)}
 `;

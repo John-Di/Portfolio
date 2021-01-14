@@ -1,23 +1,19 @@
 import React from "react";
-import { useStaticQuery, withPrefix, graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import MainLayout from '../../layouts/main-layout';
 import TextBanner from '../../sections/text-banner';
 import HeroBanner from '../../sections/hero-banner';
 import TextBlock from '../text-block';
-import TextMediaBlock from '../text-media-block';
 import OnePairSection from '../../sections/one-pair-section';
 import TwoPairSection from '../../sections/two-pair-section';
 import ThreePairSection from '../../sections/three-pair-section';
 import FourPairSection from '../../sections/four-pair-section';
-import Section from '../../sections/section';
-import TextMediaGrid from '../../randoms/text-media-grid';
 import FancyCTA from '../fancy-cta';
 import ImageGallerySection from '../../sections/image-gallery-section';
 import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
-	randomIntegerIn,
 	randomBool,
 	randomImageArray
 } from '../../utils/randoms';
@@ -58,11 +54,13 @@ export default function StyleGuide({ pageContext }) {
 					reversed={!!0}
 					isEven={0 % 2 === 0}
 				>
-					<TextBlock>
+					<TextBlock
+						backgroundColor={heroBannerColor}
+					>
 						<h1>Style Guide</h1>
 						<p>Here's a Hero Banner</p>
 						<FancyCTA
-							parentBackgroundColor={heroBannerColor}
+							parentColor={heroBannerColor}
 						>Learn More</FancyCTA>
 					</TextBlock>
 				</HeroBanner>
