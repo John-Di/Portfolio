@@ -1,10 +1,5 @@
 import React from "react";
 
-const test = (length, content, fn) => {
-	console.log(length, content)
-	return fn();
-}
-
 export const jsxToArray = (length, content) => Array.from(
 	{ length },
 	content.bind(this, length)

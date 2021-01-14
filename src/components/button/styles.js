@@ -18,7 +18,7 @@ const assessProps = props => `
 	${assessTheme(props)}
 `;
 
-const assessTheme = ({ theme, modest = { isModest: false }, backgroundColor, textColor, borderColor }) => {
+const assessTheme = ({ theme, modest = { isModest: false }, backgroundColor = false, textColor = '#000000', borderColor = false }) => {
 	switch (theme) {
 		case 'fancy':
 		default:
@@ -32,8 +32,8 @@ const assessTheme = ({ theme, modest = { isModest: false }, backgroundColor, tex
 			${!modest.isModest && `border-width: 0.25em;`}
 			padding:${modest.isModest ? '0.25em 2em' : `0.75em 2em`};
 
-			${backgroundColor && `background-color: ${backgroundColor};`}
-			${textColor && `color: ${textColor};`}
+			${backgroundColor ? `background-color: ${backgroundColor};` : ``}
+			color: ${textColor};
 			${borderColor && `border-color: ${borderColor};`}
 		`;
 	}

@@ -20,22 +20,22 @@ import PaddedSection from "../../sections/padded-section";
 import PageWidthSection from "../../sections/page-width-section";
 
 export default function StyleGuide({ pageContext }) {
-	const data = useStaticQuery(
-		graphql`
-			query {
-				site {
-					siteMetadata {
-						title
-					}
-				}
-				hero: file(base: { eq: "homepage_hero.jpg" }) {
-					publicURL
-					extension
-					name
-				}
-			}
-			`
-	);
+	// const data = useStaticQuery(
+	// 	graphql`
+	// 		query {
+	// 			site {
+	// 				siteMetadata {
+	// 					title
+	// 				}
+	// 			}
+	// 			hero: file(base: { eq: "homepage_hero.jpg" }) {
+	// 				publicURL
+	// 				extension
+	// 				name
+	// 			}
+	// 		}
+	// 		`
+	// );
 	let i = 0;
 	return (
 		<MainLayout>

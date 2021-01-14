@@ -7,8 +7,7 @@ import { jsxToArray } from '../../utils/dom-builder';
 import {
 	randomColor,
 	randomImage,
-	randomIntegerEx,
-	randomBool
+	randomIntegerEx
 } from '../../utils/randoms';
 import { size, device } from '../../utils/variables';
 
