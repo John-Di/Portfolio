@@ -19,8 +19,3 @@ export const BANNER = styled(SECTION)`
 		}
 	}
 `;
-
-const log = (label, fn, { ...rest }) => {
-	console.log(label, rest);
-	return fn(rest);
-}

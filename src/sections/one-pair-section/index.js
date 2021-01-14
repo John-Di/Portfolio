@@ -23,6 +23,7 @@ export default function OnePairSection(isFullWidth = true, maxWidth = size.lapto
 	hasPadding = !isFullWidth;
 	console.log('OnePairSection', isFullWidth, isFullWidth ? `One Full Width` : `One Page Width`, 'padding', hasPadding);
 
+	console.log('Rando', randomBool());
 	return (
 		<Section maxWidth={isFullWidth ? `100%` : maxWidth} hasPadding={hasPadding} className="one-pair-section"
 			heading={(<h1>One Pair Section</h1>)}

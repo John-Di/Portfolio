@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { device } from '../../utils/variables';
-import { H2, H3, SPAN, P, LI } from '../../layouts/resume-layout/styles';
+import { SPAN } from '../../layouts/resume-layout/styles';
 
 
 export const DURATION = styled(SPAN)`

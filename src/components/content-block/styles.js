@@ -3,11 +3,6 @@ import { device } from '../../utils/variables';
 import {
 	idealTextColor
 } from '../../utils/randoms';
-import {
-	BACKGROUND_PSEUDO,
-	SQUARE_BACKGROUND
-} from '../../utils/mixins';
-
 
 export const BLOCK = styled.div`
 	max-width: 100%;
@@ -39,7 +34,7 @@ export const BLOCK = styled.div`
 			padding-top: 100%;
 			width: 100%;
 		}
-	`|| ``}
+	`}
 `;
 
 export const CONTAINER = styled.div`
@@ -60,7 +55,7 @@ export const CONTAINER = styled.div`
 		left: 0;
 		right: 0;
 		bottom: 0;	
-	`|| ``}
+	`}
 `;
 
 export const CONTENT = styled.div`

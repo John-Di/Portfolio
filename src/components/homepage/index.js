@@ -1,5 +1,5 @@
 import React from "react";
-import { useStaticQuery, withPrefix, graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import MainLayout from '../../layouts/main-layout';
 import Grid from '../../layouts/grid';
 import Section from '../../sections/section';
@@ -11,16 +11,13 @@ import {
 	randomColor,
 	randomImage,
 	randomIntegerEx,
-	randomIntegerIn,
 	randomBool,
-	randomSection
 } from '../../utils/randoms';
 import {
 	ARTICLE
 } from './styles';
 import PaddedSection from "../../sections/padded-section";
 import PageWidthSection from "../../sections/page-width-section";
-import PageWidthPaddedSection from "../../sections/page-width-padded-section";
 
 export default function StyleGuide({ pageContext }) {
 	const data = useStaticQuery(

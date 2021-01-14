@@ -1,5 +1,4 @@
 import React from "react";
-import { device } from '../../utils/variables';
 import {
 	GRID_ITEM
 } from './styles';

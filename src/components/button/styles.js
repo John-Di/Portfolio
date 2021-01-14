@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { device } from '../../utils/variables';
 
 const RESET = `
 	margin: 0;
@@ -17,13 +16,9 @@ export const BUTTON = styled.button`
 
 const assessProps = props => `
 	${assessTheme(props)}
-
-	${props.backgroundColor && `background-color: ${props.backgroundColor};` || ''}
-	${props.textColor && `color: ${props.textColor};` || ''}
-	${props.borderColor && `border-color: ${props.borderColor};` || ''}
 `;
 
-const assessTheme = ({ theme, modest = false }) => {
+const assessTheme = ({ theme, modest = { isModest: false }, backgroundColor, textColor, borderColor }) => {
 	switch (theme) {
 		case 'fancy':
 		default:
@@ -34,8 +29,12 @@ const assessTheme = ({ theme, modest = false }) => {
 			text-transform: uppercase;
 			letter-spacing: 0.2px;
 			
-			${modest.isModest ? '' : `border-width: 0.25em;`}
+			${!modest.isModest && `border-width: 0.25em;`}
 			padding:${modest.isModest ? '0.25em 2em' : `0.75em 2em`};
+
+			${backgroundColor && `background-color: ${backgroundColor};`}
+			${textColor && `color: ${textColor};`}
+			${borderColor && `border-color: ${borderColor};`}
 		`;
 	}
 };
