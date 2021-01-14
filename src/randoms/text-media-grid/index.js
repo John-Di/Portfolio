@@ -110,7 +110,7 @@ export default function TextMediaGrid({ responsive = {}, col_count = randomInteg
 								<p>Just for the time being...</p>
 								<FancyCTA
 									modest={({ isModest: col_count > 2 })}
-									parentBackgroundColor={background}
+									parentColor={background}
 								>Learn More</FancyCTA>
 							</TextMediaBlock>
 						</GridItem>

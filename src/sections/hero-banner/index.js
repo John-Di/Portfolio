@@ -4,9 +4,9 @@ import {
 	idealTextColor
 } from '../../utils/randoms';
 
-export default function HeroBanner({ children, textColor = "#000000", backgroundColor, backgroundImage = '#FFFFFF', squareImage = true }) {
+export default function HeroBanner({ children, textColor = "#000000", backgroundColor = false, backgroundImage, squareImage = true }) {
 
-	textColor = idealTextColor(backgroundImage);
+	textColor = textColor ? textColor : backgroundColor && idealTextColor(backgroundColor);
 	return (
 		<HERO_BANNER
 			className="hero-banner"

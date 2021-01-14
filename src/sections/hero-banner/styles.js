@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import { BANNER } from '../../components/banner/styles';
 import {
-	LOG_IT,
 	BACKGROUND_PSEUDO,
 	SQUARE_BACKGROUND
 } from '../../utils/mixins';
@@ -43,10 +42,6 @@ export const HERO_BANNER = styled(BANNER)`
 
 	h1,
 	h2 {
-
-		${props => props.backgroundColor ? `
-			color: ${idealTextColor(props.backgroundColor)}
-		` : ''};
 		@media ${device.mobileL} {
 			margin-top: 1.75rem;
 			font-size: 32px;

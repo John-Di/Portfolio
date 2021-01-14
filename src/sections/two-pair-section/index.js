@@ -50,7 +50,7 @@ export default function TwoPairSection(isFullWidth, maxWidth = size.laptopL, has
 								<h2>Text Media Block {index + 1}/{length}</h2>
 								<p>Just for the time being...</p>
 								<FancyCTA
-									parentBackgroundColor={backgroundColor}
+									parentColor={backgroundColor}
 								>Learn More</FancyCTA>
 							</TextMediaBlock>
 						)

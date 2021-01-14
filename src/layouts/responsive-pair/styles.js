@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { rhythm } from "../../utils/typography";
 import { device } from '../../utils/variables';
 import { CLEARFIX } from '../resume-layout/styles';
+import {
+	idealTextColor
+} from '../../utils/randoms';
 
 const sideBySide = (acc, rule, i) => `
 	${acc}
@@ -112,6 +114,8 @@ const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpo
 `;
 
 const assessProps = (props) => `
+		
+	${props.backgroundColor ? `background-color: ${props.backgroundColor};` : ``}
 
 	${props.hasPaddingSmall ? `
 		padding: 4em 0;
@@ -138,10 +142,6 @@ export const LAYOUT = styled.div`
 		${props => props.hasPadding ? `padding: 5em 0;` : ''}
 		${CLEARFIX}
 	}
-		
-	${props => props.backgroundColor && `
-		background-color: ${props.backgroundColor};
-	`}
 
 	${props => props.hasPseudo && generatePseudo(props)}
 	${props => assessProps(props)}

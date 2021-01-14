@@ -36,7 +36,7 @@ export default function OnePairSection(isFullWidth = true, maxWidth = size.lapto
 				<h2>Text Media Block</h2>
 				<p>Just for the time being...</p>
 				<FancyCTA
-					parentBackgroundColor={backgroundColor}
+					parentColor={backgroundColor}
 				>Learn More</FancyCTA>
 			</TextMediaBlock >
 		</Section >
