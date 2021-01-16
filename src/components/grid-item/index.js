@@ -3,7 +3,7 @@ import {
 	GRID_ITEM
 } from './styles';
 
-export default function GridItem({ children, maxWidth }) {
+export default function GridItem({ children, maxWidth = '100%' }) {
 
 	return (
 		<GRID_ITEM maxWidth={maxWidth} className="grid__item">

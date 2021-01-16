@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { rhythm } from "../../../utils/typography";
-import { device } from '../../../utils/variables';
-import { H1 } from '../../../layouts/resume-layout/styles';
+import { rhythm } from "../../utils/typography";
+import { device } from '../../utils/variables';
+import { H1 } from '../../layouts/resume-layout/styles';
 
 export const BASICS = styled.section`
 	background: white;
