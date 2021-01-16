@@ -1,4 +1,5 @@
 import React from "react";
+import { size, device } from '../../utils/variables';
 import {
 	SECTION,
 	HEADING
