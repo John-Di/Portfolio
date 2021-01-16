@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import { SECTION } from '../../sections/section/styles';
+import { SECTION } from '../section/styles';
 
 SECTION.hasPadding = true;
 export const BANNER = styled(SECTION)`

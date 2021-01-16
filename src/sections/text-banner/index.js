@@ -1,16 +1,22 @@
 import React from "react";
-import Banner from '../../components/banner';
-import TextBlock from '../../components/text-block';
-import {
-	TEXT_BANNER
-} from './styles';
-export default function TextBanner({ children }) {
+import { HERO_BANNER } from './styles';
+import Section from '../../components/section';
+export default function TextBanner({ children, maxWidth = `100%`, }) {
+
 	return (
-		<TEXT_BANNER
-			textAlignment={'center'}>
-			<TextBlock>
-				{children}
-			</TextBlock>
-		</TEXT_BANNER>
+		<Section
+			className="text-banner"
+			hasMarginSmall={true}
+			hasMarginLarge={true}
+			heightSmall={'50vh'}
+			heightLarge={'50vh'}
+			hasPadding={false}
+			maxWidth={maxWidth}
+			textAlignmentSmall={`center`}
+			textAlignmentLarge={`center`}
+			isBanner={true}
+		>
+			{children}
+		</Section>
 	)
 }

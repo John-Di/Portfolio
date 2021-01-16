@@ -1,11 +1,11 @@
 import React from "react";
 import { HERO_BANNER } from './styles';
-import Section from '../../sections/section';
+import Section from '../../components/section';
 import {
 	idealTextColor
 } from '../../utils/IdealTextColor';
 
-export default function HeroBanner({ children, textColor = "#000000", backgroundColor = false, backgroundImage, squareImage = true }) {
+export default function HeroBanner({ children, textColor = "#000000", backgroundColor = false, backgroundImage }) {
 
 	textColor = textColor ? textColor : backgroundColor && idealTextColor(backgroundColor);
 	return (
@@ -17,7 +17,6 @@ export default function HeroBanner({ children, textColor = "#000000", background
 			hasMarginSmall={false}
 			hasMarginLarge={false}
 			hasPadding={false}
-			isBanner={true}
 			isHero={true}
 		>
 			{children}

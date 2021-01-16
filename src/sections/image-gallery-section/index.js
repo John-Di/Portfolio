@@ -1,5 +1,5 @@
 import React from "react";
-import Section from '../section';
+import Section from '../../components/section';
 import ResponsivePair from '../../layouts/responsive-pair';
 import ImageGallery from '../../components/image-gallery';
 import {

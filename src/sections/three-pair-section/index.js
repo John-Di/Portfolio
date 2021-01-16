@@ -1,5 +1,5 @@
 import React from "react";
-import Section from '../section';
+import Section from '../../components/section';
 import TextMediaBlock from '../../components/text-media-block';
 import FancyCTA from '../../components/fancy-cta';
 import ResponsivePair from '../../layouts/responsive-pair';

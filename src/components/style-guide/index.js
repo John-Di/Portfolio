@@ -70,8 +70,11 @@ export default function StyleGuide({ pageContext }) {
 				<TextBanner
 					textAlignment={'center'}
 				>
-					<h2>Sections and Components</h2>
-					<p>Including this Basic Text Banner Section</p>
+					<TextBlock
+					>
+						<h2>Sections and Components</h2>
+						<p>Including this Basic Text Banner Section</p>
+					</TextBlock>
 				</TextBanner>
 				<OnePairSection isFullWidth={true} />
 				<OnePairSection isFullWidth={false} />
@@ -80,8 +83,11 @@ export default function StyleGuide({ pageContext }) {
 				<TextBanner
 					textAlignment={'center'}
 				>
-					<h2>Just a little White Space Break</h2>
-					<p>Enjoy the Image Gallery</p>
+					<TextBlock
+					>
+						<h2>Just a little White Space Break</h2>
+						<p>Enjoy the Image Gallery</p>
+					</TextBlock>
 				</TextBanner>
 				<ImageGallerySection
 					images={randomImageArray()}
@@ -93,8 +99,11 @@ export default function StyleGuide({ pageContext }) {
 				<TextBanner
 					textAlignment={'center'}
 				>
-					<h2>That's it for now</h2>
-					<p>Try Mobile if you haven't already</p>
+					<TextBlock
+					>
+						<h2>That's it for now</h2>
+						<p>Try Mobile if you haven't already</p>
+					</TextBlock>
 				</TextBanner>
 				<OnePairSection isFullWidth={true} />
 			</ARTICLE>
