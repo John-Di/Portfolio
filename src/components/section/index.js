@@ -5,7 +5,9 @@ import {
 	HEADING
 } from './styles';
 
-export default function Section({ children, className, maxWidth = `${size.laptopL}px`, hasMarginSmall = true, hasMarginLarge = true, image = false, backgroundColor = false, hasPadding, heading, preheading, subheading, textAlignmentSmall = 'center', textAlignmentLarge = 'center', heightSmall = false, heightLarge = false, isBanner = false, isHero = false }) {
+let maxWidth_DEFAULT = `${size.laptopL}px`;
+
+export default function Section({ children, className, maxWidth = maxWidth_DEFAULT, hasMarginSmall = true, hasMarginLarge = true, image = false, backgroundColor = false, hasPadding, heading, preheading, subheading, textAlignmentSmall = 'center', textAlignmentLarge = 'center', heightSmall = false, heightLarge = false, isBanner = false, isHero = false }) {
 	return (
 		<SECTION
 			className={className}

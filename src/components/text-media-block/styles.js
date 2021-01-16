@@ -8,6 +8,7 @@ import {
 	idealTextColor
 } from '../../utils/IdealTextColor';
 
+console.log('text-media-block/styles/');
 
 export const COLUMN_STACKED = (resolution, image_above) => `
 	@media ${resolution} {
@@ -56,3 +57,5 @@ const background = ({ backgroundColor, backgroundImage, isSquare, overlay }) => 
 		` : ''};
 	
 `
+
+console.log('text-media-block/styles/', 'fin');
