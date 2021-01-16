@@ -1,5 +1,4 @@
 import React from "react";
-import { HERO_BANNER } from './styles';
 import Section from '../../components/section';
 import {
 	idealTextColor

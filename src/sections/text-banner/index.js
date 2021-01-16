@@ -1,7 +1,6 @@
 import React from "react";
-import { HERO_BANNER } from './styles';
 import Section from '../../components/section';
-export default function TextBanner({ children, maxWidth = `100%`, }) {
+export default function TextBanner({ children, maxWidth = `100%` }) {
 
 	return (
 		<Section
