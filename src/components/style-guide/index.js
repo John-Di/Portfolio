@@ -63,7 +63,7 @@ export default function StyleGuide({ pageContext }) {
 						<h1>Style Guide</h1>
 						<p>Here's a Hero Banner</p>
 						<FancyCTA
-							parentColor={idealTextColor(heroBannerColor)}
+							textColor={idealTextColor(heroBannerColor)}
 						>Learn More</FancyCTA>
 					</TextBlock>
 				</HeroBanner>

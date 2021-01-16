@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../utils/variables';
+import { size, device } from '../../utils/variables';
 import { CLEARFIX } from '../../layouts/resume-layout/styles';
 
 console.log('section/styles/');
@@ -34,67 +34,84 @@ export const HEADING = styled.div`
 	}
 `;
 
+const generateBackground = ({ backgroundImage = false, backgroundColor = false }) => `
+
+	${(() => {
+		console.log('generateLayout', { backgroundImage, backgroundColor });
+		return ``;
+	})()}
+
+	${(() => backgroundImage && `
+		background-image: url('${backgroundImage}');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	`)()};
+
+	${(() => backgroundColor && `
+		background-color: ${backgroundColor};
+	`)()};
+
+`;
+
+const generateLayout = ({ maxWidth = `${size.laptopL}px`, hasPadding = false, textAlignmentSmall = 'center', textAlignmentLarge = 'left', hasMarginSmall, hasMarginLarge, cols, isBanner = false, isHero = false }) => `
+
+	${(() => {
+		console.log('generateLayout', { maxWidth, hasPadding, textAlignmentSmall, textAlignmentLarge, hasMarginSmall, hasMarginLarge, isBanner, isHero });
+		return ``;
+	})()}
+
+	${(() => hasMarginSmall && `
+		margin: 4em auto;	
+	`)()}
+
+	${(() => hasMarginLarge && `
+		@media ${device.laptop} {
+			margin: 8em auto;
+		}
+	`)()}
+
+	${(() => hasPadding && `
+		padding: 0;
+
+		@media ${device.laptop} {
+			padding: 0 8%;
+		}
+	`)()};
+
+	max-width: ${maxWidth ? maxWidth : `100%`};
+
+	${(() => (isBanner || isHero) && `
+		${isHero ? `min-height: 100vh;` : `min-height: 50vh;`}		
+		text-align: ${textAlignmentSmall};
+
+		@media ${device.tablet} {
+			text-align: ${textAlignmentLarge};
+		}
+
+		p {
+			@media ${device.mobileL} {
+				line-height: 1.25;
+			}
+		}	
+	`)()}
+`;
+
+
+const assessProps = (props) => `
+	${generateBackground(props)}
+	${generateLayout(props)}
+`
+
 export const SECTION = styled.section`
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	margin: 0 auto;
 	width: 100%;
-	max-width: ${props => props.maxWidth ? props.maxWidth : `100%`};
 
-	${props => props.hasMarginSmall && `
-		margin: 4em auto;	
-	`}
-
-	${props => props.hasMarginLarge && `
-	
-		@media ${device.laptop} {
-			margin: 8em auto;
-		}
-	
-	`}
-
-	${props => props.hasPadding && `
-		padding: 0;
-	
-		@media ${device.laptop} {
-			padding: 0 8%;
-		}
-	`};
-	
-	${props => props.background && `
-		background-image: url('${props.background}');
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-	`};
-
-	${props => props.backgroundColor && `
-		background-color: ${props.backgroundColor};
-	`};
-
-	${props => {
-		if (props.cols > 2) {
-			return colBreak([
-				`${device.mobileL}`,
-				device.tablet
-			]);
-		} else if (props.cols > 1) {
-			return colBreak([device.mobileXL]);
-
-		} else {
-			return colBreak([device.mobileL]);
-		}
-	}};
-
+	${props => assessProps(props)}
 
 	${CLEARFIX}
 `;
-
-const colBreak = (resolutions) => resolutions.reduce((acc, curr, i) => `
-	${acc}
-	@media ${curr} {
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-`, '');
+console.log('section/styles/', 'fin');

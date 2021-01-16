@@ -17,6 +17,9 @@ import {
 	COLUMN_STACKED,
 	ADJACENT
 } from '../../components/text-media-block/styles';
+import {
+	idealTextColor
+} from '../../utils/IdealTextColor';
 
 const RESPONSIVE_DEFAULTS = {
 	1: {
@@ -110,7 +113,7 @@ export default function TextMediaGrid({ responsive = {}, col_count = randomInteg
 								<p>Just for the time being...</p>
 								<FancyCTA
 									modest={({ isModest: col_count > 2 })}
-									parentColor={background}
+									textColor={idealTextColor(background)}
 								>Learn More</FancyCTA>
 							</TextMediaBlock>
 						</GridItem>

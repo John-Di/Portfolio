@@ -4,9 +4,21 @@ import {
 	HEADING
 } from './styles';
 
-export default function Section({ children, maxWidth = '100%', hasMarginSmall = true, hasMarginLarge = true, image, backgroundColor, hasPadding = false, heading, preheading, subheading, textAlignmentSmall, textAlignmentLarge }) {
+export default function Section({ children, className, maxWidth = '100%', hasMarginSmall = true, hasMarginLarge = true, image = false, backgroundColor = false, hasPadding, heading, preheading, subheading, textAlignmentSmall = 'center', textAlignmentLarge = 'center', heightSmall = false, heightLarge = false, isBanner = false, isHero = false }) {
 	return (
-		<SECTION maxWidth={maxWidth} backgroundImage={image} hasMarginSmall={hasMarginSmall} hasMarginLarge={hasMarginLarge} hasPadding={hasPadding} backgroundColor={backgroundColor}>
+		<SECTION
+			className={className}
+			maxWidth={maxWidth}
+			backgroundImage={image}
+			hasMarginSmall={hasMarginSmall}
+			hasMarginLarge={hasMarginLarge}
+			heightSmall={heightSmall}
+			heightLarge={heightLarge}
+			hasPadding={hasPadding}
+			backgroundColor={backgroundColor}
+			isBanner={isBanner || isHero}
+			isHero={isHero}
+		>
 			{
 				(heading || subheading || preheading) &&
 				<HEADING className="section-heading" textAlignmentSmall={textAlignmentSmall} textAlignmentLarge={textAlignmentLarge}>
