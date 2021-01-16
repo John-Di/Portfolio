@@ -54,7 +54,7 @@ const generateBackground = ({ backgroundImage = false, backgroundColor = false }
 
 `;
 
-const generateLayout = ({ maxWidth = `${size.laptopL}px`, hasPadding = false, textAlignmentSmall = 'center', textAlignmentLarge = 'left', hasMarginSmall, hasMarginLarge, cols, isBanner = false, isHero = false }) => `
+const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSmall = 'center', textAlignmentLarge = 'left', hasMarginSmall = true, hasMarginLarge = true, cols, isBanner = false, isHero = false }) => `
 
 	${(() => {
 		console.log('generateLayout', { maxWidth, hasPadding, textAlignmentSmall, textAlignmentLarge, hasMarginSmall, hasMarginLarge, isBanner, isHero });
