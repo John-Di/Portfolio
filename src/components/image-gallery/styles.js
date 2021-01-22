@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import { CLEARFIX } from '../../layouts/resume-layout/styles';
+import { CLEARFIX } from '../../utils/clearfix';
 
 const gap = 0.25;
 

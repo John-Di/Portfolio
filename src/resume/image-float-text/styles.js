@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-
-const CLEARFIX = `
-	&::after {
-		content: '';
-		display: table;
-		clear: both;
-	}
-`;
+import { CLEARFIX } from '../../utils/clearfix';
 
 export const IMAGEFLOATTEXT = styled.div`
 	width: 100%;
@@ -30,7 +23,6 @@ export const CONTENT = styled.div`
 		padding: 0;
 	}
 `;
-
 
 export const WRAPPER = styled.a`
 	display: block;

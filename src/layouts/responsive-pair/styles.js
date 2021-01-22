@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-
-const CLEARFIX = `
-	&::after {
-		content: '';
-		display: table;
-		clear: both;
-	}
-`
+import { CLEARFIX } from '../../utils/clearfix';
 
 const sideBySide = (acc, rule, i) => `
 	${acc}

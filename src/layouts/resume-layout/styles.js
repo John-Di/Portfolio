@@ -29,11 +29,3 @@ export const LAYOUT = styled.div`
 		display: table;
 	}
 `;
-
-export const CLEARFIX = `
-	&::after {
-		content: '';
-		display: table;
-		clear: both;
-	}
-`

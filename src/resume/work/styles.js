@@ -1,18 +1,5 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import { WRAPPER } from '../../components/duration/styles';
-
-const CLEARFIX = `
-	&::after {
-		content: '';
-		display: table;
-		clear: both;
-	}
-`
-
-export const INNER = styled.div`
-	${CLEARFIX}
-`;
 
 export const INFO = styled.div`
 	margin-bottom: 1em;
@@ -88,7 +75,12 @@ export const TOGGLE = styled.h3`
 	}
 `;
 
-export const DURATION = styled(WRAPPER)`
+export const DURATION = styled.span`
+  margin: 0;
+  line-height: inherit;
+  margin-right: 0.25em;
+  font-size: 0.875em;
+  position: relative;
 	margin-left: auto;
 
 	@media print {
@@ -105,22 +97,6 @@ export const DURATION = styled(WRAPPER)`
 	}
 `;
 
-
-export const TOGGLE_ICON = styled.span`
-	display: inline-block;
-	margin-right: 0.25em;
-	position: relative;
-`;
-
-export const TOGGLE_DURATION = styled.span`
-	margin-left: 0;
-
-	@media ${device.tablet} {
-		display: block;
-		margin-left: 0.65625em;
-	}
-`;
-
 export const DUTY = styled.li`
 font-size: 0.75em;
 margin: 1em 0;
@@ -132,15 +108,6 @@ export const CAREER = styled.ul`
 	list-style-position: outside;
 
 `;
-
-export const CONTENT = styled.div`
-	flex: 1 auto;
-
-	@media ${device.tablet} {
-		padding: 0;
-	}
-`;
-
 
 export const DATE = styled.span`
   margin-left: 0;
