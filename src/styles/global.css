@@ -45,7 +45,8 @@ body {
 	top: 50%;
 	transform: translateY(-50%);
 	display: block;
-	transition: transform 300ms;
+  transition: transform 300ms;
+  max-width: 24px;
 }
 .is-open .Collapsible__trigger-icon {
 	transform: translateY(-50%) rotateZ(-180deg);
