@@ -18,6 +18,7 @@ import {
   randomBool,
   randomImageArray
 } from '../utils/randoms';
+import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
 
 // styles
@@ -27,7 +28,7 @@ const pageStyles = {
 // markup
 const StyleGuidePage = () => {
   let heroBannerColor = randomColor();
-
+  let heroWidth = randomBool();
   return (
     <main style={pageStyles}>
       <StyleGuideArticle>
@@ -38,6 +39,7 @@ const StyleGuidePage = () => {
           text
           backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
           image_first={`${randomBool()}`}
+          maxWidth={`${heroWidth ? `100%` : `${size.laptopL}px`}`}
           reversed={!!0}
           isEven={0 % 2 === 0}
         >
@@ -45,7 +47,7 @@ const StyleGuidePage = () => {
             backgroundColor={heroBannerColor}
           >
             <h1>Style Guide</h1>
-            <p>Here's a Hero Banner</p>
+            <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
             <FancyCTA
               textColor={idealTextColor(heroBannerColor)}
             >Learn More</FancyCTA>
