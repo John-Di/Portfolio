@@ -1,13 +1,11 @@
 import React from "react";
-import CollapsibleSection from "../../collapsible-section";
+import CollapsibleSection from "../../components/collapsible-section";
 import {
 	WRAPPER,
-	HEADING,
 	INNER
 } from './styles';
 
 export default function InnerSection({ className = '', heading, children }) {
-	const label = ({ heading });
 
 	return (
 		<WRAPPER>

@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SPAN } from '../../layouts/resume-layout/styles';
 
-
-export const DURATION = styled(SPAN)`
-	margin-left: 0.5em;
-	margin-right: 0.25em;
+export const DURATION = styled.span`
+	margin: 0 0.25em 0 0.5em;
+	line-height: inherit;
 	font-size: 0.875em;
 	position: relative;
 `;
@@ -16,8 +14,9 @@ export const ICON = styled.span`
 	position: relative;
 `;
 
-export const WRAPPER = styled(SPAN)`
+export const WRAPPER = styled.span`
 	margin-left: 0;
+	line-height: inherit;
 	position: relative;
 	display: inline-block;
 `;

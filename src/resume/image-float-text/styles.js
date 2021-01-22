@@ -1,7 +1,13 @@
 import styled from 'styled-components';
-import { device } from '../../../utils/variables';
-import { CLEARFIX } from '../../../layouts/resume-layout/styles';
+import { device } from '../../utils/variables';
 
+const CLEARFIX = `
+	&::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+`;
 
 export const IMAGEFLOATTEXT = styled.div`
 	width: 100%;
@@ -10,15 +16,15 @@ export const IMAGEFLOATTEXT = styled.div`
 	@media ${device.mobileL} {
 		padding: 0 1.5em;
 	}
-	
-	
+
+
 	${CLEARFIX}
 `;
 
 export const CONTENT = styled.div`
 	flex: 1 auto;
 	@media ${device.tablet} {
-		display: flex;	
+		display: flex;
 		flex-flow: column nowrap;
 		margin-right: 12em;
 		padding: 0;
@@ -34,7 +40,7 @@ export const WRAPPER = styled.a`
 	margin: 1em auto 2em;
 	@media print {
 		display: none;
-	} 
+	}
 
 	@media ${device.mobileXL} {
 		float: right;

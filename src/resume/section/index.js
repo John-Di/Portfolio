@@ -1,5 +1,5 @@
 import React from "react";
-import CollapsibleSection from "../../collapsible-section";
+import CollapsibleSection from "../../components/collapsible-section";
 import {
 	WRAPPER,
 	HEADING,

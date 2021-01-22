@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import {
-	H2,
-	P
-} from '../../../layouts/resume-layout/styles';
 
-export const HEADING = H2;
+export const HEADING = styled.h2`
+	font-size: 1em;
+	margin: 0;
+	line-height: 1.1;
+`;
 
-export const PARAGRAPH = styled(P)`
+export const PARAGRAPH = styled.p`
+	font-size: 0.75em;
+	line-height: 1.75;
 	margin: 0 auto;
 	width: 100%;
 `;

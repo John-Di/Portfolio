@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import {
-	H2
-} from '../../../layouts/resume-layout/styles';
 
 export const WRAPPER = styled.div`
 	&:not(:first-child):not(:last-child) {
@@ -9,7 +6,11 @@ export const WRAPPER = styled.div`
 	}
 `;
 
-export const HEADING = H2;
+export const HEADING = styled.h2`
+	font-size: 1em;
+	margin: 0;
+	line-height: 1.1;
+`;
 
 export const INNER = styled.div`
 	display: flex;

@@ -1,8 +1,8 @@
 import React from "react"
 import { css } from "@emotion/core"
-import CollapsibleSection from "../../collapsible-section";
-import { PARENT_TRIGGER } from "../../collapsible-section/styles";
-import Image from "../../image";
+import CollapsibleSection from "../../components/collapsible-section";
+import { PARENT_TRIGGER } from "../../components/collapsible-section/styles";
+import Image from "../../components/image";
 import Skills from "../skills";
 import Social from "../social";
 import {

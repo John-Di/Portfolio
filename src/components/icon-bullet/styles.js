@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { device } from '../../utils/variables';
-import { H2, H3, SPAN, P, LI, CLEARFIX } from '../../layouts/resume-layout/styles';
 
-export const WRAPPER = styled(SPAN)`
+export const WRAPPER = styled.span`
+	margin: 0;
+	line-height: inherit;
 	font-size: ${props => props.textSize};
 `;
 
-export const TEXT = styled(SPAN)`
+export const TEXT = styled.span`
+	margin: 0;
+	line-height: inherit;
 	font-size: inherit;
 `;
 
-export const ICON_WRAPPER = styled(SPAN)`
+export const ICON_WRAPPER = styled.span`
+	margin: 0;
+	line-height: inherit;
 	display: inline-block;
 	font-size: inherit;
 	text-align: center;

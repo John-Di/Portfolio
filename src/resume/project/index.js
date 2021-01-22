@@ -1,8 +1,7 @@
 import React from "react";
-import CollapsibleSection from "../../collapsible-section";
 import InnerSection from "../inner-section";
 import ImageFloatText from '../image-float-text';
-import IconBullet from '../../../components/icon-bullet';
+import IconBullet from '../../components/icon-bullet';
 import {
 	faGamepad,
 	faMobileAlt
@@ -10,9 +9,6 @@ import {
 import {
 	TYPE,
 	TOGGLE,
-	TOGGLE_NAME,
-	TOGGLE_ICON_DASH,
-	PROJECT,
 	DESCRIPTION,
 	DUTIES,
 	DUTY,

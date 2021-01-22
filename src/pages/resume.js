@@ -1,9 +1,29 @@
-import React from "react"
-import Resume from "../components/resume";
+import * as React from "react";
+import YAMLData from '../../static/resume.yaml';
+import ResumeLayout from '../layouts/resume-layout';
+import SEO from '../components/seo';
+import Basics from '../resume/basics';
+import About from '../resume/about';
 
-
-export default function ResumePage({ data, pageContext }) {
-	return (
-		<Resume data={data} pageContext={pageContext} />
-	)
+// styles
+const pageStyles = {
+  fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
+
+const resume = YAMLData;
+const { basics } = resume;
+
+// markup
+const ResumePage = () => {
+  return (
+    <main style={pageStyles}>
+      <ResumeLayout>
+        <SEO title={`Resume`} description={basics.name} />
+        <Basics data={resume} resume={resume} />
+        <About data={resume} resume={resume} />
+      </ResumeLayout>
+    </main>
+  )
+}
+
+export default ResumePage;

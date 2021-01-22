@@ -1,7 +1,7 @@
 import React from "react";
 import SocialLink from "../social-link";
-import LinkedIn from "../../../../static/svgs/linkedin.svg";
-import Github from "../../../../static/svgs/github.svg";
+import LinkedIn from "../../images/svgs/linkedin.svg";
+import Github from "../../images/svgs/github.svg";
 import {
 	HR,
 	SOCIAL_LIST,
@@ -17,7 +17,6 @@ export default function Social({ data }) {
 
 	return (
 		<div>
-			{/* <h2>Find me on</h2> */}
 			<HR />
 			<SOCIAL_LIST>
 				{profiles.map(profile => {

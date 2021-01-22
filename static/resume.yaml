@@ -6,7 +6,7 @@ basics:
   email: ''
   phone: "(912) 555-4321"
   url: http://johndigirolamo.me
-  summary: Senior Front-End Web Developer with 6 years of Shopify Plus experience in creating eCommerce Storefront Solutions. Strong knowledge of Shopify Theme development through HTML, CSS, Javascript/ES6 with some familiarity with Headless React JS solutions through the use of the Storefront API. Apart from eCommerce, has a strong passion for Video Game Design and Development having publish the game "Hammy Hop" to the Google Play Store in 2020. 
+  summary: Senior Front-End Web Developer with 6 years of Shopify Plus experience in creating eCommerce Storefront Solutions. Strong knowledge of Shopify Theme development through HTML, CSS, Javascript/ES6 with some familiarity with Headless React JS solutions through the use of the Storefront API. Apart from eCommerce, has a strong passion for Video Game Design and Development having publish the game "Hammy Hop" to the Google Play Store in 2020.
   location:
     address: ''
     postalCode: ''
@@ -196,10 +196,10 @@ projects:
   - Artist
   entity: Fra Gaming
   image: hammy_hop.jpg
-  social: 
+  social:
   - Facebook:
     url: https://www.facebook.com/HammyHop
-  - Instagram: 
+  - Instagram:
     url: https://www.instagram.com/hammyhop/
 meta:
   canonical: https://johndigirolamo.me/resume

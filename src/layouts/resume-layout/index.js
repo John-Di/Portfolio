@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, withPrefix, graphql } from "gatsby";
-import { Layout } from './styles';
+import { LAYOUT } from './styles';
 import background from '../../images/homepage_hero.jpg';
 
 // import Navigation from "./navigation"
@@ -24,8 +24,8 @@ export default function ResumeLayout({ children }) {
 	);
 
 	return (
-		<Layout background={withPrefix(data.hero.publicURL ? data.hero.publicURL : background)}>
+		<LAYOUT background={withPrefix(data.hero.publicURL ? data.hero.publicURL : background)}>
 			{children}
-		</Layout>
+		</LAYOUT>
 	)
 }

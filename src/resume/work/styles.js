@@ -1,9 +1,14 @@
 import styled from 'styled-components';
-import { rhythm } from "../../../utils/typography";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { device } from '../../../utils/variables';
-import { H2, H3, SPAN, P, LI, CLEARFIX } from '../../../layouts/resume-layout/styles';
-import { WRAPPER } from '../../duration/styles';
+import { device } from '../../utils/variables';
+import { WRAPPER } from '../../components/duration/styles';
+
+const CLEARFIX = `
+	&::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+`
 
 export const INNER = styled.div`
 	${CLEARFIX}
@@ -15,7 +20,7 @@ export const INFO = styled.div`
 `;
 
 
-export const EMPLOYER = styled(P)`
+export const EMPLOYER = styled.p`
 	font-size: 0.875em;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -23,7 +28,7 @@ export const EMPLOYER = styled(P)`
 	line-height: 1.1;
 	margin-right: 0.5em;
 
-	@media print, ${device.mobileXL} { 
+	@media print, ${device.mobileXL} {
 		display: inline-block;
 		margin-bottom: 0;
 	}
@@ -38,10 +43,12 @@ export const EMPLOYER = styled(P)`
 	}
 `;
 
-export const TOGGLE = styled(H3)`
+export const TOGGLE = styled.h3`
 	display: flex;
 	flex-flow: column nowrap;
 	font-size: 0.75em;
+	line-height: 1.1;
+	margin: 0;
 	padding-right: 3.25em;
 	font-weight: normal;
 	justify-content: center;
@@ -69,13 +76,13 @@ export const TOGGLE = styled(H3)`
 		}
 	}
 
-	@media ${device.mobileXL} { 
+	@media ${device.mobileXL} {
 		font-size: 0.875em;
 		flex-flow: row nowrap;
 		justify-content: space-between;
 	}
 
-	@media print { 
+	@media print {
 		justify-content: flex-start;
 		flex-flow: row nowrap;
 	}
@@ -108,13 +115,17 @@ export const TOGGLE_ICON = styled.span`
 export const TOGGLE_DURATION = styled.span`
 	margin-left: 0;
 
-	@media ${device.tablet} { 
+	@media ${device.tablet} {
 		display: block;
 		margin-left: 0.65625em;
 	}
 `;
 
-export const DUTY = LI;
+export const DUTY = styled.li`
+font-size: 0.75em;
+margin: 1em 0;
+line-height: 1.75;
+`;
 
 export const CAREER = styled.ul`
 	margin-left: 0;
@@ -131,4 +142,9 @@ export const CONTENT = styled.div`
 `;
 
 
-export const DATE = WRAPPER;
+export const DATE = styled.span`
+  margin-left: 0;
+  line-height: inherit;
+  position: relative;
+  display: inline-block;
+`;

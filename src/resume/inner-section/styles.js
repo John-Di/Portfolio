@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import { device } from '../../../utils/variables';
-import {
-	H3
-} from '../../../layouts/resume-layout/styles';
+
+const H3 = styled.h3`
+	font-size: 0.8125em;
+	margin: 0;
+	line-height: 1.1;
+`;
 
 export const WRAPPER = styled.div`
 	width: 100%;
-	
+
 	&:not(:first-child):not(:last-child) {
 		margin: 0.5em 0;
 	}

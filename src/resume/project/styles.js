@@ -1,24 +1,17 @@
 import styled from 'styled-components';
-import { rhythm } from "../../../utils/typography";
-import { device } from '../../../utils/variables';
-import {
-	H2,
-	H3,
-	DIVIDER,
-	KEYWORDS,
-	KEYWORD,
-	P,
-	SPAN,
-	UL,
-	LI
-} from '../../../layouts/resume-layout/styles';
+import { device } from '../../utils/variables';
 
-export const TYPE = styled(SPAN)`
+export const TYPE = styled.span`
+	margin: 0;
+	line-height: inherit;
 	position: relative;
 	margin-left: auto;
 `;
 
-export const TOGGLE = styled(H3)`
+export const TOGGLE = styled.h3`
+	font-size: 0.8125em;
+	margin: 0;
+	line-height: 1.1;
 	display: flex;
 	flex-flow: column nowrap;
 	font-size: 0.75em;
@@ -54,7 +47,7 @@ export const TOGGLE = styled(H3)`
 					&::before {
 						content: '(';
 					}
-			
+
 					&::after {
 						content: ')';
 					}
@@ -63,23 +56,24 @@ export const TOGGLE = styled(H3)`
 		}
 	}
 
-	@media ${device.mobileXL} { 
+	@media ${device.mobileXL} {
 		font-size: 0.875em;
 		flex-flow: row nowrap;
 		justify-content: space-between;
 	}
 
-	@media print { 
+	@media print {
 		justify-content: flex-start;
 		flex-flow: row nowrap;
 	}
 `;
 
-export const TOGGLE_NAME = styled(H2)`
+export const TOGGLE_NAME = styled.h2`
+	font-size: 1em;
+	line-height: 1.1;
 	display: inline-block;
 	font-size: 0.875em;
-	margin-top: 0.625em;
-	margin-bottom: 0.625em;
+	margin-top: 0.625em 0 0.625em;
 `;
 
 export const TOGGLE_ICON = styled.span`
@@ -124,7 +118,7 @@ export const IMAGE_WRAPPER = styled.a`
 		border-radius: 20%;
 	}
 
-	@media ${device.laptop} { 
+	@media ${device.laptop} {
 		float: left;
 		width: 200px;
 		height: 200px;
@@ -134,8 +128,11 @@ export const IMAGE_WRAPPER = styled.a`
 	}
 `;
 
-export const DESCRIPTION = styled(P)`
+export const DESCRIPTION = styled.p`
+	font-size: 0.75em;
+	line-height: 1.75;
 	margin: 0;
+
 	&::after {
 		content: '';
 		display: table;
@@ -143,7 +140,11 @@ export const DESCRIPTION = styled(P)`
 	}
 `;
 
-export const DUTY = LI;
+export const DUTY = styled.li`
+	font-size: 0.75em;
+	margin: 1em 0;
+	line-height: 1.75;
+`;
 
 export const DUTIES = styled.ul`
 	list-style-position: outside;
@@ -151,43 +152,36 @@ export const DUTIES = styled.ul`
 	padding-left: 1em;
 `;
 
-export const HR = styled(DIVIDER)`
-	margin-right: 5em;
-	margin-top: 1.3125em;
+export const HR = styled.hr`
+	margin: 1.3125em 5em 1.3125em 0;
 `;
 
 export const PROJECT_HIGHLIGHTS = styled.ul`
 	margin: 0;
 `;
 
-export const PROJECT_KEYWORDS = styled(KEYWORDS)`
-	padding-left: 0;
+export const PROJECT_KEYWORDS = styled.ul`
+	display: inline-block;
+	list-style: none;
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+	white-space: pre-wrap;
+	list-style-position: outside;
 	margin-top: 0.875em;
+
+	@media ${device.laptop} {
+		margin-top: 1.625em;
+	}
 `;
 
-// styled.ul`
-// 	margin: 0;
-// 	padding-left: 0;
-// 	margin-top: 0.328125em;
-
-// 	@media ${device.laptop} { 
-// 		padding-left: 1.625em;
-// 		margin-top: 1.625em;
-// 	}
-// `;
-
-export const PROJECT_KEYWORD = KEYWORD;
-// styled.li`
-// 	display: inline-block;
-// 	margin-right: 0.25em;
-// 	padding: 0.1em 0.25em;
-// 	background: #1975ca;
-// 	color: white;
-// 	border-radius: 0.125em;
-// 	margin-bottom: 0.328125em;
-
-// 	@media ${device.laptop} { 
-// 		padding: 0.2em 0.5em;
-// 		margin-bottom: 0.984375em;
-// 	}
-// `;
+export const PROJECT_KEYWORD = styled.li`
+	display: inline-block;
+	font-size: 0.75em;
+	margin-right: 0.25em;
+	margin-bottom: calc(1.3125em / 2);
+	padding: 0.5em;
+	background: #1975ca;
+	color: white;
+	border-radius: 0.25em;
+`;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { rhythm } from "../../../utils/typography";
-import { device } from '../../../utils/variables';
+import { device } from '../../utils/variables';
 
 export const TOGGLE_NAME = styled.h3`
 	display: inline-block;
@@ -27,7 +26,7 @@ export const SECTION = styled.section`
 	margin-bottom: 3.28125em;
 	padding: 0.875em 1.25em;
 
-	@media ${device.laptop} { 
+	@media ${device.laptop} {
 		max-width: calc(100% - 24em);
 		padding: 2em;
 	}

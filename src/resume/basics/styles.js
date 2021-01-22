@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import { rhythm } from "../../utils/typography";
 import { device } from '../../utils/variables';
-import { H1 } from '../../layouts/resume-layout/styles';
+
+export const H1 = styled.h1`
+	font-size: 1.5em;
+	margin: 2.2969em auto 0.5em;
+	line-height: 1.1;
+`;
 
 export const BASICS = styled.section`
 	background: white;
@@ -13,12 +17,12 @@ export const BASICS = styled.section`
 	max-width: 22em;
 	margin: 0 auto 1.3125em;
 
-	@media print { 
+	@media print {
 		margin: 0 auto;
 		padding: 0;
 	}
 
-	@media ${device.laptop} { 
+	@media ${device.laptop} {
 		position: fixed;
 		margin: 0;
 	}
@@ -37,7 +41,7 @@ export const BASICS = styled.section`
 	}
 
 	.Collapsible--basics .Collapsible__trigger {
-		@media ${device.laptop} { 
+		@media ${device.laptop} {
 			cursor: auto !important;
 		}
 	}
@@ -51,13 +55,13 @@ export const BASICS = styled.section`
 		display: block;
 		transition: transform 300ms;
 
-		@media print, ${device.laptop} { 
+		@media print, ${device.laptop} {
 			display: none;
 		}
 	}
 
 	.Collapsible__contentOuter {
-		@media ${device.laptop} { 
+		@media ${device.laptop} {
 			height: auto !important;
 		}
 	}
@@ -92,7 +96,7 @@ export const PRINT = styled.button`
 	bottom: -4em;
 	left: 50%;
 	transform: translateX(-50%);
-	
+
 	&:hover {
 		opacity: 0.8;
 	}

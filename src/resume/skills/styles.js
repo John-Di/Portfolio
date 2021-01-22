@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { rhythm } from "../../../utils/typography";
-import { SPAN } from '../../../layouts/resume-layout/styles';
 
-export const CATEGORY = styled(SPAN)`
+export const CATEGORY = styled.span`
+	margin: 0;
+	line-height: inherit;
 	font-size: 0.875em;
 `;
 

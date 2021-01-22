@@ -1,7 +1,6 @@
 import React from "react";
 import Moment from 'react-moment';
-import Image from "../../image";
-import { device } from '../../../utils/variables';
+import Image from "../../components/image";
 import {
 	IMAGEFLOATTEXT,
 	WRAPPER,

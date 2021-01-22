@@ -1,11 +1,10 @@
 import React from "react";
-import Moment from 'react-moment';
 import {
 	faLaptopCode,
 	faCalendar,
 	faGraduationCap
 } from "@fortawesome/free-solid-svg-icons";
-import IconBullet from '../../../components/icon-bullet';
+import IconBullet from '../../components/icon-bullet';
 import {
 	DEGREE,
 	NAME
@@ -13,11 +12,6 @@ import {
 
 export default function DegreeEntry({ data }) {
 	const degree = data;
-	const duration = degree.endDate ? <Moment add={{ months: 1 }} subtract={{ days: 1 }} duration={degree.startDate}
-		date={degree.endDate}
-	/> : <Moment add={{ months: 1 }} subtract={{ days: 1 }} durationFromNow
-		date={degree.endDate}
-		/>;
 
 	return (
 		<DEGREE>
