@@ -52,8 +52,8 @@ export const WRAPPER = styled.a`
 	}
 
 	@media ${device.desktop} {
-		flex: 1 0 60px;
-		width: 60px;
+		width: 150px;
+		flex: 1 0 150px;
 	}
 
 	&:hover {
