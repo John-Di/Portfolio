@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import { CLEARFIX } from '../../utils/clearfix';
+import Clearfix from '../../utils/Clearfix';
+import Log from '../../utils/Log';
+import {
+  conditionalProp
+} from '../../utils/AssessProps';
 
 export const HEADING = styled.div`
 	width: 100%;
@@ -34,16 +38,13 @@ export const HEADING = styled.div`
 
 const generateBackground = ({ backgroundImage = false, backgroundColor = false }) => `
 
-	${(() => {
-    console.log('generateLayout', { backgroundImage, backgroundColor });
-    return ``;
-  })()}
-
 	${(() => backgroundImage && `
 		background-image: url('${backgroundImage}');
 		background-position: center;
 		background-size: cover;
-		background-repeat: no-repeat;
+    background-repeat: no-repeat;
+
+    ${Log('section.generateBackground', { backgroundImage, backgroundColor })}
 	`)()};
 
 	${(() => backgroundColor && `
@@ -54,33 +55,32 @@ const generateBackground = ({ backgroundImage = false, backgroundColor = false }
 
 const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSmall = 'center', textAlignmentLarge = 'left', hasMarginSmall = true, hasMarginLarge = true, cols, isBanner = false, isHero = false }) => `
 
-	${(() => {
-    console.log('generateLayout', { maxWidth, hasPadding, textAlignmentSmall, textAlignmentLarge, hasMarginSmall, hasMarginLarge, isBanner, isHero });
-    return ``;
-  })()}
+  ${Log('section.generateLayout', { maxWidth, hasPadding, textAlignmentSmall, textAlignmentLarge, hasMarginSmall, hasMarginLarge, isBanner, isHero })}
 
-	${(() => hasMarginSmall && `
-		margin: 4em auto;
-	`)()}
+  ${conditionalProp(hasMarginSmall, `
+    margin: 4em auto;
+  `)}
 
-	${(() => hasMarginLarge && `
-		@media ${device.laptop} {
-			margin: 8em auto;
-		}
-	`)()}
+  ${conditionalProp(hasMarginLarge, `
+    @media ${device.laptop} {
+      margin: 8em auto;
+    }
+  `)}
 
-	${(() => hasPadding && `
-		padding: 0;
+  ${conditionalProp(hasPadding, `
+    padding: 0;
 
-		@media ${device.laptop} {
-			padding: 0 8%;
-		}
-	`)()};
+    @media ${device.laptop} {
+      padding: 0 8%;
+    }
+  `)}
 
-	max-width: ${maxWidth ? maxWidth : `100%`};
+  max-width: ${conditionalProp(maxWidth, maxWidth, `100%`)};
 
-	${(() => (isBanner || isHero) && `
-		${isHero ? `min-height: 100vh;` : `min-height: 50vh;`}
+  ${conditionalProp(isBanner, `
+    ${Log('section.isBanner.generateLayout', `${conditionalProp(isHero, `min-height: 100vh;`, `min-height: 50vh;`)}`)}
+    ${conditionalProp(isHero, `min-height: 100vh;`, `min-height: 50vh;`)}
+
 		text-align: ${textAlignmentSmall};
 
 		@media ${device.tablet} {
@@ -92,7 +92,7 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
 				line-height: 1.25;
 			}
 		}
-	`)()}
+	`)}
 `;
 
 
@@ -110,5 +110,5 @@ export const SECTION = styled.section`
 
 	${props => assessProps(props)}
 
-	${CLEARFIX}
+	${Clearfix}
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import { CLEARFIX } from '../../utils/clearfix';
+import Clearfix from '../../utils/Clearfix';
 
 const gap = 0.25;
 
@@ -31,7 +31,7 @@ export const GALLERY = styled.div`
 	margin: auto;
 	width: 100%;
 
-	${CLEARFIX}
+	${Clearfix}
 	@supports not (display:grid) {
 	}
 `;
@@ -42,7 +42,7 @@ export const NAVIGATION = styled.div`
 		margin: 2em -${gap}em 0;
 	}
 
-	${CLEARFIX}
+	${Clearfix}
 
 	@supports not (display:grid) {
 	}

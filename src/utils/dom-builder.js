@@ -1,18 +1,20 @@
 import React from "react";
 
-export const jsxToArray = (length, content) => Array.from(
-	{ length },
-	content.bind(this, length)
+export const arrayToJSXList = (list, toJSXArray) => reduceJSXList(list.map(toJSXArray));
+
+export const jsxCloneArray = (length, content) => Array.from(
+  { length },
+  content.bind(this, length)
 );
 
-export const arrayToJSX = (length, content) => reduceJSXList(
-	jsxToArray(length, content)
+export const jsxCloneArrayToJSX = (length, content) => reduceJSXList(
+  jsxCloneArray(length, content)
 );
 
 export const reduceJSXList = (list, delimiter = (<></>)) => list.reduce((acc, curr) => acc === null ? curr : (
-	<>
-		{acc}
-		{delimiter}
-		{curr}
-	</>
+  <>
+    {acc}
+    {delimiter}
+    {curr}
+  </>
 ), null);

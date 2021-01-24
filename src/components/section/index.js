@@ -7,12 +7,28 @@ import {
 
 let maxWidth_DEFAULT = `${size.laptopL}px`;
 
-export default function Section({ children, className, maxWidth = maxWidth_DEFAULT, hasMarginSmall = true, hasMarginLarge = true, image = false, backgroundColor = false, hasPadding, heading, preheading, subheading, textAlignmentSmall = 'center', textAlignmentLarge = 'center', heightSmall = false, heightLarge = false, isBanner = false, isHero = false }) {
+export default function Section({ children,
+  className,
+  maxWidth = maxWidth_DEFAULT,
+  hasMarginSmall = true,
+  hasMarginLarge = true,
+  backgroundImage = false,
+  backgroundColor = false,
+  hasPadding,
+  heading,
+  preheading,
+  subheading,
+  textAlignmentSmall = 'center',
+  textAlignmentLarge = 'center',
+  heightSmall = false,
+  heightLarge = false,
+  isBanner = false,
+  isHero = false }) {
   return (
     <SECTION
       className={className}
       maxWidth={maxWidth}
-      backgroundImage={image}
+      backgroundImage={backgroundImage}
       hasMarginSmall={hasMarginSmall}
       hasMarginLarge={hasMarginLarge}
       heightSmall={heightSmall}

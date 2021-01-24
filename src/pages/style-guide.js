@@ -6,11 +6,10 @@ import OnePairSection from '../sections/one-pair-section';
 import TwoPairSection from '../sections/two-pair-section';
 import ThreePairSection from '../sections/three-pair-section';
 import FourPairSection from '../sections/four-pair-section';
+import Header from '../components/header';
 import FancyCTA from '../components/fancy-cta';
 import ImageGallerySection from '../sections/image-gallery-section';
-import {
-  idealTextColor
-} from '../utils/IdealTextColor';
+import IdealTextColor from '../utils/IdealTextColor';
 import {
   randomColor,
   randomImage,
@@ -28,9 +27,11 @@ const pageStyles = {
 // markup
 const StyleGuidePage = () => {
   let heroBannerColor = randomColor();
-  let heroWidth = randomBool();
+  let heroWidth = randomBool() || true;
   return (
     <main style={pageStyles}>
+
+      <Header />
       <StyleGuideArticle>
         <HeroBanner
           index={0}
@@ -49,7 +50,7 @@ const StyleGuidePage = () => {
             <h1>Style Guide</h1>
             <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
             <FancyCTA
-              textColor={idealTextColor(heroBannerColor)}
+              textColor={IdealTextColor(heroBannerColor)}
             >Learn More</FancyCTA>
           </TextBlock>
         </HeroBanner>

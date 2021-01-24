@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import { CLEARFIX } from '../../utils/clearfix';
+import Clearfix from '../../utils/Clearfix';
 
 export const IMAGEFLOATTEXT = styled.div`
 	width: 100%;
@@ -11,7 +11,7 @@ export const IMAGEFLOATTEXT = styled.div`
 	}
 
 
-	${CLEARFIX}
+	${Clearfix}
 `;
 
 export const CONTENT = styled.div`
@@ -40,7 +40,7 @@ export const WRAPPER = styled.a`
 		flex: 1 0 150px;
 		margin: 1em 1em 2em 4em;
 
-		${CLEARFIX}
+		${Clearfix}
 	}
 
 	@media ${device.desktop} {

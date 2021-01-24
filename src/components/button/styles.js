@@ -1,15 +1,9 @@
 import styled from 'styled-components';
-
-const RESET = `
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: none;
-`;
+import { ButtonReset } from '../../utils/Resets';
 
 export const BUTTON = styled.button`
 	cursor: pointer;
-	${RESET}
+	${ButtonReset}
 	${props => assessProps(props)}
 
 `;

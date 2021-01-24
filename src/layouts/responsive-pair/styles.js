@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import { CLEARFIX } from '../../utils/clearfix';
+import Clearfix from '../../utils/Clearfix';
+import AssessProps, { conditionalProp } from '../../utils/AssessProps';
+import Log from '../../utils/Log';
 
 const sideBySide = (acc, rule, i) => `
 	${acc}
@@ -72,13 +74,7 @@ const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpo
 	&::${pseudo} {
 		content: '';
 		display: block;
-
-		${backgroundColor && `background-color: ${backgroundColor};`}
-		${backgroundImage && `background-image: url('${backgroundImage}');`}
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-
+    ${AssessProps({ backgroundColor, backgroundImage })}
 		${pairItemRules(adjacentBreakpoints, stackedBreakpoints)}
 
 		${isSquare ? `
@@ -111,9 +107,6 @@ const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpo
 `;
 
 const assessProps = (props) => `
-
-	${props.backgroundColor ? `background-color: ${props.backgroundColor};` : ``}
-
 	${props.hasPaddingSmall ? `
 		padding: 4em 0;
 	` : ''}
@@ -137,10 +130,10 @@ export const LAYOUT = styled.div`
 
 	@media ${device.tablet} {
 		${props => props.hasPadding ? `padding: 5em 0;` : ''}
-		${CLEARFIX}
+		${Clearfix}
 	}
 
-	${props => props.hasPseudo && generatePseudo(props)}
+	${props => conditionalProp(props.hasPseudo, generatePseudo(props), AssessProps(props))}
 	${props => assessProps(props)}
 `;
 

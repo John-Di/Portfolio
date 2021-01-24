@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
+import Log from '../../utils/Log';
+import FullSizeOverlay from '../../utils/FullSizeOverlay';
+import {
+  FlexCentered
+} from '../../utils/Flex';
+import AssessProps, {
+  renderText
+} from '../../utils/AssessProps';
 
 export const BLOCK = styled.div`
+  ${FlexCentered}
 	max-width: 100%;
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+  text-align: center;
 	flex: 1 auto;
 	position: relative;
 
@@ -17,9 +21,11 @@ export const BLOCK = styled.div`
 		padding-top: 0;
 		justify-content: flex-start;
 		align-items: center;
-	}
+  }
 
-	${props => props.overlay && `
+  ${props => AssessProps(props)}
+
+	${props => (props.overlay || props.isSquare) && `
 		&::before {
 			content: '';
 			display: inline-block;
@@ -35,28 +41,12 @@ export const CONTAINER = styled.div`
 	width: 100%;
 	max-width: 1440px;
 	padding: 0 8%;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-
-	${props => props.overlay && `
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-	`}
+  margin: 0 auto;
+  ${FlexCentered}
+	${props => props.overlay && FullSizeOverlay}
 `;
 
-const assessProps = ({ backgroundColor, textColor = `#000000` }) => `
-	${backgroundColor ? `background-color: ${backgroundColor};` : ``}
-	${textColor ? `color: ${textColor};` : ``}
-`
-
 export const CONTENT = styled.div`
-	padding: 0;
-	${props => assessProps(props)}
+  padding: 0;
+	${props => renderText(props)}
 `;

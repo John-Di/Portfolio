@@ -1,12 +1,10 @@
 import React from "react";
 import Section from '../../components/section';
-import {
-  idealTextColor
-} from '../../utils/IdealTextColor';
+import IdealTextColor from '../../utils/IdealTextColor';
 
 export default function HeroBanner({ children, textColor = "#000000", backgroundColor = false, backgroundImage, maxWidth = '100%' }) {
 
-  textColor = textColor ? textColor : backgroundColor && idealTextColor(backgroundColor);
+  textColor = textColor ? textColor : backgroundColor && IdealTextColor(backgroundColor);
   return (
     <Section
       className="hero-banner"

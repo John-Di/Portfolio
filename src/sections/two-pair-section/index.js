@@ -3,15 +3,13 @@ import Section from '../../components/section';
 import TextMediaBlock from '../../components/text-media-block';
 import FancyCTA from '../../components/fancy-cta';
 import ResponsivePair from '../../layouts/responsive-pair';
-import { jsxToArray } from '../../utils/dom-builder';
+import { jsxCloneArray } from '../../utils/dom-builder';
 import {
   randomColor,
   randomImage,
   randomIntegerEx
 } from '../../utils/randoms';
-import {
-  idealTextColor
-} from '../../utils/IdealTextColor';
+import IdealTextColor from '../../utils/IdealTextColor';
 import { size, device } from '../../utils/variables';
 
 const breakpoints = [
@@ -28,7 +26,6 @@ const breakpoints = [
 export default function TwoPairSection(isFullWidth, maxWidth = size.laptopL, hasPadding) {
   isFullWidth = isFullWidth.hasOwnProperty('isFullWidth') ? isFullWidth.isFullWidth : isFullWidth;
   hasPadding = !isFullWidth;
-  console.log('TwoPairSection', isFullWidth, isFullWidth ? `Two Full Width` : `Two Page Width`, 'padding', hasPadding);
   return (
     <Section maxWidth={isFullWidth ? `100%` : maxWidth} hasPadding={hasPadding} className="two-pair-section"
       heading={(<h1>Two Pair Section</h1>)}
@@ -41,7 +38,7 @@ export default function TwoPairSection(isFullWidth, maxWidth = size.laptopL, has
             }
           ]}
         items={
-          jsxToArray(2, (length, _, index) => {
+          jsxCloneArray(2, (length, _, index) => {
             let backgroundColor = randomColor();
             return (
               <TextMediaBlock
@@ -53,7 +50,7 @@ export default function TwoPairSection(isFullWidth, maxWidth = size.laptopL, has
                 <h2>Text Media Block {index + 1}/{length}</h2>
                 <p>Just for the time being...</p>
                 <FancyCTA
-                  textColor={idealTextColor(backgroundColor)}
+                  textColor={IdealTextColor(backgroundColor)}
                 >Learn More</FancyCTA>
               </TextMediaBlock>
             )
