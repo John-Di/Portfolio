@@ -6,8 +6,28 @@ import {
   FlexCentered
 } from '../../utils/Flex';
 import AssessProps, {
-  renderText
+  renderText,
+  conditionalProp
 } from '../../utils/AssessProps';
+
+const assessProps = ({ overlay, isSquare, backgroundImage, whiteOnHover }) => `
+  ${conditionalProp(overlay || isSquare, `
+    &::before {
+      content: '';
+      display: inline-block;
+      vertical-align: bottom;
+      width: 100%;
+      ${conditionalProp(isSquare, `padding-top: 100%;`, `
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+      `)}
+      ${conditionalProp(backgroundImage, conditionalProp(whiteOnHover, `background-color: lightgrey;`, `background-color: grey;`))}
+      opacity: 0.3;
+  `)}
+`;
 
 export const BLOCK = styled.div`
   ${FlexCentered}
@@ -24,16 +44,7 @@ export const BLOCK = styled.div`
   }
 
   ${props => AssessProps(props)}
-
-	${props => (props.overlay || props.isSquare) && `
-		&::before {
-			content: '';
-			display: inline-block;
-			vertical-align: bottom;
-			padding-top: 100%;
-			width: 100%;
-		}
-	`}
+  ${props => assessProps(props)}
 `;
 
 export const CONTAINER = styled.div`

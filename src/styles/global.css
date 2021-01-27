@@ -82,3 +82,24 @@ a {
 		page-break-after: always;
 	}
 }
+
+
+
+@keyframes expandMenuDrawer {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: calc(100% - 3em);
+  }
+}
+
+
+@keyframes scrollDrawDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

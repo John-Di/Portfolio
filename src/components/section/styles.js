@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
 import Log from '../../utils/Log';
-import {
+import AssessProps, {
   conditionalProp
 } from '../../utils/AssessProps';
 
@@ -34,23 +34,6 @@ export const HEADING = styled.div`
 			font-size: 1.5em;
 		}
 	}
-`;
-
-const generateBackground = ({ backgroundImage = false, backgroundColor = false }) => `
-
-	${(() => backgroundImage && `
-		background-image: url('${backgroundImage}');
-		background-position: center;
-		background-size: cover;
-    background-repeat: no-repeat;
-
-    ${Log('section.generateBackground', { backgroundImage, backgroundColor })}
-	`)()};
-
-	${(() => backgroundColor && `
-		background-color: ${backgroundColor};
-	`)()};
-
 `;
 
 const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSmall = 'center', textAlignmentLarge = 'left', hasMarginSmall = true, hasMarginLarge = true, cols, isBanner = false, isHero = false }) => `
@@ -97,7 +80,7 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
 
 
 const assessProps = (props) => `
-	${generateBackground(props)}
+	${AssessProps(props)}
 	${generateLayout(props)}
 `
 
@@ -109,6 +92,7 @@ export const SECTION = styled.section`
 	width: 100%;
 
 	${props => assessProps(props)}
+  ${props => Log('section.isBanner.generateLayout', `${conditionalProp(props.backgroundImage, `${props.backgroundImage}`)}`)}
 
 	${Clearfix}
 `;

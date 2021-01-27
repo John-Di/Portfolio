@@ -23,78 +23,82 @@ import StyleGuideArticle from '../components/style-guide-article';
 // styles
 const pageStyles = {
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
+  position: "relative"
 }
 // markup
 const StyleGuidePage = () => {
   let heroBannerColor = randomColor();
+  let heroBannerTextColor = IdealTextColor(heroBannerColor);
   let heroWidth = randomBool() || true;
   return (
-    <main style={pageStyles}>
-
-      <Header />
-      <StyleGuideArticle>
-        <HeroBanner
-          index={0}
-          cols={1}
-          backgroundColor={`${heroBannerColor}`}
-          text
-          backgroundImage={`${randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}`}
-          image_first={`${randomBool()}`}
-          maxWidth={`${heroWidth ? `100%` : `${size.laptopL}px`}`}
-          reversed={!!0}
-          isEven={0 % 2 === 0}
-        >
-          <TextBlock
-            backgroundColor={heroBannerColor}
+    <>
+      <Header
+        textColor={heroBannerTextColor}
+        backgroundColor={heroBannerColor}
+      />
+      <main style={pageStyles}>
+        <StyleGuideArticle>
+          <HeroBanner
+            index={0}
+            cols={1}
+            image_first={`${randomBool()}`}
+            maxWidth={`${heroWidth ? `100%` : `${size.laptopL}px`}`}
+            reversed={!!0}
+            isEven={0 % 2 === 0}
           >
-            <h1>Style Guide</h1>
-            <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
-            <FancyCTA
-              textColor={IdealTextColor(heroBannerColor)}
-            >Learn More</FancyCTA>
-          </TextBlock>
-        </HeroBanner>
-        <TextBanner
-          textAlignment={'center'}
-        >
-          <TextBlock
+            <TextBlock
+              overlay={true}
+              backgroundColor={`${heroBannerColor}`}
+              backgroundImage={randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}>
+              <h1>Style Guide</h1>
+              <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
+              <FancyCTA
+                textColor={heroBannerTextColor}
+              >Learn More</FancyCTA>
+            </TextBlock>
+          </HeroBanner>
+          <TextBanner
+            textAlignment={'center'}
           >
-            <h2>Sections and Components</h2>
-            <p>Including this Basic Text Banner Section</p>
-          </TextBlock>
-        </TextBanner>
-        <OnePairSection isFullWidth={true} />
-        <OnePairSection isFullWidth={false} />
-        <TwoPairSection isFullWidth={true} />
-        <TwoPairSection isFullWidth={false} />
-        <TextBanner
-          textAlignment={'center'}
-        >
-          <TextBlock
+            <TextBlock
+            >
+              <h2>Sections and Components</h2>
+              <p>Including this Basic Text Banner Section</p>
+            </TextBlock>
+          </TextBanner>
+          <OnePairSection isFullWidth={true} />
+          <OnePairSection isFullWidth={false} />
+          <TwoPairSection isFullWidth={true} />
+          <TwoPairSection isFullWidth={false} />
+          <TextBanner
+            textAlignment={'center'}
           >
-            <h2>Just a little White Space Break</h2>
-            <p>Enjoy the Image Gallery</p>
-          </TextBlock>
-        </TextBanner>
-        <ImageGallerySection
-          images={randomImageArray()}
-        />
-        <ThreePairSection isFullWidth={true} />
-        <ThreePairSection isFullWidth={false} />
-        <FourPairSection isFullWidth={true} />
-        <FourPairSection isFullWidth={false} />
-        <TextBanner
-          textAlignment={'center'}
-        >
-          <TextBlock
+            <TextBlock
+            >
+              <h2>Just a little White Space Break</h2>
+              <p>Enjoy the Image Gallery</p>
+            </TextBlock>
+          </TextBanner>
+          <ImageGallerySection
+            images={randomImageArray()}
+          />
+          <ThreePairSection isFullWidth={true} />
+          <ThreePairSection isFullWidth={false} />
+          <FourPairSection isFullWidth={true} />
+          <FourPairSection isFullWidth={false} />
+          <TextBanner
+            textAlignment={'center'}
           >
-            <h2>That's it for now</h2>
-            <p>Try Mobile if you haven't already</p>
-          </TextBlock>
-        </TextBanner>
-        <OnePairSection isFullWidth={true} />
-      </StyleGuideArticle>
-    </main>
+            <TextBlock
+            >
+              <h2>That's it for now</h2>
+              <p>Try Mobile if you haven't already</p>
+            </TextBlock>
+          </TextBanner>
+          <OnePairSection isFullWidth={true} />
+        </StyleGuideArticle>
+      </main>
+    </>
   )
 }
 

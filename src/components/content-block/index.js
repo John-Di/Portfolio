@@ -5,7 +5,7 @@ import {
   CONTENT
 } from './styles';
 
-export default function ContentBlock({ backgroundColor = false, backgroundImage, textAlignmentSmall = 'center', textAlignmentLarge = 'center', children, isSquare, overlay = false, textColor }) {
+export default function ContentBlock({ whiteOnHover, backgroundColor = false, backgroundImage, textAlignmentSmall = 'center', textAlignmentLarge = 'center', children, isSquare, overlay = false, textColor }) {
   return (
     <BLOCK
       className="content-block"
@@ -13,6 +13,7 @@ export default function ContentBlock({ backgroundColor = false, backgroundImage,
       backgroundImage={backgroundImage}
       isSquare={isSquare}
       overlay={overlay}
+      whiteOnHover={whiteOnHover}
     >
       <CONTAINER
         className="content-block__container"

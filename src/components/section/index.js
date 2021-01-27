@@ -23,7 +23,8 @@ export default function Section({ children,
   heightSmall = false,
   heightLarge = false,
   isBanner = false,
-  isHero = false }) {
+  isHero = false,
+  whiteOnHover }) {
   return (
     <SECTION
       className={className}
@@ -37,6 +38,7 @@ export default function Section({ children,
       backgroundColor={backgroundColor}
       isBanner={isBanner || isHero}
       isHero={isHero}
+      whiteOnHover={whiteOnHover}
     >
       {
         (heading || subheading || preheading) &&

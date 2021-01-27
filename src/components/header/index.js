@@ -4,38 +4,30 @@ import Section from '../section';
 import ResponsivePair from '../../layouts/responsive-pair';
 import {
   jsxCloneArray,
-  reduceJSXList,
   arrayToJSXList
 } from '../../utils/dom-builder';
 import {
   randomColor,
   randomImage,
-  randomIntegerEx,
-  randomIntegerIn
+  randomIntegerEx
 } from '../../utils/randoms';
 import IdealTextColor from '../../utils/IdealTextColor';
-import {
-  navigate
-} from "gatsby"
 import React, {
   useState
 } from "react";
+import {
+  faBars
+} from "@fortawesome/free-solid-svg-icons";
 import {
   HEADER,
   NAV,
   UL,
   LI,
-  NavLink
+  NavLink,
+  Icon,
+  DIV,
+  Toggle
 } from './styles';
-
-const onClick = (event, handle, replace = true) => {
-  event.preventDefault();
-
-  navigate(
-    handle,
-    { replace }
-  )
-}
 
 const nav = [
   {
@@ -57,11 +49,13 @@ let alignment = [
   'flex-end'
 ]
 
-const Header = () => {
+const Header = ({ textColor, backgroundColor }) => {
   const [menuIndex, setMenuIndex] = useState(-1);
   const updateMenuIndex = index => setMenuIndex(index === menuIndex ? -1 : index);
 
-  let accent = randomColor();
+  let accentColor = randomColor();
+  let textOnAccentColor = IdealTextColor(accentColor);
+  let whiteOnHover = textOnAccentColor === "#ffffff";
 
   const megaMenu = !!~menuIndex &&
     <MegaMenu>
@@ -82,6 +76,7 @@ const Header = () => {
                         isEven={index % 2 === 0}
                         isSquare={true}
                         overlay={true}
+
                       >
                       </ContentBlock>
                     )
@@ -96,27 +91,40 @@ const Header = () => {
   return (
     <HEADER
       isMenuOpen={!!~menuIndex}
+      accentColor={accentColor}
+      backgroundColor={backgroundColor}
+      whiteOnHover={whiteOnHover}
     >
       <NAV>
-        <UL
-          desktopNavAlignment={alignment[randomIntegerEx(0, alignment.length)]}
-        >
-          {
-            arrayToJSXList(nav, (item, i) => (
-              <LI>
-                <NavLink
-                  to={item.href}
-                  onClick={() => updateMenuIndex(i)}
-                  accent={accent}
-                  emphasis={IdealTextColor(accent)}
-                >
-                  {item.label}
-                </NavLink>
-              </LI>
-            ))
-          }
-        </UL>
-        {megaMenu}
+        <Toggle textColor={backgroundColor} onClick={() => updateMenuIndex(0)}>
+          <Icon icon={faBars} color={IdealTextColor(accentColor)} />
+        </Toggle>
+        <DIV
+          isMenuOpen={!!~menuIndex}>
+          <UL
+            isMenuOpen={!!~menuIndex}
+            desktopNavAlignment={alignment[randomIntegerEx(0, alignment.length)]}
+          >
+            {
+              arrayToJSXList(nav, (item, i) => (
+                <LI>
+                  <NavLink
+                    to={item.href}
+                    onClick={() => updateMenuIndex(i + 1)}
+                    textColor={textColor}
+                    accentColor={accentColor}
+                    textColorEmphasis={IdealTextColor(accentColor)}
+                    activeClassName="active"
+                    replace
+                  >
+                    {item.label}
+                  </NavLink>
+                </LI>
+              ))
+            }
+          </UL>
+          {/* {megaMenu} */}
+        </DIV>
       </NAV>
     </HEADER>
   )

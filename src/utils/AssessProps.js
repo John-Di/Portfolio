@@ -2,7 +2,7 @@ import IdealTextColor from './IdealTextColor';
 import { device } from './variables';
 import Log from '../utils/Log';
 
-const AssessProps = (props) => `
+const AssessProps = props => `
   ${AssessBackground(props)}
   ${conditionalProp(props.borderColor, renderBorder(props.borderColor))}
   ${renderText(props)}

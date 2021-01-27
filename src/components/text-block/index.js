@@ -1,7 +1,7 @@
 import React from "react";
 import ContentBlock from '../content-block';
 
-export default function TextBlock({ backgroundColor = false, backgroundImage, textAlignmentSmall = 'center', textAlignmentLarge = 'center', children, isSquare = false, overlay = false, textColor }) {
+export default function TextBlock({ whiteOnHover, backgroundColor = false, backgroundImage, textAlignmentSmall = 'center', textAlignmentLarge = 'center', children, isSquare = false, overlay = false, textColor }) {
   return (
     <ContentBlock
       className="text-block"
@@ -12,6 +12,7 @@ export default function TextBlock({ backgroundColor = false, backgroundImage, te
       textColor={textColor}
       textAlignmentSmall={textAlignmentSmall}
       textAlignmentLarge={textAlignmentLarge}
+      whiteOnHover={whiteOnHover}
     >
       {children}
     </ContentBlock>
