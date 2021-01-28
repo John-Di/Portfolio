@@ -121,8 +121,10 @@ export const UL = styled.ul`
 
 export const LI = styled.li`
   ${ListReset}
+
   a {
     color: ${props => props.accentColor};
+    border: 0.25em solid transparent;
 
     &:hover,
     &:active,
@@ -131,7 +133,6 @@ export const LI = styled.li`
       font-weight: bold;
     }
 
-    border: 0.25em solid transparent;
     @media ${device.max_tablet} {
       align-items: flex-start;
       width: 100%;
@@ -143,8 +144,8 @@ export const LI = styled.li`
       &:hover,
       &:active,
       &.active {
-        background: ${props => props.accentColor};
-        color: ${props => props.textColorEmphasis} !important;
+        background: ${props => props.backgroundColor};
+        color: ${props => props.textColorEmphasis};
       }
 
       &:focus {
@@ -162,7 +163,7 @@ export const UTIL = styled.nav`
 
 `;
 
-export const NAV_LINK = styled(Link)`
+export const NAVLINK = styled(Link)`
   ${LinkReset}
   ${FlexCentered}
   display: inline-flex;

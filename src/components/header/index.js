@@ -24,7 +24,7 @@ import {
   NAV,
   UL,
   LI,
-  NAV_LINK,
+  NAVLINK,
   ICON,
   DIV,
   TOGGLE
@@ -120,14 +120,18 @@ const Header = ({ textColor, backgroundColor }) => {
           >
             {
               arrayToJSXList(nav, (item, i) => (
-                <LI>
-                  <NAV_LINK
+                <LI
+                  textColor={textColor}
+                  accentColor={accentColor}
+                  backgroundColor={backgroundColor}
+                  textColorEmphasis={IdealTextColor(accentColor)}>
+                  <NAVLINK
                     to={item.href}
                     onClick={() => onMenuToggle(i + 1)}
                     activeClassName="active"
                   >
                     {item.label}
-                  </NAV_LINK>
+                  </NAVLINK>
                 </LI>
               ))
             }
