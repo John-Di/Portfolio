@@ -95,7 +95,7 @@ a {
 }
 
 
-@keyframes scrollDrawDown {
+@keyframes scrollDrawerDown {
   0% {
     transform: translateY(-100%);
   }

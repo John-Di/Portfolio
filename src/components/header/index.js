@@ -13,7 +13,8 @@ import {
 } from '../../utils/randoms';
 import IdealTextColor from '../../utils/IdealTextColor';
 import React, {
-  useState
+  useState,
+  useRef
 } from "react";
 import {
   faBars
@@ -23,10 +24,10 @@ import {
   NAV,
   UL,
   LI,
-  NavLink,
-  Icon,
+  NAV_LINK,
+  ICON,
   DIV,
-  Toggle
+  TOGGLE
 } from './styles';
 
 const nav = [
@@ -51,11 +52,17 @@ let alignment = [
 
 const Header = ({ textColor, backgroundColor }) => {
   const [menuIndex, setMenuIndex] = useState(-1);
-  const updateMenuIndex = index => setMenuIndex(index === menuIndex ? -1 : index);
+  const updateMenuIndex = index => setMenuIndex(!!~index && index === menuIndex ? -1 : index);
 
   let accentColor = randomColor();
   let textOnAccentColor = IdealTextColor(accentColor);
   let whiteOnHover = textOnAccentColor === "#ffffff";
+
+  const drawerEl = useRef(null);
+  const onMenuToggle = index => {
+    updateMenuIndex(index);
+    return menuIndex;
+  }
 
   const megaMenu = !!~menuIndex &&
     <MegaMenu>
@@ -94,13 +101,19 @@ const Header = ({ textColor, backgroundColor }) => {
       accentColor={accentColor}
       backgroundColor={backgroundColor}
       whiteOnHover={whiteOnHover}
+      textColor={textColor}
+      accentColor={accentColor}
+      textColorEmphasis={IdealTextColor(accentColor)}
     >
       <NAV>
-        <Toggle textColor={backgroundColor} onClick={() => updateMenuIndex(0)}>
-          <Icon icon={faBars} color={IdealTextColor(accentColor)} />
-        </Toggle>
+        <TOGGLE textColor={backgroundColor} onClick={() => onMenuToggle(0)}>
+          <ICON icon={faBars} color={IdealTextColor(accentColor)} />
+        </TOGGLE>
         <DIV
-          isMenuOpen={!!~menuIndex}>
+          ref={drawerEl}
+          isMenuOpen={!!~menuIndex}
+          height={!!~menuIndex ? drawerEl.current.scrollHeight : 0}
+        >
           <UL
             isMenuOpen={!!~menuIndex}
             desktopNavAlignment={alignment[randomIntegerEx(0, alignment.length)]}
@@ -108,17 +121,13 @@ const Header = ({ textColor, backgroundColor }) => {
             {
               arrayToJSXList(nav, (item, i) => (
                 <LI>
-                  <NavLink
+                  <NAV_LINK
                     to={item.href}
-                    onClick={() => updateMenuIndex(i + 1)}
-                    textColor={textColor}
-                    accentColor={accentColor}
-                    textColorEmphasis={IdealTextColor(accentColor)}
+                    onClick={() => onMenuToggle(i + 1)}
                     activeClassName="active"
-                    replace
                   >
                     {item.label}
-                  </NavLink>
+                  </NAV_LINK>
                 </LI>
               ))
             }

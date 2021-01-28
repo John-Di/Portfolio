@@ -11,3 +11,10 @@ export const ListReset = `
   list-style: none;
   line-height: 1;
 `;
+
+export const LinkReset = `
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+`;

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { device } from '../../utils/variables';
-import { ButtonReset, ListReset } from '../../utils/Resets';
+import { ButtonReset, ListReset, LinkReset } from '../../utils/Resets';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import VisuallyHidden from '../../utils/VisuallyHidden';
 import {
@@ -25,8 +25,13 @@ export const HEADER = styled.header`
   right: 0;
   z-index: 1;
   background-color: transparent;
-  transition: background-color 0.1s ease-in 0s;
-  ${props => conditionalProp(props.isMenuOpen, `background-color: white;`)}
+  transition: background-color 0.1s 0.1s;
+
+  ${props => conditionalProp(props.isMenuOpen, `
+    background-color: white;
+    transition: background-color 0.1s 0s;
+    box-shadow: 0 1px 1px grey;
+  `)}
 
 
   @media ${device.tablet} {
@@ -46,7 +51,7 @@ export const HEADER = styled.header`
   }
 `;
 
-export const Toggle = styled.button`
+export const TOGGLE = styled.button`
   ${ButtonReset}
   ${FlexCentered}
   width: 3em;
@@ -65,7 +70,7 @@ export const LOGO = styled.div`
 
 `;
 
-export const Icon = styled(FontAwesomeIcon)`
+export const ICON = styled(FontAwesomeIcon)`
   height: 100%;
   width: 100%;
   fill: inherit;
@@ -88,19 +93,13 @@ export const DIV = styled.div`
     left: 0;
     right: 0;
     height: 0;
-    animation-duration: 0.1s;
-    animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-direction: reverse;
     overflow: hidden;
-    transition: height 0.1s ease-in 0.1s;
+    transition: height 0.1s 0s;
 
-    ${props => conditionalProp(props.isMenuOpen, `
-      animation-name: expandMenuDrawer;
-      transition: height 0.1s ease-in 0s;
-      animation-direction: normal;
-      height: calc(100vh - 3em);
-    `)}
+    ${props => conditionalProp(props.isMenuOpen && props.height, `
+      transition: height 0.1s 0.05s;
+      height: ${props.height}px;
+    `)};
   }
 `;
 
@@ -111,20 +110,7 @@ export const UL = styled.ul`
 
   @media ${device.max_tablet} {
     background: white;
-    animation-duration: 0.1s;
-    animation-delay: 0.1s;
-    animation-iteration-count: 1;
-    animation-direction: reverse;
-    transform: translateY(-100%);
-    transition: transform 0.1s ease-in 0s;
-
-    ${props => conditionalProp(props.isMenuOpen, `
-    transition: transform 0.1s ease-in 0.1s;
-      animation-name: scrollDrawDown;
-      animation-direction: normal;
-      transform: translateY(0);
-    `)}
-
+    transition: height 2s 0s;
   }
 
   @media ${device.tablet} {
@@ -135,6 +121,38 @@ export const UL = styled.ul`
 
 export const LI = styled.li`
   ${ListReset}
+  a {
+    color: ${props => props.accentColor};
+
+    &:hover,
+    &:active,
+    &:focus,
+    &.active {
+      font-weight: bold;
+    }
+
+    border: 0.25em solid transparent;
+    @media ${device.max_tablet} {
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    @media ${device.tablet} {
+      color: ${props => props.textColor};
+
+      &:hover,
+      &:active,
+      &.active {
+        background: ${props => props.accentColor};
+        color: ${props => props.textColorEmphasis} !important;
+      }
+
+      &:focus {
+        border-color: ${props => props.accentColor};
+      }
+    }
+  }
+
   @media ${device.max_tablet} {
     width: 100%;
   }
@@ -144,42 +162,15 @@ export const UTIL = styled.nav`
 
 `;
 
-export const NavLink = styled(Link)`
+export const NAV_LINK = styled(Link)`
+  ${LinkReset}
   ${FlexCentered}
   display: inline-flex;
   padding: 1em 1.5em;
   line-height: 1.33;
   height: 100%;
   min-width: 9em;
-  outline: none;
-  color: ${props => props.accentColor};
-
-  &:hover,
-  &:active,
-  &:focus,
-  &.active {
-    font-weight: bold;
-  }
-
-  border: 0.25em solid transparent;
-  @media ${device.max_tablet} {
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  @media ${device.tablet} {
-    color: ${props => props.textColor};
-
-    &:hover,
-    &:active,
-    &.active {
-      background: ${props => props.accentColor};
-      color: ${props => props.textColorEmphasis} !important;
-    }
-
-    &:focus {
-      border-color: ${props => props.accentColor};
-    }
-  }
+  outline-width: 0;
+  box-shadow: none;
 `;
 
