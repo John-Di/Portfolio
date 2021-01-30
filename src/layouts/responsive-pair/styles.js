@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
 import AssessProps, { conditionalProp } from '../../utils/AssessProps';
-import Log from '../../utils/Log';
 
 const sideBySide = (acc, rule, i) => `
 	${acc}

@@ -14,8 +14,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 const Image = ({ imgName }) => {
-	console.log(imgName);
-	const data = useStaticQuery(graphql`
+
+  const data = useStaticQuery(graphql`
         query {
             allImageSharp {
                 edges {
@@ -30,15 +30,15 @@ const Image = ({ imgName }) => {
         }
     `)
 
-	const image = data.allImageSharp.edges.find(
-		edge => edge.node.fluid.originalName === imgName
-	)
+  const image = data.allImageSharp.edges.find(
+    edge => edge.node.fluid.originalName === imgName
+  )
 
-	if (!image) {
-		return null
-	}
+  if (!image) {
+    return null
+  }
 
-	return <Img fluid={image.node.fluid} />
+  return <Img fluid={image.node.fluid} />
 }
 
 export default Image

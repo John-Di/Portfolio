@@ -27,14 +27,15 @@ const pageStyles = {
 }
 // markup
 const StyleGuidePage = () => {
-  let heroBannerColor = randomColor();
-  let heroBannerTextColor = IdealTextColor(heroBannerColor);
-  let heroWidth = randomBool() || true;
+  let accentColor = randomColor();
+  let heroWidth = randomBool(1);
+  let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
+
   return (
     <>
       <Header
-        textColor={heroBannerTextColor}
-        backgroundColor={heroBannerColor}
+        accentColor={accentColor}
+        whiteOnHover={!!heroImage}
       />
       <main style={pageStyles}>
         <StyleGuideArticle>
@@ -48,12 +49,13 @@ const StyleGuidePage = () => {
           >
             <TextBlock
               overlay={true}
-              backgroundColor={`${heroBannerColor}`}
-              backgroundImage={randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920)}>
+              backgroundColor={`${accentColor}`}
+              backgroundImage={heroImage}
+            >
               <h1>Style Guide</h1>
               <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
               <FancyCTA
-                textColor={heroBannerTextColor}
+                textColor={IdealTextColor(accentColor)}
               >Learn More</FancyCTA>
             </TextBlock>
           </HeroBanner>

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
-import Log from '../../utils/Log';
 import AssessProps, {
   conditionalProp
 } from '../../utils/AssessProps';
@@ -38,8 +37,6 @@ export const HEADING = styled.div`
 
 const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSmall = 'center', textAlignmentLarge = 'left', hasMarginSmall = true, hasMarginLarge = true, cols, isBanner = false, isHero = false }) => `
 
-  ${Log('section.generateLayout', { maxWidth, hasPadding, textAlignmentSmall, textAlignmentLarge, hasMarginSmall, hasMarginLarge, isBanner, isHero })}
-
   ${conditionalProp(hasMarginSmall, `
     margin: 4em auto;
   `)}
@@ -61,7 +58,6 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
   max-width: ${conditionalProp(maxWidth, maxWidth, `100%`)};
 
   ${conditionalProp(isBanner, `
-    ${Log('section.isBanner.generateLayout', `${conditionalProp(isHero, `min-height: 100vh;`, `min-height: 50vh;`)}`)}
     ${conditionalProp(isHero, `min-height: 100vh;`, `min-height: 50vh;`)}
 
 		text-align: ${textAlignmentSmall};
@@ -78,7 +74,6 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
 	`)}
 `;
 
-
 const assessProps = (props) => `
 	${AssessProps(props)}
 	${generateLayout(props)}
@@ -92,7 +87,5 @@ export const SECTION = styled.section`
 	width: 100%;
 
 	${props => assessProps(props)}
-  ${props => Log('section.isBanner.generateLayout', `${conditionalProp(props.backgroundImage, `${props.backgroundImage}`)}`)}
-
 	${Clearfix}
 `;

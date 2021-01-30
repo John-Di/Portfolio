@@ -50,13 +50,11 @@ let alignment = [
   'flex-end'
 ]
 
-const Header = ({ textColor, backgroundColor }) => {
+const Header = ({ accentColor, whiteOnHover }) => {
   const [menuIndex, setMenuIndex] = useState(-1);
   const updateMenuIndex = index => setMenuIndex(!!~index && index === menuIndex ? -1 : index);
-
-  let accentColor = randomColor();
-  let textOnAccentColor = IdealTextColor(accentColor);
-  let whiteOnHover = textOnAccentColor === "#ffffff";
+  let navAccent = accentColor || randomColor(),
+    textColor = IdealTextColor(accentColor);
 
   const drawerEl = useRef(null);
   const onMenuToggle = index => {
@@ -98,16 +96,14 @@ const Header = ({ textColor, backgroundColor }) => {
   return (
     <HEADER
       isMenuOpen={!!~menuIndex}
-      accentColor={accentColor}
-      backgroundColor={backgroundColor}
-      whiteOnHover={whiteOnHover}
       textColor={textColor}
-      accentColor={accentColor}
-      textColorEmphasis={IdealTextColor(accentColor)}
+      accentColor={navAccent}
+      textColorEmphasis={textColor}
+      whiteOnHover={whiteOnHover}
     >
       <NAV>
-        <TOGGLE textColor={backgroundColor} onClick={() => onMenuToggle(0)}>
-          <ICON icon={faBars} color={IdealTextColor(accentColor)} />
+        <TOGGLE iconColor={accentColor} onClick={() => onMenuToggle(0)}>
+          <ICON icon={faBars} />
         </TOGGLE>
         <DIV
           ref={drawerEl}
@@ -122,9 +118,10 @@ const Header = ({ textColor, backgroundColor }) => {
               arrayToJSXList(nav, (item, i) => (
                 <LI
                   textColor={textColor}
-                  accentColor={accentColor}
-                  backgroundColor={backgroundColor}
-                  textColorEmphasis={IdealTextColor(accentColor)}>
+                  accentColor={navAccent}
+                  textColorEmphasis={textColor}
+                  whiteOnHover={whiteOnHover}
+                >
                   <NAVLINK
                     to={item.href}
                     onClick={() => onMenuToggle(i + 1)}

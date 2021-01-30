@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import Log from '../../utils/Log';
 import FullSizeOverlay from '../../utils/FullSizeOverlay';
 import {
   FlexCentered

@@ -1,6 +1,5 @@
 import IdealTextColor from './IdealTextColor';
 import { device } from './variables';
-import Log from '../utils/Log';
 
 const AssessProps = props => `
   ${AssessBackground(props)}

@@ -1,13 +1,14 @@
-const IdealTextColor = bgColor => {
+const IdealTextColor = (bgColor, color = { lightColor: `#000000`, darkColor: `#ffffff` }, resultOpacity = 1) => {
 
   if (!bgColor) {
     return `#000000`;
   }
+  let opacity = Math.round(resultOpacity * 255).toString(16);
   var nThreshold = 105;
   var components = getRGBComponents(bgColor);
   var bgDelta = (components.R * 0.299) + (components.G * 0.587) + (components.B * 0.114);
 
-  return ((255 - bgDelta) < nThreshold) ? "#000000" : "#ffffff";
+  return `${((255 - bgDelta) < nThreshold) ? color.lightColor || color : color.darkColor || color}${opacity}`;
 };
 
 export const getRGBComponents = color => {

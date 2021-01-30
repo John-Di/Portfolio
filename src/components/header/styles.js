@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { device } from '../../utils/variables';
 import { ButtonReset, ListReset, LinkReset } from '../../utils/Resets';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import VisuallyHidden from '../../utils/VisuallyHidden';
+import Transition from '../../utils/Transition';
 import {
   conditionalProp
 } from '../../utils/AssessProps';
@@ -11,8 +11,44 @@ import {
   ResponsiveLine
 } from '../../utils/Flex';
 import {
-  Link
+  Link as GatsbyLink
 } from "gatsby";
+import IdealTextColor from '../../utils/IdealTextColor';
+
+const WhiteHeader = (textColor, linkHoverProps, linkActiveProps) => Transition({
+  backgroundColor: `white`,
+  transition: `background-color 0.1s 0.1s, box-shadow 0.1s 0.05s`,
+  states: [`&:hover`, `&focus`],
+  onState: `
+  box-shadow: 0 3px 1px rgba(0,0,0,0.2);
+  transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
+
+    a {
+      color: ${textColor};
+      ${linkHoverProps}
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        ${linkActiveProps}
+      }
+    }
+  `
+});
+
+const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor }) => conditionalProp(
+  whiteOnHover, WhiteHeader(
+    accentColor,
+    assessNAVLINKProps(accentColor, textColor, accentColor),
+    assessNAVLINKProps(accentColor, textColor, accentColor, [`&:active`, `&.active`])));
+
+
+const assessNAVLINKProps = (textColor, textColorEmphasis, backgroundColor = '', states = [`&:hover`, `&:active`, `&.active`, `&focus`]) => Transition({
+  textColor,
+  backgroundColor,
+  textColorEmphasis,
+  states
+})
 
 export const HEADER = styled.header`
   max-width: 100vw;
@@ -24,30 +60,25 @@ export const HEADER = styled.header`
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: transparent;
-  transition: background-color 0.1s 0.1s;
 
   ${props => conditionalProp(props.isMenuOpen, `
-    background-color: white;
-    transition: background-color 0.1s 0s;
     box-shadow: 0 1px 1px grey;
-  `)}
 
+    @media ${device.max_tablet} {
+      background-color: white;
 
-  @media ${device.tablet} {
-    grid-template: "logo nav util" / 1fr 3fr 1fr;
-
-    &:hover {
-      ${props => conditionalProp(props.whiteOnHover, `background-color: white;`)}
-
-      @media ${device.tablet} {
-        cursor: pointer;
-      }
-
-      a {
-        ${props => conditionalProp(props.whiteOnHover, `color: ${props.backgroundColor};`)}
+      &:hover {
+        box-shadow: 0 1px 1px grey;
+        transition: background-color 0.1s 0s;
+        background-color: white;
       }
     }
+  `)}
+
+  @media ${device.tablet} {
+    cursor: pointer;
+    grid-template: "logo nav util" / 1fr 3fr 1fr;
+    ${HeaderTabletProps}
   }
 `;
 
@@ -57,7 +88,7 @@ export const TOGGLE = styled.button`
   width: 3em;
   height: 3em;
   padding: 0.75em;
-  color: ${props => props.textColor};
+  color: ${props => props.iconColor};
   cursor: pointer;
 
   @media ${device.tablet} {
@@ -97,7 +128,7 @@ export const DIV = styled.div`
     transition: height 0.1s 0s;
 
     ${props => conditionalProp(props.isMenuOpen && props.height, `
-      transition: height 0.1s 0.05s;
+      transition: height 0.1s 0.1s;
       height: ${props.height}px;
     `)};
   }
@@ -118,13 +149,21 @@ export const UL = styled.ul`
   }
 `;
 
+const AssessLIProps = ({ accentColor, textColor }) => `
+  &:active,
+  &.active {
+    background-color: ${textColor};
+    color: ${accentColor};
+  }
+`;
 
 export const LI = styled.li`
   ${ListReset}
 
   a {
-    color: ${props => props.accentColor};
+    color: ${props => props.textColor};
     border: 0.25em solid transparent;
+    transition: background-color 0.1s 0.05s, color 0.1s 0.05s;
 
     &:hover,
     &:active,
@@ -133,24 +172,18 @@ export const LI = styled.li`
       font-weight: bold;
     }
 
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
     @media ${device.max_tablet} {
       align-items: flex-start;
       width: 100%;
     }
 
     @media ${device.tablet} {
-      color: ${props => props.textColor};
-
-      &:hover,
-      &:active,
-      &.active {
-        background: ${props => props.backgroundColor};
-        color: ${props => props.textColorEmphasis};
-      }
-
-      &:focus {
-        border-color: ${props => props.accentColor};
-      }
+      ${AssessLIProps}
     }
   }
 
@@ -163,9 +196,10 @@ export const UTIL = styled.nav`
 
 `;
 
-export const NAVLINK = styled(Link)`
+export const NAVLINK = styled(GatsbyLink)`
   ${LinkReset}
   ${FlexCentered}
+
   display: inline-flex;
   padding: 1em 1.5em;
   line-height: 1.33;
