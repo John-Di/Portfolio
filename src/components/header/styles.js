@@ -6,6 +6,7 @@ import Transition from '../../utils/Transition';
 import {
   conditionalProp
 } from '../../utils/AssessProps';
+import Log from '../../utils/Log';
 import {
   FlexCentered,
   ResponsiveLine
@@ -13,44 +14,79 @@ import {
 import {
   Link as GatsbyLink
 } from "gatsby";
-import IdealTextColor from '../../utils/IdealTextColor';
 
-const WhiteHeader = (textColor, accentColor, linkHoverProps, linkActiveProps) => Transition({
-  backgroundColor: `white`,
-  transition: `background-color 0.1s 0.1s, box-shadow 0.1s 0.05s`,
-  states: [`&:hover`, `&focus`],
-  onState: `
+const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor, isMenuOpen }) => conditionalProp(
+  whiteOnHover, Transition({
+    backgroundColor: `white`,
+    transition: `background-color 0.1s 0.1s, box-shadow 0.1s 0.05s`,
+    states: [`&:hover`, `&focus`],
+    onState: `
+      box-shadow: 0 3px 1px rgba(0,0,0,0.2);
+      transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
+
+        a {
+          background-color: transparent;
+          color: ${`#000000`};
+          cursor: pointer;
+
+          &:hover,
+          &:focus {
+            color: ${accentColor};
+          }
+
+          &:active,
+          &.active {
+            background-color: ${accentColor};
+            color: ${textColor};
+          }
+
+          &:active,
+          &.active {
+            &:hover,
+            &:focus {
+              background-color: ${accentColor};
+              color: ${textColor};
+            }
+          }
+        }
+      `
+  })
+);
+
+const HeaderMobileProps = ({ whiteOnHover, isMenuOpen, textColor, accentColor }) => conditionalProp(isMenuOpen, `
+  background-color: white;
   box-shadow: 0 3px 1px rgba(0,0,0,0.2);
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
 
-    a {
-      ${linkHoverProps}
-      color: ${textColor};
+  a {
+    background-color: transparent;
+    color: ${`#000000`};
 
-      &:hover,
-      &:focus {
-        text-decoration: underline;
-        ${linkActiveProps}
-        color: ${accentColor};
-      }
+    &:hover,
+    &:focus {
+      color: ${accentColor};
+      font-weight: bold;
+      text-decoration: underline;
     }
-  `
-});
 
-const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor }) => conditionalProp(
-  whiteOnHover, WhiteHeader(
-    textColor,
-    accentColor,
-    assessNAVLINKProps(accentColor, textColor, accentColor),
-    assessNAVLINKProps(accentColor, textColor, accentColor, [`&:active`, `&.active`])));
+    &:active,
+    &.active {
+      color: ${accentColor};
+    }
 
-
-const assessNAVLINKProps = (textColor, textColorEmphasis, backgroundColor = '', states = [`&:hover`, `&:active`, `&.active`, `&focus`]) => Transition({
-  textColor,
-  backgroundColor,
-  textColorEmphasis,
-  states
-})
+    ${conditionalProp(whiteOnHover, `
+      &:active,
+      &.active {
+        &,
+        &:hover,
+        &:focus {
+          background-color: ${accentColor};
+          color: ${textColor};
+        }
+      }
+    `)}
+  }
+`);
 
 export const HEADER = styled.header`
   max-width: 100vw;
@@ -63,19 +99,22 @@ export const HEADER = styled.header`
   right: 0;
   z-index: 1;
 
-  ${props => conditionalProp(props.isMenuOpen, `
+  a {
+    color: ${props => props.textColor};
 
-    @media ${device.max_tablet} {
-      box-shadow: 0 1px 1px grey;
-      background-color: white;
+    &:active,
+    &.active {
+      color: ${props => props.accentColor};
 
-      &:hover {
-        box-shadow: 0 1px 1px grey;
-        transition: background-color 0.1s 0s;
-        background-color: white;
+      @media ${device.tablet} {
+        background-color: ${props => props.textColor};
       }
     }
-  `)}
+  }
+
+  @media ${device.max_tablet} {
+    ${HeaderMobileProps}
+  }
 
   @media ${device.tablet} {
     cursor: pointer;
@@ -84,14 +123,23 @@ export const HEADER = styled.header`
   }
 `;
 
+
+const ToggleTransitions = ({ isActive, iconColor, iconColorEmphasis }) => `
+  color: ${iconColor};
+
+  ${conditionalProp(isActive,
+  `color: ${iconColorEmphasis};`)}
+`;
+
 export const TOGGLE = styled.button`
   ${ButtonReset}
   ${FlexCentered}
   width: 3em;
   height: 3em;
   padding: 0.75em;
-  color: ${props => props.iconColor};
   cursor: pointer;
+  ${ToggleTransitions}
+  transition: color 0.1s 0.05s;
 
   @media ${device.tablet} {
     display: none;
@@ -151,43 +199,8 @@ export const UL = styled.ul`
   }
 `;
 
-const AssessLIProps = ({ accentColor, textColor }) => `
-  &:active,
-  &.active {
-    background-color: ${textColor};
-    color: ${accentColor};
-  }
-`;
-
 export const LI = styled.li`
   ${ListReset}
-
-  a {
-    color: ${props => props.textColor};
-    border: 0.25em solid transparent;
-    transition: background-color 0.1s 0.05s, color 0.1s 0.05s;
-
-    &:hover,
-    &:active,
-    &:focus,
-    &.active {
-      font-weight: bold;
-    }
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-
-    @media ${device.max_tablet} {
-      align-items: flex-start;
-      width: 100%;
-    }
-
-    @media ${device.tablet} {
-      ${AssessLIProps}
-    }
-  }
 
   @media ${device.max_tablet} {
     width: 100%;
@@ -209,5 +222,18 @@ export const NAVLINK = styled(GatsbyLink)`
   min-width: 9em;
   outline-width: 0;
   box-shadow: none;
+  border: 0.25em solid transparent;
+  transition: background-color 0.1s 0.05s, color 0.1s 0s;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  @media ${device.max_tablet} {
+    align-items: flex-start;
+    width: 100%;
+  }
 `;
 

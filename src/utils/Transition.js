@@ -9,7 +9,7 @@ const Transition = ({
   textColorEmphasis,
   isBold = false,
   transition,
-  states = [`&:hover`],
+  states = [`&:hover`, `&:focus`],
   onState = ``
 }) => `
   ${conditionalProp(backgroundColor, `background-color: transparent;`)}

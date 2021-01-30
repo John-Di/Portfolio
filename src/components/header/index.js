@@ -57,10 +57,21 @@ const Header = ({ accentColor, whiteOnHover }) => {
     textColor = IdealTextColor(accentColor);
 
   const drawerEl = useRef(null);
+
   const onMenuToggle = index => {
     updateMenuIndex(index);
     return menuIndex;
+  };
+
+  if (!!drawerEl.current) {
+    const observer = new IntersectionObserver(
+      ([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1),
+      { threshold: [1] }
+    );
+
+    observer.observe(drawerEl.current.closest('header'));
   }
+
 
   const megaMenu = !!~menuIndex &&
     <MegaMenu>
@@ -102,7 +113,12 @@ const Header = ({ accentColor, whiteOnHover }) => {
       whiteOnHover={whiteOnHover}
     >
       <NAV>
-        <TOGGLE iconColor={accentColor} onClick={() => onMenuToggle(0)}>
+        <TOGGLE
+          isActive={!!~menuIndex}
+          iconColor={textColor}
+          iconColorEmphasis={navAccent}
+          onClick={() => onMenuToggle(0)}
+        >
           <ICON icon={faBars} />
         </TOGGLE>
         <DIV
