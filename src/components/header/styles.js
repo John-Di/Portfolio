@@ -15,7 +15,7 @@ import {
 } from "gatsby";
 import IdealTextColor from '../../utils/IdealTextColor';
 
-const WhiteHeader = (textColor, linkHoverProps, linkActiveProps) => Transition({
+const WhiteHeader = (textColor, accentColor, linkHoverProps, linkActiveProps) => Transition({
   backgroundColor: `white`,
   transition: `background-color 0.1s 0.1s, box-shadow 0.1s 0.05s`,
   states: [`&:hover`, `&focus`],
@@ -24,13 +24,14 @@ const WhiteHeader = (textColor, linkHoverProps, linkActiveProps) => Transition({
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
 
     a {
-      color: ${textColor};
       ${linkHoverProps}
+      color: ${textColor};
 
       &:hover,
       &:focus {
         text-decoration: underline;
         ${linkActiveProps}
+        color: ${accentColor};
       }
     }
   `
@@ -38,6 +39,7 @@ const WhiteHeader = (textColor, linkHoverProps, linkActiveProps) => Transition({
 
 const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor }) => conditionalProp(
   whiteOnHover, WhiteHeader(
+    textColor,
     accentColor,
     assessNAVLINKProps(accentColor, textColor, accentColor),
     assessNAVLINKProps(accentColor, textColor, accentColor, [`&:active`, `&.active`])));
@@ -62,9 +64,9 @@ export const HEADER = styled.header`
   z-index: 1;
 
   ${props => conditionalProp(props.isMenuOpen, `
-    box-shadow: 0 1px 1px grey;
 
     @media ${device.max_tablet} {
+      box-shadow: 0 1px 1px grey;
       background-color: white;
 
       &:hover {
