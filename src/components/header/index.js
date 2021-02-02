@@ -1,21 +1,13 @@
-import MegaMenu from '../mega-menu';
-import ContentBlock from '../content-block';
-import Section from '../section';
-import ResponsivePair from '../../layouts/responsive-pair';
 import {
-  jsxCloneArray,
   arrayToJSXList
 } from '../../utils/dom-builder';
 import {
   randomColor,
-  randomImage,
-  randomIntegerEx
 } from '../../utils/randoms';
 import IdealTextColor from '../../utils/IdealTextColor';
 import React, {
   useState,
   useRef,
-  createRef,
   useEffect
 } from "react";
 import {
@@ -68,6 +60,7 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
   };
 
   useEffect(() => {
+    setIsSticky(headerEl.current && document.documentElement.scrollTop > 0);
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -88,7 +81,7 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
       <NAV>
         <TOGGLE
           isActive={!!~menuIndex}
-          iconColor={isSticky ? textColor : `black`}
+          iconColor={isSticky ? `black` : textColor}
           iconColorEmphasis={navAccent}
           onClick={() => onMenuToggle(0)}
         >

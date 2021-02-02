@@ -1,12 +1,10 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import { ButtonReset, ListReset, LinkReset } from '../../utils/Resets';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Transition from '../../utils/Transition';
 import {
   conditionalProp
 } from '../../utils/AssessProps';
-import Log from '../../utils/Log';
 import {
   FlexCentered,
   ResponsiveLine
