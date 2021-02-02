@@ -25,6 +25,13 @@ const pageStyles = {
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
   position: "relative"
 }
+
+let alignment = [
+  'flex-start',
+  'center',
+  'flex-end'
+];
+
 // markup
 const StyleGuidePage = () => {
   let accentColor = randomColor();
@@ -36,6 +43,7 @@ const StyleGuidePage = () => {
       <Header
         accentColor={accentColor}
         whiteOnHover={!!heroImage}
+        desktopNavAlignment={alignment[randomIntegerEx(0, alignment.length)]}
       />
       <main style={pageStyles}>
         <StyleGuideArticle>

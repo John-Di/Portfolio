@@ -15,43 +15,44 @@ import {
   Link as GatsbyLink
 } from "gatsby";
 
-const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor, isMenuOpen }) => conditionalProp(
-  whiteOnHover, Transition({
-    backgroundColor: `white`,
-    transition: `background-color 0.1s 0.1s, box-shadow 0.1s 0.05s`,
-    states: [`&:hover`, `&focus`],
-    onState: `
-      box-shadow: 0 3px 1px rgba(0,0,0,0.2);
-      transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
+const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor }) => conditionalProp(
+  whiteOnHover, `
+  &:hover,
+  &focus {
+    background-color: white;
+    box-shadow: 0 3px 1px rgba(0,0,0,0.2);
+    transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
 
-        a {
-          background-color: transparent;
-          color: ${`#000000`};
-          cursor: pointer;
+    a {
+      background-color: transparent;
+      color: ${`#000000`};
 
+      &:hover,
+      &:focus {
+        color: ${accentColor};
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      &:active,
+      &.active {
+        color: ${accentColor};
+      }
+
+      ${conditionalProp(whiteOnHover, `
+        &:active,
+        &.active {
+          &,
           &:hover,
           &:focus {
-            color: ${accentColor};
-          }
-
-          &:active,
-          &.active {
             background-color: ${accentColor};
             color: ${textColor};
           }
-
-          &:active,
-          &.active {
-            &:hover,
-            &:focus {
-              background-color: ${accentColor};
-              color: ${textColor};
-            }
-          }
         }
-      `
-  })
-);
+      `)}
+    }
+  }
+`);
 
 const HeaderMobileProps = ({ whiteOnHover, isMenuOpen, textColor, accentColor }) => conditionalProp(isMenuOpen, `
   background-color: white;
@@ -74,7 +75,72 @@ const HeaderMobileProps = ({ whiteOnHover, isMenuOpen, textColor, accentColor })
       color: ${accentColor};
     }
 
-    ${conditionalProp(whiteOnHover, `
+    &:active,
+    &.active {
+      &,
+      &:hover,
+      &:focus {
+        background-color: ${accentColor};
+        color: ${textColor};
+      }
+    }
+  }
+`);
+
+const onSticky = ({ whiteOnHover, isMenuOpen, textColor, accentColor, isSticky }) => conditionalProp(isSticky, `
+  background-color: white;
+  box-shadow: 0 3px 1px rgba(0,0,0,0.2);
+  transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
+
+  @media ${device.max_tablet} {
+    a {
+      background-color: transparent;
+      color: ${`#000000`};
+
+      &:hover,
+      &:focus {
+        color: ${accentColor};
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      &:active,
+      &.active {
+        color: ${accentColor};
+      }
+
+      ${conditionalProp(whiteOnHover, `
+        &:active,
+        &.active {
+          &,
+          &:hover,
+          &:focus {
+            background-color: ${accentColor};
+            color: ${textColor};
+          }
+        }
+      `)}
+    }
+  }
+
+  @media ${device.tablet} {
+    a {
+      background-color: transparent;
+      color: ${`#000000`};
+
+      &:hover,
+      &:focus {
+        color: ${accentColor};
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      &:active,
+      &.active {
+        background-color: ${textColor};
+        color: ${accentColor};
+      }
+
       &:active,
       &.active {
         &,
@@ -84,7 +150,7 @@ const HeaderMobileProps = ({ whiteOnHover, isMenuOpen, textColor, accentColor })
           color: ${textColor};
         }
       }
-    `)}
+    }
   }
 `);
 
@@ -98,6 +164,8 @@ export const HEADER = styled.header`
   left: 0;
   right: 0;
   z-index: 1;
+  top: -1px;
+  padding-top: 1px;
 
   a {
     color: ${props => props.textColor};
@@ -111,6 +179,8 @@ export const HEADER = styled.header`
       }
     }
   }
+
+  ${onSticky}
 
   @media ${device.max_tablet} {
     ${HeaderMobileProps}
@@ -207,10 +277,6 @@ export const LI = styled.li`
   }
 `;
 
-export const UTIL = styled.nav`
-
-`;
-
 export const NAVLINK = styled(GatsbyLink)`
   ${LinkReset}
   ${FlexCentered}
@@ -219,7 +285,7 @@ export const NAVLINK = styled(GatsbyLink)`
   padding: 1em 1.5em;
   line-height: 1.33;
   height: 100%;
-  min-width: 9em;
+  min-width: 9.5em;
   outline-width: 0;
   box-shadow: none;
   border: 0.25em solid transparent;

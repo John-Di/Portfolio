@@ -14,7 +14,9 @@ import {
 import IdealTextColor from '../../utils/IdealTextColor';
 import React, {
   useState,
-  useRef
+  useRef,
+  createRef,
+  useEffect
 } from "react";
 import {
   faBars
@@ -44,66 +46,44 @@ const nav = [
     label: "Style Guide"
   }
 ];
-let alignment = [
-  'flex-start',
-  'center',
-  'flex-end'
-]
 
-const Header = ({ accentColor, whiteOnHover }) => {
+const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
   const [menuIndex, setMenuIndex] = useState(-1);
+  const [isSticky, setIsSticky] = useState(false);
   const updateMenuIndex = index => setMenuIndex(!!~index && index === menuIndex ? -1 : index);
+
   let navAccent = accentColor || randomColor(),
     textColor = IdealTextColor(accentColor);
-
-  const drawerEl = useRef(null);
 
   const onMenuToggle = index => {
     updateMenuIndex(index);
     return menuIndex;
   };
 
-  if (!!drawerEl.current) {
-    const observer = new IntersectionObserver(
-      ([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1),
-      { threshold: [1] }
-    );
 
-    observer.observe(drawerEl.current.closest('header'));
-  }
+  const headerEl = useRef(null);
+  const drawerEl = useRef(null);
 
+  const handleScroll = () => {
+    setIsSticky(document.documentElement.scrollTop > 0);
+  };
 
-  const megaMenu = !!~menuIndex &&
-    <MegaMenu>
-      <Section maxWidth={`100%`} hasPadding={true} hasMarginLarge={false} className="some-mega-menu">
-        <ResponsivePair
-          items={
-            jsxCloneArray(2, (l, _, i) => (
-              <ResponsivePair
-                items={
-                  jsxCloneArray(4, (m, _, j) => {
-                    let backgroundColor = randomColor();
-                    let index = m * i + j;
+  useEffect(() => {
+    const cachedRef = headerEl.current,
+      observer = new IntersectionObserver(
+        ([e]) => setIsSticky(e.intersectionRatio < 1),
+        { rootMargin: `-1px 0px 0px 0px`, threshold: [1] }
+      )
 
-                    return (
-                      <ContentBlock
-                        backgroundColor={backgroundColor}
-                        backgroundImage={randomImage(randomIntegerEx(0, 10000), 1920, 1920)}
-                        isEven={index % 2 === 0}
-                        isSquare={true}
-                        overlay={true}
+    observer.observe(cachedRef)
+    window.addEventListener('scroll', handleScroll);
 
-                      >
-                      </ContentBlock>
-                    )
-                  })
-                }
-              />
-            ))
-          }
-        />
-      </Section >
-    </MegaMenu>;
+    return () => {
+      observer.unobserve(cachedRef)
+      window.removeEventListener('scroll', () => handleScroll);
+    };
+  }, []);
+
   return (
     <HEADER
       isMenuOpen={!!~menuIndex}
@@ -111,6 +91,8 @@ const Header = ({ accentColor, whiteOnHover }) => {
       accentColor={navAccent}
       textColorEmphasis={textColor}
       whiteOnHover={whiteOnHover}
+      ref={headerEl}
+      isSticky={isSticky}
     >
       <NAV>
         <TOGGLE
@@ -128,7 +110,7 @@ const Header = ({ accentColor, whiteOnHover }) => {
         >
           <UL
             isMenuOpen={!!~menuIndex}
-            desktopNavAlignment={alignment[randomIntegerEx(0, alignment.length)]}
+            desktopNavAlignment={desktopNavAlignment}
           >
             {
               arrayToJSXList(nav, (item, i) => (
