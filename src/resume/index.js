@@ -6,20 +6,20 @@ import About from "../../components/resume/about";
 import ResumeLayout from "../../layouts/resume-layout";
 
 
-export default function Resume({ data = YAMLData, pageContext }) {
-	let resume = YAMLData;
+export default function Resume({ data = YAMLData, pageContext, location }) {
+  let resume = YAMLData;
 
-	if ('basics' in pageContext) {
-		resume = pageContext;
-	}
+  if ('basics' in pageContext) {
+    resume = pageContext;
+  }
 
-	const { basics } = resume;
+  const { basics } = resume;
 
-	return (
-		<ResumeLayout>
-			<SEO title={`Resume`} description={basics.name} />
-			<Basics data={data} resume={resume} />
-			<About data={data} resume={resume} />
-		</ResumeLayout>
-	)
+  return (
+    <ResumeLayout>
+      <SEO title={`Resume`} description={basics.name} />
+      <Basics data={data} resume={resume} showHomeButton={location.state.wasRedirected} />
+      <About data={data} resume={resume} />
+    </ResumeLayout>
+  )
 }

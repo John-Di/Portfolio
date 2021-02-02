@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
+import {
+  Link as GatsbyLink
+} from "gatsby";
 
 export const H1 = styled.h1`
 	font-size: 1.5em;
@@ -12,7 +15,8 @@ export const BASICS = styled.section`
 	text-align: center;
 	border-radius: 1em;
 	white-space: nowrap;
-	padding: 1.3125em;
+  padding: 1.3125em;
+  position: relative;
 	width: 100%;
 	max-width: 22em;
 	margin: 0 auto 1.3125em;
@@ -81,7 +85,33 @@ export const NAME = styled(H1)`
 export const ROLES = styled.p`
 	font-size: 0.875em;
 	margin: 1em 0 0;
-`
+`;
+
+export const HOME = styled(GatsbyLink)`
+  margin: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  font-size: 2em;
+  width: 2em;
+  height: 2em;
+  color: #1975ca;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	@media ${device.laptop} {
+		display: block;
+	}
+
+	@media print {
+		display: none;
+	}
+`;
+
 export const PRINT = styled.button`
 	display: none;
 	border: 2px solid white;

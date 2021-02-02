@@ -60,26 +60,17 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
     return menuIndex;
   };
 
-
   const headerEl = useRef(null);
   const drawerEl = useRef(null);
 
   const handleScroll = () => {
-    setIsSticky(document.documentElement.scrollTop > 0);
+    setIsSticky(headerEl.current && document.documentElement.scrollTop > 0);
   };
 
   useEffect(() => {
-    const cachedRef = headerEl.current,
-      observer = new IntersectionObserver(
-        ([e]) => setIsSticky(e.intersectionRatio < 1),
-        { rootMargin: `-1px 0px 0px 0px`, threshold: [1] }
-      )
-
-    observer.observe(cachedRef)
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-      observer.unobserve(cachedRef)
       window.removeEventListener('scroll', () => handleScroll);
     };
   }, []);
@@ -97,7 +88,7 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
       <NAV>
         <TOGGLE
           isActive={!!~menuIndex}
-          iconColor={textColor}
+          iconColor={isSticky ? textColor : `black`}
           iconColorEmphasis={navAccent}
           onClick={() => onMenuToggle(0)}
         >
@@ -124,6 +115,9 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
                     to={item.href}
                     onClick={() => onMenuToggle(i + 1)}
                     activeClassName="active"
+                    state={{
+                      wasRedirected: true
+                    }}
                   >
                     {item.label}
                   </NAVLINK>

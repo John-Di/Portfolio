@@ -14,12 +14,13 @@ const resume = YAMLData;
 const { basics } = resume;
 
 // markup
-const ResumePage = () => {
+const ResumePage = ({ location }) => {
+  const wasRedirected = location.state ? location.state.wasRedirected : false;
   return (
     <main style={pageStyles}>
       <ResumeLayout>
         <SEO title={`Resume`} description={basics.name} />
-        <Basics data={resume} resume={resume} />
+        <Basics data={resume} resume={resume} showHomeButton={wasRedirected} />
         <About data={resume} resume={resume} />
       </ResumeLayout>
     </main>
