@@ -1,4 +1,4 @@
-const Clearfix = () => `
+const Clearfix = `
   &::after {
     content: '';
     display: table;
