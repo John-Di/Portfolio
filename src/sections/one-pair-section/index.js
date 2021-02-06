@@ -5,8 +5,7 @@ import FancyCTA from '../../components/fancy-cta';
 import {
   randomColor,
   randomImage,
-  randomIntegerEx,
-  randomBool
+  randomIntegerEx
 } from '../../utils/randoms';
 import IdealTextColor from '../../utils/IdealTextColor';
 import { size, device } from '../../utils/variables';

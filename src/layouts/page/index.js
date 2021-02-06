@@ -17,7 +17,7 @@ const pageStyles = {
 // markup
 const Page = ({ accentColor, children }) => {
   const [menuIndex, setMenuIndex] = useState(-1);
-  const [scrollTop, saveScrollTop] = useState(-1);
+  // const [scrollTop, saveScrollTop] = useState(-1);
   return (
     <PAGE    >
       <Header

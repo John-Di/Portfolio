@@ -5,8 +5,7 @@ import {
   randomColor,
   randomImage,
   randomIntegerEx,
-  randomBool,
-  randomImageArray
+  randomBool
 } from '../../utils/randoms';
 import IdealTextColor from '../../utils/IdealTextColor';
 import HeaderNavigation from '../header-navigation';
@@ -20,7 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   HEADER,
-  NAV,
+  // NAV,
   UL,
   LI,
   NAVLINK,
@@ -40,7 +39,7 @@ const nav = [
   }
 ];
 
-const MemoizedHeaderNav = React.memo(HeaderNavigation);
+// const MemoizedHeaderNav = React.memo(HeaderNavigation);
 
 function useOutsideAlerter(ref, callback) {
   useEffect(() => {
@@ -52,7 +51,7 @@ function useOutsideAlerter(ref, callback) {
         return;
       }
 
-      console.log("EVENT", event)
+      // console.log("EVENT", event)
 
       if (ref.current && !ref.current.contains(event.target)) {
         callback();
@@ -64,7 +63,7 @@ function useOutsideAlerter(ref, callback) {
         return;
       }
 
-      console.log("EVENT", event)
+      // console.log("EVENT", event)
 
       if (ref.current && !ref.current.contains(event.target)) {
         callback();
@@ -112,7 +111,7 @@ const Header = ({ isMenuOpen = false, accentColor, desktopNavAlignment, setMenuI
     };
   }, []);
 
-  useOutsideAlerter(headerEl, () => setMenuIndex(-1));
+  useOutsideAlerter(headerEl, () => onMenuToggle(-1));
 
   return (
     <HEADER
