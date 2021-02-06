@@ -1,9 +1,7 @@
-const Clearfix = `
+export default `
   &::after {
     content: '';
     display: table;
     clear: both;
   }
 `;
-
-export default Clearfix;
