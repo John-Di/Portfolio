@@ -3,8 +3,13 @@ import {
 } from '../../utils/dom-builder';
 import {
   randomColor,
+  randomImage,
+  randomIntegerEx,
+  randomBool,
+  randomImageArray
 } from '../../utils/randoms';
 import IdealTextColor from '../../utils/IdealTextColor';
+import HeaderNavigation from '../header-navigation';
 import React, {
   useState,
   useRef,
@@ -26,10 +31,6 @@ import {
 
 const nav = [
   {
-    href: "/",
-    label: "Home"
-  },
-  {
     href: "/resume/",
     label: "Resume"
   },
@@ -39,16 +40,59 @@ const nav = [
   }
 ];
 
-const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
-  const [menuIndex, setMenuIndex] = useState(-1);
+const MemoizedHeaderNav = React.memo(HeaderNavigation);
+
+function useOutsideAlerter(ref, callback) {
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (!ref || !callback || event.button !== 0) {
+        return;
+      }
+
+      console.log("EVENT", event)
+
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
+      }
+    }
+
+    function handleKeyDown(event) {
+      if (event.keyCode !== 27) {
+        return;
+      }
+
+      console.log("EVENT", event)
+
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    };
+  }, [ref]);
+}
+
+
+const Header = ({ isMenuOpen = false, accentColor, desktopNavAlignment, setMenuIndex, menuIndex }) => {
   const [isSticky, setIsSticky] = useState(false);
-  const updateMenuIndex = index => setMenuIndex(!!~index && index === menuIndex ? -1 : index);
+  let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
+  let whiteOnHover = !!heroImage;
 
   let navAccent = accentColor || randomColor(),
     textColor = IdealTextColor(accentColor);
 
   const onMenuToggle = index => {
-    updateMenuIndex(index);
+    setMenuIndex(!!~index && index === menuIndex ? -1 : index);
     return menuIndex;
   };
 
@@ -68,9 +112,11 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
     };
   }, []);
 
+  useOutsideAlerter(headerEl, () => setMenuIndex(-1));
+
   return (
     <HEADER
-      isMenuOpen={!!~menuIndex}
+      isMenuOpen={isMenuOpen}
       textColor={textColor}
       accentColor={navAccent}
       textColorEmphasis={textColor}
@@ -78,9 +124,9 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
       ref={headerEl}
       isSticky={isSticky}
     >
-      <NAV>
+      <HeaderNavigation>
         <TOGGLE
-          isActive={!!~menuIndex}
+          isActive={isMenuOpen}
           iconColor={isSticky ? `black` : textColor}
           iconColorEmphasis={navAccent}
           onClick={() => onMenuToggle(0)}
@@ -89,11 +135,11 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
         </TOGGLE>
         <DIV
           ref={drawerEl}
-          isMenuOpen={!!~menuIndex}
-          height={!!~menuIndex ? drawerEl.current.scrollHeight : 0}
+          isMenuOpen={isMenuOpen}
+          height={isMenuOpen ? drawerEl.current.scrollHeight : 0}
         >
           <UL
-            isMenuOpen={!!~menuIndex}
+            isMenuOpen={isMenuOpen}
             desktopNavAlignment={desktopNavAlignment}
           >
             {
@@ -120,9 +166,9 @@ const Header = ({ accentColor, whiteOnHover, desktopNavAlignment }) => {
           </UL>
           {/* {megaMenu} */}
         </DIV>
-      </NAV>
+      </HeaderNavigation>
     </HEADER>
   )
 }
 
-export default Header;
+export default React.memo(Header);

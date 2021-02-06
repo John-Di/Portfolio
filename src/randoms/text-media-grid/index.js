@@ -110,6 +110,7 @@ export default function TextMediaGrid({ responsive = {}, col_count = randomInteg
                 <h2>Text Media {index + 1}/{length}</h2>
                 <p>Just for the time being...</p>
                 <FancyCTA
+                  backgroundColor={backgroundColor}
                   modest={({ isModest: col_count > 2 })}
                   textColor={IdealTextColor(background)}
                 >Learn More</FancyCTA>

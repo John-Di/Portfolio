@@ -31,7 +31,7 @@ export default function Basics({ showHomeButton, resume }) {
     </>
   ), null);
 
-  const renderHomeButton = showHomeButton => showHomeButton && <HOME to={'/'}><FontAwesomeIcon icon={faHome} /></HOME>;
+  const renderHomeButton = showHomeButton => showHomeButton && <HOME to={'/style-guide/'}><FontAwesomeIcon icon={faHome} /></HOME>;
 
   return (
     <BASICS>

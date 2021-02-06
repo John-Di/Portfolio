@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import { ButtonReset, ListReset, LinkReset } from '../../utils/Resets';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FullSizeOverlay from '../../utils/FullSizeOverlay';
 import {
   conditionalProp
 } from '../../utils/AssessProps';
@@ -52,7 +53,7 @@ const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor }) => conditio
   }
 `);
 
-const HeaderMobileProps = ({ whiteOnHover, isMenuOpen, textColor, accentColor }) => conditionalProp(isMenuOpen, `
+const HeaderMobileProps = ({ isMenuOpen, textColor, accentColor }) => conditionalProp(isMenuOpen, `
   background-color: white;
   box-shadow: 0 3px 1px rgba(0,0,0,0.2);
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
@@ -85,7 +86,7 @@ const HeaderMobileProps = ({ whiteOnHover, isMenuOpen, textColor, accentColor })
   }
 `);
 
-const onSticky = ({ whiteOnHover, isMenuOpen, textColor, accentColor, isSticky }) => conditionalProp(isSticky, `
+const onSticky = ({ whiteOnHover, textColor, accentColor, isSticky }) => conditionalProp(isSticky, `
   background-color: white;
   box-shadow: 0 3px 1px rgba(0,0,0,0.2);
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
@@ -245,9 +246,23 @@ export const DIV = styled.div`
     overflow: hidden;
     transition: height 0.1s 0s;
 
+    &::before {
+      opacity: 0;
+      z-index: -1;
+      background-color: rgba(0,0,0,0.5);
+      ${FullSizeOverlay}
+      position: fixed;
+      transition: opacity 0.1s 0.05s;
+      ${props => conditionalProp(props.height, `top: ${props.height}px;`)}
+    }
+
     ${props => conditionalProp(props.isMenuOpen && props.height, `
       transition: height 0.1s 0.1s;
       height: ${props.height}px;
+
+      &::before {
+        opacity: 1;
+      }
     `)};
   }
 `;

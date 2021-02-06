@@ -6,7 +6,7 @@ import OnePairSection from '../sections/one-pair-section';
 import TwoPairSection from '../sections/two-pair-section';
 import ThreePairSection from '../sections/three-pair-section';
 import FourPairSection from '../sections/four-pair-section';
-import Header from '../components/header';
+import Page from '../layouts/page';
 import FancyCTA from '../components/fancy-cta';
 import ImageGallerySection from '../sections/image-gallery-section';
 import IdealTextColor from '../utils/IdealTextColor';
@@ -20,18 +20,6 @@ import {
 import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
 
-// styles
-const pageStyles = {
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-  position: "relative"
-}
-
-let alignment = [
-  'flex-start',
-  'center',
-  'flex-end'
-];
-
 // markup
 const StyleGuidePage = () => {
   let accentColor = randomColor();
@@ -39,76 +27,72 @@ const StyleGuidePage = () => {
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
 
   return (
-    <>
-      <Header
-        accentColor={accentColor}
-        whiteOnHover={!!heroImage}
-        desktopNavAlignment={alignment[randomIntegerEx(0, alignment.length)]}
-      />
-      <main style={pageStyles}>
-        <StyleGuideArticle>
-          <HeroBanner
-            index={0}
-            cols={1}
-            image_first={`${randomBool()}`}
-            maxWidth={`${heroWidth ? `100%` : `${size.laptopL}px`}`}
-            reversed={!!0}
-            isEven={0 % 2 === 0}
+    <Page
+      accentColor={accentColor}
+    >
+      <StyleGuideArticle>
+        <HeroBanner
+          index={0}
+          cols={1}
+          image_first={`${randomBool()}`}
+          maxWidth={`${heroWidth ? `100%` : `${size.laptopL}px`}`}
+          reversed={!!0}
+          isEven={0 % 2 === 0}
+        >
+          <TextBlock
+            overlay={true}
+            backgroundColor={`${accentColor}`}
+            backgroundImage={heroImage}
           >
-            <TextBlock
-              overlay={true}
-              backgroundColor={`${accentColor}`}
-              backgroundImage={heroImage}
-            >
-              <h1>Style Guide</h1>
-              <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
-              <FancyCTA
-                textColor={IdealTextColor(accentColor)}
-              >Learn More</FancyCTA>
-            </TextBlock>
-          </HeroBanner>
-          <TextBanner
-            textAlignment={'center'}
+            <h1>Style Guide</h1>
+            <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
+            <FancyCTA
+              accentColor={accentColor}
+              textColor={IdealTextColor(accentColor)}
+            >The Buttons Do Nothing Yet</FancyCTA>
+          </TextBlock>
+        </HeroBanner>
+        <TextBanner
+          textAlignment={'center'}
+        >
+          <TextBlock
           >
-            <TextBlock
-            >
-              <h2>Sections and Components</h2>
-              <p>Including this Basic Text Banner Section</p>
-            </TextBlock>
-          </TextBanner>
-          <OnePairSection isFullWidth={true} />
-          <OnePairSection isFullWidth={false} />
-          <TwoPairSection isFullWidth={true} />
-          <TwoPairSection isFullWidth={false} />
-          <TextBanner
-            textAlignment={'center'}
+            <h2>Sections and Components</h2>
+            <p>Including this Basic Text Banner Section</p>
+          </TextBlock>
+        </TextBanner>
+        <OnePairSection isFullWidth={true} />
+        <OnePairSection isFullWidth={false} />
+        <TwoPairSection isFullWidth={true} />
+        <TwoPairSection isFullWidth={false} />
+        <TextBanner
+          textAlignment={'center'}
+        >
+          <TextBlock
           >
-            <TextBlock
-            >
-              <h2>Just a little White Space Break</h2>
-              <p>Enjoy the Image Gallery</p>
-            </TextBlock>
-          </TextBanner>
-          <ImageGallerySection
-            images={randomImageArray()}
-          />
-          <ThreePairSection isFullWidth={true} />
-          <ThreePairSection isFullWidth={false} />
-          <FourPairSection isFullWidth={true} />
-          <FourPairSection isFullWidth={false} />
-          <TextBanner
-            textAlignment={'center'}
+            <h2>Just a little White Space Break</h2>
+            <p>Enjoy the Image Gallery</p>
+          </TextBlock>
+        </TextBanner>
+        <ImageGallerySection
+          images={randomImageArray()}
+        />
+        <ThreePairSection isFullWidth={true} />
+        <ThreePairSection isFullWidth={false} />
+        <FourPairSection isFullWidth={true} />
+        <FourPairSection isFullWidth={false} />
+        <TextBanner
+          textAlignment={'center'}
+        >
+          <TextBlock
           >
-            <TextBlock
-            >
-              <h2>That's it for now</h2>
-              <p>Try Mobile if you haven't already</p>
-            </TextBlock>
-          </TextBanner>
-          <OnePairSection isFullWidth={true} />
-        </StyleGuideArticle>
-      </main>
-    </>
+            <h2>That's it for now</h2>
+            <p>Try Mobile if you haven't already</p>
+          </TextBlock>
+        </TextBanner>
+        <OnePairSection isFullWidth={true} />
+      </StyleGuideArticle>
+    </Page>
   )
 }
 
