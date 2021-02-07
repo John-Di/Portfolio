@@ -25,7 +25,8 @@ const assessTheme = ({ theme, modest = { isModest: false }, parentColor = false,
       font-family: 'Roboto', 'Montserrat', serif;
       font-weight: normal;
 			border-style: solid;
-			min-width: 5em;
+      min-width: 5em;
+      max-width: 15em;
 			text-transform: uppercase;
       letter-spacing: 0.2px;
       transition: background-color 0.1s, color 0.1s;

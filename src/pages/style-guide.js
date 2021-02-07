@@ -49,7 +49,7 @@ const StyleGuidePage = () => {
             <FancyCTA
               accentColor={accentColor}
               textColor={IdealTextColor(accentColor)}
-            >The Buttons Do Nothing Yet</FancyCTA>
+            >The Buttons Still Do Nothing</FancyCTA>
           </TextBlock>
         </HeroBanner>
         <TextBanner
