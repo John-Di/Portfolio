@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import {
   TILE,
   IMAGE,
@@ -13,16 +13,19 @@ export default function ObjectTile({
   image,
   body,
   backgroundImage,
-  backgroundColor
+  backgroundColor,
+  children
 }) {
   return (
     <TILE
       className="tile"
     >
+      <HEADING>{heading}</HEADING>
       <IMAGE
         backgroundImage={backgroundImage}
         isSquare={true}
       ></IMAGE>
+      {body && <BODY>{body}</BODY>}
     </TILE>
   );
 }

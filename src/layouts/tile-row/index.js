@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import {
   LAYOUT,
   ITEM
@@ -16,22 +16,21 @@ const breakpoints = {
     maxWidth: `${100 / 3}%`
   }],
   4: [{
-    bp: `${device.mobileXL}`,
+    bp: `${device.mobileXL} and ${device.max_laptopL}`,
     maxWidth: `50%`
   }, {
-    bp: `${device.laptop}`,
+    bp: `${device.laptopL}`,
     maxWidth: `25%`
   }]
 };
 
 export default function TileRow({ children }) {
-  console.log('TileRow', Children.map(children, child => React.cloneElement(child)).length);
+  let bp = breakpoints[children.length];
   return (
-    <LAYOUT>
+    <LAYOUT breakpoint={bp && bp.length ? bp[bp.length - 1].bp : null}>
       {childrenToJSXList(children, (tile, i) => (
-        <ITEM key={i} breakpoints={breakpoints[children.length]}>
+        <ITEM key={i} breakpoints={bp}>
           {tile}
-
         </ITEM>
       ))}
     </LAYOUT>
