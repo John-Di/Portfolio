@@ -18,7 +18,7 @@ const pageStyles = {
 
 const Page = ({ accentColor, children }) => {
   const [menuIndex, SetMenuIndex] = useState(-1);
-  const [scrollTop, SaveScrollTop] = useState(document.documentElement.scrollTop);
+  const [scrollTop, SaveScrollTop] = useState(0);
 
   // const pageEl = useRef(null);
   const mainEl = useRef(null);
