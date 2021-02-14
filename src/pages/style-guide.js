@@ -2,6 +2,8 @@ import * as React from "react";
 import TextBanner from '../sections/text-banner';
 import HeroBanner from '../sections/hero-banner';
 import TextBlock from '../components/text-block';
+import ObjectTile from '../components/object-tile';
+import FeaturedTiles from '../sections/featured-tiles';
 import OnePairSection from '../sections/one-pair-section';
 import TwoPairSection from '../sections/two-pair-section';
 import ThreePairSection from '../sections/three-pair-section';
@@ -17,6 +19,7 @@ import {
   randomBool,
   randomImageArray
 } from '../utils/randoms';
+import { jsxCloneArray } from '../utils/dom-builder';
 import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
 
@@ -61,8 +64,34 @@ const StyleGuidePage = () => {
             <p>Including this Basic Text Banner Section</p>
           </TextBlock>
         </TextBanner>
+        <FeaturedTiles>{
+          jsxCloneArray(4, (length, _, index) => {
+            return (
+              <ObjectTile
+                key={index}
+                heading={`Tile ${index + 1}`}
+                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
+                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
+              >
+              </ObjectTile>
+            )
+          })}
+        </FeaturedTiles>
         <OnePairSection isFullWidth={true} />
         <OnePairSection isFullWidth={false} />
+        <FeaturedTiles>{
+          jsxCloneArray(2, (length, _, index) => {
+            return (
+              <ObjectTile
+                key={index}
+                heading={`Tile ${index + 1}`}
+                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
+                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
+              >
+              </ObjectTile>
+            )
+          })}
+        </FeaturedTiles>
         <TwoPairSection isFullWidth={true} />
         <TwoPairSection isFullWidth={false} />
         <TextBanner
@@ -79,6 +108,19 @@ const StyleGuidePage = () => {
         />
         <ThreePairSection isFullWidth={true} />
         <ThreePairSection isFullWidth={false} />
+        <FeaturedTiles>{
+          jsxCloneArray(3, (length, _, index) => {
+            return (
+              <ObjectTile
+                key={index}
+                heading={`Tile ${index + 1}`}
+                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
+                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
+              >
+              </ObjectTile>
+            )
+          })}
+        </FeaturedTiles>
         <FourPairSection isFullWidth={true} />
         <FourPairSection isFullWidth={false} />
         <TextBanner
@@ -91,6 +133,19 @@ const StyleGuidePage = () => {
           </TextBlock>
         </TextBanner>
         <OnePairSection isFullWidth={true} />
+        <FeaturedTiles>{
+          jsxCloneArray(1, (length, _, index) => {
+            return (
+              <ObjectTile
+                key={index}
+                heading={`Tile ${index + 1}`}
+                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
+                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
+              >
+              </ObjectTile>
+            )
+          })}
+        </FeaturedTiles>
       </StyleGuideArticle>
     </Page>
   )

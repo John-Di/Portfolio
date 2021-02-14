@@ -58,7 +58,7 @@ const Page = ({ accentColor, children }) => {
   };
 
   useEffect(HandleScrollLock, [isScrollLocked]);
-  console.log('menuIndex', menuIndex, isScrollLocked);
+  // console.log('menuIndex', menuIndex, isScrollLocked);
   return (
     <PAGE
       isLocked={isScrollLocked}
