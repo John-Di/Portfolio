@@ -2,6 +2,8 @@ import * as React from "react";
 import TextBanner from '../sections/text-banner';
 import HeroBanner from '../sections/hero-banner';
 import TextBlock from '../components/text-block';
+import ObjectTile from '../components/object-tile';
+import FeaturedTiles from '../sections/featured-tiles';
 import OnePairSection from '../sections/one-pair-section';
 import TwoPairSection from '../sections/two-pair-section';
 import ThreePairSection from '../sections/three-pair-section';
@@ -17,6 +19,7 @@ import {
   randomBool,
   randomImageArray
 } from '../utils/randoms';
+import { jsxCloneArray } from '../utils/dom-builder';
 import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
 
@@ -61,6 +64,18 @@ const StyleGuidePage = () => {
             <p>Including this Basic Text Banner Section</p>
           </TextBlock>
         </TextBanner>
+        <FeaturedTiles>{
+          jsxCloneArray(4, (length, _, index) => {
+            return (
+              <ObjectTile
+                key={index}
+                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
+              >
+                <p>Tile {index}</p>
+              </ObjectTile>
+            )
+          })}
+        </FeaturedTiles>
         <OnePairSection isFullWidth={true} />
         <OnePairSection isFullWidth={false} />
         <TwoPairSection isFullWidth={true} />
