@@ -39,37 +39,48 @@ const nav = [
   }
 ];
 
-// const MemoizedHeaderNav = React.memo(HeaderNavigation);
+const Header = ({ isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment }) => {
+  const [isSticky, setIsSticky] = useState(false);
+  let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
+  let whiteOnHover = !!heroImage;
 
-function useOutsideAlerter(ref, callback) {
-  useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
+  let navAccent = accentColor || randomColor(),
+    textColor = IdealTextColor(accentColor);
+
+  const headerEl = useRef(null);
+  const drawerEl = useRef(null);
+
+  const HandleScroll = () => {
+    setIsSticky(headerEl.current && document.documentElement.scrollTop > 0);
+    window.addEventListener('scroll', HandleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', () => HandleScroll);
+    };
+  };
+
+  const HandleMenuClose = () => {
+
+    function isValidHeaderTrigger({ target }) {
+      let { current } = headerEl;
+      return current.contains(target);
+    }
+
     function handleClickOutside(event) {
-      if (!ref || !callback || event.button !== 0) {
+      if (event.button !== 0 || isValidHeaderTrigger(event)) {
         return;
       }
 
-      // console.log("EVENT", event)
-
-      if (ref.current && !ref.current.contains(event.target)) {
-        callback();
-      }
+      onMenuToggle(-1);
     }
 
     function handleKeyDown(event) {
-      if (event.keyCode !== 27) {
+      if (event.keyCode !== 27 || isValidHeaderTrigger(event)) {
         return;
       }
 
-      // console.log("EVENT", event)
-
-      if (ref.current && !ref.current.contains(event.target)) {
-        callback();
-      }
+      onMenuToggle(-1);
     }
-
     // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyDown);
@@ -78,40 +89,11 @@ function useOutsideAlerter(ref, callback) {
       document.removeEventListener("mousedown", handleClickOutside);
       document.addEventListener("keydown", handleKeyDown);
     };
-  }, [ref]);
-}
+  }
 
+  useEffect(HandleScroll, []);
 
-const Header = ({ isMenuOpen = false, accentColor, desktopNavAlignment, setMenuIndex, menuIndex }) => {
-  const [isSticky, setIsSticky] = useState(false);
-  let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
-  let whiteOnHover = !!heroImage;
-
-  let navAccent = accentColor || randomColor(),
-    textColor = IdealTextColor(accentColor);
-
-  const onMenuToggle = index => {
-    setMenuIndex(!!~index && index === menuIndex ? -1 : index);
-    return menuIndex;
-  };
-
-  const headerEl = useRef(null);
-  const drawerEl = useRef(null);
-
-  const handleScroll = () => {
-    setIsSticky(headerEl.current && document.documentElement.scrollTop > 0);
-  };
-
-  useEffect(() => {
-    setIsSticky(headerEl.current && document.documentElement.scrollTop > 0);
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', () => handleScroll);
-    };
-  }, []);
-
-  useOutsideAlerter(headerEl, () => onMenuToggle(-1));
+  useEffect(HandleMenuClose, [headerEl]);
 
   return (
     <HEADER
@@ -128,7 +110,7 @@ const Header = ({ isMenuOpen = false, accentColor, desktopNavAlignment, setMenuI
           isActive={isMenuOpen}
           iconColor={isSticky ? `black` : textColor}
           iconColorEmphasis={navAccent}
-          onClick={() => onMenuToggle(0)}
+          onClick={onMenuToggle.bind(this, 0)}
         >
           <ICON icon={faBars} />
         </TOGGLE>
@@ -151,7 +133,7 @@ const Header = ({ isMenuOpen = false, accentColor, desktopNavAlignment, setMenuI
                 >
                   <NAVLINK
                     to={item.href}
-                    onClick={() => onMenuToggle(i + 1)}
+                    onClick={onMenuToggle.bind(this, i + 1)}
                     activeClassName="active"
                     state={{
                       wasRedirected: true

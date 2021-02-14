@@ -22,6 +22,14 @@ body {
 	scrollbar-width: none; /* Firefox */
 }
 
+.scroll-lock {
+  height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
+  width: 100%;
+  overflow: hidden;
+}
+
 .Collapsible--work .Collapsible__trigger-icon {
 	top: 50%;
 }
