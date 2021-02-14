@@ -30,6 +30,7 @@ const Page = ({ accentColor, children }) => {
     mainEl.current.style.top = -scrollTop + 'px';
     document.documentElement.classList.add('scroll-lock');
     document.body.classList.add('scroll-lock');
+    document.ontouchmove = (e) => isScrollLocked && e.preventDefault();
   }
 
   const Unlock = () => {
@@ -58,12 +59,11 @@ const Page = ({ accentColor, children }) => {
 
   useEffect(HandleScrollLock, [isScrollLocked]);
   console.log('menuIndex', menuIndex, isScrollLocked);
-  document.ontouchmove = (e) => isScrollLocked && e.preventDefault();
   return (
     <PAGE
       isLocked={isScrollLocked}
       scrollPosition={scrollTop}
-      ontouchstart={e => isScrollLocked && e.preventDefault()}
+    // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
       <Header
         isMenuOpen={isScrollLocked}
