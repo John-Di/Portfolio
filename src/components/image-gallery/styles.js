@@ -12,7 +12,7 @@ export const WRAPPER = styled.div`
 	margin: 0 auto;
 
   ${props => conditionalProp(props.hasPadding, `
-    padding: 4% 0;
+    padding: 2% 0;
 
     @media ${device.laptop} {
       padding: 8% 0;
