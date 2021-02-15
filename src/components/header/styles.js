@@ -14,44 +14,40 @@ import {
   Link as GatsbyLink
 } from "gatsby";
 
-const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor }) => conditionalProp(
-  whiteOnHover, `
-  &:hover,
-  &focus {
-    background-color: white;
-    box-shadow: 0 3px 1px rgba(0,0,0,0.2);
-    transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
+const HeaderTabletProps = ({ whiteOnHover, textColor, accentColor }) => `
+  background-color: white;
+  box-shadow: 0 3px 1px rgba(0,0,0,0.2);
+  transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
 
-    a {
-      background-color: transparent;
-      color: ${`#000000`};
+  a {
+    background-color: transparent;
+    color: ${`#000000`};
 
-      &:hover,
-      &:focus {
-        color: ${accentColor};
-        font-weight: bold;
-        text-decoration: underline;
-      }
+    &:hover,
+    &:focus {
+      color: ${accentColor};
+      font-weight: bold;
+      text-decoration: underline;
+    }
 
+    &:active,
+    &.active {
+      color: ${accentColor};
+    }
+
+    ${conditionalProp(whiteOnHover, `
       &:active,
       &.active {
-        color: ${accentColor};
-      }
-
-      ${conditionalProp(whiteOnHover, `
-        &:active,
-        &.active {
-          &,
-          &:hover,
-          &:focus {
-            background-color: ${accentColor};
-            color: ${textColor};
-          }
+        &,
+        &:hover,
+        &:focus {
+          background-color: ${accentColor};
+          color: ${textColor};
         }
-      `)}
-    }
+      }
+    `)}
   }
-`);
+`;
 
 const HeaderMobileProps = ({ isMenuOpen, textColor, accentColor }) => conditionalProp(isMenuOpen, `
   background-color: white;
@@ -188,7 +184,14 @@ export const HEADER = styled.header`
   @media ${device.tablet} {
     cursor: pointer;
     grid-template: "logo nav util" / 1fr 3fr 1fr;
-    ${HeaderTabletProps}
+    ${props => props.isActive ? HeaderTabletProps : null}
+
+    ${props => conditionalProp(props.whiteOnHover, `
+      &:hover,
+      &focus {
+        ${HeaderTabletProps}
+      }
+    `)}
   }
 `;
 

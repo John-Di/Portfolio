@@ -12,12 +12,12 @@ import ImageGallerySection from "../../sections/image-gallery-section";
 
 
 // markup
-const DummyProduct = ({ title, price }) => {
+const DummyProduct = ({ title, price, images = randomImageArray() }) => {
   let accentColor = randomColor();
 
   return (
     <ProductPage
-      images={randomImageArray()}
+      images={images}
       accentColor={accentColor}
       title={'Dummy Product'}
       price={'$19.99'}

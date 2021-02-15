@@ -16,7 +16,7 @@ const pageStyles = {
   position: "relative"
 }
 
-const Page = ({ accentColor, children }) => {
+const Page = ({ accentColor, children, activeHeader = false }) => {
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [scrollTop, SaveScrollTop] = useState(0);
 
@@ -66,6 +66,7 @@ const Page = ({ accentColor, children }) => {
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
       <Header
+        isActive={activeHeader}
         isMenuOpen={isScrollLocked}
         accentColor={accentColor}
         onMenuToggle={OnMenuToggle}

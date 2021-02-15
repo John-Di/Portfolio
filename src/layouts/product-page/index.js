@@ -24,6 +24,7 @@ const ProductPage = ({ title, price, images = randomImageArray() }) => {
   return (
     <Page
       accentColor={accentColor}
+      activeHeader={true}
     >
       <ARTICLE>
         <TITLE>{title}</TITLE>

@@ -39,10 +39,10 @@ const nav = [
   }
 ];
 
-const Header = ({ isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment }) => {
+const Header = ({ isActive = false, isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment }) => {
   const [isSticky, setIsSticky] = useState(false);
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
-  let whiteOnHover = !!heroImage;
+  let whiteOnHover = !!heroImage || isActive;
 
   let navAccent = accentColor || randomColor(),
     textColor = IdealTextColor(accentColor);
@@ -104,6 +104,7 @@ const Header = ({ isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlign
       whiteOnHover={whiteOnHover}
       ref={headerEl}
       isSticky={isSticky}
+      isActive={isActive}
     >
       <HeaderNavigation>
         <TOGGLE
@@ -130,6 +131,7 @@ const Header = ({ isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlign
                   accentColor={navAccent}
                   textColorEmphasis={textColor}
                   whiteOnHover={whiteOnHover}
+                  isActive={isActive}
                 >
                   <NAVLINK
                     to={item.href}
