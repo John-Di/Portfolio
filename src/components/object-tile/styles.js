@@ -46,7 +46,7 @@ export const HEADING = styled(GatsbyLink)`
 `;
 
 export const TILE = styled.article`
-  width: ${+size.mobileS / 16}em;
+  width: ${+size.mobileL / 16}em;
   max-width: 100%;
   margin: auto;
   display: grid;
