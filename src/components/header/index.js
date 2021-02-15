@@ -109,7 +109,7 @@ const Header = ({ isActive = false, isMenuOpen = false, onMenuToggle, accentColo
       <HeaderNavigation>
         <TOGGLE
           isActive={isMenuOpen}
-          iconColor={isSticky ? `black` : textColor}
+          iconColor={isSticky || isActive ? `black` : textColor}
           iconColorEmphasis={navAccent}
           onClick={onMenuToggle.bind(this, 0)}
         >
