@@ -7,7 +7,8 @@ const assessLayout = ({ breakpoints = [] }) => conditionalProp(breakpoints, `
   vertical-align: bottom;
   max-width: 100%;
   width: 100%;
-  margin-top: 3.5em;
+  margin-top: 8em;
+  padding: 0 4%;
 
   &:first-child {
     margin-top: 0;
@@ -19,12 +20,13 @@ const assessLayout = ({ breakpoints = [] }) => conditionalProp(breakpoints, `
     ${conditionalProp(rule.bp && rule.maxWidth, `
       @media ${rule.bp} {
         max-width: ${rule.maxWidth};
+        padding: 0 2%;
 
         ${conditionalProp(i < breakpoints.length - 1, `
           margin-top: 0;
 
           &:nth-child(n + 3) {
-            margin-top: 2em;
+            margin-top: 6em;
           }`, `margin-top: 0;`)}
       }
     `)}
@@ -33,10 +35,10 @@ const assessLayout = ({ breakpoints = [] }) => conditionalProp(breakpoints, `
 
 export const LAYOUT = styled.div`
 	width: 100%;
-  margin-top: 2em;
+  margin-top: 4em;
   ${props => conditionalProp(props.breakpoint, `
     @media ${props.breakpoint} {
-      margin-top: 3.5em;
+      margin-top: 5em;
     }
   `)}
   ${Clearfix}

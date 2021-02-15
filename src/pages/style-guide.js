@@ -3,6 +3,7 @@ import TextBanner from '../sections/text-banner';
 import HeroBanner from '../sections/hero-banner';
 import TextBlock from '../components/text-block';
 import ObjectTile from '../components/object-tile';
+import ProductTile from '../components/product-tile';
 import FeaturedTiles from '../sections/featured-tiles';
 import OnePairSection from '../sections/one-pair-section';
 import TwoPairSection from '../sections/two-pair-section';
@@ -22,6 +23,7 @@ import {
 import { jsxCloneArray } from '../utils/dom-builder';
 import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
+
 
 // markup
 const StyleGuidePage = () => {
@@ -67,13 +69,14 @@ const StyleGuidePage = () => {
         <FeaturedTiles>{
           jsxCloneArray(4, (length, _, index) => {
             return (
-              <ObjectTile
+              <ProductTile
                 key={index}
-                heading={`Tile ${index + 1}`}
+                heading={`Product Tile ${index + 1}`}
+                price={`$19.99`}
+                accentColor={accentColor}
                 backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
-                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
               >
-              </ObjectTile>
+              </ProductTile>
             )
           })}
         </FeaturedTiles>
@@ -115,7 +118,6 @@ const StyleGuidePage = () => {
                 key={index}
                 heading={`Tile ${index + 1}`}
                 backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
-                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
               >
               </ObjectTile>
             )
@@ -140,7 +142,6 @@ const StyleGuidePage = () => {
                 key={index}
                 heading={`Tile ${index + 1}`}
                 backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
-                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
               >
               </ObjectTile>
             )

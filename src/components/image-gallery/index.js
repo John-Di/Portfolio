@@ -10,7 +10,7 @@ import {
   IMG
 } from './styles';
 
-export default function ImageGallery({ children, maxWidth = '100%', images = [], scroll = true, hasPadding = false }) {
+export default function ImageGallery({ children, gap = 0.25, maxWidth = '100%', images = [], scroll = true, hasPadding = false }) {
   const [index, setIndex] = useState(0);
 
   let thumbnails = jsxCloneArrayToJSX(
@@ -22,6 +22,7 @@ export default function ImageGallery({ children, maxWidth = '100%', images = [],
         transparency={1 / 2}
         onClick={() => setIndex(i)}
         maxWidth={100 / Math.min(images.length, 5)}
+        gap={gap}
       >
         <IMG src={images[i]} />
       </THUMBNAIL>
@@ -32,12 +33,12 @@ export default function ImageGallery({ children, maxWidth = '100%', images = [],
 
 
   return (
-    <WRAPPER className="image-gallery-wrapper" hasPadding={hasPadding}>
-      <GALLERY maxWidth={maxWidth} className="image-gallery">
+    <WRAPPER maxWidth={maxWidth} className="image-gallery-wrapper" hasPadding={hasPadding}>
+      <GALLERY className="image-gallery">
         <MAIN_IMAGE className="image-gallery__main-image">
           <IMG src={images[index]} />
         </MAIN_IMAGE>
-        <NAVIGATION className="image-gallery__navigation" maxWidth={maxWidth}>
+        <NAVIGATION gap={gap} className="image-gallery__navigation" maxWidth={maxWidth}>
           {nav_inner}
         </NAVIGATION>
       </GALLERY>

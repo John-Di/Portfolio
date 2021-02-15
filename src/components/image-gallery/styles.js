@@ -1,33 +1,37 @@
 import styled from 'styled-components';
-import { device } from '../../utils/variables';
+import { device, size } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
-
-const gap = 0.25;
+import AssessProps, {
+  conditionalProp
+} from '../../utils/AssessProps';
+import FullSizeOverlay from '../../utils/FullSizeOverlay';
 
 export const WRAPPER = styled.div`
 	height: 100%;
 	width: 100%;
 	margin: 0 auto;
 
-	${props => props.hasPadding ? `
-		padding: 4% 0;
+  ${props => conditionalProp(props.hasPadding, `
+    padding: 4% 0;
 
-		@media ${device.laptop} {
-			padding: 8% 0;
-		}
-	` : ``}
+    @media ${device.laptop} {
+      padding: 8% 0;
+    }
+  `)}
 
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
+  ${props => conditionalProp(props.maxWidth, `
+    max-width: ${size.mobileXL + 'px'};
+  `)}
 `;
 
 export const GALLERY = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
-	max-width: ${props => props.maxWidth};
 	margin: auto;
 	width: 100%;
 
@@ -39,7 +43,7 @@ export const GALLERY = styled.div`
 export const NAVIGATION = styled.div`
 
 	@media ${device.laptop} {
-		margin: 2em -${gap}em 0;
+		margin: 0;
 	}
 
 	${Clearfix}
@@ -89,24 +93,42 @@ export const THUMBNAIL = styled.button`
 	overflow: hidden;
 	position: relative;
 
+
 	&::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    width: 100%;
+  }
+
+	&::after {
 		content: '';
+    ${FullSizeOverlay}
 		display: block;
-		padding-top: 100%;
-		width: 100%;
-		background-color: #d4d4d4;
+    z-index: 1;
 	}
 
-	@media ${device.laptop} {
-		border: 2px solid transparent;
-		margin: 0 ${gap}em;
-		max-width: calc(${props => props.maxWidth}% - ${gap * 2}em);
+  &.current,
+  &:hover,
+  &:focus {
+    &::after {
+      box-shadow: inset 0.125em 0.125em 0.25em black;
+    }
+  }
 
+	@media ${device.mobileXL} {
 		&.current,
 		&:hover,
 		&:focus {
-			border: 2px solid transparent;
+      &::after {
+        box-shadow: inset 0.25em 0.25em 0.5em black;
+      }
 		}
+	}
+
+	@media ${device.laptop} {
+		margin: 0;
+		max-width: ${props => props.maxWidth}%;
 	}
 
 	&:not(.current) img {
