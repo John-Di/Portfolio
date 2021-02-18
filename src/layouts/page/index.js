@@ -3,9 +3,6 @@ import React, {
   useRef,
   useEffect
 } from "react";
-// import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import Header from '../../components/header';
-import Overlay from '../../components/overlay';
 import {
   PAGE
 } from './styles';
@@ -16,14 +13,11 @@ const pageStyles = {
   position: "relative"
 }
 
-const Page = ({ accentColor, children, activeHeader = false }) => {
-  const [menuIndex, SetMenuIndex] = useState(-1);
+const Page = ({ children, isScrollLocked = false }) => {
   const [scrollTop, SaveScrollTop] = useState(0);
 
   // const pageEl = useRef(null);
   const mainEl = useRef(null);
-
-  let isScrollLocked = !!~menuIndex;
 
   const Lock = () => {
     // console.log('Lock', document.documentElement.scrollTop, window.pageYOffset);
@@ -49,14 +43,6 @@ const Page = ({ accentColor, children, activeHeader = false }) => {
   };
 
 
-  const OnMenuToggle = (index) => {
-    if ((menuIndex !== 0 && index >= 0) || index < 0) {
-      SetMenuIndex(index);
-    } else if (menuIndex === 0 && index === 0) {
-      SetMenuIndex(-1);
-    }
-  };
-
   useEffect(HandleScrollLock, [isScrollLocked]);
   // console.log('menuIndex', menuIndex, isScrollLocked);
   return (
@@ -65,18 +51,9 @@ const Page = ({ accentColor, children, activeHeader = false }) => {
       scrollPosition={scrollTop}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
-      <Header
-        isActive={activeHeader}
-        isMenuOpen={isScrollLocked}
-        accentColor={accentColor}
-        onMenuToggle={OnMenuToggle}
-      />
       <main ref={mainEl} style={pageStyles}>
         {children}
       </main>
-      <Overlay
-        isActive={isScrollLocked}
-      />
     </PAGE>
   )
 }
