@@ -1,28 +1,35 @@
-import * as React from "react";
-import Page from '../page';
+import React, {
+  useState
+} from "react";
+import PageTemplate from '../../templates/page';
 import {
   randomColor,
-  randomImage,
-  randomIntegerEx,
-  randomBool,
   randomImageArray
 } from '../../utils/randoms';
-import { size } from '../../utils/variables';
+import {
+  componentsListToSiblings
+} from '../../utils/dom-builder';
 import ImageGallery from "../../components/image-gallery";
+import FancyCTA from '../../components/fancy-cta';
+import { OptionSelector } from './helpers';
 import {
   ARTICLE,
   TITLE,
   MEDIA,
-  PRICE
+  PRICE,
+  PRICING,
+  DESCRIPTION,
+  FORM,
+  CTA
 } from './styles';
 
 
 // markup
-const ProductPage = ({ title, price, images = randomImageArray() }) => {
+const ProductPage = ({ title, price, images = randomImageArray(), description, options = [], variants = [], selectedID }) => {
+  const [variantID, SetVariantId] = useState(selectedID);
   let accentColor = randomColor();
-
   return (
-    <Page
+    <PageTemplate
       accentColor={accentColor}
       activeHeader={true}
     >
@@ -31,9 +38,24 @@ const ProductPage = ({ title, price, images = randomImageArray() }) => {
         <MEDIA>
           <ImageGallery maxWidth={`75%`} images={images} gap={0} />
         </MEDIA>
-        <PRICE>{price}</PRICE>
+        <PRICING>
+          <PRICE>{price}</PRICE>
+        </PRICING>
+        <DESCRIPTION>{description}</DESCRIPTION>
+        <FORM>
+          {
+            componentsListToSiblings(options, (option, i) => OptionSelector(option, i))
+          }
+          <CTA>
+            <FancyCTA
+              type="submit"
+              backgroundColor={`#FFFFFF`}
+              textColor={`#000000`}
+            >Add to Cart</FancyCTA>
+          </CTA>
+        </FORM>
       </ARTICLE>
-    </Page>
+    </PageTemplate>
   )
 }
 

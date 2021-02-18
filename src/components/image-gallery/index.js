@@ -19,7 +19,7 @@ export default function ImageGallery({ children, gap = 0.25, maxWidth = '100%', 
       <THUMBNAIL
         className={`image-gallery__thumbnail ${index === i ? `current` : ``}`}
         scroll={scroll}
-        transparency={1 / 2}
+        transparency={1 / 3}
         onClick={() => setIndex(i)}
         maxWidth={100 / Math.min(images.length, 5)}
         gap={gap}

@@ -11,20 +11,17 @@ import {
 import AssessProps, { conditionalProp } from '../../utils/AssessProps';
 
 
-const assessProps = ({ overlay, isSquare, backgroundImage, whiteOnHover }) => `
-
-  ${conditionalProp(overlay || isSquare, `
-    &::before {
-      content: '';
-      display: inline-block;
-      vertical-align: bottom;
-      width: 100%;
-      max-width: 100%;
-      ${AssessProps({ overlay, isSquare, backgroundImage, whiteOnHover })}
-      ${conditionalProp(isSquare, `padding-top: 100%;`)}
-      ${conditionalProp(backgroundImage, conditionalProp(whiteOnHover, `background-color: lightgrey;`, `background-color: grey;`))}
-    }
-  `)}
+const assessProps = ({ overlay, backgroundImage, whiteOnHover }) => `
+  &::before {
+    content: '';
+    display: inline-block;
+    vertical-align: bottom;
+    width: 100%;
+    max-width: 100%;
+    padding-top: 100%;
+    ${AssessProps({ overlay, isSquare: true, backgroundImage, whiteOnHover })}
+    ${conditionalProp(backgroundImage, conditionalProp(whiteOnHover, `background-color: lightgrey;`, `background-color: grey;`))}
+  }
 `;
 
 export const HEADING = styled(GatsbyLink)`

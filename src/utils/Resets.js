@@ -13,9 +13,9 @@ export const ListReset = `
 `;
 
 export const LinkReset = `
+  border: 0;
   margin: 0;
   padding: 0;
   outline: 0;
-  border: 0;
   color: black;
 `;

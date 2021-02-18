@@ -41,10 +41,7 @@ export const GALLERY = styled.div`
 `;
 
 export const NAVIGATION = styled.div`
-
-	@media ${device.laptop} {
-		margin: 0;
-	}
+  margin-top: 0.75em;
 
 	${Clearfix}
 
@@ -83,7 +80,6 @@ export const THUMBNAIL = styled.button`
 	border: 0;
 	outline: none;
 	background: none;
-	cursor: pointer;
 	grid-area: b;
 	margin: 0;
 	max-width: ${props => props.maxWidth}%;
@@ -93,10 +89,30 @@ export const THUMBNAIL = styled.button`
 	overflow: hidden;
 	position: relative;
 
+  &:not(.current) {
+    cursor: pointer;
+
+    &:hover {
+      img {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+  }
+
+	&:not(.current) img {
+		${props => props.transparency ? `opacity : ${props.transparency};` : ''}
+	}
+
+
+  &::after {
+    box-shadow: inset 0.125em 0.125em 1em black;
+  }
 
 	&::before {
     content: '';
     display: block;
+    background-color: slategrey;
     padding-top: 100%;
     width: 100%;
   }
@@ -108,43 +124,26 @@ export const THUMBNAIL = styled.button`
     z-index: 1;
 	}
 
-  &.current,
-  &:hover,
-  &:focus {
-    &::after {
-      box-shadow: inset 0.125em 0.125em 0.25em black;
+  &.current {
+    &,
+    &:hover,
+    &:focus {
+      &::after {
+        box-shadow: inset 0.125em 0.125em 1em transparent;
+      }
     }
   }
 
-	@media ${device.mobileXL} {
-		&.current,
-		&:hover,
-		&:focus {
-      &::after {
-        box-shadow: inset 0.25em 0.25em 0.5em black;
-      }
-		}
-	}
+  &:hover,
+  &:focus {
+    &::after {
+      box-shadow: inset 0.03125em 0.03125em 1em black;
+    }
+  }
 
 	@media ${device.laptop} {
 		margin: 0;
 		max-width: ${props => props.maxWidth}%;
-	}
-
-	&:not(.current) img {
-		${props => props.transparency ? `opacity : ${props.transparency};` : ''}
-	}
-
-	&:hover {
-		img {
-			transform: scale(1.25);
-		}
-	}
-
-	&:not(.current):hover {
-		img {
-			opacity: 1;
-		}
 	}
 `
 

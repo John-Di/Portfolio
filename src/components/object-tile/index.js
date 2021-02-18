@@ -34,6 +34,9 @@ export default function ObjectTile({
         activeClassName="active"
         backgroundImage={backgroundImage}
         isSquare={true}
+        state={{
+          product: { title: heading }
+        }}
       ></IMAGE>
       {value}
       {body && <BODY>{body}</BODY>}
