@@ -301,7 +301,7 @@ export const NAVLINK = styled(GatsbyLink)`
   padding: 1em 1.5em;
   line-height: 1.33;
   height: 100%;
-  min-width: 9.5em;
+  min-width: 12em;
   outline-width: 0;
   box-shadow: none;
   border: 0.25em solid transparent;

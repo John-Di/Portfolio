@@ -31,16 +31,21 @@ import {
 const nav = [
   {
     href: "/resume/",
-    label: "Resume"
+    label: () => "Resume"
   },
   {
     href: "/style-guide/",
-    label: "Style Guide"
+    label: () => "Style Guide"
+  },
+  {
+    href: "/product/dummy-product",
+    label: prod => prod && prod.title || 'Dummy Product'
   }
 ];
 
-const Header = ({ isActive = false, isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment }) => {
+const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const product = location.state ? location.state.product : false;
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
   let whiteOnHover = !!heroImage || isActive;
 
@@ -55,7 +60,8 @@ const Header = ({ isActive = false, isMenuOpen = false, onMenuToggle, accentColo
     window.addEventListener('scroll', HandleScroll);
 
     return () => {
-      window.removeEventListener('scroll', () => HandleScroll);
+      setIsSticky(false);
+      window.removeEventListener('scroll', HandleScroll);
     };
   };
 
@@ -141,7 +147,7 @@ const Header = ({ isActive = false, isMenuOpen = false, onMenuToggle, accentColo
                       wasRedirected: true
                     }}
                   >
-                    {item.label}
+                    {item.label(product.title)}
                   </NAVLINK>
                 </LI>
               ))
