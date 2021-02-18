@@ -9,7 +9,7 @@ import OnePairSection from '../sections/one-pair-section';
 import TwoPairSection from '../sections/two-pair-section';
 import ThreePairSection from '../sections/three-pair-section';
 import FourPairSection from '../sections/four-pair-section';
-import Page from '../layouts/page';
+import PageTemplate from '../templates/page';
 import FancyCTA from '../components/fancy-cta';
 import ImageGallerySection from '../sections/image-gallery-section';
 import IdealTextColor from '../utils/IdealTextColor';
@@ -32,7 +32,7 @@ const StyleGuidePage = () => {
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
 
   return (
-    <Page
+    <PageTemplate
       accentColor={accentColor}
     >
       <StyleGuideArticle>
@@ -148,7 +148,7 @@ const StyleGuidePage = () => {
           })}
         </FeaturedTiles>
       </StyleGuideArticle>
-    </Page>
+    </PageTemplate>
   )
 }
 
