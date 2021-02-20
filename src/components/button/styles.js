@@ -6,18 +6,7 @@ import {
 import IdealTextColor from '../../utils/IdealTextColor';
 
 
-export const BUTTON = styled.button`
-	cursor: pointer;
-	${ButtonReset}
-	${props => assessProps(props)}
-
-`;
-
-const assessProps = props => `
-	${assessTheme(props)}
-`;
-
-const assessTheme = ({ theme, modest = { isModest: false }, parentColor = false, backgroundColor = false, textColor = '#000000', borderColor = false, accentColor }) => {
+const assessTheme = ({ theme, modest = { isModest: false }, maxWidth = '15em', parentColor = false, backgroundColor = false, textColor = '#000000', borderColor = false, accentColor }) => {
   switch (theme) {
     case 'fancy':
     default:
@@ -26,7 +15,9 @@ const assessTheme = ({ theme, modest = { isModest: false }, parentColor = false,
       font-weight: normal;
 			border-style: solid;
       min-width: 5em;
-      max-width: 15em;
+			${conditionalProp(maxWidth, `
+        max-width: ${maxWidth};
+      `)}
 			text-transform: uppercase;
       letter-spacing: 0.2px;
       transition: background-color 0.1s, color 0.1s;
@@ -50,3 +41,9 @@ const assessTheme = ({ theme, modest = { isModest: false }, parentColor = false,
 		`;
   }
 };
+
+export const BUTTON = styled.button`
+	cursor: pointer;
+	${ButtonReset}
+	${assessTheme}
+`;

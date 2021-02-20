@@ -22,7 +22,10 @@ export default function Swatch({
     <SWATCH gutter={gap}>
       <INPUT id={`swatch-${value}`} type="radio" name={name} />
       <LABEL htmlFor={`swatch-${value}`} backgroundColor={backgroundColor} borderColor={borderColor}>
-        <VALUE isHidden={textHidden}>{value}</VALUE>
+        <VALUE
+          isHidden={textHidden}
+          case={'uppercase'}
+        >{value}</VALUE>
       </LABEL>
     </SWATCH>
   );

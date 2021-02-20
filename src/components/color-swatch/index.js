@@ -7,6 +7,13 @@ export default function ColorSwatch({
   gap = 0.25
 }) {
   return (
-    <Swatch gutter={gap} value={value} name={name} backgroundColor={value} textHidden={true} borderColor={value === '#FFFFFF' || value === 'white' ? `#cccccc` : '#FFFFFF'} />
+    <Swatch
+      gutter={gap}
+      value={value}
+      name={name}
+      backgroundColor={value}
+      textHidden={true}
+      borderColor={value === '#FFFFFF' || value === 'white' ? `#cccccc` : '#FFFFFF'}
+    />
   );
 }

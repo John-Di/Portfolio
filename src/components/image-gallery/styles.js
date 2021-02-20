@@ -89,6 +89,11 @@ export const THUMBNAIL = styled.button`
 	overflow: hidden;
 	position: relative;
 
+	@media ${device.laptop} {
+		margin: 0;
+		max-width: ${props => props.maxWidth}%;
+	}
+
   &:not(.current) {
     cursor: pointer;
 
@@ -140,12 +145,7 @@ export const THUMBNAIL = styled.button`
       box-shadow: inset 0.03125em 0.03125em 1em black;
     }
   }
-
-	@media ${device.laptop} {
-		margin: 0;
-		max-width: ${props => props.maxWidth}%;
-	}
-`
+`;
 
 export const IMG = styled.img`
 	display: block;
@@ -160,4 +160,8 @@ export const IMG = styled.img`
 	margin: 0;
 	height: 100%;
 	transition: transform 0.15s ease-in 0s, opacity 0.15s ease-in 0s;
+
+  .current & {
+    transform: scale(1.25);
+  }
 `

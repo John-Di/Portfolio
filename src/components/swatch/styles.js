@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { FlexCentered } from '../../utils/Flex';
-import { device } from '../../utils/variables';
+import {
+  conditionalProp
+} from '../../utils/AssessProps';
 import VisuallyHidden from '../../utils/VisuallyHidden';
 import { ListReset } from '../../utils/Resets';
 
@@ -19,7 +21,7 @@ export const INPUT = styled.input`
 export const LABEL = styled.label`
   cursor: pointer;
   ${FlexCentered}
-  background-color: ${props => props.backgroundColor || ''};
+  ${props => conditionalProp(props.backgroundColor, `background-color: ${props.backgroundColor};`)};
   width: 2.5em;
   height: 2.5em;
   border: 1px solid black;
@@ -34,5 +36,6 @@ export const LABEL = styled.label`
 `;
 
 export const VALUE = styled.span`
-  ${props => props.isHidden && VisuallyHidden}
+  ${props => conditionalProp(props.isHidden, VisuallyHidden)}
+  ${props => conditionalProp(props.case, `text-transform: ${props.case}`)}
 `;

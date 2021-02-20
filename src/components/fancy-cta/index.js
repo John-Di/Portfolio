@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../button';
 
-export default function FancyCTA({ children, modest, accentColor, backgroundColor, textColor = "#000000", borderColor }) {
+export default function FancyCTA({ children, modest, accentColor, backgroundColor, maxWidth, textColor = "#000000", borderColor }) {
 
   borderColor = borderColor ? borderColor : textColor;
 
@@ -13,6 +13,7 @@ export default function FancyCTA({ children, modest, accentColor, backgroundColo
       textColor={textColor}
       borderColor={borderColor}
       theme={'fancy'}
+      maxWidth={maxWidth}
     >
       {children}
     </Button>);

@@ -6,6 +6,7 @@ import {
   randomColor,
   randomImageArray
 } from '../../utils/randoms';
+import { device, size } from '../../utils/variables';
 import {
   componentsListToSiblings
 } from '../../utils/dom-builder';
@@ -51,6 +52,7 @@ const ProductPage = ({ title, price, images = randomImageArray(), description, o
               type="submit"
               backgroundColor={`#FFFFFF`}
               textColor={`#000000`}
+              maxWidth={`${size.mobileXL / 16}em`}
             >Add to Cart</FancyCTA>
           </CTA>
         </FORM>

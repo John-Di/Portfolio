@@ -76,14 +76,15 @@ export const DESCRIPTION = styled.p`
 `;
 
 export const FORM = styled.form`
+  margin: 2em auto;
 
-@media ${device.laptop} {
-  display: block;
-  margin: 1em auto;
-  width: 100%;
-  ${pageRight}
-  ${Clearfix}
-}
+  @media ${device.laptop} {
+    display: block;
+    margin: 1em auto;
+    width: 100%;
+    ${pageRight}
+    ${Clearfix}
+  }
 `;
 
 export const PRICING = styled.p`
@@ -107,15 +108,26 @@ export const PRICING = styled.p`
 export const PRICE = styled.span``;
 
 export const CTA = styled.div`
-  margin: 1em auto;
+  margin: 2em auto;
   width: 100%;
-  text-align: right;
+  text-align: center;
+
+  button {
+    max-width: ${size.mobileL / 16}em;
+    width: 100%;
+  }
 
   @media ${device.laptop} {
     ${pageRight}
     margin: 3em auto 0.5em 0;
     max-width: ${size.mobileL / 16}em;
+    width: 100%;
     text-align: center;
     ${Clearfix}
+
+    button {
+      max-width: unset;
+      width: unset;
+    }
   }
 `;

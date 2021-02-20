@@ -3,7 +3,7 @@ import {
   BUTTON
 } from './styles';
 
-export default function Button({ children, accentColor, backgroundColor, parentColor, textColor = `#000000`, borderColor, theme }) {
+export default function Button({ children, accentColor, backgroundColor, parentColor, maxWidth, textColor = `#000000`, borderColor, theme }) {
   return (
     <BUTTON
       backgroundColor={backgroundColor}
@@ -12,6 +12,7 @@ export default function Button({ children, accentColor, backgroundColor, parentC
       textColor={textColor}
       borderColor={borderColor}
       theme={theme}
+      maxWidth={maxWidth}
     >
       {children}
     </BUTTON>);
