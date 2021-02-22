@@ -39,7 +39,7 @@ const nav = [
   },
   {
     href: "/product/dummy-product",
-    label: prod => prod && prod.title || 'Dummy Product'
+    label: prod => prod ? prod.title : 'Dummy Product'
   }
 ];
 
