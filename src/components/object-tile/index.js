@@ -26,6 +26,7 @@ export default function ObjectTile({
       <HEADING
         to={url}
         activeClassName="active"
+        partiallyActive={true}
       >
         {heading}
       </HEADING>
@@ -34,6 +35,7 @@ export default function ObjectTile({
         activeClassName="active"
         backgroundImage={backgroundImage}
         isSquare={true}
+        partiallyActive={true}
         state={{
           product: { title: heading }
         }}
