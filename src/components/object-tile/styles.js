@@ -11,7 +11,7 @@ import {
 import AssessProps, { conditionalProp } from '../../utils/AssessProps';
 
 
-const assessProps = ({ overlay, backgroundImage, whiteOnHover }) => `
+const assessProps = ({ overlay, image, whiteOnHover }) => `
   &::before {
     content: '';
     display: inline-block;
@@ -19,8 +19,8 @@ const assessProps = ({ overlay, backgroundImage, whiteOnHover }) => `
     width: 100%;
     max-width: 100%;
     padding-top: 100%;
-    ${AssessProps({ overlay, isSquare: true, backgroundImage, whiteOnHover })}
-    ${conditionalProp(backgroundImage, conditionalProp(whiteOnHover, `background-color: lightgrey;`, `background-color: grey;`))}
+    ${AssessProps({ overlay, isSquare: true, backgroundImage: image, whiteOnHover })}
+    ${conditionalProp(image, conditionalProp(whiteOnHover, `background-color: lightgrey;`, `background-color: grey;`))}
   }
 `;
 

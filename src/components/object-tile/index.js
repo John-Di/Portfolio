@@ -33,8 +33,7 @@ export default function ObjectTile({
       <IMAGE
         to={url}
         activeClassName="active"
-        backgroundImage={backgroundImage}
-        isSquare={true}
+        image={backgroundImage}
         partiallyActive={true}
         state={{
           product: { title: heading }
