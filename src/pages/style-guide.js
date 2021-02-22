@@ -66,7 +66,7 @@ const StyleGuidePage = () => {
             <p>Including this Basic Text Banner Section</p>
           </TextBlock>
         </TextBanner>
-        <FeaturedTiles heading={`Products Tiles`}>{
+        <FeaturedTiles heading={`Product Tiles`}>{
           jsxCloneArray(4, (length, _, index) => {
             return (
               <ProductTile
