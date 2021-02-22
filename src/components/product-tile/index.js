@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import ObjectTile from '../object-tile';
 import {
   PRICE,
@@ -6,15 +6,10 @@ import {
   CTA_WRAPPER
 } from './styles';
 import FancyCTA from '../../components/fancy-cta';
-import IdealTextColor from '../../utils/IdealTextColor';
 
 export default function ProductTile({
   heading,
-  subheading,
-  image,
-  body,
   backgroundImage,
-  accentColor,
   children,
   price
 }) {
