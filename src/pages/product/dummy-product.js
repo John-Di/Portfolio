@@ -1,13 +1,13 @@
 import * as React from "react";
 import {
   randomColor,
-  randomImage,
-  randomIntegerEx,
-  randomBool,
+  // randomImage,
+  // randomIntegerEx,
+  // randomBool,
   randomImageArray
 } from '../../utils/randoms';
 import ProductPage from '../../layouts/product-page';
-import ImageGallerySection from "../../sections/image-gallery-section";
+// import ImageGallerySection from "../../sections/image-gallery-section";
 
 
 // markup

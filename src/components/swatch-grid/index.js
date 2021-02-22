@@ -1,26 +1,28 @@
-import React, { Children } from "react";
+import React, {
+  useState,
+  useRef
+} from "react";
 import {
   arrayToJSXList
 } from '../../utils/dom-builder';
 import {
-  SWATCHES,
-  SWATCH,
-  INPUT,
-  LABEL,
-  VALUE
+  SWATCHES
 } from './styles';
 
 export default function SwatchGrid({
-  name = "Option Name",
   values = [],
   gap = 0.25,
   Swatch
 }) {
+  const [currentSwatch, setCurrentSwatch] = useState(-1);
+  const swatchEl = useRef(null);
+  // console.log('currentSwatch', currentSwatch);
+
   return (
     <SWATCHES gutterOffset={gap}>
       {
         arrayToJSXList(values, (value, i) => (
-          <Swatch gutter={gap} value={value} key={i} />
+          <Swatch swatchRef={swatchEl} gutter={gap} id={`swatch-${value.replace('#', '')}-${Date.now()}`} isCurrent={currentSwatch === i} value={value} key={i} toggleSwatch={setCurrentSwatch.bind(this, i)} />
         ))
       }
     </SWATCHES>

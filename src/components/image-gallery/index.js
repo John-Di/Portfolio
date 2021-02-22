@@ -10,7 +10,7 @@ import {
   IMG
 } from './styles';
 
-export default function ImageGallery({ children, gap = 0.25, maxWidth = '100%', images = [], scroll = true, hasPadding = false }) {
+export default function ImageGallery({ gap = 0.25, maxWidth = '100%', images = [], scroll = true, hasPadding = false }) {
   const [index, setIndex] = useState(0);
 
   let thumbnails = jsxCloneArrayToJSX(

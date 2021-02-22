@@ -4,7 +4,7 @@ import {
   VALUE
 } from './styles';
 
-export default function ColorSwatch({
+export default function TextSwatch({
   swatchRef,
   id,
   name = "Color",
@@ -26,11 +26,10 @@ export default function ColorSwatch({
         className={isCurrent && 'current'}
         isCurrent={isCurrent}
         htmlFor={id}
-        backgroundColor={value}
-        borderColor={value === '#FFFFFF' || value === 'white' ? `#000000` : '#FFFFFF'}
+        borderColor={`#000000`}
         toggleSwatch={toggleSwatch}>
         <VALUE
-          isHidden={true}
+          case={`uppercase`}
         >{value}</VALUE>
       </SwatchLabel>
     </Swatch>

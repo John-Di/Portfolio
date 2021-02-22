@@ -1,12 +1,12 @@
 import React, {
-  useState
+  // useState
 } from "react";
 import PageTemplate from '../../templates/page';
 import {
   randomColor,
   randomImageArray
 } from '../../utils/randoms';
-import { device, size } from '../../utils/variables';
+import { size } from '../../utils/variables';
 import {
   componentsListToSiblings
 } from '../../utils/dom-builder';
@@ -27,7 +27,7 @@ import {
 
 // markup
 const ProductPage = ({ title, price, images = randomImageArray(), description, options = [], variants = [], selectedID }) => {
-  const [variantID, SetVariantId] = useState(selectedID);
+  // const [variantID, SetVariantId] = useState(selectedID);
   let accentColor = randomColor();
   return (
     <PageTemplate

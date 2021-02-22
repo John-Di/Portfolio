@@ -1,32 +1,43 @@
-import React, { Children } from "react";
+import React from "react";
 import {
-  arrayToJSXList
-} from '../../utils/dom-builder';
-import {
-  SWATCHES,
   SWATCH,
   INPUT,
-  LABEL,
-  VALUE
+  LABEL
 } from './styles';
 
 export default function Swatch({
+  id,
   name = "Option Name",
-  value = [],
   gap = 0.25,
-  textHidden = false,
-  borderColor = `#000000`,
-  backgroundColor = `#FFFFFF`
+  children
 }) {
   return (
     <SWATCH gutter={gap}>
-      <INPUT id={`swatch-${value}`} type="radio" name={name} />
-      <LABEL htmlFor={`swatch-${value}`} backgroundColor={backgroundColor} borderColor={borderColor}>
-        <VALUE
-          isHidden={textHidden}
-          case={'uppercase'}
-        >{value}</VALUE>
-      </LABEL>
+      <INPUT id={id} type="radio" name={name} />
+      {children}
     </SWATCH>
+  );
+}
+
+export function SwatchLabel({
+  swatchRef,
+  id,
+  isCurrent,
+  backgroundColor,
+  borderColor,
+  toggleSwatch,
+  children
+}) {
+  return (
+    <LABEL
+      ref={swatchRef}
+      className={isCurrent && 'current'}
+      isCurrent={isCurrent}
+      htmlFor={id}
+      backgroundColor={backgroundColor}
+      borderColor={borderColor}
+      onClick={toggleSwatch}>
+      {children}
+    </LABEL>
   );
 }
