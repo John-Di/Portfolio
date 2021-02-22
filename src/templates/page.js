@@ -7,10 +7,10 @@ import Overlay from '../components/overlay';
 import Page from '../layouts/page';
 
 // styles
-const pageStyles = {
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-  position: "relative"
-}
+// const pageStyles = {
+//   fontFamily: "-apple-system, Roboto, sans-serif, serif",
+//   position: "relative"
+// }
 
 const PageTemplate = ({ accentColor, children, activeHeader = false }) => {
   const [menuIndex, SetMenuIndex] = useState(-1);

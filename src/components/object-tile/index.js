@@ -1,20 +1,20 @@
-import React, { Children } from "react";
+import React from "react";
 import {
   TILE,
   IMAGE,
-  TITLE,
+  // TITLE,
   HEADING,
-  SUBHEADING,
+  // SUBHEADING,
   BODY
 } from './styles';
 
 export default function ObjectTile({
   heading,
-  subheading,
-  image,
+  // subheading,
+  // image,
   body,
   backgroundImage,
-  backgroundColor,
+  // backgroundColor,
   children,
   value,
   url = '/product/dummy-product'

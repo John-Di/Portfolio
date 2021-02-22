@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { size, device } from '../../utils/variables';
+import { size } from '../../utils/variables';
 import { LinkReset } from '../../utils/Resets';
 import {
   FlexCentered

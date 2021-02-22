@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device, size } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
-import AssessProps, {
+import {
   conditionalProp
 } from '../../utils/AssessProps';
 import FullSizeOverlay from '../../utils/FullSizeOverlay';
