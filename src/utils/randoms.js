@@ -11,4 +11,4 @@ export const randomIntegerIn = (min, max) => Math.floor(Math.random() * (max - m
 export const randomBool = (threshold = 0.5) => Math.random() < threshold;
 
 export const randomImageArray = (length = randomIntegerIn(4, 8)) => Array.from({ length },
-  (k, i) => getRandomImage(randomIntegerEx(0, 10000) + i + Date.now(), 1920, 1920))
+  (k, i) => getRandomImage(randomIntegerEx(0, 10000) + i, 1920, 1920))
