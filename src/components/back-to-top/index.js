@@ -11,8 +11,6 @@ export default function BackToTop({ isActive = false, lineColor = `#000000`, bac
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  console.log('BackToTop', { isActive, lineColor, backgroundColor })
-
   return (
     <WRAPPER className={`back-to-top`} isActive={isActive}>
       <TRIGGER
