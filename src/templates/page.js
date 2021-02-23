@@ -14,10 +14,9 @@ import Page from '../layouts/page';
 
 const PageTemplate = ({ accentColor, children, activeHeader = false }) => {
   const [menuIndex, SetMenuIndex] = useState(-1);
+  const [isStuck, setStickyState] = useState(false);
 
   let isScrollLocked = !!~menuIndex;
-
-
 
   const OnMenuToggle = (index) => {
     if ((menuIndex !== 0 && index >= 0) || index < 0) {
@@ -28,6 +27,8 @@ const PageTemplate = ({ accentColor, children, activeHeader = false }) => {
   };
   return (
     <Page
+      accentColor={accentColor}
+      wasScrolled={isStuck}
       isScrollLocked={isScrollLocked}
     >
       <Header
@@ -35,6 +36,8 @@ const PageTemplate = ({ accentColor, children, activeHeader = false }) => {
         isMenuOpen={isScrollLocked}
         accentColor={accentColor}
         onMenuToggle={OnMenuToggle}
+        isStuck={isStuck}
+        setStickyState={setStickyState}
       />
       {children}
       <Overlay

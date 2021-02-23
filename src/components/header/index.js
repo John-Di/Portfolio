@@ -10,7 +10,6 @@ import {
 import IdealTextColor from '../../utils/IdealTextColor';
 import HeaderNavigation from '../header-navigation';
 import React, {
-  useState,
   useRef,
   useEffect
 } from "react";
@@ -43,8 +42,7 @@ const nav = [
   }
 ];
 
-const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment }) => {
-  const [isSticky, setIsSticky] = useState(false);
+const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment, isStuck, setStickyState }) => {
   const product = location.state ? location.state.product : false;
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
   let whiteOnHover = !!heroImage || isActive;
@@ -56,11 +54,11 @@ const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuTog
   const drawerEl = useRef(null);
 
   const HandleScroll = () => {
-    setIsSticky(headerEl.current && document.documentElement.scrollTop > 0);
+    setStickyState(headerEl.current && document.documentElement.scrollTop > 0);
     window.addEventListener('scroll', HandleScroll);
 
     return () => {
-      setIsSticky(false);
+      setStickyState(false);
       window.removeEventListener('scroll', HandleScroll);
     };
   };
@@ -98,7 +96,6 @@ const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuTog
   }
 
   useEffect(HandleScroll, []);
-
   useEffect(HandleMenuClose, [headerEl]);
 
   return (
@@ -109,13 +106,13 @@ const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuTog
       textColorEmphasis={textColor}
       whiteOnHover={whiteOnHover}
       ref={headerEl}
-      isSticky={isSticky}
+      isStuck={isStuck}
       isActive={isActive}
     >
       <HeaderNavigation>
         <TOGGLE
           isActive={isMenuOpen}
-          iconColor={isSticky || isActive ? `black` : textColor}
+          iconColor={isStuck || isActive ? `black` : textColor}
           iconColorEmphasis={navAccent}
           onClick={onMenuToggle.bind(this, 0)}
         >

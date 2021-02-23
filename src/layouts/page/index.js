@@ -3,6 +3,7 @@ import React, {
   useRef,
   useEffect
 } from "react";
+import BackToTop from '../../components/back-to-top';
 import {
   PAGE
 } from './styles';
@@ -14,7 +15,7 @@ const pageStyles = {
   position: "relative"
 }
 
-const Page = ({ children, isScrollLocked = false }) => {
+const Page = ({ children, isScrollLocked = false, wasScrolled = false }) => {
   const [scrollTop, SaveScrollTop] = useState(0);
 
   // const pageEl = useRef(null);
@@ -31,6 +32,7 @@ const Page = ({ children, isScrollLocked = false }) => {
       <main ref={mainEl} style={pageStyles}>
         {children}
       </main>
+      <BackToTop isActive={wasScrolled} />
     </PAGE>
   )
 }

@@ -10,7 +10,7 @@ const pageLeft = `
 `;
 
 const pageRight = `
-  max-width: calc(50% - 5rem);
+  max-width: calc(49% - 5rem);
   display: inline-block;
   width: 100%;
 

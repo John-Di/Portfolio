@@ -82,7 +82,7 @@ const HeaderMobileProps = ({ isMenuOpen, textColor, accentColor }) => conditiona
   }
 `);
 
-const onSticky = ({ whiteOnHover, textColor, accentColor, isSticky }) => conditionalProp(isSticky, `
+const onStuck = ({ whiteOnHover, textColor, accentColor, isStuck }) => conditionalProp(isStuck, `
   background-color: white;
   box-shadow: 0 3px 1px rgba(0,0,0,0.2);
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
@@ -175,7 +175,7 @@ export const HEADER = styled.header`
     }
   }
 
-  ${onSticky}
+  ${onStuck}
 
   @media ${device.max_tablet} {
     ${HeaderMobileProps}
