@@ -62,7 +62,6 @@ export const MAIN_IMAGE = styled.div`
 `;
 
 export const SCROLLABLE = styled.div`
-	width: 100%;
 	overflow: auto;
 	white-space: nowrap;
 
@@ -80,8 +79,8 @@ export const THUMBNAIL = styled.button`
 	border: 0;
 	outline: none;
 	background: none;
-	grid-area: b;
 	margin: 0;
+  float: left;
 	max-width: ${props => props.maxWidth}%;
 	display: inline-block;
 	vertical-align: bottom;
