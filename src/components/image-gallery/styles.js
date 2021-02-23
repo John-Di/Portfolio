@@ -52,6 +52,7 @@ export const NAVIGATION = styled.div`
 export const MAIN_IMAGE = styled.div`
 	grid-area: a;
 	position: relative;
+  background-color: grey;
 
 	&::before {
 		content: '';
