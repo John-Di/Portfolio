@@ -17,7 +17,7 @@ export default function ObjectTile({
   // backgroundColor,
   children,
   value,
-  url = '/product/dummy-product'
+  url = '/products/dummy-product'
 }) {
   return (
     <TILE

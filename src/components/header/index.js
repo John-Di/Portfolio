@@ -37,7 +37,7 @@ const nav = [
     label: () => "Style Guide"
   },
   {
-    href: "/product/dummy-product",
+    href: "/products/dummy-product",
     label: prod => prod ? prod.title : 'Dummy Product'
   }
 ];
