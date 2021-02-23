@@ -42,6 +42,14 @@ export const GALLERY = styled.div`
 
 export const NAVIGATION = styled.div`
   margin-top: 0.75em;
+  position: relative;
+
+  &::before {
+    content: '';
+    ${FullSizeOverlay}
+    display: block;
+    box-shadow: inset 0.125em 0.125em 1em slategray;
+  }
 
   ${Clearfix}
 
@@ -109,40 +117,11 @@ export const THUMBNAIL = styled.button`
     ${props => props.transparency ? `opacity : ${props.transparency};` : ''}
   }
 
-
-  &::after {
-    box-shadow: inset 0.125em 0.125em 1em black;
-  }
-
   &::before {
     content: '';
     display: block;
-    background-color: slategrey;
     padding-top: 100%;
     width: 100%;
-  }
-  
-  &::after {
-    content: '';
-    ${FullSizeOverlay}
-    display: block;
-  }
-
-  &.current {
-    &,
-    &:hover,
-    &:focus {
-      &::after {
-        box-shadow: inset 0.125em 0.125em 1em transparent;
-      }
-    }
-  }
-
-  &:hover,
-  &:focus {
-    &::after {
-      box-shadow: inset 0.03125em 0.03125em 1em black;
-    }
   }
 `;
 
