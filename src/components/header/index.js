@@ -140,6 +140,7 @@ const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuTog
                     to={item.href}
                     onClick={onMenuToggle.bind(this, i + 1)}
                     activeClassName="active"
+                    partiallyActive={true}
                     state={{
                       wasRedirected: true
                     }}
