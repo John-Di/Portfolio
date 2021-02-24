@@ -11,6 +11,7 @@ import {
   componentsListToSiblings
 } from '../../utils/dom-builder';
 import ImageGallery from "../../components/image-gallery";
+import ProductOptionSelector from "../../components/product-option-selector";
 import FancyCTA from '../../components/fancy-cta';
 import { OptionSelector } from './helpers';
 import {

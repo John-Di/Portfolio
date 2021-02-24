@@ -9,6 +9,7 @@ import {
   SWATCHES
 } from './styles';
 
+
 export default function SwatchGrid({
   values = [],
   gap = 0.25,
@@ -16,7 +17,6 @@ export default function SwatchGrid({
 }) {
   const [currentSwatch, setCurrentSwatch] = useState(-1);
   const swatchEl = useRef(null);
-  // console.log('currentSwatch', currentSwatch);
 
   return (
     <SWATCHES gutterOffset={gap}>

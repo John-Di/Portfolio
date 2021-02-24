@@ -90,17 +90,12 @@ export const THUMBNAIL = styled.button`
   background: none;
   margin: 0;
   float: left;
-  max-width: ${props => props.maxWidth}%;
+  max-width: 20%;
   display: inline-block;
   vertical-align: bottom;
   width: 100%;
   overflow: hidden;
   position: relative;
-
-  @media ${device.laptop} {
-    margin: 0;
-    max-width: ${props => props.maxWidth}%;
-  }
 
   &:not(.current) {
     cursor: pointer;

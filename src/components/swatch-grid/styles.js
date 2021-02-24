@@ -6,7 +6,6 @@ import {
 import VisuallyHidden from '../../utils/VisuallyHidden';
 import { ListReset } from '../../utils/Resets';
 
-
 export const SWATCHES = styled.ul`
   ${ListReset}
   margin: 1em -${props => props.gutterOffset}em;

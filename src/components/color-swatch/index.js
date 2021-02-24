@@ -8,7 +8,7 @@ export default function ColorSwatch({
   swatchRef,
   id,
   name = "Color",
-  value = [],
+  value = 'transparent',
   gap = 0.25,
   isActive,
   toggleSwatch,

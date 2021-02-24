@@ -4,7 +4,7 @@ import {
 
 const options = [{
   "name": "Color",
-  "colors": [
+  "values": [
     "white", "black", "#708090", "#2F4F4F"
   ],
   "type": "color"
