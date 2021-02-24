@@ -29,6 +29,7 @@ import {
 const ProductPage = ({ title, price, images = randomImageArray(), description, options = [], variants = [], selectedID }) => {
   // const [variantID, SetVariantId] = useState(selectedID);
   let accentColor = randomColor();
+
   return (
     <PageTemplate
       accentColor={accentColor}
@@ -45,7 +46,7 @@ const ProductPage = ({ title, price, images = randomImageArray(), description, o
         <DESCRIPTION>{description}</DESCRIPTION>
         <FORM>
           {
-            componentsListToSiblings(options, (option, i) => OptionSelector(option, i))
+            componentsListToSiblings(options, OptionSelector)
           }
           <CTA>
             <FancyCTA

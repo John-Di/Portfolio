@@ -5,17 +5,17 @@ import StringToNumber from '../../utils/StringToNumber';
 
 
 export const OptionSelector = (option, i) => {
-  let OptionSelector = ProductOptionSelector;
+  let Selector = ProductOptionSelector;
 
   let type = StringToNumber(option.type);
 
   if (type === StringToNumber('color')) {
-    OptionSelector = ProductColorSelector;
+    Selector = ProductColorSelector;
   } else if (type === StringToNumber('size')) {
-    OptionSelector = OptionSelector;
+    Selector = ProductOptionSelector;
   } else if (type === StringToNumber('designcolor')) {
-    OptionSelector = ProductColorSelector;
+    Selector = ProductColorSelector;
   }
 
-  return <OptionSelector key={i} {...option} />;
+  return (<Selector key={i} {...option} />);
 }
