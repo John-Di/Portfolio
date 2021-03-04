@@ -4,6 +4,7 @@ import AssessProps, {
 } from '../../utils/AssessProps';
 import IdealTextColor from '../../utils/IdealTextColor';
 import { ButtonReset } from '../../utils/Resets';
+import { device } from '../../utils/variables';
 
 const width = 3;
 
@@ -32,13 +33,18 @@ const assessTrigger = ({ isActive, lineColor, backgroundColor, accentColor }) =>
 export const WRAPPER = styled.div`
   position: fixed;
   bottom: 2em;
-  right: 1em;
+  right: 0.25em;
   font-size: ${width}em;
   width: 1em;
   height: 1em;
   transform: translateY(1000%);
   transition: transform ${1 / 2.5}s;
   ${assessWrapper}
+
+
+  @media ${device.tablet} {
+    right: 1em;
+  }
 `;
 
 export const TRIGGER = styled.button`

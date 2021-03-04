@@ -8,15 +8,20 @@ import {
 import {
   SWATCHES
 } from './styles';
+import {
+  SwatchType
+} from './helpers';
+
 
 
 export default function SwatchGrid({
   values = [],
   gap = 0.25,
-  Swatch
+  name
 }) {
   const [currentSwatch, setCurrentSwatch] = useState(-1);
   const swatchEl = useRef(null);
+  let Swatch = SwatchType(name);
 
   return (
     <SWATCHES gutterOffset={gap}>
