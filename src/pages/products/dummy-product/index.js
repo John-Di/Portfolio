@@ -37,7 +37,7 @@ function cartesian(args) {
   return r;
 }
 
-const productImages = randomImageArray(options[0].values.length);
+const productImages = randomImageArray(options[0].values.length * options[0].values.length);
 
 const variants = cartesian(options.map(o => o.values)).map((variantOptions, i) => {
   let price = `$${randomIntegerIn(1, 19)}9.99`;
@@ -51,7 +51,7 @@ const variants = cartesian(options.map(o => o.values)).map((variantOptions, i) =
     option2: variantOptions[1] || null,
     option3: variantOptions[2] || null,
     id: randomIntegerIn(100000000, 999999999),
-    images: productImages,
+    images: randomImageArray(options[0].values.length),
     price
   })
 });
