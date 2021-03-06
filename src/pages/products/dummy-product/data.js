@@ -1,5 +1,5 @@
 import {
-  randomImageArray, randomIntegerIn, randomIntegerEx
+  randomImageArray, randomIntegerIn
 } from '../../../utils/randoms';
 
 const options = [{
@@ -30,13 +30,12 @@ function cartesian(args) {
   return r;
 }
 
-console.log(options[0].values.length)
-const productImages = randomImageArray(options[0].values.length)
-console.log(productImages)
-
+const productImages = randomImageArray(options[0].values.length);
 
 const variants = cartesian(options.map(o => o.values)).map((variantOptions, i) => {
+  let price = `$${randomIntegerIn(1, 19)}9.99`;
   return ({
+    title: `${variantOptions.join(' / ')} - ${price}`,
     options: variantOptions.map((option, i) => ({
       name: options[i].name,
       value: option
@@ -46,11 +45,9 @@ const variants = cartesian(options.map(o => o.values)).map((variantOptions, i) =
     option3: variantOptions[2] || null,
     id: randomIntegerIn(100000000, 999999999),
     images: productImages,
-    price: `$${randomIntegerIn(1, 19)}9.99`
+    price
   })
-}); //options.reduce(buildVariants, []);
-console.log(variants);
-
+});
 
 const DUMMY_PRODUCT = {
   title: 'Dummy Product',

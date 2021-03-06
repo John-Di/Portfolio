@@ -4,13 +4,12 @@ import {
   arrayToComponentSiblings
 } from '../../utils/dom-builder';
 import {
-  SELECTOR,
   VARIANTS,
   VARIANT
 } from './styles';
 
 export default function VariantSelector({
-  options,
+  theme,
   variants = [],
   isHidden,
   selected,
@@ -21,7 +20,6 @@ export default function VariantSelector({
   const Variant = (variant, i) => (
     <VARIANT
       key={i}
-      // onClick={updateVariant(variant.id)}
       value={variant.id}
     >
       {variant.title || variant.id}
@@ -39,9 +37,7 @@ export default function VariantSelector({
       <select name="id" onChange={variantOnChange} value={selected}>
         {arrayToComponentSiblings(variants, Variant)}
       </select>
-      <Dropdown items={variants} Option={Variant}>
-        {arrayToComponentSiblings(variants, Variant)}
-      </Dropdown>
+      {!isHidden && <Dropdown theme={theme} items={variants.map(v => ({ ...v, value: v.id }))} updateValue={variantOnChange} selected={selected} />}
     </VARIANTS>
   );
 }

@@ -36,10 +36,9 @@ const ProductPage = ({ accentColor = randomColor(), ...product }) => {
     options = [],
     variants = [],
     selectedID
-  } = product;
-
-  let selectedVariantId = selectedID || variants[0].id;
-  let selectedVariant = variants.find(v => v.id === selectedVariantId);
+  } = product,
+    selectedVariantId = selectedID || variants[0].id,
+    selectedVariant = variants.find(v => v.id === selectedVariantId);
 
   const [formState, UpdateFormState] = useReducer(productReducer.bind(this, options, variants), {
     selectedVariant
@@ -53,7 +52,7 @@ const ProductPage = ({ accentColor = randomColor(), ...product }) => {
       activeHeader={true}
     >
       <ARTICLE>
-        <TITLE>{formState.selectedVariant.title || title}</TITLE>
+        <TITLE>{title}</TITLE>
         <MEDIA>
           <ImageGallery maxWidth={`75%`} images={formState.selectedVariant.images || images} gap={0} />
         </MEDIA>
@@ -65,9 +64,10 @@ const ProductPage = ({ accentColor = randomColor(), ...product }) => {
           <VariantSelector
             options={options}
             variants={variants}
-            isHidden={false}
+            isHidden={true}
             selected={formState.selectedVariant.id}
             updateVariant={UpdateFormState}
+            theme={'fancy'}
           >
             {
               arrayToComponentSiblings(options, (option, i) => (

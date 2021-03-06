@@ -7,8 +7,10 @@ export const ButtonReset = `
 `;
 
 export const ListReset = `
+  border: 0;
   margin: 0;
   padding: 0;
+  outline: 0;
   list-style: none;
   line-height: 1;
 `;
