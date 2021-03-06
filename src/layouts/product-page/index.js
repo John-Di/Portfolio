@@ -1,6 +1,4 @@
-import React, {
-  useReducer
-} from "react";
+import React from "react";
 import PageTemplate from '../../templates/page';
 import ProductOptionSelector from "../../components/product-option-selector";
 import {
@@ -10,7 +8,7 @@ import {
   arrayToComponentSiblings
 } from '../../utils/dom-builder';
 import {
-  productReducer,
+  useProduct,
   getSelectedOptions
 } from '../../utils/Product';
 import SwatchGrid from "../../components/swatch-grid";
@@ -40,9 +38,7 @@ const ProductPage = ({ accentColor = randomColor(), ...product }) => {
     selectedVariantId = selectedID || variants[0].id,
     selectedVariant = variants.find(v => v.id === selectedVariantId);
 
-  const [formState, UpdateFormState] = useReducer(productReducer.bind(this, options, variants), {
-    selectedVariant
-  });
+  const { formState, updateVariant, updateOption } = useProduct({ options, variants, selectedVariant });
 
   let selectedOptions = getSelectedOptions(options, formState.selectedVariant);
 
@@ -66,13 +62,13 @@ const ProductPage = ({ accentColor = randomColor(), ...product }) => {
             variants={variants}
             isHidden={true}
             selected={formState.selectedVariant.id}
-            updateVariant={UpdateFormState}
+            updateVariant={updateVariant}
             theme={'fancy'}
           >
             {
               arrayToComponentSiblings(options, (option, i) => (
                 <ProductOptionSelector key={i} name={option.name}>
-                  <SwatchGrid {...option} selected={selectedOptions.find(o => o.name === option.name).value} updateOption={UpdateFormState} />
+                  <SwatchGrid {...option} selected={selectedOptions.find(o => o.name === option.name).value} updateOption={updateOption} />
                 </ProductOptionSelector>
               ))
             }

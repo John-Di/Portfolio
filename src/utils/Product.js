@@ -1,13 +1,25 @@
+import {
+  useReducer
+} from "react";
+
+const actionTypes = {
+  id: 'ID',
+  option: 'OPTION'
+}
+
+
+
 
 export const getSelectedOptions = (options, selectedVariant) => selectedVariant.options.map((option, i) => ({
   name: options[i].name,
   value: option.value
 }))
 
-export const productReducer = (options, variants, state, action) => {
+export const productReducer = (state, action) => {
+  let { selected, options, variants } = action;
+  console.log('productReducer', action);
   switch (action.type) {
-    case 'id': {
-      let { selected } = action;
+    case actionTypes.id: {
       return {
         selectedVariant: {
           ...selected,
@@ -15,7 +27,7 @@ export const productReducer = (options, variants, state, action) => {
         }
       }
     }
-    case 'option': {
+    case actionTypes.option: {
       let selectedOptions = getSelectedOptions(options, state.selectedVariant).reduce((acc, option, i) => {
         if (option.name === action.selected.name) {
           acc.push(action.selected);
@@ -42,3 +54,17 @@ export const productReducer = (options, variants, state, action) => {
     }
   }
 }
+
+function useProduct({ reducer = productReducer, selectedVariant, options, variants } = {}) {
+
+  const [formState, UpdateFormState] = useReducer(reducer, {
+    selectedVariant
+  });
+
+  const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selected: selectedVariant, options, variants });
+  const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selected: selectedOption, options, variants });
+
+  return { formState, updateVariant, updateOption };
+}
+
+export { useProduct }

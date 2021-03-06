@@ -28,7 +28,7 @@ export default function VariantSelector({
 
   const variantOnChange = e => {
     let selectedVariant = variants.find(variant => variant.id === +e.target.value);
-    updateVariant({ type: 'id', selected: selectedVariant })
+    updateVariant(selectedVariant)
   }
 
   let Select = (

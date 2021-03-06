@@ -23,13 +23,10 @@ export default function SwatchGrid({
   const swatchEl = useRef(null);
   let Swatch = SwatchType(name);
 
-
   const optionOnChange = value => {
     updateOption({
-      type: 'option', selected: {
-        name,
-        value
-      }
+      name,
+      value
     })
   }
 
