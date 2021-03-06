@@ -27,7 +27,11 @@ export const LABEL = styled.label`
   border: 1px solid black;
   margin: 0;
 
-  &.current,
+  ${props => conditionalProp(props.isCurrent, `
+    outline: 1px solid black;
+    border: 2px solid ${props.borderColor};
+  `)};
+
   &:hover,
   focus {
     outline: 1px solid black;

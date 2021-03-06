@@ -10,7 +10,6 @@ export default function TextSwatch({
   name = "Color",
   value = [],
   gap = 0.25,
-  isActive,
   toggleSwatch,
   isCurrent
 }) {
@@ -19,7 +18,7 @@ export default function TextSwatch({
       id={id}
       gap={gap}
       name={name}
-      isActive={isActive}
+      isCurrent={isCurrent}
     >
       <SwatchLabel
         swatchRef={swatchRef}

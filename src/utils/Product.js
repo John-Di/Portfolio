@@ -17,7 +17,6 @@ export const getSelectedOptions = (options, selectedVariant) => selectedVariant.
 
 export const productReducer = (state, action) => {
   let { selected, options, variants } = action;
-  console.log('productReducer', action);
   switch (action.type) {
     case actionTypes.id: {
       return {

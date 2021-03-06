@@ -5,29 +5,25 @@ import {
 } from './styles';
 
 export default function ColorSwatch({
-  swatchRef,
   id,
   name = "Color",
   value = 'transparent',
   gap = 0.25,
-  isActive,
   toggleSwatch,
   isCurrent
 }) {
+  let inputID = id || `${name}-${value}`;
   return (
     <Swatch
-      id={id}
+      id={inputID}
       gap={gap}
       name={name}
-      isActive={isActive}
     >
       <SwatchLabel
-        swatchRef={swatchRef}
-        className={isCurrent && 'current'}
         isCurrent={isCurrent}
-        htmlFor={id}
+        htmlFor={inputID}
         backgroundColor={value}
-        borderColor={value === '#FFFFFF' || value === 'white' ? `#000000` : '#FFFFFF'}
+        borderColor={(value === '#FFFFFF' || value === 'white') ? `#000000` : '#FFFFFF'}
         toggleSwatch={toggleSwatch}>
         <VALUE
           isHidden={true}

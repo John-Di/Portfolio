@@ -20,7 +20,6 @@ export default function Swatch({
 }
 
 export function SwatchLabel({
-  swatchRef,
   id,
   isCurrent,
   backgroundColor,
@@ -30,8 +29,6 @@ export function SwatchLabel({
 }) {
   return (
     <LABEL
-      ref={swatchRef}
-      className={isCurrent && 'current'}
       isCurrent={isCurrent}
       htmlFor={id}
       backgroundColor={backgroundColor}
