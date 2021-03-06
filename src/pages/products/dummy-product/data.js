@@ -32,16 +32,21 @@ function cartesian(args) {
 
 console.log(options[0].values.length)
 const productImages = randomImageArray(options[0].values.length)
+console.log(productImages)
 
 
 const variants = cartesian(options.map(o => o.values)).map((variantOptions, i) => {
   return ({
-    options: variantOptions,
+    options: variantOptions.map((option, i) => ({
+      name: options[i].name,
+      value: option
+    })),
     option1: variantOptions[0] || null,
     option2: variantOptions[1] || null,
     option3: variantOptions[2] || null,
     id: randomIntegerIn(100000000, 999999999),
-    images: productImages.splice(randomIntegerEx(1, productImages.length))
+    images: productImages,
+    price: `$${randomIntegerIn(1, 19)}9.99`
   })
 }); //options.reduce(buildVariants, []);
 console.log(variants);
@@ -49,7 +54,7 @@ console.log(variants);
 
 const DUMMY_PRODUCT = {
   title: 'Dummy Product',
-  price: '$19.99',
+  price: `$${randomIntegerIn(1, 19)}9.99`,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   images: productImages,
   options,

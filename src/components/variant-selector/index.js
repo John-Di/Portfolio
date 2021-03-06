@@ -29,13 +29,14 @@ export default function VariantSelector({
   );
 
   const variantOnChange = e => {
-    updateVariant(variants.find(variant => variant.id === e.target.value))
+    let selectedVariant = variants.find(variant => variant.id === +e.target.value);
+    updateVariant({ type: 'id', selected: selectedVariant })
   }
 
   return (
     <VARIANTS isHidden={isHidden}>
       {children}
-      <select name="id" onChange={variantOnChange} defaultValue={selected}>
+      <select name="id" onChange={variantOnChange} value={selected}>
         {arrayToComponentSiblings(variants, Variant)}
       </select>
       <Dropdown items={variants} Option={Variant}>

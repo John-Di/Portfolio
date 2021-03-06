@@ -1,5 +1,4 @@
 import React, {
-  useState,
   useRef
 } from "react";
 import {
@@ -17,17 +16,38 @@ import {
 export default function SwatchGrid({
   values = [],
   gap = 0.25,
-  name
+  name,
+  updateOption,
+  selected
 }) {
-  const [currentSwatch, setCurrentSwatch] = useState(-1);
   const swatchEl = useRef(null);
   let Swatch = SwatchType(name);
+
+
+  const optionOnChange = value => {
+    updateOption({
+      type: 'option', selected: {
+        name,
+        value
+      }
+    })
+  }
 
   return (
     <SWATCHES gutterOffset={gap}>
       {
         arrayToJSXList(values, (value, i) => (
-          <Swatch swatchRef={swatchEl} gutter={gap} id={`swatch-${value.replace('#', '')}-${Date.now()}`} isCurrent={currentSwatch === i} value={value} key={i} toggleSwatch={setCurrentSwatch.bind(this, i)} />
+          <Swatch
+            swatchRef={swatchEl}
+            gutter={gap}
+            id={`swatch-${value.replace('#', '')}-${Date.now()}`}
+            isCurrent={selected === value}
+            value={value}
+            key={i}
+            toggleSwatch={() => {
+              optionOnChange(value);
+            }}
+          />
         ))
       }
     </SWATCHES>

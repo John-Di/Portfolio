@@ -22,36 +22,74 @@ import {
   DESCRIPTION
 } from './styles';
 
-
-const reducer = (variant, action) => {
-  return variant
-}
-
 // markup
-const ProductPage = ({
-  title,
-  price,
-  images,
-  description,
-  options = [],
-  variants = [],
-  selectedID
-}) => {
-  console.log('ProductPage',
-    {
-      title,
-      price,
-      images,
-      description,
-      options,
-      variants,
-      selectedID
-    });
-  let selectedVariantId = selectedID || variants[0].id;
-  let selectedVaraint = variants.find(v => v.id === selectedVariantId);
-  const [currentVariant, UpdateCurrentVariant] = useReducer(reducer, selectedVaraint);
+const ProductPage = ({ accentColor = randomColor(), ...product }) => {
+  let {
+    title,
+    price,
+    images,
+    description,
+    options = [],
+    variants = [],
+    selectedID
+  } = product;
 
-  let accentColor = randomColor();
+  let selectedVariantId = selectedID || variants[0].id;
+  let selectedVariant = variants.find(v => v.id === selectedVariantId);
+
+  const reducer = (state = selectedVariant, action) => {
+    console.log('reducer', '------------------')
+    switch (action.type) {
+      case 'id': {
+        return {
+          selectedVariant: action.selected,
+          selectedOptions: action.selected.options.map((option, i) => ({
+            name: options[i].name,
+            value: option
+          }))
+        }
+      }
+      case 'option': {
+        console.log('reducer', 'option', action)
+        let selectedOptions = state.selectedOptions.reduce((acc, option, i) => {
+          console.log(acc, option, i)
+          if (option.name === action.selected.name) {
+            acc.push(action.selected);
+          } else {
+            acc.push(option)
+          }
+          return acc;
+        }, []);
+
+        let selectedOptionValues = selectedOptions.map(o => o.value);
+        let selectedVariant = variants.find((variant, i) => {
+          let { options } = variant;
+          let optionValues = options.map(o => o.value);
+          return optionValues[0] === selectedOptionValues[0] &&
+            optionValues[1] === selectedOptionValues[1] &&
+            optionValues[2] === selectedOptionValues[2]
+        });
+        return {
+          selectedVariant,
+          selectedOptions
+        }
+      }
+      default: {
+        return state
+      }
+    }
+  }
+
+  const [formState, UpdateFormState] = useReducer(reducer, {
+    selectedVariant,
+    selectedOptions: selectedVariant.options.map((option, i) => ({
+      name: options[i].name,
+      value: option.value
+    }))
+  });
+  console.log('Form State', formState.selectedVariant.id, formState)
+
+
 
   return (
     <PageTemplate
@@ -59,26 +97,26 @@ const ProductPage = ({
       activeHeader={true}
     >
       <ARTICLE>
-        <TITLE>{currentVariant.title || title}</TITLE>
+        <TITLE>{formState.selectedVariant.title || title}</TITLE>
         <MEDIA>
-          <ImageGallery maxWidth={`75%`} images={currentVariant.images || images} gap={0} />
+          <ImageGallery maxWidth={`75%`} images={formState.selectedVariant.images || images} gap={0} />
         </MEDIA>
         <PRICING>
-          <PRICE>{currentVariant.price || price}</PRICE>
+          <PRICE>{formState.selectedVariant.price || price}</PRICE>
         </PRICING>
-        <DESCRIPTION>{currentVariant.description || description}</DESCRIPTION>
+        <DESCRIPTION>{formState.selectedVariant.description || description}</DESCRIPTION>
         <ProductForm>
           <VariantSelector
             options={options}
             variants={variants}
             isHidden={false}
-            selected={selectedVariantId}
-            updateVariant={UpdateCurrentVariant}
+            selected={formState.selectedVariant.id}
+            updateVariant={UpdateFormState}
           >
             {
               arrayToComponentSiblings(options, (option, i) => (
                 <ProductOptionSelector key={i} name={option.name}>
-                  <SwatchGrid {...option} />
+                  <SwatchGrid {...option} selected={formState.selectedOptions.find(o => o.name === option.name).value} updateOption={UpdateFormState} />
                 </ProductOptionSelector>
               ))
             }
