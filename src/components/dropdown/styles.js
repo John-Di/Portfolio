@@ -5,9 +5,13 @@ import { FancyButtonStyles } from '../../styles/CTAs';
 import { FancyDropdownStyles } from '../../styles/Dropdowns';
 
 export const WRAPPER = styled.div`
-  margin: 0 auto 10em;
+  margin: 0 auto;
   max-width: 25em;
   position: relative;
+
+  select {
+    display: none;
+  }
 `;
 
 export const HEADER = styled.button`

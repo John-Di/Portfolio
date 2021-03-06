@@ -31,13 +31,25 @@ export default function VariantSelector({
     updateVariant({ type: 'id', selected: selectedVariant })
   }
 
+  let Select = (
+    <select name="id" onChange={variantOnChange} value={selected}>
+      {arrayToComponentSiblings(variants, Variant)}
+    </select>
+  );
+
   return (
     <VARIANTS isHidden={isHidden}>
       {children}
-      <select name="id" onChange={variantOnChange} value={selected}>
-        {arrayToComponentSiblings(variants, Variant)}
-      </select>
-      {!isHidden && <Dropdown theme={theme} items={variants.map(v => ({ ...v, value: v.id }))} updateValue={variantOnChange} selected={selected} />}
+      {!isHidden &&
+        <Dropdown
+          theme={theme}
+          items={variants.map(v => ({ ...v, value: v.id }))}
+          updateValue={variantOnChange}
+          selected={selected}
+        >
+          {Select}
+        </Dropdown>
+      }
     </VARIANTS>
   );
 }

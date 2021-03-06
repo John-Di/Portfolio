@@ -15,7 +15,8 @@ export default function Dropdown({
   items = [],
   updateValue,
   theme,
-  selected
+  selected,
+  children
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,6 +35,7 @@ export default function Dropdown({
 
   return (
     <WRAPPER>
+      {children}
       <HEADER onClick={toggleDropdown} isOpen={isOpen}>
         {items.find(i => i.value === selected).title || items.find(i => i.value === selected).name || items[0].value}
       </HEADER>
