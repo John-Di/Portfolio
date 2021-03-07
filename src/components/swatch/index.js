@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  SWATCH,
   INPUT,
   LABEL
 } from './styles';
@@ -16,8 +15,8 @@ export default function Swatch({
   toggleSwatch
 }) {
   return (
-    <SWATCH gutter={gap}>
-      <INPUT id={id} type="radio" name={name} />
+    <div>
+      <INPUT ref={input => input && input.focus()} id={id} type="radio" name={name} />
       <LABEL
         isCurrent={isCurrent}
         htmlFor={id}
@@ -26,6 +25,6 @@ export default function Swatch({
         onClick={toggleSwatch}>
         {children}
       </LABEL>
-    </SWATCH>
+    </div>
   );
 }

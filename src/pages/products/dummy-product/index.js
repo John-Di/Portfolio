@@ -5,7 +5,8 @@ import {
   randomColor,
   randomIntegerEx,
   randomIntegerIn,
-  randomImageArray
+  randomImageArray,
+  randomBool
 } from '../../../utils/randoms';
 import ProductPage from '../../../layouts/product-page';
 
@@ -23,7 +24,7 @@ const productOptions = [{
 
 const optionImagesMap = productOptions.reduce((acc, { name, values }, i) => {
   acc[name] = values.reduce((acc, value, i) => {
-    acc[value] = name === 'Color' ? randomImageArray(values.length) : []
+    acc[value] = name === 'Color' ? randomImageArray(values.length + (randomBool() ? 1 : 0)) : []
     return acc;
   }, {})
   return acc;
@@ -74,7 +75,7 @@ const DUMMY_PRODUCT = {
   title: 'Dummy Product',
   price: `$${randomIntegerIn(1, 19)}9.99`,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  images: [...new Set(variants.reduce((acc, variant, i) => [...acc, ...variant.images], []))],
+  images: [...new Set(variants.reduce((acc, { images }, i) => [...acc, ...images], []))],
   options: productOptions,
   variants
 };

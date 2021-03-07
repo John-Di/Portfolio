@@ -4,7 +4,7 @@ import Clearfix from '../../utils/Clearfix';
 import {
   conditionalProp
 } from '../../utils/AssessProps';
-import FullSizeOverlay from '../../utils/FullSizeOverlay';
+import { ButtonReset } from '../../utils/Resets';
 
 export const WRAPPER = styled.div`
   height: 100%;
@@ -40,23 +40,6 @@ export const GALLERY = styled.div`
   }
 `;
 
-export const NAVIGATION = styled.div`
-  margin-top: 0.75em;
-  position: relative;
-
-  &::before {
-    content: '';
-    ${FullSizeOverlay}
-    display: block;
-    box-shadow: inset 0.125em 0.125em 1em slategray;
-  }
-
-  ${Clearfix}
-
-  @supports not (display:grid) {
-  }
-`;
-
 export const MAIN_IMAGE = styled.div`
   grid-area: a;
   position: relative;
@@ -70,36 +53,39 @@ export const MAIN_IMAGE = styled.div`
   }
 `;
 
-export const SCROLLABLE = styled.div`
-  overflow: auto;
-  white-space: nowrap;
+export const NAVIGATION = styled.nav`
+  width: 100%;
 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  li {
+    max-width: ${100 / 3}%;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    padding: 0.25em;
+    margin: 0.75em;
 
-  &::-webkit-scrollbar {
-    display: none;
+    @media ${device.mobileL} {
+      max-width: 25%;
+    }
+
+    @media ${device.mobileXL} {
+      padding: 0.5em;
+      max-width: 20%;
+    }
   }
 `;
 
 export const THUMBNAIL = styled.button`
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: none;
-  background: none;
-  margin: 0;
-  float: left;
-  max-width: 20%;
-  display: inline-block;
+  ${ButtonReset}
   vertical-align: bottom;
   width: 100%;
-  overflow: hidden;
   position: relative;
+
 
   &:not(.current) {
     cursor: pointer;
 
+    &:focus,
     &:hover {
       img {
         opacity: 1;

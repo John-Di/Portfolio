@@ -25,7 +25,7 @@ import {
 } from './styles';
 
 // markup
-const ProductPage = ({ accentColor = randomColor(), ...product }) => {
+const ProductPage = ({ accentColor = randomColor(), selectedID, ...product }) => {
   let {
     title,
     price,

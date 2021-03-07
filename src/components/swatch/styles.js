@@ -4,15 +4,6 @@ import {
   conditionalProp
 } from '../../utils/AssessProps';
 import VisuallyHidden from '../../utils/VisuallyHidden';
-import { ListReset } from '../../utils/Resets';
-
-export const SWATCH = styled.li`
-  ${ListReset}
-  display: inline-block;
-  float: left;
-  vertical-align: bottom;
-  margin: 0 ${props => props.gutter}em;
-`;
 
 export const INPUT = styled.input`
   ${VisuallyHidden}

@@ -1,5 +1,5 @@
 import React from "react";
-import Swatch, { SwatchLabel } from '../swatch';
+import Swatch from '../swatch';
 import {
   VALUE
 } from './styles';

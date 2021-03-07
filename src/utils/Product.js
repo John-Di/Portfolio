@@ -7,9 +7,6 @@ const actionTypes = {
   option: 'OPTION'
 }
 
-
-
-
 export const getSelectedOptions = (options, selectedVariant) => selectedVariant.options.map((option, i) => ({
   name: options[i].name,
   value: option.value

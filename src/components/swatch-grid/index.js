@@ -1,17 +1,8 @@
-import React, {
-  useRef
-} from "react";
-import {
-  arrayToJSXList
-} from '../../utils/dom-builder';
-import {
-  SWATCHES
-} from './styles';
+import React from "react";
 import {
   SwatchType
 } from './helpers';
-
-
+import TileList from "../../layouts/tile-list";
 
 export default function SwatchGrid({
   values = [],
@@ -22,20 +13,17 @@ export default function SwatchGrid({
 }) {
   let Swatch = SwatchType(name);
 
+  let SwatchMap = (value, i) => (
+    <Swatch
+      id={`swatch-${value.replace('#', '')}-${Date.now()}`}
+      isCurrent={selected === value}
+      value={value}
+      key={i}
+      toggleSwatch={() => updateOption({ name, value })}
+    />
+  )
+
   return (
-    <SWATCHES gutterOffset={gap}>
-      {
-        arrayToJSXList(values, (value, i) => (
-          <Swatch
-            gutter={gap}
-            id={`swatch-${value.replace('#', '')}-${Date.now()}`}
-            isCurrent={selected === value}
-            value={value}
-            key={i}
-            toggleSwatch={() => updateOption({ name, value })}
-          />
-        ))
-      }
-    </SWATCHES>
+    <TileList gutterOffset={gap} items={values} itemMap={SwatchMap} />
   );
 }

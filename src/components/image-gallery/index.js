@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import TileList from "../../layouts/tile-list";
 import { jsxCloneArrayToJSX } from '../../utils/dom-builder';
+import HorizontalScrollable from "../horizontal-scrollable";
 import {
   WRAPPER,
   GALLERY,
   MAIN_IMAGE,
   NAVIGATION,
-  SCROLLABLE,
   THUMBNAIL,
   IMG
 } from './styles';
@@ -13,24 +14,19 @@ import {
 export default function ImageGallery({ gap = 0.25, maxWidth = '100%', images = [], scroll = true, hasPadding = false }) {
   const [index, setIndex] = useState(0);
 
-  let thumbnails = jsxCloneArrayToJSX(
-    images.length,
-    (length, _, i) => (
-      <THUMBNAIL
-        className={`image-gallery__thumbnail ${index === i ? `current` : ``}`}
-        scroll={scroll}
-        transparency={1 / 3}
-        onClick={() => setIndex(i)}
-        maxWidth={100 / Math.min(images.length, 5)}
-        gap={gap}
-      >
-        <IMG src={images[i]} />
-      </THUMBNAIL>
-    )
+  const ThumbnailElement = (image, i) => (
+    <THUMBNAIL
+      className={`image-gallery__thumbnail ${index === i ? `current` : ``}`}
+      scroll={scroll}
+      transparency={1 / 3}
+      onClick={() => setIndex(i)}
+      maxWidth={100 / Math.min(images.length, 5)}
+      gap={gap}
+      key={i}
+    >
+      <IMG src={image} />
+    </THUMBNAIL>
   );
-
-  let nav_inner = scroll && images.length > 5 ? <SCROLLABLE className="image-gallery__scrollable">{thumbnails}</SCROLLABLE> : thumbnails;
-
 
   return (
     <WRAPPER maxWidth={maxWidth} className="image-gallery-wrapper" hasPadding={hasPadding}>
@@ -38,9 +34,11 @@ export default function ImageGallery({ gap = 0.25, maxWidth = '100%', images = [
         <MAIN_IMAGE className="image-gallery__main-image">
           <IMG src={images[index]} />
         </MAIN_IMAGE>
-        <NAVIGATION gap={gap} className="image-gallery__navigation" maxWidth={maxWidth}>
-          {nav_inner}
-        </NAVIGATION>
+        <HorizontalScrollable gap={1.25 / 2}>
+          <NAVIGATION className="image-gallery__navigation" maxWidth={maxWidth}>
+            <TileList gutterOffset={1.25} items={images} itemMap={ThumbnailElement} />
+          </NAVIGATION>
+        </HorizontalScrollable>
       </GALLERY>
     </WRAPPER>
   );

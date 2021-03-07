@@ -1,5 +1,5 @@
 import React from "react";
-import Swatch, { SwatchLabel } from '../swatch';
+import Swatch from '../swatch';
 import {
   VALUE
 } from './styles';
@@ -12,9 +12,10 @@ export default function TextSwatch({
   toggleSwatch,
   isCurrent
 }) {
+  let inputID = id || `${name}-${value}`;
   return (
     <Swatch
-      id={id}
+      id={inputID}
       gap={gap}
       name={name}
       isCurrent={isCurrent}
