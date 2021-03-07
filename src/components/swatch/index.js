@@ -7,34 +7,25 @@ import {
 
 export default function Swatch({
   id,
+  children,
+  isCurrent,
+  backgroundColor,
+  borderColor,
   name = "Option Name",
   gap = 0.25,
-  children
+  toggleSwatch
 }) {
   return (
     <SWATCH gutter={gap}>
       <INPUT id={id} type="radio" name={name} />
-      {children}
+      <LABEL
+        isCurrent={isCurrent}
+        htmlFor={id}
+        backgroundColor={backgroundColor}
+        borderColor={borderColor}
+        onClick={toggleSwatch}>
+        {children}
+      </LABEL>
     </SWATCH>
-  );
-}
-
-export function SwatchLabel({
-  id,
-  isCurrent,
-  backgroundColor,
-  borderColor,
-  toggleSwatch,
-  children
-}) {
-  return (
-    <LABEL
-      isCurrent={isCurrent}
-      htmlFor={id}
-      backgroundColor={backgroundColor}
-      borderColor={borderColor}
-      onClick={toggleSwatch}>
-      {children}
-    </LABEL>
   );
 }

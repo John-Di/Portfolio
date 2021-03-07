@@ -5,7 +5,6 @@ import {
 } from './styles';
 
 export default function TextSwatch({
-  swatchRef,
   id,
   name = "Color",
   value = [],
@@ -19,18 +18,12 @@ export default function TextSwatch({
       gap={gap}
       name={name}
       isCurrent={isCurrent}
+      borderColor={`#000000`}
+      toggleSwatch={toggleSwatch}
     >
-      <SwatchLabel
-        swatchRef={swatchRef}
-        className={isCurrent && 'current'}
-        isCurrent={isCurrent}
-        htmlFor={id}
-        borderColor={`#000000`}
-        toggleSwatch={toggleSwatch}>
-        <VALUE
-          case={`uppercase`}
-        >{value}</VALUE>
-      </SwatchLabel>
+      <VALUE
+        case={`uppercase`}
+      >{value}</VALUE>
     </Swatch>
   );
 }

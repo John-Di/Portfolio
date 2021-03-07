@@ -18,17 +18,14 @@ export default function ColorSwatch({
       id={inputID}
       gap={gap}
       name={name}
+      isCurrent={isCurrent}
+      backgroundColor={value}
+      borderColor={(value === '#FFFFFF' || value === 'white') ? `#000000` : '#FFFFFF'}
+      toggleSwatch={toggleSwatch}
     >
-      <SwatchLabel
-        isCurrent={isCurrent}
-        htmlFor={inputID}
-        backgroundColor={value}
-        borderColor={(value === '#FFFFFF' || value === 'white') ? `#000000` : '#FFFFFF'}
-        toggleSwatch={toggleSwatch}>
-        <VALUE
-          isHidden={true}
-        >{value}</VALUE>
-      </SwatchLabel>
+      <VALUE
+        isHidden={true}
+      >{value}</VALUE>
     </Swatch>
   );
 }
