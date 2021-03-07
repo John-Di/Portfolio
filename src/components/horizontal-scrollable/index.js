@@ -9,7 +9,7 @@ import {
 export default function HorizontalScrollable({
   children,
   gap = 0.25,
-  hasButtons = true,
+  hasButtons = false,
   buttonsInside = false }) {
   // const [index, setIndex] = useState(0);
 
