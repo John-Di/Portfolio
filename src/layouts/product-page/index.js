@@ -32,8 +32,7 @@ const ProductPage = ({ accentColor = randomColor(), selectedID, ...product }) =>
     images,
     description,
     options = [],
-    variants = [],
-    selectedID
+    variants = []
   } = product,
     selectedVariantId = selectedID || variants[0].id,
     selectedVariant = variants.find(v => v.id === selectedVariantId);
