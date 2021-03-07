@@ -9,7 +9,7 @@ import {
 } from '../../../utils/randoms';
 import ProductPage from '../../../layouts/product-page';
 
-const options = [{
+const productOptions = [{
   "name": "Color",
   "values": [
     "white", "black", "slategray", "darkslategray"
@@ -20,6 +20,14 @@ const options = [{
     "xs", "s", "m", "l", "xl"
   ]
 }];
+
+const optionImagesMap = productOptions.reduce((acc, { name, values }, i) => {
+  acc[name] = values.reduce((acc, value, i) => {
+    acc[value] = name === 'Color' ? randomImageArray(values.length) : []
+    return acc;
+  }, {})
+  return acc;
+}, {});
 
 function cartesian(args) {
   var r = [], max = args.length - 1;
@@ -37,21 +45,27 @@ function cartesian(args) {
   return r;
 }
 
-const productImages = randomImageArray(options[0].values.length * options[0].values.length);
-
-const variants = cartesian(options.map(o => o.values)).map((variantOptions, i) => {
+const variants = cartesian(productOptions.map(o => o.values)).map((variantOptions, i) => {
   let price = `$${randomIntegerIn(1, 19)}9.99`;
+
+  let options = variantOptions.map((value, i) => {
+    let { name } = productOptions[i];
+
+    return ({
+      name,
+      value,
+      images: optionImagesMap[name][value]
+    });
+  });
+
   return ({
     title: `${variantOptions.join(' / ')} - ${price}`,
-    options: variantOptions.map((option, i) => ({
-      name: options[i].name,
-      value: option
-    })),
+    options,
     option1: variantOptions[0] || null,
     option2: variantOptions[1] || null,
     option3: variantOptions[2] || null,
     id: randomIntegerIn(100000000, 999999999),
-    images: randomImageArray(options[0].values.length),
+    images: options.map(option => option.images).flat(),
     price
   })
 });
@@ -60,8 +74,8 @@ const DUMMY_PRODUCT = {
   title: 'Dummy Product',
   price: `$${randomIntegerIn(1, 19)}9.99`,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  images: productImages,
-  options,
+  images: [...new Set(variants.reduce((acc, variant, i) => [...acc, ...variant.images], []))],
+  options: productOptions,
   variants
 };
 
