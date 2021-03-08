@@ -27,9 +27,9 @@ export default function HorizontalScrollable({
 
   return (
     <SCROLLABLE ref={ref} className="image-gallery__scrollable" gap={gap} buttonPadding={hasButtons && buttonsInside}>
-      {hasButtons && <CONTROLS onClick={scrollPrevious.bind(this, galleryState.index - 1)} buttonsInside={buttonsInside} left><LeftChevron /></CONTROLS>}
+      {hasButtons && (index > 0 && numItem > 4) && <CONTROLS onClick={scrollPrevious.bind(this, galleryState.index - 1)} buttonsInside={buttonsInside} left><LeftChevron /></CONTROLS>}
       {children}
-      {hasButtons && <CONTROLS onClick={scrollNext.bind(this, galleryState.index + 1)} buttonsInside={buttonsInside} right><RightChevron /></CONTROLS>}
+      {hasButtons && (index < numItem - 1 && numItem > 4) && <CONTROLS onClick={scrollNext.bind(this, galleryState.index + 1)} buttonsInside={buttonsInside} right><RightChevron /></CONTROLS>}
     </SCROLLABLE>
   );
 }

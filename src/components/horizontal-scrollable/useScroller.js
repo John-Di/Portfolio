@@ -25,9 +25,16 @@ function useScroller({ reducer = scrollReducer, ref, max, index = 0, setIndex, s
 
     const nav = ref.current.querySelector('nav'),
       list = nav.querySelector('ul');
-    let itemWidth = list.querySelector('li').offsetWidth;
-    let visibleMaxIndex = selectedFirst ? 0 : Math.floor(nav.offsetWidth / itemWidth) - 1;
-    list.scrollLeft = selectedFirst || galleryState.index > visibleMaxIndex ? (galleryState.index - visibleMaxIndex) * itemWidth : 0;
+    let itemWidth = list.querySelector('li').offsetWidth,
+      visibleMaxIndex = selectedFirst ? 0 : Math.floor(nav.offsetWidth / itemWidth) - 1,
+      left = selectedFirst || galleryState.index > visibleMaxIndex ? (galleryState.index - visibleMaxIndex) * itemWidth : 0;
+
+    list.scroll({
+      left,
+      top: 0,
+      behavior: 'smooth'
+    })
+    // list.scrollLeft = ;
   };
 
   const scrollPrevious = index => {
