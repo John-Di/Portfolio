@@ -24,12 +24,14 @@ export default function HorizontalScrollable({
   const ref = useRef(null);
 
   const { galleryState, scrollPrevious, scrollNext } = useScroller({ ref, index, setIndex, max: numItems, selectedFirst });
+  const PreviousButton = <CONTROLS isDisabled={index <= 0} disabled={index <= 0} onClick={scrollPrevious} buttonsInside={buttonsInside} left><LeftChevron /></CONTROLS>;
+  const NextButton = <CONTROLS isDisabled={index >= (numItems - 1)} disabled={index >= (numItems - 1)} onClick={scrollNext} buttonsInside={buttonsInside} right><RightChevron /></CONTROLS>;
 
   return (
     <SCROLLABLE ref={ref} className="image-gallery__scrollable" gap={gap} buttonPadding={hasButtons && buttonsInside}>
-      {hasButtons && <CONTROLS isDisabled={index <= 0} disabled={index <= 0} onClick={scrollPrevious.bind(this, galleryState.index - 1)} buttonsInside={buttonsInside} left><LeftChevron /></CONTROLS>}
+      {hasButtons && PreviousButton}
       {children}
-      {hasButtons && <CONTROLS isDisabled={index >= (numItems - 1)} disabled={index >= (numItems - 1)} onClick={scrollNext.bind(this, galleryState.index + 1)} buttonsInside={buttonsInside} right><RightChevron /></CONTROLS>}
+      {hasButtons && NextButton}
     </SCROLLABLE>
   );
 }
