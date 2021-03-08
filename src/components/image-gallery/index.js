@@ -33,7 +33,7 @@ export default function ImageGallery({ gap = 0.25, maxWidth = '100%', images = [
         <MAIN_IMAGE className="image-gallery__main-image">
           <IMG src={images[index]} />
         </MAIN_IMAGE>
-        <HorizontalScrollable gap={1.25 / 2} numItem={images.length} index={index} setIndex={setIndex} selectedFirst={selectedFirst}>
+        <HorizontalScrollable hasButtons={true && images.length > 4} gap={1.25 / 2} numItems={images.length} index={index} setIndex={setIndex} selectedFirst={selectedFirst}>
           <NAVIGATION className="image-gallery__navigation" maxWidth={maxWidth}>
             <TileList gutterOffset={1.25} items={images} itemMap={ThumbnailElement} />
           </NAVIGATION>

@@ -10,6 +10,7 @@ export const LIST = styled.ul`
   @media ${device.tablet} {
     margin: -${props => props.gutterOffset / 2}em -${props => props.gutterOffset}em;
   }
+
   ${Clearfix}
 `;
 

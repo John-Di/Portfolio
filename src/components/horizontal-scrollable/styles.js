@@ -3,6 +3,7 @@ import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { FancyButtonStyles } from '../../styles/CTAs';
 import { ListReset, ButtonReset } from '../../utils/Resets';
+import { device } from '../../utils/variables';
 
 const BUTTON_WIDTH = 3;
 
@@ -27,9 +28,11 @@ export const SCROLLABLE = styled.div`
     white-space: nowrap;
 
     ul {
+      left: 0;
       overflow-x: scroll;
       overflow-y: hidden;
       white-space: nowrap;
+      transition: left 0.5s;
 
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;  /* Firefox */
@@ -68,5 +71,14 @@ export const CONTROLS = styled.button`
     transform: translate(-50%, -50%);
     fill: inherit;
     color: inherit;
+  }
+
+  ${props => conditionalProp(props.isDisabled, `display: none;`)}
+  &[disabled] {
+    display: none;
+  }
+
+  @media ${device.max_tablet} {
+    display: none;
   }
 `;

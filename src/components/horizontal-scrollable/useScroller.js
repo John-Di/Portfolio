@@ -34,17 +34,21 @@ function useScroller({ reducer = scrollReducer, ref, max, index = 0, setIndex, s
       top: 0,
       behavior: 'smooth'
     })
-    // list.scrollLeft = ;
+
   };
 
   const scrollPrevious = index => {
+    console.log('index', index, max);
     let newIndex = Math.max(index, 0) % max;
     setIndex(newIndex);
+    console.log(newIndex);
     return SaveScrollLeft({ index: newIndex, setIndex })
   };
   const scrollNext = index => {
+    console.log('index', index, max);
     let newIndex = Math.min(index, max) % max;
     setIndex(newIndex);
+    console.log('newIndex', newIndex);
     return SaveScrollLeft({ index: newIndex, setIndex })
   };
   useEffect(ScrollController, [galleryState.index]);
