@@ -37,16 +37,16 @@ function useScroller({ reducer = scrollReducer, ref, max, index = 0, setIndex, s
 
   };
 
-  const scrollPrevious = index => {
+  const scrollPrevious = () => {
     console.log('index', index, max);
-    let newIndex = Math.max(index, 0) % max;
+    let newIndex = Math.max(--index, 0) % max;
     setIndex(newIndex);
     console.log(newIndex);
     return SaveScrollLeft({ index: newIndex, setIndex })
   };
-  const scrollNext = index => {
+  const scrollNext = () => {
     console.log('index', index, max);
-    let newIndex = Math.min(index, max) % max;
+    let newIndex = Math.min(++index, max) % max;
     setIndex(newIndex);
     console.log('newIndex', newIndex);
     return SaveScrollLeft({ index: newIndex, setIndex })
