@@ -23,7 +23,7 @@ export default function TileList({
   };
 
   return (
-    <LIST gutterOffset={gutterOffset}>
+    <LIST ref={list => list} gutterOffset={gutterOffset}>
       {arrayToComponentSiblings(items, WrapElement)}
     </LIST>
   );

@@ -29,6 +29,7 @@ export const SCROLLABLE = styled.div`
     ul {
       overflow-x: scroll;
       overflow-y: hidden;
+      white-space: nowrap;
 
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;  /* Firefox */

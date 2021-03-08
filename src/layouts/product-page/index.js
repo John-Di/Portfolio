@@ -2,6 +2,7 @@ import React from "react";
 import PageTemplate from '../../templates/page';
 import ProductOptionSelector from "../../components/product-option-selector";
 import {
+  randomBool,
   randomColor,
 } from '../../utils/randoms';
 import {
@@ -49,7 +50,7 @@ const ProductPage = ({ accentColor = randomColor(), selectedID, ...product }) =>
       <ARTICLE>
         <TITLE>{title}</TITLE>
         <MEDIA>
-          <ImageGallery maxWidth={`75%`} images={formState.selectedVariant.images || images} gap={0} />
+          <ImageGallery maxWidth={`75%`} images={formState.selectedVariant.images || images} gap={0} selectedFirst={randomBool()} />
         </MEDIA>
         <PRICING>
           <PRICE>{formState.selectedVariant.price || price}</PRICE>
