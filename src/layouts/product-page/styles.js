@@ -24,11 +24,11 @@ export const ARTICLE = styled.article`
   flex-grow: 1;
   ${Clearfix}
 
-  @media ${device.max_laptop} {
+  @media screen and ${device.max_laptop} {
     padding: 0 4%;
   }
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     margin: 10em auto;
     max-width: ${size.laptopL}px;
   }
@@ -38,12 +38,12 @@ export const TITLE = styled.h1`
   grid-area: title;
   font-size: 2em;
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     ${pageRight}
     margin-bottom: 0;
   }
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     font-size: 3em;
   }
 `;
@@ -51,7 +51,7 @@ export const MEDIA = styled.div`
   grid-area: media;
   width: 100%;
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     ${pageLeft}
 
     .image-gallery-wrapper {
@@ -68,7 +68,7 @@ export const DESCRIPTION = styled.p`
   text-align: left;
   line-height: 1.33;
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     ${pageLeft}
     margin-right: auto;
     max-width: ${size.mobileM / 16}em;
@@ -78,7 +78,7 @@ export const DESCRIPTION = styled.p`
 export const FORM = styled.form`
   margin: 2em auto;
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     display: block;
     margin: 1em auto;
     width: 100%;
@@ -94,11 +94,11 @@ export const PRICING = styled.p`
   line-height: 1.33;
   margin: 1em auto 1em 0;
 
-  @media ${device.max_laptop} {
+  @media screen and ${device.max_laptop} {
     text-align: right;
   }
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     ${pageRight}
     margin: 0.5em auto 0.5em 0;
     ${Clearfix}
@@ -117,7 +117,7 @@ export const CTA = styled.div`
     width: 100%;
   }
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     ${pageRight}
     margin: 3em auto 0.5em 0;
     max-width: ${size.mobileL / 16}em;

@@ -36,7 +36,7 @@ export const BLOCK = styled.div`
 	flex: 1 auto;
 	position: relative;
 
-	@media ${device.laptop} {
+	@media screen and ${device.laptop} {
 		padding-top: 0;
 		justify-content: flex-start;
 		align-items: center;

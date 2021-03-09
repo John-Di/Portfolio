@@ -13,7 +13,7 @@ const pageRight = `
 export const FORM = styled.form`
   margin: 2em auto;
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     display: block;
     margin: 1em auto;
     width: 100%;
@@ -32,7 +32,7 @@ export const CTA = styled.div`
     width: 100%;
   }
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     ${pageRight}
     margin: 3em auto 0.5em 0;
     max-width: ${size.mobileL / 16}em;

@@ -42,7 +42,7 @@ export const WRAPPER = styled.div`
   ${assessWrapper}
 
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     right: 1em;
   }
 `;

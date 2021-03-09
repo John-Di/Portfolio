@@ -30,7 +30,7 @@ export const TOGGLE = styled.button`
   ${ToggleTransitions}
   transition: color 0.1s 0.05s;
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     display: none;
   }
 `;
@@ -57,7 +57,7 @@ export const NAV = styled.nav`
 export const DIV = styled.div`
   width: 100%;
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     position: absolute;
     top: 100%;
     left: 0;
@@ -78,12 +78,12 @@ export const UL = styled.ul`
   ${ResponsiveLine}
   width: 100%;
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     background: white;
     transition: height 2s 0s;
   }
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     justify-content: ${props => props.desktopNavAlignment};
   }
 `;
@@ -91,7 +91,7 @@ export const UL = styled.ul`
 export const LI = styled.li`
   ${ListReset}
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     width: 100%;
   }
 `;
@@ -116,7 +116,7 @@ export const NAVLINK = styled(GatsbyLink)`
     text-decoration: underline;
   }
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     align-items: flex-start;
     width: 100%;
   }

@@ -7,7 +7,7 @@ import AssessProps, {
 
 
 const assessState = ({ isActive, backgroundColor = `black` }) => conditionalProp(isActive, `
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     background-color: ${backgroundColor};
     opacity: 0.4;
     cursor: pointer;

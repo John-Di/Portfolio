@@ -7,7 +7,7 @@ export const LIST = styled.ul`
   ${ListReset}
   margin: -${props => props.gutterOffset / 2}em -${props => props.gutterOffset / 2}em;
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     margin: -${props => props.gutterOffset / 2}em -${props => props.gutterOffset}em;
   }
 

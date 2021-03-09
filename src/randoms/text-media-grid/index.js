@@ -26,7 +26,7 @@ const RESPONSIVE_DEFAULTS = {
 			${maxWidth ? `max-width: ${size.laptopL}px` : `max-width: 100%`};
 			grid-template-columns: repeat(1, 1fr);
 		
-			@media ${device.tablet} {
+			@media screen and ${device.tablet} {
 				grid-template-columns: repeat(1, 1fr);
 			}
 		`,
@@ -36,7 +36,7 @@ const RESPONSIVE_DEFAULTS = {
     "grid": () => `
 			grid-template-columns: repeat(1, 1fr);
 
-			@media ${device.laptopL} {
+			@media screen and ${device.laptopL} {
 				grid-template-columns: repeat(2, 1fr);
 			}
 		`,
@@ -48,11 +48,11 @@ const RESPONSIVE_DEFAULTS = {
     "grid": () => `
 			grid-template-columns: repeat(1, 1fr);
 		
-			@media ${device.tablet} {
+			@media screen and ${device.tablet} {
 				grid-template-columns: repeat(3, 1fr);
 			}
 
-			@media ${device.laptop} {
+			@media screen and ${device.laptop} {
 				grid-template-columns: repeat(3, 1fr);
 			}
 		`,
@@ -68,11 +68,11 @@ const RESPONSIVE_DEFAULTS = {
     "grid": () => `
 			grid-template-columns: repeat(1, 1fr);
 		
-			@media ${device.tablet} {
+			@media screen and ${device.tablet} {
 				grid-template-columns: repeat(2, 1fr);
 			}
 
-			@media ${device.laptop} {
+			@media screen and ${device.laptop} {
 				grid-template-columns: repeat(4, 1fr);
 			}
 		`,

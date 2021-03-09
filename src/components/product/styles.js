@@ -14,12 +14,12 @@ export const TITLE = styled.h1`
   grid-area: title;
   font-size: 1.25em;
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     float: right;
     font-size: 1.5em;
   }
 
-  @media ${device.laptop} {
+  @media screen and ${device.laptop} {
     font-size: 2.5em;
 
   }

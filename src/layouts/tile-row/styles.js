@@ -18,7 +18,7 @@ const assessLayout = ({ breakpoints = [] }) => conditionalProp(breakpoints, `
 		${acc}
 
     ${conditionalProp(rule.bp && rule.maxWidth, `
-      @media ${rule.bp} {
+      @media screen and ${rule.bp} {
         max-width: ${rule.maxWidth};
         padding: 0 2%;
 
@@ -37,7 +37,7 @@ export const LAYOUT = styled.div`
 	width: 100%;
   margin-top: 4em;
   ${props => conditionalProp(props.breakpoint, `
-    @media ${props.breakpoint} {
+    @media screen and ${props.breakpoint} {
       margin-top: 5em;
     }
   `)}

@@ -11,7 +11,7 @@ export const HEADING = styled.div`
 
 	text-align:${props => props.textAlignmentSmall ? props.textAlignmentSmall : `center`};
 
-	@media ${device.tablet} {
+	@media screen and ${device.tablet} {
 		text-align:${props => props.textAlignmentLarge ? props.textAlignmentLarge : `center`};
 	}
 
@@ -19,7 +19,7 @@ export const HEADING = styled.div`
 		font-size: 1.75em;
 		font-weight: bold;
 
-		@media ${device.tablet} {
+		@media screen and ${device.tablet} {
 			font-size: 3.5em;
 		}
 	}
@@ -29,7 +29,7 @@ export const HEADING = styled.div`
 		margin-top: 0;
 		margin-bottom: 2em;
 
-		@media ${device.tablet} {
+		@media screen and ${device.tablet} {
 			font-size: 1.5em;
 		}
 	}
@@ -42,7 +42,7 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
   `)}
 
   ${conditionalProp(hasMarginLarge, `
-    @media ${device.laptop} {
+    @media screen and ${device.laptop} {
       margin: 8em auto;
     }
   `)}
@@ -50,7 +50,7 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
   ${conditionalProp(hasPadding, `
     padding: 0;
 
-    @media ${device.laptop} {
+    @media screen and ${device.laptop} {
       padding: 0 8%;
     }
   `)}
@@ -62,12 +62,12 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
 
 		text-align: ${textAlignmentSmall};
 
-		@media ${device.tablet} {
+		@media screen and ${device.tablet} {
 			text-align: ${textAlignmentLarge};
 		}
 
 		p {
-			@media ${device.mobileL} {
+			@media screen and ${device.mobileL} {
 				line-height: 1.25;
 			}
 		}

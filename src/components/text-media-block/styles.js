@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const COLUMN_STACKED = (resolution, image_above) => `
-	@media ${resolution} {
+	@media screen and ${resolution} {
 		flex-direction: ${!image_above ? 'column-reverse' : 'column'};
 		max-width: 100%;
 	}
 `;
 
 export const ADJACENT = (resolution, image_left) => `
-	@media ${resolution} {
+	@media screen and ${resolution} {
 		flex-direction: ${!image_left ? 'row-reverse' : 'row'};
 
 		&::before {

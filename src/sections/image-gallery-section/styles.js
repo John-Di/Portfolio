@@ -12,7 +12,7 @@ export const CONTENT = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	@media ${device.tablet} {
+	@media screen and ${device.tablet} {
 		flex: 1 50%;
 		max-width: 50%;
 		margin: 5em 0;

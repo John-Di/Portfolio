@@ -62,7 +62,7 @@ export default function ImageGallery({
           PreviousButton={images.length > 4 && PreviousButton}
           NextButton={images.length > 4 && NextButton}
         >
-          <NAVIGATION className="image-gallery__navigation" maxWidth={maxWidth}>
+          <NAVIGATION gap={1.25} className="image-gallery__navigation" maxWidth={maxWidth}>
             <TileList gutterOffset={1.25} items={images} itemMap={ThumbnailElement} />
           </NAVIGATION>
         </HorizontalScrollable>

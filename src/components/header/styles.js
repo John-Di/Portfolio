@@ -87,7 +87,7 @@ const onStuck = ({ whiteOnHover, textColor, accentColor, isStuck }) => condition
   box-shadow: 0 3px 1px rgba(0,0,0,0.2);
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     a {
       background-color: transparent;
       color: ${`#000000`};
@@ -118,7 +118,7 @@ const onStuck = ({ whiteOnHover, textColor, accentColor, isStuck }) => condition
     }
   }
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     a {
       background-color: transparent;
       color: ${`#000000`};
@@ -169,7 +169,7 @@ export const HEADER = styled.header`
     &.active {
       color: ${props => props.accentColor};
 
-      @media ${device.tablet} {
+      @media screen and ${device.tablet} {
         background-color: ${props => props.textColor};
       }
     }
@@ -177,11 +177,11 @@ export const HEADER = styled.header`
 
   ${onStuck}
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     ${HeaderMobileProps}
   }
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     cursor: pointer;
     grid-template: "logo nav util" / 1fr 3fr 1fr;
     ${props => props.isActive ? HeaderTabletProps : null}
@@ -213,7 +213,7 @@ export const TOGGLE = styled.button`
   ${ToggleTransitions}
   transition: color 0.1s 0.05s;
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     display: none;
   }
 `;
@@ -240,7 +240,7 @@ export const NAV = styled.nav`
 export const DIV = styled.div`
   width: 100%;
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     position: absolute;
     top: 100%;
     left: 0;
@@ -275,12 +275,12 @@ export const UL = styled.ul`
   ${ResponsiveLine}
   width: 100%;
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     background: white;
     transition: height 2s 0s;
   }
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     justify-content: ${props => props.desktopNavAlignment};
   }
 `;
@@ -288,7 +288,7 @@ export const UL = styled.ul`
 export const LI = styled.li`
   ${ListReset}
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     width: 100%;
   }
 `;
@@ -313,7 +313,7 @@ export const NAVLINK = styled(GatsbyLink)`
     text-decoration: underline;
   }
 
-  @media ${device.max_tablet} {
+  @media screen and ${device.max_tablet} {
     align-items: flex-start;
     width: 100%;
   }

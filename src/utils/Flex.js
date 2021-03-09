@@ -11,7 +11,7 @@ export const FlexCentered = `
 export const ResponsiveLine = `
   ${FlexCentered}
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     flex-direction: row;
   }
 `

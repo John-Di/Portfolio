@@ -6,7 +6,7 @@ import AssessProps, { conditionalProp } from '../../utils/AssessProps';
 const sideBySide = (acc, rule, i) => `
 	${acc}
 
-	@media ${rule.bp} {
+	@media screen and ${rule.bp} {
 		float: left;
 		display: inline-flex;
 		max-width: 50%;
@@ -18,7 +18,7 @@ const sideBySide = (acc, rule, i) => `
 const veticalStacked = (acc, rule, i) => `
 	${acc}
 
-	@media ${rule.bp} {
+	@media screen and ${rule.bp} {
 		flex: 1 100%;
 		max-width: 100%;
 		max-height: 100%;
@@ -35,7 +35,7 @@ const pairLayout = ({ isEven = false, isFlipped, adjacentBreakpoints, stackedBre
 	${adjacentBreakpoints.reduce((acc, rule, i) => `
 		${acc}
 
-		@media ${rule.bp} {
+		@media screen and ${rule.bp} {
 			${rule.alternates && isEven ? `
 				flex-direction: row-reverse;
 			` : `flex-direction: row;`}
@@ -45,7 +45,7 @@ const pairLayout = ({ isEven = false, isFlipped, adjacentBreakpoints, stackedBre
 	${stackedBreakpoints.reduce((acc, rule, i) => `
 		${acc}
 
-		@media ${rule.bp} {
+		@media screen and ${rule.bp} {
 			${rule.alternates && isEven ? `
 				flex-direction: column;
 			` : `flex-direction: column-reverse;`}
@@ -85,7 +85,7 @@ const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpo
 		${adjacentBreakpoints.reduce((acc, rule, i) => `
 			${acc}
 
-			@media ${rule.bp} {
+			@media screen and ${rule.bp} {
 				${isSquare && `
 					padding-top: 50%;
 				`}
@@ -95,7 +95,7 @@ const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpo
 		${stackedBreakpoints.reduce((acc, rule, i) => `
 			${acc}
 
-			@media ${rule.bp} {
+			@media screen and ${rule.bp} {
 				${isSquare && `
 					padding-top: 100%;
 					min-height: unset;
@@ -111,7 +111,7 @@ const assessProps = (props) => `
 	` : ''}
 
 	${props.hasPaddingLarge ? `
-		@media ${device.laptop} {
+		@media screen and ${device.laptop} {
 			padding: 8em 0;
 		}
 	` : ''}
@@ -127,7 +127,7 @@ export const LAYOUT = styled.div`
 	align-items: center;
 	width: 100%;
 
-	@media ${device.tablet} {
+	@media screen and ${device.tablet} {
 		${props => props.hasPadding ? `padding: 5em 0;` : ''}
 		${Clearfix}
 	}

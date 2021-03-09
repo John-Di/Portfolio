@@ -11,7 +11,7 @@ export const Trigger = styled.div`
 	}
 
 	.Collapsible--basics & {
-		@media ${device.laptop} { 
+		@media screen and ${device.laptop} { 
 			cursor: auto !important;
 		}
 	}
@@ -22,8 +22,8 @@ export const ParentTrigger = styled(Trigger)`
 `;
 
 export const PARENT_TRIGGER = {
-	'marginTop': 0,
-	'cursor': 'pointer'
+  'marginTop': 0,
+  'cursor': 'pointer'
 };
 
 export const ChildTrigger = styled(Trigger)`

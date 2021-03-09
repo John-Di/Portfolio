@@ -34,7 +34,7 @@ export const renderText = ({ textColor, backgroundColor, textAlignmentSmall = 'c
   `))}
   ${conditionalProp(textAlignmentSmall, `text-align: ${textAlignmentSmall};`)}
 
-  @media ${device.tablet} {
+  @media screen and ${device.tablet} {
     ${conditionalProp(textAlignmentLarge, `text-align: ${textAlignmentLarge};`)}
   }
 `;

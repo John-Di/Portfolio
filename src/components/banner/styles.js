@@ -9,12 +9,12 @@ export const BANNER = styled(SECTION)`
 	
 	text-align: ${props => props.textAlignment || 'center'};
 
-	@media ${device.tablet} {
+	@media screen and ${device.tablet} {
 		text-align: ${props => props.textAlignment || 'left'};
 	}
 
 	p {
-		@media ${device.mobileL} {
+		@media screen and ${device.mobileL} {
 			line-height: 1.25;
 		}
 	}
