@@ -53,6 +53,47 @@ export const MAIN_IMAGE = styled.div`
   }
 `;
 
+const BUTTON_WIDTH = 3;
+
+
+export const CONTROLS = styled.button`
+  ${ButtonReset}
+  cursor: pointer;
+  padding: 0;
+  min-width: unset;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: ${BUTTON_WIDTH}em;
+  ${props => conditionalProp(props.left, conditionalProp(props.buttonsInside, `left: 0;`, `right: 100%;`))}
+  ${props => conditionalProp(props.right, conditionalProp(props.buttonsInside, `right: 0;`, `left: 100%;`))}
+  transition: opacity 0.1s, background-color 0.1s, color 0.1s;
+  opacity: 0.25;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: inherit;
+    color: inherit;
+  }
+
+  ${props => conditionalProp(props.isDisabled, `display: none;`)}
+  &[disabled] {
+    display: none;
+  }
+
+  @media ${device.max_tablet} {
+    display: none;
+  }
+`;
+
 export const NAVIGATION = styled.nav`
   width: 100%;
 
@@ -62,15 +103,14 @@ export const NAVIGATION = styled.nav`
     width: 100%;
     overflow: hidden;
     padding: 0.25em;
-    margin: 0.75em;
+    max-width: 20%;
 
     @media ${device.mobileL} {
-      max-width: 25%;
     }
 
     @media ${device.mobileXL} {
-      padding: 0.5em;
-      max-width: 20%;
+      padding: 1.25em;
+      max-width: 25%;
     }
   }
 `;
@@ -81,8 +121,7 @@ export const THUMBNAIL = styled.button`
   width: 100%;
   position: relative;
 
-
-  &:not(.current) {
+  ${props => conditionalProp(!props.isCurrent, `
     cursor: pointer;
 
     &:focus,
@@ -92,11 +131,11 @@ export const THUMBNAIL = styled.button`
         transform: scale(1.25);
       }
     }
-  }
 
-  &:not(.current) img {
-    ${props => props.transparency ? `opacity : ${props.transparency};` : ''}
-  }
+    img {
+      ${conditionalProp(props.transparency, `opacity : ${props.transparency};`)}
+    }
+  `, `transform: scale(1.25);`)}
 
   &::before {
     content: '';
