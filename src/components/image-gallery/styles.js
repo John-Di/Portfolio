@@ -89,7 +89,7 @@ export const CONTROLS = styled.button`
     display: none;
   }
 
-  @media ${device.max_tablet} {
+  @media ${device.max_laptop} {
     display: none;
   }
 `;
