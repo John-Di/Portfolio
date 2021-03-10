@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import { device, size } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
-import {
-  conditionalProp
-} from '../../utils/AssessProps';
+import { conditionalProp } from '../../utils/AssessProps';
 import { ButtonReset } from '../../utils/Resets';
+import { responsiveBreakpoints } from '../../styles/util';
 
 export const WRAPPER = styled.div`
   height: 100%;
@@ -14,7 +13,7 @@ export const WRAPPER = styled.div`
   ${props => conditionalProp(props.hasPadding, `
     padding: 2% 0;
 
-    @media ${device.laptop} {
+    @media screen and ${device.laptop} {
       padding: 8% 0;
     }
   `)}
@@ -55,62 +54,21 @@ export const MAIN_IMAGE = styled.div`
 
 const BUTTON_WIDTH = 3;
 
-
-export const CONTROLS = styled.button`
-  ${ButtonReset}
-  cursor: pointer;
-  padding: 0;
-  min-width: unset;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: ${BUTTON_WIDTH}em;
-  ${props => conditionalProp(props.left, conditionalProp(props.buttonsInside, `left: 0;`, `right: 100%;`))}
-  ${props => conditionalProp(props.right, conditionalProp(props.buttonsInside, `right: 0;`, `left: 100%;`))}
-  transition: opacity 0.1s, background-color 0.1s, color 0.1s;
-  opacity: 0.25;
-
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    fill: inherit;
-    color: inherit;
-  }
-
-  ${props => conditionalProp(props.isDisabled, `display: none;`)}
-  &[disabled] {
-    display: none;
-  }
-
-  @media ${device.max_laptop} {
-    display: none;
-  }
-`;
-
 export const NAVIGATION = styled.nav`
   width: 100%;
 
   li {
-    max-width: ${100 / 3}%;
     display: inline-block;
     width: 100%;
     overflow: hidden;
-    padding: 0.25em;
-    max-width: 20%;
+    padding: ${props => props.gap}em;
+    max-width: ${100 / 4}%;
 
-    @media ${device.mobileL} {
+    @media screen and ${device.mobileL} {
     }
 
-    @media ${device.mobileXL} {
-      padding: 1.25em;
-      max-width: 25%;
+    @media screen and ${device.mobileXL} {
+      max-width: ${100 / 4}%;
     }
   }
 `;
@@ -163,3 +121,45 @@ export const IMG = styled.img`
     transform: scale(1.25);
   }
 `
+
+export const CONTROLS = styled.button`
+  ${ButtonReset}
+  cursor: pointer;
+  padding: 0;
+  min-width: unset;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: ${BUTTON_WIDTH}em;
+  transition: opacity 0.1s, background-color 0.1s, color 0.1s;
+  opacity: 0.25;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+
+  ${props => responsiveBreakpoints([device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')], `
+    ${conditionalProp(props.left, conditionalProp(props.buttonPadding, `left: -0.0625em;`, `display: none;`))}
+    ${conditionalProp(props.right, conditionalProp(props.buttonPadding, `right: -0.0625em;`, `display: none;`))}
+  `)}
+
+  ${props => responsiveBreakpoints([[device.mobileXL, device.max_laptop].join(' and '), device.laptopL], `
+    ${conditionalProp(props.left, `right: calc(100% + 1em);`)}
+    ${conditionalProp(props.right, `left: calc(100% + 1em);`)}
+  `)}
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: inherit;
+    color: inherit;
+  }
+
+  ${props => conditionalProp(props.isDisabled, `display: none;`)}
+  &[disabled] {
+    display: none;
+  }
+`;
