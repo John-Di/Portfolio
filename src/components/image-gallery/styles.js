@@ -61,14 +61,15 @@ export const NAVIGATION = styled.nav`
     display: inline-block;
     width: 100%;
     overflow: hidden;
-    padding: ${props => props.gap}em;
+    padding: 2.5%;
     max-width: ${100 / 4}%;
 
-    @media screen and ${device.mobileL} {
-    }
 
     @media screen and ${device.mobileXL} {
       max-width: ${100 / 4}%;
+    }
+    @media screen and ${device.mobileXL} {
+      padding: ${props => props.gap}em;
     }
   }
 `;
