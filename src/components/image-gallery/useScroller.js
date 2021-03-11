@@ -4,8 +4,7 @@ import {
   useEffect
 } from "react";
 
-function useScroller({ max, selectedFirst = false } = {}) {
-
+function useScroller({ max, selectedFirst = false, PREVIOUS, NEXT } = {}) {
   const scrollRef = useRef(null);
   const [index, setIndex] = useState(0);
 
@@ -38,9 +37,23 @@ function useScroller({ max, selectedFirst = false } = {}) {
     setIndex(newIndex);
     return setIndex(newIndex)
   };
+
+  let PreviousButton = {
+    ...PREVIOUS,
+    isDisabled: index <= 0,
+    disabled: index <= 0,
+    onClick: scrollPrevious
+  },
+    NextButton = {
+      ...NEXT,
+      isDisabled: index >= (max - 1),
+      disabled: index >= (max - 1),
+      onClick: scrollNext
+    };
+
   useEffect(ScrollController, [index]);
 
-  return { scrollRef, index, setIndex, scrollPrevious, scrollNext };
+  return { scrollRef, index, setIndex, PreviousButton, NextButton };
 }
 
 export default useScroller;

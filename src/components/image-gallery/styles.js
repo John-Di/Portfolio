@@ -4,12 +4,13 @@ import Clearfix from '../../utils/Clearfix';
 import { conditionalProp } from '../../utils/AssessProps';
 import { ButtonReset } from '../../utils/Resets';
 import { responsiveBreakpoints } from '../../styles/util';
+import { VerticalLine } from '../../utils/Flex';
 
 export const WRAPPER = styled.div`
+  ${VerticalLine}
   height: 100%;
   width: 100%;
   margin: 0 auto;
-
   ${props => conditionalProp(props.hasPadding, `
     padding: 2% 0;
 
@@ -17,11 +18,6 @@ export const WRAPPER = styled.div`
       padding: 8% 0;
     }
   `)}
-
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
   ${props => conditionalProp(props.maxWidth, `
     max-width: ${size.mobileXL + 'px'};
   `)}
@@ -83,18 +79,23 @@ export const THUMBNAIL = styled.button`
   ${props => conditionalProp(!props.isCurrent, `
     cursor: pointer;
 
+    img {
+      transform: scale(0.85);
+    }
+
     &:focus,
     &:hover {
       img {
         opacity: 1;
-        transform: scale(1.25);
+        transform: scale(1);
       }
     }
 
     img {
       ${conditionalProp(props.transparency, `opacity : ${props.transparency};`)}
     }
-  `, `transform: scale(1.25);`)}
+  `, `
+  `)}
 
   &::before {
     content: '';
@@ -119,11 +120,11 @@ export const IMG = styled.img`
   transition: transform 0.15s ease-in 0s, opacity 0.15s ease-in 0s;
 
   .current & {
-    transform: scale(1.25);
+    transform: scale(1);
   }
 `
 
-export const CONTROLS = styled.button`
+const GALLERY_NAV_BUTTON = `
   ${ButtonReset}
   cursor: pointer;
   padding: 0;
@@ -139,16 +140,9 @@ export const CONTROLS = styled.button`
   &:focus {
     opacity: 1;
   }
-
-  ${props => responsiveBreakpoints([device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')], `
-    ${conditionalProp(props.left, conditionalProp(props.buttonPadding, `left: -0.0625em;`, `display: none;`))}
-    ${conditionalProp(props.right, conditionalProp(props.buttonPadding, `right: -0.0625em;`, `display: none;`))}
-  `)}
-
-  ${props => responsiveBreakpoints([[device.mobileXL, device.max_laptop].join(' and '), device.laptopL], `
-    ${conditionalProp(props.left, `right: calc(100% + 1em);`)}
-    ${conditionalProp(props.right, `left: calc(100% + 1em);`)}
-  `)}
+  &[disabled] {
+    display: none;
+  }
 
   svg {
     position: absolute;
@@ -158,9 +152,25 @@ export const CONTROLS = styled.button`
     fill: inherit;
     color: inherit;
   }
+`;
+export const PREVIOUS = styled.button`
+  ${GALLERY_NAV_BUTTON}
+  ${props => responsiveBreakpoints([device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')], `
+    ${conditionalProp(props.buttonPadding, `left: -0.0625em;`, `display: none;`)}
+  `)}
+
+  ${() => responsiveBreakpoints([[device.mobileXL, device.max_laptop].join(' and '), device.laptopL], `right: calc(100% + 1em);`)}
 
   ${props => conditionalProp(props.isDisabled, `display: none;`)}
-  &[disabled] {
-    display: none;
-  }
+`;
+
+export const NEXT = styled.button`
+  ${GALLERY_NAV_BUTTON}
+  ${props => responsiveBreakpoints([device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')], `
+    ${conditionalProp(props.buttonPadding, `right: -0.0625em;`, `display: none;`)}
+  `)}
+
+  ${() => responsiveBreakpoints([[device.mobileXL, device.max_laptop].join(' and '), device.laptopL], `left: calc(100% + 1em);`)}
+
+  ${props => conditionalProp(props.isDisabled, `display: none;`)}
 `;
