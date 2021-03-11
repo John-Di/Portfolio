@@ -19,4 +19,5 @@ export const ITEM = styled.li`
   display: inline-block;
   vertical-align: bottom;
   padding: ${props => props.gutter}em;
+  float: left;
 `;
