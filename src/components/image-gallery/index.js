@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 export default function ImageGallery({
-  gap = 0.25,
+  gap = 0.75,
   maxWidth = '100%',
   images = [],
   scroll = true,
@@ -49,12 +49,12 @@ export default function ImageGallery({
         </MAIN_IMAGE>
         <HorizontalScrollable
           scrollRef={scrollRef}
-          gap={1.25 / 2}
+          gap={gap}
           PreviousButton={images.length > 4 && prev}
           NextButton={images.length > 4 && next}
         >
-          <NAVIGATION gap={0.75} className="image-gallery__navigation" maxWidth={maxWidth}>
-            <TileGrid gutterOffset={0.75} items={images} itemMap={ThumbnailElement} />
+          <NAVIGATION gap={gap} className="image-gallery__navigation" maxWidth={maxWidth}>
+            <TileGrid gutterOffset={gap} items={images} itemMap={ThumbnailElement} />
           </NAVIGATION>
         </HorizontalScrollable>
       </GALLERY>
