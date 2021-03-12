@@ -42,6 +42,10 @@ export const SCROLLABLE = styled.div`
           display: none;
         }
       }
+
+      li {
+        float: none;
+      }
     `)}
   }
 `;
