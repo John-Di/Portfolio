@@ -8,7 +8,7 @@ import {
 } from './styles';
 
 
-export default function TileList({
+export default function TileGrid({
   gutterOffset = 0.75,
   items = [],
   itemMap

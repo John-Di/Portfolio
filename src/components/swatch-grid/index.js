@@ -2,7 +2,7 @@ import React from "react";
 import {
   SwatchType
 } from './helpers';
-import TileList from "../../layouts/tile-list";
+import TileGrid from "../../layouts/tile-grid";
 
 export default function SwatchGrid({
   values = [],
@@ -24,6 +24,6 @@ export default function SwatchGrid({
   )
 
   return (
-    <TileList gutterOffset={gap} items={values} itemMap={SwatchMap} />
+    <TileGrid gutterOffset={gap} items={values} itemMap={SwatchMap} />
   );
 }
