@@ -5,6 +5,10 @@ export const FIELDSET = styled.fieldset`
   flex-grow: 1;
   border: 0;
   width: 100%;
+
+  &:not(:last-of-type) {
+    margin-bottom: 1em;
+  }
 `;
 
 export const LEGEND = styled.legend`
