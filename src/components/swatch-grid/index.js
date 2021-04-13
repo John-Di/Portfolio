@@ -24,6 +24,6 @@ export default function SwatchGrid({
   )
 
   return (
-    <TileGrid gutterOffset={gap} items={values} itemMap={SwatchMap} />
+    <TileGrid gutterOffset={gap} items={values} ItemMap={SwatchMap} />
   );
 }

@@ -18,6 +18,7 @@ export default function TextSwatch({
       id={inputID}
       gap={gap}
       name={name}
+      backgroundColor={'white'}
       isCurrent={isCurrent}
       borderColor={`#000000`}
       toggleSwatch={toggleSwatch}

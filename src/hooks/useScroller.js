@@ -14,7 +14,7 @@ function useScroller({ max, selectedFirst = false, PREVIOUS, NEXT, THUMBNAIL } =
     }
 
     const nav = scrollRef.current.querySelector('nav'),
-      list = scrollRef.current.querySelector('ul');
+      list = nav.querySelector('ul');
     let itemWidth = list.querySelector('li').offsetWidth,
       visibleMaxIndex = selectedFirst ? 0 : Math.floor(nav.offsetWidth / itemWidth),
       left = selectedFirst || index > visibleMaxIndex ? (index - visibleMaxIndex) * itemWidth : 0;
@@ -28,12 +28,12 @@ function useScroller({ max, selectedFirst = false, PREVIOUS, NEXT, THUMBNAIL } =
 
   const scrollPrevious = () => {
     let newIndex = Math.max(index - 1, 0) % max;
-    setIndex(newIndex);
+    console.log('scrollPrevious')
     return setIndex(newIndex)
   };
   const scrollNext = () => {
     let newIndex = Math.min(index + 1, max) % max;
-    setIndex(newIndex);
+    console.log('scrollNext')
     return setIndex(newIndex)
   };
 
@@ -47,7 +47,8 @@ function useScroller({ max, selectedFirst = false, PREVIOUS, NEXT, THUMBNAIL } =
       ...NEXT,
       isDisabled: index >= (max - 1),
       disabled: index >= (max - 1),
-      onClick: scrollNext
+      onClick: scrollNext,
+      className: `nextButton`
     },
     Thumbnail = {
       ...THUMBNAIL,
@@ -57,7 +58,7 @@ function useScroller({ max, selectedFirst = false, PREVIOUS, NEXT, THUMBNAIL } =
 
   useEffect(ScrollController, [index]);
 
-  return { scrollRef, index, setIndex, PreviousButton, NextButton, Thumbnail };
+  return { scrollRef, index, setIndex, PreviousButton, NextButton, scrollPrevious, scrollNext, Thumbnail };
 }
 
 export default useScroller;

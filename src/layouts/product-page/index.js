@@ -1,4 +1,6 @@
-import React from "react";
+import React, {
+  useContext
+} from "react";
 import PageTemplate from '../../templates/page';
 import ProductOptionSelector from "../../components/product-option-selector";
 import {
@@ -8,14 +10,12 @@ import {
 import {
   arrayToComponentSiblings
 } from '../../utils/dom-builder';
-import {
-  useProduct,
-  getSelectedOptions
-} from '../../utils/Product';
 import SwatchGrid from "../../components/swatch-grid";
 import VariantSelector from "../../components/variant-selector";
 import ImageGallery from "../../components/image-gallery";
 import ProductForm from "../../components/product-form";
+import ProductContext from "../../contexts/ProductContext";
+import ProductFormContext from "../../contexts/ProductFormContext";
 import {
   ARTICLE,
   TITLE,
@@ -24,45 +24,46 @@ import {
   PRICING,
   DESCRIPTION
 } from './styles';
+import RemoveDuplicates from "../../utils/RemoveDuplicates";
 
 // markup
-const ProductPage = ({ accentColor = randomColor(), selectedID, ...product }) => {
-  let {
+const ProductPage = ({ accentColor = randomColor() }) => {
+  const {
     title,
-    price,
     images,
     description,
     options = [],
     variants = []
-  } = product,
-    selectedVariantId = selectedID || variants[0].id,
-    selectedVariant = variants.find(v => v.id === selectedVariantId);
+  } = useContext(ProductContext), {
+    formState,
+    updateVariant,
+    updateOption
+  } = useContext(ProductFormContext), {
+    id
+  } = formState;
 
-  const { formState, updateVariant, updateOption } = useProduct({ options, variants, selectedVariant });
-
-  let selectedOptions = getSelectedOptions(options, formState.selectedVariant);
-
+  let {
+    price,
+    selectedOptions
+  } = variants.find(variant => variant.shopifyId === id);
   return (
     <PageTemplate
       accentColor={accentColor}
       activeHeader={true}
+      hasCart={true}
     >
       <ARTICLE>
         <TITLE>{title}</TITLE>
         <MEDIA>
-          <ImageGallery maxWidth={`75%`} images={formState.selectedVariant.images || images} selectedFirst={randomBool()} />
+          <ImageGallery maxWidth={`75%`} images={variants.map(({ image }) => image.originalSrc).filter(RemoveDuplicates) || images} selectedFirst={randomBool()} />
         </MEDIA>
         <PRICING>
-          <PRICE>{formState.selectedVariant.price || price}</PRICE>
+          <PRICE>${price}</PRICE>
         </PRICING>
-        <DESCRIPTION>{formState.selectedVariant.description || description}</DESCRIPTION>
+        <DESCRIPTION>{description}</DESCRIPTION>
         <ProductForm>
           <VariantSelector
-            options={options}
-            variants={variants}
             isHidden={true}
-            selected={formState.selectedVariant.id}
-            updateVariant={updateVariant}
             theme={'fancy'}
           >
             {
@@ -73,7 +74,6 @@ const ProductPage = ({ accentColor = randomColor(), selectedID, ...product }) =>
               ))
             }
           </VariantSelector>
-
         </ProductForm>
       </ARTICLE>
     </PageTemplate>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { graphql } from 'gatsby';
 import TextBanner from '../sections/text-banner';
 import HeroBanner from '../sections/hero-banner';
 import TextBlock from '../components/text-block';
@@ -20,20 +21,50 @@ import {
   randomBool,
   randomImageArray
 } from '../utils/randoms';
-import { jsxCloneArray } from '../utils/dom-builder';
+import { arrayToComponentSiblings, jsxCloneArray } from '../utils/dom-builder';
 import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
 
 
+export const query = graphql`
+  {
+    allShopifyProduct {
+      nodes {
+        title
+        description
+        id
+        variants {
+          shopifyId
+          priceV2 {
+            amount
+            currencyCode
+          }
+        }
+        images {
+          localFile {
+            childImageSharp {
+              fixed(width: 300) {
+                ...GatsbyImageSharpFixed_withWebp_tracedSVG
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 // markup
-const StyleGuidePage = () => {
+const StyleGuidePage = ({ data }) => {
   let accentColor = randomColor();
   let heroWidth = randomBool(1);
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
 
+  let featured_products = data.allShopifyProduct.nodes.filter((_, i) => i < 4);
   return (
     <PageTemplate
       accentColor={accentColor}
+      hasCart={true}
     >
       <StyleGuideArticle>
         <HeroBanner
@@ -66,20 +97,7 @@ const StyleGuidePage = () => {
             <p>Including this Basic Text Banner Section</p>
           </TextBlock>
         </TextBanner>
-        <FeaturedTiles heading={`Product Tiles`}>{
-          jsxCloneArray(4, (length, _, index) => {
-            return (
-              <ProductTile
-                key={index}
-                heading={`Product Tile ${index + 1}`}
-                price={`$19.99`}
-                accentColor={accentColor}
-                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
-              >
-              </ProductTile>
-            )
-          })}
-        </FeaturedTiles>
+        <FeaturedTiles heading={`Product Tiles`} items={featured_products} />
         <OnePairSection isFullWidth={true} />
         <OnePairSection isFullWidth={false} />
         <FeaturedTiles>{

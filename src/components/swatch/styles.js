@@ -4,6 +4,7 @@ import {
   conditionalProp
 } from '../../utils/AssessProps';
 import VisuallyHidden from '../../utils/VisuallyHidden';
+import IdealTextColor from '../../utils/IdealTextColor';
 
 export const INPUT = styled.input`
   ${VisuallyHidden}
@@ -12,7 +13,10 @@ export const INPUT = styled.input`
 export const LABEL = styled.label`
   cursor: pointer;
   ${FlexCentered}
-  ${props => conditionalProp(props.backgroundColor, `background-color: ${props.backgroundColor};`)};
+  ${props => {
+    return props;
+  }}
+  ${props => conditionalProp(props.backgroundColor, `background-color: ${props.backgroundColor};`, 'white')};
   width: 2.5em;
   height: 2.5em;
   border: 1px solid black;
@@ -26,7 +30,7 @@ export const LABEL = styled.label`
   &:hover,
   &:focus {
     outline: 1px solid black;
-    border: 2px solid ${props => props.borderColor};
+    border: 2px solid ${props => IdealTextColor(props.backgroundColor)};
   }
 `;
 

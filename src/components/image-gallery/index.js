@@ -1,7 +1,7 @@
 import React from "react";
 import TileGrid from "../../layouts/tile-grid";
 import HorizontalScrollable from "../horizontal-scrollable";
-import useScroller from './useScroller';
+import useScroller from '../../hooks/useScroller';
 import LeftChevron from '../../images/svgs/left-chevron.svg';
 import RightChevron from '../../images/svgs/right-chevron.svg';
 import {
@@ -24,14 +24,12 @@ export default function ImageGallery({
   selectedFirst = false,
   buttonsInside = false
 }) {
-
-  const { scrollRef, index, PreviousButton, NextButton, Thumbnail } = useScroller({ max: images.length, selectedFirst, PREVIOUS, NEXT, THUMBNAIL });
-  const prev = PreviousButton && <PreviousButton {...PreviousButton} buttonsInside={buttonsInside}><LeftChevron /></PreviousButton>;
-  const next = NextButton && <NextButton {...NextButton} buttonsInside={buttonsInside}><RightChevron /></NextButton>;
+  const { scrollRef, index, PreviousButton, NextButton, Thumbnail, scrollPrevious, scrollNext } = useScroller({ max: images.length, selectedFirst, PREVIOUS, NEXT, THUMBNAIL });
+  const prev = images.length > 4 && PreviousButton && <PreviousButton buttonsInside={buttonsInside}><LeftChevron /></PreviousButton>;
+  const next = images.length > 4 && NextButton && <NextButton buttonsInside={buttonsInside}><RightChevron /></NextButton>;
 
   const ThumbnailElement = (image, i) => (
     <Thumbnail
-      {...Thumbnail}
       isCurrent={Thumbnail.isCurrent(i)}
       onClick={Thumbnail.onClick.bind(this, i)}
       transparency={1 / 3}
@@ -50,11 +48,11 @@ export default function ImageGallery({
         <HorizontalScrollable
           scrollRef={scrollRef}
           gap={gap}
-          PreviousButton={images.length > 4 && prev}
-          NextButton={images.length > 4 && next}
+          PreviousButton={prev}
+          NextButton={next}
         >
           <NAVIGATION gap={gap} className="image-gallery__navigation" maxWidth={maxWidth}>
-            <TileGrid gutterOffset={gap} items={images} itemMap={ThumbnailElement} />
+            <TileGrid gutterOffset={gap} items={images} ItemMap={ThumbnailElement} />
           </NAVIGATION>
         </HorizontalScrollable>
       </GALLERY>

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'gatsby-image'
 import {
   TILE,
   IMAGE,
@@ -11,10 +12,10 @@ import {
 export default function ObjectTile({
   heading,
   // subheading,
-  // image,
+  image,
   body,
   backgroundImage,
-  // backgroundColor,
+  maxWidth,
   children,
   value,
   url = '/products/dummy-product'
@@ -22,6 +23,7 @@ export default function ObjectTile({
   return (
     <TILE
       className="tile"
+      maxWidth={maxWidth}
     >
       <HEADING
         to={url}
@@ -33,12 +35,14 @@ export default function ObjectTile({
       <IMAGE
         to={url}
         activeClassName="active"
-        image={backgroundImage}
         partiallyActive={true}
+        image={!image ? backgroundImage : undefined}
         state={{
           product: { title: heading }
         }}
-      ></IMAGE>
+      >
+        {image ? <Image fixed={image} /> : undefined}
+      </IMAGE>
       {value}
       {body && <BODY>{body}</BODY>}
       {children}

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { ListReset } from '../../utils/Resets';
 import { device } from '../../utils/variables';
@@ -20,4 +21,5 @@ export const ITEM = styled.li`
   vertical-align: bottom;
   padding: ${props => props.gutter}em;
   float: left;
+  ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth}`)}
 `;

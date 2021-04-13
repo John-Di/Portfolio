@@ -231,14 +231,9 @@ export const ICON = styled(FontAwesomeIcon)`
   font-size: 2em;
 `;
 
-export const NAV = styled.nav`
-  grid-area: nav;
+export const MAINMENU = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-export const DIV = styled.div`
-  width: 100%;
 
   @media screen and ${device.max_tablet} {
     position: absolute;
@@ -270,10 +265,11 @@ export const DIV = styled.div`
   }
 `;
 
-export const UL = styled.ul`
+export const MENUITEMS = styled.ul`
   ${ListReset}
   ${ResponsiveLine}
   width: 100%;
+  height: 100%;
 
   @media screen and ${device.max_tablet} {
     background: white;
@@ -285,10 +281,58 @@ export const UL = styled.ul`
   }
 `;
 
-export const LI = styled.li`
+export const UTILITEMS = styled.ul`
   ${ListReset}
+  ${ResponsiveLine}
+  width: 100%;
+  height: 100%;
 
   @media screen and ${device.max_tablet} {
+    background: white;
+    transition: height 2s 0s;
+  }
+
+  @media screen and ${device.tablet} {
+    justify-content: ${props => props.desktopNavAlignment};
+  }
+`;
+
+export const MENUITEM = styled.li`
+  ${ListReset}
+  height: 100%;
+
+  @media screen and ${device.max_tablet} {
+    width: 100%;
+  }
+`;
+
+export const UTIL = styled.nav`
+  grid-area: util;
+  width: 100%;
+  height: 100%;
+`;
+
+export const UTILLINK = styled(GatsbyLink)`
+  ${LinkReset}
+  ${FlexCentered}
+
+  display: inline-flex;
+  padding: 1em 1.5em;
+  line-height: 1.33;
+  height: 100%;
+  outline-width: 0;
+  box-shadow: none;
+  border: 0.25em solid transparent;
+  transition: background-color 0.1s 0.05s, color 0.1s 0s;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  @media screen and ${device.max_tablet} {
+    align-items: flex-start;
     width: 100%;
   }
 `;

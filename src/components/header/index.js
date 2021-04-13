@@ -16,14 +16,18 @@ import React, {
 import {
   faBars
 } from "@fortawesome/free-solid-svg-icons";
+import HamburgerIcon from '../../images/svgs/hamburger.svg';
+import AccountIcon from '../../images/svgs/account.svg';
+import CartIcon from '../../images/svgs/cart.svg';
 import {
   HEADER,
-  // NAV,
-  UL,
-  LI,
+  MENUITEM,
   NAVLINK,
   ICON,
-  DIV,
+  MAINMENU,
+  MENUITEMS,
+  UTIL,
+  UTILLINK,
   TOGGLE
 } from './styles';
 
@@ -42,7 +46,18 @@ const nav = [
   }
 ];
 
-const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuToggle, accentColor, desktopNavAlignment, isStuck, setStickyState }) => {
+const Header = ({
+  location = {},
+  isActive = false,
+  isMenuOpen = false,
+  onMenuToggle,
+  accentColor,
+  desktopNavAlignment,
+  isStuck,
+  setStickyState,
+  hasCart = false,
+  hasAccount = false
+}) => {
   const product = location.state ? location.state.product : false;
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
   let whiteOnHover = !!heroImage || isActive;
@@ -116,20 +131,20 @@ const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuTog
           iconColorEmphasis={navAccent}
           onClick={onMenuToggle.bind(this, 0)}
         >
-          <ICON icon={faBars} />
+          <HamburgerIcon />
         </TOGGLE>
-        <DIV
+        <MAINMENU
           ref={drawerEl}
           isMenuOpen={isMenuOpen}
           height={isMenuOpen ? drawerEl.current.scrollHeight : 0}
         >
-          <UL
+          <MENUITEMS
             isMenuOpen={isMenuOpen}
             desktopNavAlignment={desktopNavAlignment}
           >
             {
               arrayToJSXList(nav, (item, i) => (
-                <LI
+                <MENUITEM
                   textColor={textColor}
                   accentColor={navAccent}
                   textColorEmphasis={textColor}
@@ -147,13 +162,45 @@ const Header = ({ location = {}, isActive = false, isMenuOpen = false, onMenuTog
                   >
                     {item.label(product.title)}
                   </NAVLINK>
-                </LI>
+                </MENUITEM>
               ))
             }
-          </UL>
-          {/* {megaMenu} */}
-        </DIV>
+          </MENUITEMS>
+        </MAINMENU>
       </HeaderNavigation>
+      <UTIL>
+        <MENUITEMS
+          isMenuOpen={isMenuOpen}
+          desktopNavAlignment={'flex-end'}
+        >
+          {hasAccount &&
+            <UTILLINK
+              to={`/account/`}
+              onClick={onMenuToggle.bind(this, nav.length)}
+              activeClassName="active"
+              partiallyActive={true}
+              state={{
+                wasRedirected: true
+              }}
+            >
+              <AccountIcon />
+            </UTILLINK>
+          }
+          {hasCart &&
+            <UTILLINK
+              to={`/cart/`}
+              onClick={onMenuToggle.bind(this, nav.length)}
+              activeClassName="active"
+              partiallyActive={true}
+              state={{
+                wasRedirected: true
+              }}
+            >
+              <CartIcon />
+            </UTILLINK>
+          }
+        </MENUITEMS>
+      </UTIL>
     </HEADER>
   )
 }

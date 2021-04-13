@@ -7,7 +7,7 @@ import {
 export default function ColorSwatch({
   id,
   name = "Color",
-  value = 'transparent',
+  value = 'white',
   gap = 0.25,
   toggleSwatch,
   isCurrent

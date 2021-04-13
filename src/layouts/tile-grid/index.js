@@ -7,20 +7,17 @@ import {
   ITEM
 } from './styles';
 
-
 export default function TileGrid({
   gutterOffset = 0.75,
   items = [],
-  itemMap
+  ItemMap,
+  perRow = 4
 }) {
-
-  const WrapElement = (value, i) => {
-    return (
-      <ITEM key={i} gutter={gutterOffset}>
-        {itemMap(value, i)}
-      </ITEM>
-    )
-  };
+  const WrapElement = (item, i) => (
+    <ITEM key={i} gutter={gutterOffset} maxWidth={perRow ? `${100 / perRow}%` : null}>
+      {ItemMap(item, i)}
+    </ITEM>
+  );
 
   return (
     <LIST ref={list => list} gutterOffset={gutterOffset}>

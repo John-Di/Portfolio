@@ -1,34 +1,30 @@
 import React from "react";
 import ObjectTile from '../object-tile';
-import { size } from '../../utils/variables';
 import {
   PRICE,
   BODY,
   CTA_WRAPPER
 } from './styles';
-import FancyCTA from '../../components/fancy-cta';
+import FancyCTA from '../fancy-cta';
 
-export default function ProductTile({
+export default function LineItemTile({
   heading,
-  image,
-  description,
+  backgroundImage,
   children,
-  price,
-  maxWidth
+  price
 }) {
   return (
     <ObjectTile
-      className="product-tile"
+      className="line-item-tile"
       heading={heading}
-      image={image}
-      body={description}
-      maxWidth={`${size.mobileS / 16}em`}
+      backgroundImage={backgroundImage}
+      body={`Description for the Line Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit,`}
       value={price && <PRICE>{price}</PRICE>}
     >
       {children && (<BODY>{children}</BODY>)}
       <CTA_WRAPPER>
         <FancyCTA
-        >Add to Cart</FancyCTA>
+        > Add to Cart</FancyCTA>
       </CTA_WRAPPER>
     </ObjectTile>
   );

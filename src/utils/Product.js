@@ -1,6 +1,8 @@
-import {
+import React, {
   useReducer
 } from "react";
+
+import ProductContext from '../contexts/ProductContext';
 
 const actionTypes = {
   id: 'ID',
@@ -9,40 +11,38 @@ const actionTypes = {
 
 export const getSelectedOptions = (options, selectedVariant) => selectedVariant.options.map((option, i) => ({
   name: options[i].name,
-  value: option.value
+  values: option.values
 }))
 
 export const productReducer = (state, action) => {
-  let { selected, options, variants } = action;
+  let { selectedVariant, selectedOption, variants } = action;
   switch (action.type) {
     case actionTypes.id: {
       return {
         selectedVariant: {
-          ...selected,
-          options: getSelectedOptions(options, selected)
+          ...selectedVariant,
         }
       }
     }
     case actionTypes.option: {
-      let selectedOptions = getSelectedOptions(options, state.selectedVariant).reduce((acc, option, i) => {
-        if (option.name === action.selected.name) {
-          acc.push(action.selected);
-        } else {
-          acc.push(option)
-        }
-        return acc;
-      }, []);
+      let { name, value } = selectedOption;
+      let nextSelectedVariant = variants.filter(variant => {
 
-      let selectedOptionValues = selectedOptions.map(o => o.value);
-      let selectedVariant = variants.find((variant, i) => {
-        let { options } = variant;
-        let optionValues = options.map(o => o.value);
-        return optionValues[0] === selectedOptionValues[0] &&
-          optionValues[1] === selectedOptionValues[1] &&
-          optionValues[2] === selectedOptionValues[2]
-      });
+        variant.selectedOptions.every((option, index) => {
+          return (option.name === name && option.value === value)
+            || (option.name === selectedVariant.selectedOptions[index].name && option.value === selectedVariant.selectedOptions[index].value)
+        })
+        let selectedOptionIndex = variant.selectedOptions.findIndex(option => option.name === name);
+        return variant.selectedOptions.every((option, index) => (option.name === name && option.value === value)
+          || (variant.selectedOptions[selectedOptionIndex].name === name
+            && variant.selectedOptions[selectedOptionIndex].value === value
+            && option.name === selectedVariant.selectedOptions[index].name
+            && option.value === selectedVariant.selectedOptions[index].value));
+      })
+
       return {
-        selectedVariant
+        selectedVariant: nextSelectedVariant,
+        options: nextSelectedVariant.selectedOptions
       }
     }
     default: {
@@ -51,16 +51,22 @@ export const productReducer = (state, action) => {
   }
 }
 
-function useProduct({ reducer = productReducer, selectedVariant, options, variants } = {}) {
+function useProduct({ reducer = productReducer, product, selectedVariantId } = {}) {
+  const {
+    variants = []
+  } = product;
+
+  let selectedId = selectedVariantId || variants[0].id;
+  let selectedVariant = variants.find(v => v.id === selectedId);
 
   const [formState, UpdateFormState] = useReducer(reducer, {
     selectedVariant
   });
 
-  const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selected: selectedVariant, options, variants });
-  const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selected: selectedOption, options, variants });
+  const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selectedVariant, variants });
+  const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selectedVariant, selectedOption, variants });
 
-  return { formState, updateVariant, updateOption };
+  return { ProductContext: ProductContext(product), formState, updateVariant, updateOption };
 }
 
 export { useProduct }

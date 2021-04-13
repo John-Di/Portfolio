@@ -32,7 +32,7 @@ export default function VariantSelector({
   }
 
   let Select = (
-    <select name="id" onChange={variantOnChange} value={selected}>
+    <select name="id" value={selected}>
       {arrayToComponentSiblings(variants, Variant)}
     </select>
   );

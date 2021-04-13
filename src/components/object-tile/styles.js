@@ -18,9 +18,14 @@ const assessProps = ({ overlay, image, whiteOnHover }) => `
     vertical-align: bottom;
     width: 100%;
     max-width: 100%;
-    padding-top: 100%;
     ${AssessProps({ overlay, isSquare: true, backgroundImage: image, whiteOnHover })}
-    ${conditionalProp(image, conditionalProp(whiteOnHover, `background-color: lightgrey;`, `background-color: grey;`))}
+    ${conditionalProp(image, `
+      padding-top: 100%;
+      ${conditionalProp(whiteOnHover, `
+        background-color: lightgrey;
+      `, `
+        background-color: grey;
+      `)}`)}
   }
 `;
 
@@ -44,7 +49,7 @@ export const HEADING = styled(GatsbyLink)`
 
 export const TILE = styled.article`
   width: ${+size.mobileL / 16}em;
-  max-width: 100%;
+  ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth};`)}
   margin: auto;
   display: grid;
   grid-template: 'img img' 2fr 'title value' auto 'body body' auto 'cta cta' auto / 1fr 1fr;
@@ -55,7 +60,11 @@ export const IMAGE = styled(GatsbyLink)`
   grid-area: img;
   margin-bottom: 2em;
   ${assessProps}
-`
+
+  .gatsby-image-wrapper {
+    max-width: 100%;
+  }
+`;
 
 
 export const BODY = styled.p`

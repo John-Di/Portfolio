@@ -1,18 +1,11 @@
 import React, {
   useState
 } from "react";
-// import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Header from '../components/header';
 import Overlay from '../components/overlay';
 import Page from '../layouts/page';
 
-// styles
-// const pageStyles = {
-//   fontFamily: "-apple-system, Roboto, sans-serif, serif",
-//   position: "relative"
-// }
-
-const PageTemplate = ({ accentColor, children, activeHeader = false }) => {
+const PageTemplate = ({ accentColor, children, activeHeader = false, hasCart = false }) => {
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [isStuck, setStickyState] = useState(false);
 
@@ -38,6 +31,7 @@ const PageTemplate = ({ accentColor, children, activeHeader = false }) => {
         onMenuToggle={OnMenuToggle}
         isStuck={isStuck}
         setStickyState={setStickyState}
+        hasCart={hasCart}
       />
       {children}
       <Overlay
