@@ -173,6 +173,10 @@ export const PROJECT_KEYWORDS = styled.ul`
 	@media ${device.laptop} {
 		margin-top: 1.625em;
 	}
+
+	@media print {
+    display: none;
+  }
 `;
 
 export const PROJECT_KEYWORD = styled.li`

@@ -21,11 +21,6 @@ export const BASICS = styled.section`
 	max-width: 22em;
 	margin: 0 auto 1.3125em;
 
-	@media print {
-		margin: 0 auto;
-		padding: 0;
-	}
-
 	@media ${device.laptop} {
 		position: fixed;
 		margin: 0;
@@ -33,6 +28,8 @@ export const BASICS = styled.section`
 
 	@media print {
 		margin: 0 auto 1.3125em;
+    margin-right: 18%;
+		padding: 0;
 		position: relative;
 
 		.Collapsible {

@@ -17,10 +17,13 @@ export const EMPLOYER = styled.p`
 
 	@media print, ${device.mobileXL} {
 		display: inline-block;
+    font-size: 0.75em;
+    line-height: 1.2833;
 		margin-bottom: 0;
 	}
 
 	& + span {
+    align-items: center;
 		display: inline-flex;
 		flex-flow: row nowrap;
 
@@ -98,15 +101,14 @@ export const DURATION = styled.span`
 `;
 
 export const DUTY = styled.li`
-font-size: 0.75em;
-margin: 1em 0;
-line-height: 1.75;
+  font-size: 0.75em;
+  margin: 1em 0;
+  line-height: 1.75;
 `;
 
 export const CAREER = styled.ul`
 	margin-left: 0;
 	list-style-position: outside;
-
 `;
 
 export const DATE = styled.span`

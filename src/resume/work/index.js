@@ -39,11 +39,13 @@ export default function Work({ data }) {
         icon={faClock}
         startDate={work.startDate}
         endDate={work.endDate}
-      >
-        <Moment
-          duration={work.startDate}
-          date={work.endDate}
-        />
+      >{
+          work.duration ? work.duration :
+            <Moment
+              duration={work.startDate}
+              date={work.endDate}
+            />
+        }
       </DURATION>
     </TOGGLE>
   );

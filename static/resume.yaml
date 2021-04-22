@@ -25,13 +25,30 @@ basics:
     platform: github
     flavor: Find me on Github
 work:
+- name: Blue Acorn iCi
+  location: Charleston, SC (Remote from Montreal, QC)
+  position: Senior Shopify Front-End Developer (Contractor)
+  url: https://blueacornici.com
+  image: 'blue-acorn-ici.png'
+  duration: '4 years, 10 months'
+  startDate: '2020-09-08'
+  endDate: 'present'
+  summary: Diff Agency is a Shopify Partner dedicated to all things Shopify from Front-End Custom Theming Solutions to Back-End ERP Systems and Integrations and everything in between.
+  highlights:
+  - Develop Shopify and Shopify Plus Storefront themes from the ground up with innovative solutions and workarounds including Collection Filtering and Sorting, Product Bundling, and Checkout Modifications
+  - Evolve and improve legacy implementations by introducing new features, optimizations, and best practices in coding
+  - Integrate custom in-house Shopify App solutions as well as 3rd Party Applications to further enrich the Front-End User eXperience with features such as Newsletter Marketing Campaigns, Product Reviews and Ratings, Advanced Filtering & Sorting, Advanced Product Search Catalogs, Instagram Feed, etc.
+  - Project planning and execution while leading a small team of 3 - 5 developers of varying skill levels
+  - Mentor new hires and junior developers bringing them up to speed on the ins and outs of the Shopify Platform as well as general front-end development and Diff specific standards and practices
+
 - name: Diff Agency
-  location: Montreal, Qc, Canada
+  location: Montreal, QC
   position: Senior Front-End Developer
   url: http://diffagency.com
   image: 'diff.webp'
-  startDate: '2015-05-01'
-  endDate: '2020-03-31'
+  duration: '4 years, 10 months'
+  startDate: '2015-05-04'
+  endDate: '2020-03-09'
   summary: Diff Agency is a Shopify Partner dedicated to all things Shopify from Front-End Custom Theming Solutions to Back-End ERP Systems and Integrations and everything in between.
   highlights:
   - Develop Shopify and Shopify Plus Storefront themes from the ground up with innovative solutions and workarounds including Collection Filtering and Sorting, Product Bundling, and Checkout Modifications
@@ -40,47 +57,41 @@ work:
   - Project planning and execution while leading a small team of 3 - 5 developers of varying skill levels
   - Mentor new hires and junior developers bringing them up to speed on the ins and outs of the Shopify Platform as well as general front-end development and Diff specific standards and practices
 - name: Ericsson
-  location: Palo Alto, CA
+  location: Montreal, QC
   description: Awesome compression company
   position: Junior Innovation Professional Co-op
   url: http://ericsson.com
   image: 'ericsson.png'
   startDate: '2014-05-01'
   endDate: '2014-08-31'
-  summary: Pied Piper is a multi-platform technology based on a proprietary universal
-    compression algorithm that has consistently fielded high Weisman Scores™ that
-    are not merely competitive, but approach the theoretical limit of lossless compression.
+  summary: Ericsson
   highlights:
   - Develop and integrate a new experimental node architecture which resulted in an 11% decrease of hardware storage space allocation
   - Configuring and testing an IP Multimedia Subsystem (IMS) solution
   - Producing technical documentation and presentation material for internal assessment
 - name: Radialpoint
-  location: Palo Alto, CA
+  location: Montreal, QC
   description: Awesome compression company
   position: Software Quality Assurance Intern
   url: http://radialpoint.com
   image: 'radialpoint.jpg'
   startDate: '2013-05-01'
   endDate: '2013-08-31'
-  summary: Pied Piper is a multi-platform technology based on a proprietary universal
-    compression algorithm that has consistently fielded high Weisman Scores™ that
-    are not merely competitive, but approach the theoretical limit of lossless compression.
+  summary: Radialpoint
   highlights:
   - Designing and implementing test cases in collaboration with multiple Quality Assurance team across multiple departments
   - Testing requirements (implicit and explicit), failure modes, quality factors and specifications, provide bug isolation and working closely with the development team to help identify root cause of and resolution of software defects
   - Using a combination of scripted (analytic) and exploratory (heuristic) testing techniques in conducting QA on products
   - Ensuring the documentation and communication of test results and issues (bugs) through an issue tracking system\n- Worked in an Agile environment following a Scrum methodology
 - name: Lockheed Martin
-  location: Palo Alto, CA
+  location: Montreal, QC
   description: Awesome compression company
   position: Systems and Software Engineer (Co-op)
   url: http://lockheedmartin.com
   image: 'lockheed.jpg'
   startDate: '2013-05-01'
   endDate: '2013-08-31'
-  summary: Pied Piper is a multi-platform technology based on a proprietary universal
-    compression algorithm that has consistently fielded high Weisman Scores™ that
-    are not merely competitive, but approach the theoretical limit of lossless compression.
+  summary: Lockheed Martin
   highlights:
   - Developing a log file data extraction and transcription script in Java to reduce the overhead of transcribing 10,000s lines of system logs from a .txt file to a formatted spreadsheet
   - Conducting research on multiple GIS candidates and recorded results into an IRAD report

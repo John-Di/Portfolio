@@ -30,6 +30,23 @@ export const WRAPPER = styled.a`
 	max-width: 10em;
 	width: 33.3333%;
 	margin: 1em auto 2em;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    width: 100%
+  }
+
+  > div {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
 	@media print {
 		display: none;
 	}
@@ -54,6 +71,5 @@ export const WRAPPER = styled.a`
 
 	.gatsby-image-wrapper {
 		max-width: 100%;
-
 	}
 `;
