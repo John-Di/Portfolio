@@ -1,13 +1,15 @@
 import React, {
   useState,
   useRef,
-  useEffect
+  useEffect,
+  useContext
 } from "react";
 import BackToTop from '../../components/back-to-top';
 import {
   PAGE
 } from './styles';
 import HandleScrollLock from '../../utils/ScrollLock';
+import PageContext from "../../contexts/PageContext";
 
 // styles
 const pageStyles = {
@@ -15,24 +17,25 @@ const pageStyles = {
   position: "relative"
 }
 
-const Page = ({ children, isScrollLocked = false, wasScrolled = false }) => {
-  const [scrollTop, SaveScrollTop] = useState(0);
+const Page = ({ children }) => {
 
-  // const pageEl = useRef(null);
-  const mainEl = useRef(null);
+  const {
+    scrollTop,
+    isMenuOpen,
+    mainRef
+  } = useContext(PageContext);
 
-  useEffect(HandleScrollLock.bind(this, mainEl, SaveScrollTop), [isScrollLocked]);
   // console.log('menuIndex', menuIndex, isScrollLocked);
   return (
     <PAGE
-      isLocked={isScrollLocked}
+      isLocked={isMenuOpen}
       scrollPosition={scrollTop}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
-      <main ref={mainEl} style={pageStyles}>
+      <main ref={mainRef} style={pageStyles}>
         {children}
       </main>
-      <BackToTop isActive={wasScrolled} />
+      <BackToTop isActive={scrollTop > 0} />
     </PAGE>
   )
 }

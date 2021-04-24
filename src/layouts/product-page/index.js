@@ -36,7 +36,6 @@ const ProductPage = ({ accentColor = randomColor() }) => {
     variants = []
   } = useContext(ProductContext), {
     formState,
-    updateVariant,
     updateOption
   } = useContext(ProductFormContext), {
     id
@@ -47,11 +46,7 @@ const ProductPage = ({ accentColor = randomColor() }) => {
     selectedOptions
   } = variants.find(variant => variant.shopifyId === id);
   return (
-    <PageTemplate
-      accentColor={accentColor}
-      activeHeader={true}
-      hasCart={true}
-    >
+    <PageTemplate>
       <ARTICLE>
         <TITLE>{title}</TITLE>
         <MEDIA>

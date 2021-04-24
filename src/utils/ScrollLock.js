@@ -1,9 +1,9 @@
 
 
 
-export const Lock = (mainEl, scrollTop, isScrollLocked) => {
+export const Lock = (mainRef, scrollTop, isScrollLocked) => {
   // console.log('Lock', document.documentElement.scrollTop, window.pageYOffset);
-  mainEl.current.style.top = -scrollTop + 'px';
+  mainRef.current.style.top = -scrollTop + 'px';
   document.documentElement.classList.add('scroll-lock');
   document.body.classList.add('scroll-lock');
   document.ontouchmove = (e) => isScrollLocked && e.preventDefault();
@@ -16,8 +16,8 @@ export const Unlock = (SaveScrollTop) => {
   document.body.classList.remove('scroll-lock');
 }
 
-const HandleScrollLock = (mainEl, isScrollLocked) => {
-  if (!mainEl) {
+const HandleScrollLock = (mainRef, isScrollLocked) => {
+  if (!mainRef) {
     return;
   }
   // console.log('HandleScrollLock headerIsActive', !isScrollLocked);

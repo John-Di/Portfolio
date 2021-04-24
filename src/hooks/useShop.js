@@ -13,80 +13,70 @@ const client = Client.buildClient(
     domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
   },
   fetch
-)
-
+);
 function useShop() {
-  let initialStoreState = {
+
+  const initialStoreState = {
     client,
     adding: false,
     checkout: { lineItems: [] },
     products: [],
     shop: {},
-  }
+  };
 
   const [store, updateStore] = useState(initialStoreState)
-  const isRemoved = useRef(false)
+  const isRemoved = useRef(false);
 
-  const setCheckoutInState = (isBrowser, checkout) => {
-    if (isBrowser) {
-      localStorage.setItem('shopify_checkout_id', checkout.id)
-    }
+  const InitCheckout = () => {
+    const initializeCheckout = async () => {
+      // Check for an existing cart.
+      const isBrowser = typeof window !== 'undefined'
+      const existingCheckoutID = isBrowser
+        ? localStorage.getItem('shopify_checkout_id')
+        : null
 
-    updateStore(prevState => {
-      return { ...prevState, checkout }
-    })
-  }
-  const UpdateCheckout = () => async () => {
-    // Check for an existing cart.
-    const isBrowser = typeof window !== 'undefined'
-    const existingCheckoutID = isBrowser
-      ? localStorage.getItem('shopify_checkout_id')
-      : null
-
-    const fetchCheckout = id => store.client.checkout.create()
-
-    if (existingCheckoutID) {
-      try {
-        let c;
-        await fetchCheckout(existingCheckoutID).then(checkout => {
-          console.log('newCheckout', checkout);
-          c = checkout;
-        });
-
-        // Make sure this cart hasn’t already been purchased.
-        if (!isRemoved.current && !c.completedAt) {
-          setCheckoutInState(isBrowser, c)
-          return
+      const setCheckoutInState = checkout => {
+        if (isBrowser) {
+          localStorage.setItem('shopify_checkout_id', checkout.id)
         }
-      } catch (e) {
-        localStorage.setItem('shopify_checkout_id', null)
+
+        updateStore(prevState => {
+          return { ...prevState, checkout }
+        })
       }
-    }
-  }
 
-  const InitCheckout = () => async () => {
-    const isBrowser = typeof window !== 'undefined';
+      const createNewCheckout = () => store.client.checkout.create()
+      const fetchCheckout = id => store.client.checkout.fetch(id)
 
-    try {
-      let newCheckout;
+      if (existingCheckoutID) {
+        try {
+          const checkout = await fetchCheckout(existingCheckoutID)
+          // Make sure this cart hasn’t already been purchased.
+          if (!isRemoved.current && !checkout.completedAt) {
+            setCheckoutInState(checkout)
+            return
+          }
+        } catch (e) {
+          localStorage.setItem('shopify_checkout_id', null)
+        }
+      }
 
-      await store.client.checkout.create().then(checkout => {
-        console.log('newCheckout', checkout);
-        newCheckout = checkout;
-      });
-
+      const newCheckout = await createNewCheckout()
       if (!isRemoved.current) {
-        setCheckoutInState(isBrowser, newCheckout)
+        setCheckoutInState(newCheckout)
       }
-    } catch (e) {
-      console.log('setCheckoutInState', e)
     }
 
-    isRemoved.current = true
-  }
+    initializeCheckout()
+  };
 
-  useEffect(UpdateCheckout, [store.client.checkout])
-  useEffect(InitCheckout);
+  const RefreshCheckout = () => () => {
+    isRemoved.current = true
+  };
+
+  useEffect(InitCheckout, [store.client.checkout])
+
+  useEffect(RefreshCheckout);
 
   const addVariantToCart = async (variantId, quantity) => {
     if (variantId === '' || !quantity) {
@@ -98,17 +88,12 @@ function useShop() {
       return { ...prevState, adding: true }
     })
 
-    const { checkout, client } = store
+    const { checkout, client } = store;
 
     const checkoutId = checkout.id || 1
     const lineItemsToUpdate = [
       { variantId, quantity: parseInt(quantity, 10) },
-    ]
-
-    console.log('lineItemsToUpdate.checkout', checkout);
-
-    console.log('lineItemsToUpdate.checkoutId', checkoutId,
-    );
+    ];
 
     return client.checkout
       .addLineItems(checkoutId, lineItemsToUpdate)
@@ -138,6 +123,13 @@ function useShop() {
         })
       })
   };
+
+  console.log("useShop", store)
+
+  console.log('Items', store.checkout.lineItems.map(i => ({
+    title: i.title,
+    qty: i.quantity
+  })));
 
   return { store, addVariantToCart, removeLineItem, updateLineItem };
 }

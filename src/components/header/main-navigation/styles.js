@@ -1,23 +1,30 @@
 import styled from 'styled-components';
-import { device } from '../../utils/variables';
-import { ButtonReset, ListReset, LinkReset } from '../../utils/Resets';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { device } from '../../../utils/variables';
+import { ButtonReset, ListReset, LinkReset } from '../../../utils/Resets';
+import FullSizeOverlay from '../../../utils/FullSizeOverlay';
 import {
   conditionalProp
-} from '../../utils/AssessProps';
+} from '../../../utils/AssessProps';
 import {
   FlexCentered,
   ResponsiveLine
-} from '../../utils/Flex';
+} from '../../../utils/Flex';
 import {
   Link as GatsbyLink
 } from "gatsby";
 
-const ToggleTransitions = ({ isActive, iconColor, iconColorEmphasis }) => `
-color: ${iconColor};
 
-${conditionalProp(isActive,
+const ToggleTransitions = ({ isActive, iconColor, iconColorEmphasis }) => `
+  color: ${iconColor};
+
+  ${conditionalProp(isActive,
   `color: ${iconColorEmphasis};`)}
+`;
+
+export const NAV = styled.nav`
+  grid-area: nav;
+  width: 100%;
+  height: 100%;
 `;
 
 export const TOGGLE = styled.button`
@@ -35,27 +42,9 @@ export const TOGGLE = styled.button`
   }
 `;
 
-export const LOGO = styled.div`
-  grid-ara: logo;
-
-`;
-
-export const ICON = styled(FontAwesomeIcon)`
-  height: 100%;
-  width: 100%;
-  fill: inherit;
-  color: inherit;
-  font-size: 2em;
-`;
-
-export const NAV = styled.nav`
-  grid-area: nav;
+export const MENU = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-export const DIV = styled.div`
-  width: 100%;
 
   @media screen and ${device.max_tablet} {
     position: absolute;
@@ -66,17 +55,32 @@ export const DIV = styled.div`
     overflow: hidden;
     transition: height 0.1s 0s;
 
+    &::before {
+      opacity: 0;
+      z-index: -1;
+      background-color: rgba(0,0,0,0.5);
+      ${FullSizeOverlay}
+      position: fixed;
+      transition: opacity 0.1s 0.05s;
+      ${props => conditionalProp(props.height, `top: ${props.height}px;`)}
+    }
+
     ${props => conditionalProp(props.isMenuOpen && props.height, `
       transition: height 0.1s 0.1s;
       height: ${props.height}px;
+
+      &::before {
+        opacity: 1;
+      }
     `)};
   }
 `;
 
-export const UL = styled.ul`
+export const ITEMS = styled.ul`
   ${ListReset}
   ${ResponsiveLine}
   width: 100%;
+  height: 100%;
 
   @media screen and ${device.max_tablet} {
     background: white;
@@ -86,17 +90,22 @@ export const UL = styled.ul`
   @media screen and ${device.tablet} {
     justify-content: ${props => props.desktopNavAlignment};
   }
+
+  li {
+    margin-bottom: 0;
+  }
 `;
 
-export const LI = styled.li`
+export const ITEM = styled.li`
   ${ListReset}
+  height: 100%;
 
   @media screen and ${device.max_tablet} {
     width: 100%;
   }
 `;
 
-export const NAVLINK = styled(GatsbyLink)`
+export const LINK = styled(GatsbyLink)`
   ${LinkReset}
   ${FlexCentered}
 
@@ -104,7 +113,7 @@ export const NAVLINK = styled(GatsbyLink)`
   padding: 1em 1.5em;
   line-height: 1.33;
   height: 100%;
-  min-width: 9.5em;
+  min-width: 12em;
   outline-width: 0;
   box-shadow: none;
   border: 0.25em solid transparent;
@@ -121,3 +130,4 @@ export const NAVLINK = styled(GatsbyLink)`
     width: 100%;
   }
 `;
+
