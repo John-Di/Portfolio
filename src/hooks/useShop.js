@@ -5,10 +5,11 @@ import {
   useReducer
 } from "react";
 import Client from 'shopify-buy';
+import * as fetch from 'isomorphic-fetch';
 
 const client = Client.buildClient(
   {
-    storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+    storefrontAccessToken: process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN,
     domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
   },
   fetch
