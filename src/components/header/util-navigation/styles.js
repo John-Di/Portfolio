@@ -15,6 +15,7 @@ import {
 export const ITEMS = styled.ul`
   ${ListReset}
   ${ResponsiveLine}
+  align-items: stretch;
   width: 100%;
   height: 100%;
 

@@ -18,13 +18,11 @@ import ThemeContext from '../../contexts/ThemeContext';
 
 const Header = ({
   location = {},
-  isActive = false,
+  isActive = true,
   desktopNavAlignment
 }) => {
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
   let whiteOnHover = !!heroImage || isActive;
-
-  console.log("HEADER CHEDDAR")
 
   const {
     isStuck,

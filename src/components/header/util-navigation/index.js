@@ -38,7 +38,8 @@ const UtilNavigation = ({
 }) => {
 
   const {
-    store
+    store,
+    checkoutURL
   } = useContext(ShopContext), {
     isMenuOpen,
     selectMenuItem,
@@ -76,7 +77,7 @@ const UtilNavigation = ({
         {hasCart &&
           <li>
             <LINK
-              to={`/cart/`}
+              to={checkoutURL}
               onClick={selectMenuItem.bind(this, nav.length)}
               activeClassName="active"
               partiallyActive={true}

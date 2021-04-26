@@ -5,8 +5,8 @@ import ProductProvider from "../providers/ProductProvider";
 
 const ProductTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
 
-  console.log('location', location);
-  console.log('location.state', location.state);
+  // console.log('location', location);
+  // console.log('location.state', location.state);
 
   let { product } = data.pageContext;
 

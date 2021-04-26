@@ -27,7 +27,7 @@ import {
 import RemoveDuplicates from "../../utils/RemoveDuplicates";
 
 // markup
-const ProductPage = ({ accentColor = randomColor() }) => {
+const ProductPage = () => {
   const {
     title,
     images,

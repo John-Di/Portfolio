@@ -28,12 +28,10 @@ function useScroller({ max, selectedFirst = false, PREVIOUS, NEXT, THUMBNAIL } =
 
   const scrollPrevious = () => {
     let newIndex = Math.max(index - 1, 0) % max;
-    console.log('scrollPrevious')
     return setIndex(newIndex)
   };
   const scrollNext = () => {
     let newIndex = Math.min(index + 1, max) % max;
-    console.log('scrollNext')
     return setIndex(newIndex)
   };
 

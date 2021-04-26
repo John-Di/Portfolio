@@ -14,15 +14,16 @@ const client = Client.buildClient(
   },
   fetch
 );
-function useShop() {
 
-  const initialStoreState = {
-    client,
-    adding: false,
-    checkout: { lineItems: [] },
-    products: [],
-    shop: {},
-  };
+const initialStoreState = {
+  client,
+  adding: false,
+  checkout: { lineItems: [] },
+  products: [],
+  shop: {},
+};
+
+function useShop() {
 
   const [store, updateStore] = useState(initialStoreState)
   const isRemoved = useRef(false);
@@ -40,9 +41,7 @@ function useShop() {
           localStorage.setItem('shopify_checkout_id', checkout.id)
         }
 
-        updateStore(prevState => {
-          return { ...prevState, checkout }
-        })
+        updateStore(prevState => ({ ...prevState, checkout }))
       }
 
       const createNewCheckout = () => store.client.checkout.create()
@@ -74,9 +73,11 @@ function useShop() {
     isRemoved.current = true
   };
 
-  useEffect(InitCheckout, [store.client.checkout])
-
+  useEffect(InitCheckout, [store.client.checkout]);
   useEffect(RefreshCheckout);
+
+  const { checkout, client } = store,
+    { id } = checkout;
 
   const addVariantToCart = async (variantId, quantity) => {
     if (variantId === '' || !quantity) {
@@ -84,39 +85,41 @@ function useShop() {
       return
     }
 
-    updateStore(prevState => {
-      return { ...prevState, adding: true }
-    })
+    updateStore(prevState => ({ ...prevState, adding: true }))
 
-    const { checkout, client } = store;
-
-    const checkoutId = checkout.id || 1
     const lineItemsToUpdate = [
       { variantId, quantity: parseInt(quantity, 10) },
     ];
 
     return client.checkout
-      .addLineItems(checkoutId, lineItemsToUpdate)
+      .addLineItems(id, lineItemsToUpdate)
       .then(checkout => {
         updateStore(prevState => {
           return { ...prevState, checkout, adding: false }
         })
       })
-  }, removeLineItem = (client, checkoutID, lineItemID) => {
-    return client.checkout
-      .removeLineItems(checkoutID, [lineItemID])
+  }, removeLineItem = (lineItemID) => {
+    return store.client.checkout
+      .removeLineItems(id, [lineItemID])
       .then(res => {
         updateStore(prevState => {
           return { ...prevState, checkout: res }
         })
       })
-  }, updateLineItem = (client, checkoutID, lineItemID, quantity) => {
+  }, updateLineItem = (lineItemID, quantity) => {
     const lineItemsToUpdate = [
       { id: lineItemID, quantity: parseInt(quantity, 10) },
     ]
 
     return client.checkout
-      .updateLineItems(checkoutID, lineItemsToUpdate)
+      .updateLineItems(id, lineItemsToUpdate)
+      .then(res => {
+        updateStore(prevState => {
+          return { ...prevState, checkout: res }
+        })
+      })
+  }, clearCart = () => {
+    return client.checkout.removeLineItems(id, store.checkout.lineItems.map(({ id }) => id))
       .then(res => {
         updateStore(prevState => {
           return { ...prevState, checkout: res }
@@ -124,14 +127,10 @@ function useShop() {
       })
   };
 
-  console.log("useShop", store)
+  console.log('store.checkout.lineItems', store.checkout.lineItems)
+  console.log('store.checkout.webUrl', store.checkout.webUrl)
 
-  console.log('Items', store.checkout.lineItems.map(i => ({
-    title: i.title,
-    qty: i.quantity
-  })));
-
-  return { store, addVariantToCart, removeLineItem, updateLineItem };
+  return { store, addVariantToCart, removeLineItem, updateLineItem, clearCart, checkoutURL: store.checkout.webUrl };
 }
 
 export default useShop;

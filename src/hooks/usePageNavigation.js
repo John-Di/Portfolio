@@ -13,7 +13,6 @@ function usePageNavigation() {
     store
   } = useContext(ShopContext);
 
-  console.log('ShopProvider', useContext(ShopContext));
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [isStuck, SetStickyState] = useState(false);
   const [scrollTop, SaveScrollTop] = useState(0);
