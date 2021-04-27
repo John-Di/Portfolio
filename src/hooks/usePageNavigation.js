@@ -69,9 +69,9 @@ function usePageNavigation() {
     };
   }
 
-  useEffect(HandleScroll, [document.documentElement.scrollTop]);
+  // useEffect(HandleScroll, [document.documentElement.scrollTop]);
   useEffect(HandleMenuClose, [drawerRef.current && drawerRef.current.scrollHeight]);
-  useEffect(HandleScrollLock.bind(this, mainRef, SaveScrollTop), [isScrollLocked]);
+  // useEffect(HandleScrollLock.bind(this, mainRef, SaveScrollTop), [isScrollLocked]);
 
   return {
     isStuck,
