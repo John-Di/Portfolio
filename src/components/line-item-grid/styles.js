@@ -9,7 +9,7 @@ export const GRID = styled.ul`
   margin: -4%;
 
   @media screen and ${device.tablet} {
-    margin: -4%;
+    margin: -${props => props.gutterOffset}em -4%;
   }
 
   li {

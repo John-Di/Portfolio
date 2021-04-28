@@ -31,7 +31,6 @@ const assessProps = ({ overlay, image, whiteOnHover }) => `
 
 export const HEADING = styled(GatsbyLink)`
   ${LinkReset}
-  ${FlexCentered}
 
   font-size: 1.25em;
   font-weight: bold;
@@ -53,7 +52,7 @@ export const TILE = styled.article`
   ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth};`)}
   margin: auto;
   display: grid;
-  grid-template: 'img img' 2fr 'title value' auto 'body body' auto 'cta cta' auto / 1fr 1fr;
+  grid-template: 'img img' 2fr 'title value' 5em 'body body' auto 'cta cta' auto / 1fr 1fr;
 `;
 
 export const IMAGE = styled(GatsbyLink)`

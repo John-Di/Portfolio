@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FlexCentered } from '../../utils/Flex';
 
 export const PRICE = styled.p`
     grid-area: value;
@@ -15,6 +16,7 @@ export const BODY = styled.p`
 `;
 
 export const CTA_WRAPPER = styled.div`
+  ${FlexCentered}
   text-align: center;
   width: 100%;
   grid-area: cta;

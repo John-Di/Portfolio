@@ -9,7 +9,7 @@ export const LIST = styled.ul`
   margin: -${props => props.gutterOffset / 2}em -${props => props.gutterOffset / 2}em;
 
   @media screen and ${device.tablet} {
-    margin: -${props => props.gutterOffset / 2}em -${props => props.gutterOffset}em;
+    margin: -${props => props.gutterOffset}em -${props => props.gutterOffset}em;
   }
 
   ${Clearfix}
@@ -19,7 +19,7 @@ export const ITEM = styled.li`
   ${ListReset}
   display: inline-block;
   vertical-align: bottom;
-  padding: ${props => props.gutter}em;
+  padding: ${props => props.gutterOffset}em;
   float: left;
   margin: auto;
   width: 100%;

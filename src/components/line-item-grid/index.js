@@ -11,7 +11,7 @@ import {
   ITEM
 } from './styles';
 
-const LineItemGrid = ({ gap = 0.75 }) => {
+const LineItemGrid = ({ gap = 1.25 }) => {
 
   const {
     store,
