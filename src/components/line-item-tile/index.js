@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ObjectTile from '../object-tile';
 import {
   PRICE,
@@ -6,19 +6,32 @@ import {
   CTA_WRAPPER
 } from './styles';
 import FancyCTA from '../fancy-cta';
+import ThemeContext from "../../contexts/ThemeContext";
+import ProductContext from "../../contexts/ProductContext";
 
 export default function LineItemTile({
-  heading,
-  backgroundImage,
-  children,
-  price
+  children
 }) {
+
+  const {
+    description,
+    variant
+  } = useContext(ProductContext);
+
+  let {
+    image,
+    price,
+    id,
+    title,
+    product
+  } = variant;
+  console.log('image', image.src);
+
   return (
     <ObjectTile
       className="line-item-tile"
-      heading={heading}
-      backgroundImage={backgroundImage}
-      body={`Description for the Line Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit,`}
+      heading={title}
+      backgroundImage={image.src}
       value={price && <PRICE>{price}</PRICE>}
     >
       {children && (<BODY>{children}</BODY>)}

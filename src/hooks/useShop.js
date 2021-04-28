@@ -127,10 +127,9 @@ function useShop() {
       })
   };
 
-  console.log('store.checkout.lineItems', store.checkout.lineItems)
-  console.log('store.checkout.webUrl', store.checkout.webUrl)
+  console.log(store.checkout.lineItems.map(item => ({ ...item, variant: ({ ...item.variant }) })));
 
-  return { store, addVariantToCart, removeLineItem, updateLineItem, clearCart, checkoutURL: store.checkout.webUrl };
+  return { store, lineItems: store.checkout.lineItems.map(item => ({ ...item, variant: ({ ...item.variant }) })), addVariantToCart, removeLineItem, updateLineItem, clearCart, checkoutURL: store.checkout.webUrl };
 }
 
 export default useShop;

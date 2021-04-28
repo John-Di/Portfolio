@@ -17,7 +17,6 @@ import PageContext from '../../contexts/PageContext';
 import ThemeContext from '../../contexts/ThemeContext';
 
 const Header = ({
-  location = {},
   isActive = true,
   desktopNavAlignment
 }) => {
@@ -47,7 +46,6 @@ const Header = ({
       isActive={isActive}
     >
       <MainNavigation
-        location={location}
         isActive={false}
         desktopNavAlignment={desktopNavAlignment}
       />

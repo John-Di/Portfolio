@@ -18,7 +18,7 @@ const pageRight = `
 `;
 
 export const ARTICLE = styled.article`
-  margin: 5em auto;
+  margin: 0 auto;
   width: 100%;
   max-width: ${size.mobileXL}px;
   flex-grow: 1;

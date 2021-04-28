@@ -5,6 +5,7 @@ import ProductFormContext from '../contexts/ProductFormContext';
 
 const ProductProvider = ({ product = {}, children }) => {
 
+  console.log('ProductProvider', product)
   let selectedVariant = product.variants[0];
 
   return (

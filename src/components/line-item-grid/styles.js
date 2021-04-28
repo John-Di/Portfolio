@@ -1,22 +1,37 @@
 import styled from 'styled-components';
+import { conditionalProp } from '../../utils/AssessProps';
+import Clearfix from '../../utils/Clearfix';
+import { ListReset } from '../../utils/Resets';
+import { device } from '../../utils/variables';
 
-export const PRICE = styled.p`
-    grid-area: value;
-    font-size: 1.25em;
-    text-align: right;
-    margin: 0;
+export const GRID = styled.ul`
+  ${ListReset}
+  margin: -4%;
+
+  @media screen and ${device.tablet} {
+    margin: -4%;
+  }
+
+  li {
+    ${ListReset}
+    display: inline-block;
+    vertical-align: bottom;
+    float: left;
+    margin: auto;
+    padding: ${props => props.gutterOffset}em;
+    width: 100%;
+
+    @media screen and ${device.tablet} {
+      max-width: 50%;
+    }
+
+    @media screen and ${device.laptop} {
+      max-width: 25%;
+    }
+  }
+
+  ${Clearfix}
 `;
 
-export const BODY = styled.p`
-  margin: 0.5em 0;
-  grid-area: body;
-  text-align: left;
-  line-height: 1.33;
-`;
-
-export const CTA_WRAPPER = styled.div`
-  text-align: center;
-  width: 100%;
-  grid-area: cta;
-  margin-top: 1em;
+export const ITEM = styled.li`
 `;

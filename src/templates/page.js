@@ -1,5 +1,4 @@
 import React from "react";
-import Header from '../components/header';
 import Overlay from '../components/overlay';
 import Page from '../layouts/page';
 import PageProvider from "../providers/PageProvider";
@@ -11,7 +10,6 @@ const PageTemplate = ({ children }) => {
     <ThemeProvider>
       <PageProvider>
         <Page>
-          <Header />
           {children}
           <Overlay />
         </Page>

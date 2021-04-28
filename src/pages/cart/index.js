@@ -1,15 +1,14 @@
-import React, {
-  useContext
-} from "react";
-import CartPage from "../../layouts/cart";
-
-
-// const ProductContext = React.createContext(DUMMY_PRODUCT);
+import React from "react";
+import CartPage from '../../layouts/cart-page';
+import ShopProvider from "../../providers/ShopProvider";
+import ProductProvider from "../../providers/ProductProvider";
 
 // markup
 const Cart = () => {
   return (
-    <CartPage />
+    <ShopProvider>
+      <CartPage />
+    </ShopProvider>
   )
 }
 

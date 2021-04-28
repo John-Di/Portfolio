@@ -8,7 +8,7 @@ import BackToTop from '../../components/back-to-top';
 import {
   PAGE
 } from './styles';
-import HandleScrollLock from '../../utils/ScrollLock';
+import Header from '../../components/header';
 import PageContext from "../../contexts/PageContext";
 
 // styles
@@ -27,12 +27,13 @@ const Page = ({ children }) => {
 
   // console.log('menuIndex', menuIndex, isScrollLocked);
   return (
-    <PAGE
+    <PAGE style={pageStyles}
       isLocked={isMenuOpen}
       scrollPosition={scrollTop}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
-      <main ref={mainRef} style={pageStyles}>
+      <Header title={'Cart'} />
+      <main ref={mainRef}>
         {children}
       </main>
       <BackToTop isActive={scrollTop > 0} />

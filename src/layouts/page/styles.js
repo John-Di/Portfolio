@@ -21,4 +21,8 @@ export const PAGE = styled.div`
   position: relative;
 
   ${assessState}
+
+  main {
+    margin: 5.1875em 0;
+  }
 `;

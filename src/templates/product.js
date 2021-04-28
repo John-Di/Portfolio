@@ -8,11 +8,9 @@ const ProductTemplate = ({ location, children, activeHeader = false, hasCart = f
   // console.log('location', location);
   // console.log('location.state', location.state);
 
-  let { product } = data.pageContext;
-
   return (
     <ShopProvider>
-      <ProductProvider product={product}>
+      <ProductProvider product={data.pageContext.product}>
         <ProductPage />
       </ProductProvider>
     </ShopProvider>

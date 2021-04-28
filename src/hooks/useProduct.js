@@ -55,16 +55,19 @@ export const productReducer = (state, action) => {
 function useProduct({ reducer = productReducer, product, selectedVariant } = {}) {
   const {
     variants = []
-  } = product;
+  } = product, {
+    id,
+    shopifyId
+  } = selectedVariant;
 
   const [formState, UpdateFormState] = useReducer(reducer, {
-    id: selectedVariant.shopifyId
+    id: shopifyId || id
   });
 
   const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selectedVariant, variants });
   const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selectedVariant, selectedOption, variants });
 
-
+  console.log('useProduct', formState)
   return { formState, updateVariant, updateOption };
 }
 

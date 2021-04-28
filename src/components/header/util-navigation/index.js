@@ -10,7 +10,8 @@ import {
   LINK,
   UTIL,
   ITEM,
-  ITEMS
+  ITEMS,
+  EXTERNAL
 } from './styles';
 
 const nav = [
@@ -48,6 +49,7 @@ const UtilNavigation = ({
     accentColor
   } = useContext(ThemeContext);
 
+  console.log("UtilNavigation", checkoutURL);
 
   return (
     <UTIL>
@@ -74,24 +76,17 @@ const UtilNavigation = ({
             </LINK>
           </ITEM>
         }
-        {hasCart &&
+        {checkoutURL &&
           <li>
-            <LINK
+            <EXTERNAL
               to={checkoutURL}
               onClick={selectMenuItem.bind(this, nav.length)}
               activeClassName="active"
               partiallyActive={true}
-              state={{
-                wasRedirected: true,
-                store,
-                checkout: store.checkout,
-                cartIsEmpty,
-                label: 'cart',
-                color: accentColor
-              }}
+              cartIsEmpty
             >
               <CartIcon />
-            </LINK>
+            </EXTERNAL>
           </li>
         }
       </ITEMS>

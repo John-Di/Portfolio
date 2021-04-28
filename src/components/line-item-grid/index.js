@@ -1,48 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import TileGrid from '../../layouts/tile-grid';
 import LineItemTile from "../line-item-tile";
 import {
-  randomColor,
-  randomImage,
-  randomIntegerIn
-} from '../../utils/randoms';
-import { jsxCloneArray } from "../../utils/dom-builder";
-// markup
+  arrayToComponentSiblings
+} from '../../utils/dom-builder';
+import ShopContext from "../../contexts/ShopContext";
+import LineItemProvider from "../../providers/LineItemProvider";
+import {
+  GRID,
+  ITEM
+} from './styles';
 
-const DUMMY_CART = [
-  {
-    title: 'Dummy Product',
-    price: `$${randomIntegerIn(1, 19)}9.99`,
-    id: randomIntegerIn(100000000, 999999999),
-    image: randomImage()
-  }
-]
+const LineItemGrid = ({ gap = 0.75 }) => {
 
-const LineItemGrid = ({ accentColor = randomColor(), ...items }) => {
+  const {
+    store,
+    lineItems
+  } = useContext(ShopContext);
 
-  let Tile = {
-    ...LineItemTile,
-    accentColor
-  };
+  console.log('lineItems', lineItems);
 
   let TileMap = (tile, i) => (
-    <LineItemTile
-      accentColor={accentColor}
-      key={i}
-      heading={tile.title}
-      price={tile.price}
-      backgroundImage={tile.image}
-    />
+    <ITEM key={i} gutter={gap}>
+      <LineItemProvider lineItem={tile}>
+        <LineItemTile />
+      </LineItemProvider>
+    </ITEM>
   )
 
+  let tiles = arrayToComponentSiblings(lineItems, TileMap);
+
+  console.log(tiles)
+
   return (
-    <TileGrid itemMap={TileMap} items={jsxCloneArray(4, () => (
-      {
-        title: 'Dummy Product',
-        price: `$${randomIntegerIn(1, 19)}9.99`,
-        id: randomIntegerIn(100000000, 999999999),
-        image: randomImage()
-      }))} perRow={4} />
+    <GRID ref={list => list} gutterOffset={gap}>
+      {tiles}
+    </GRID>
   )
 }
 

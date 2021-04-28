@@ -21,5 +21,14 @@ export const ITEM = styled.li`
   vertical-align: bottom;
   padding: ${props => props.gutter}em;
   float: left;
-  ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth}`)}
+  margin: auto;
+  width: 100%;
+
+  @media screen and ${device.tablet} {
+    ${props => conditionalProp(props.maxWidth, `max-width: 50%;`)}
+  }
+
+  @media screen and ${device.laptopL} {
+    ${props => conditionalProp(props.maxWidth, `max-width: 25%;`)}
+  }
 `;

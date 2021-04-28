@@ -48,7 +48,8 @@ export const HEADING = styled(GatsbyLink)`
 `;
 
 export const TILE = styled.article`
-  width: ${+size.mobileL / 16}em;
+  max-width: ${+size.mobileL / 16}em;
+  width: 100%;
   ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth};`)}
   margin: auto;
   display: grid;

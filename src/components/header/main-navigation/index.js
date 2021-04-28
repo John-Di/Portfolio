@@ -23,6 +23,7 @@ import {
   TOGGLE
 } from './styles';
 import ThemeContext from '../../../contexts/ThemeContext';
+import ProductContext from '../../../contexts/ProductContext';
 
 const nav = [
   {
@@ -35,20 +36,19 @@ const nav = [
   },
   {
     href: "/products/color-cookie-hoodie",
-    label: prod => prod ? prod.title : 'Color Cookie Hoodie'
+    label: prod => prod && prod.title ? prod.title : 'Color Cookie Hoodie'
   },
   {
     href: "/products/full-strawberry-tee",
-    label: prod => prod ? prod.title : 'Full Strawberry Tee'
+    label: prod => prod && prod.title ? prod.title : 'Full Strawberry Tee'
   }
 ];
 
 const MainNavigation = ({
-  location = {},
   isActive = false,
-  desktopNavAlignment
+  desktopNavAlignment,
+  title
 }) => {
-  const product = location.state ? location.state.product : false;
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
   let whiteOnHover = !!heroImage || isActive;
 
@@ -65,6 +65,7 @@ const MainNavigation = ({
     accentColor
   } = useContext(ThemeContext);
 
+  console.log("MainNavigation", store);
   let navAccent = accentColor || randomColor(),
     textColor = IdealTextColor(accentColor);
 
@@ -88,31 +89,37 @@ const MainNavigation = ({
           desktopNavAlignment={desktopNavAlignment}
         >
           {
-            arrayToJSXList(nav, (item, i) => (
-              <ITEM
-                textColor={textColor}
-                accentColor={navAccent}
-                textColorEmphasis={textColor}
-                whiteOnHover={whiteOnHover}
-                isActive={isActive}
-              >
-                <LINK
-                  to={item.href}
-                  onClick={selectMenuItem.bind(this, i + 1)}
-                  activeClassName="active"
-                  partiallyActive={true}
-                  state={{
-                    wasRedirected: true,
-                    store,
-                    checkout: store.checkout,
-                    cartIsEmpty,
-                    label: item.label(product.title)
-                  }}
+            arrayToJSXList(nav, (item, i) => {
+              if (!item || !item.href) {
+                return;
+              }
+              console.log('item.href', item.href)
+              return (
+                <ITEM
+                  textColor={textColor}
+                  accentColor={navAccent}
+                  textColorEmphasis={textColor}
+                  whiteOnHover={whiteOnHover}
+                  isActive={isActive}
                 >
-                  {item.label(product.title)}
-                </LINK>
-              </ITEM>
-            ))
+                  <LINK
+                    to={item.href}
+                    onClick={selectMenuItem.bind(this, i + 1)}
+                    activeClassName="active"
+                    partiallyActive={true}
+                    state={{
+                      wasRedirected: true,
+                      store,
+                      checkout: store.checkout,
+                      cartIsEmpty,
+                      label: item.label(title)
+                    }}
+                  >
+                    {item.label(title)}
+                  </LINK>
+                </ITEM>
+              )
+            })
           }
         </ITEMS>
       </MENU>
