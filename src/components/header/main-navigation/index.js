@@ -65,8 +65,6 @@ const MainNavigation = ({
     accentColor
   } = useContext(ThemeContext);
 
-  console.log("MainNavigation", store);
-  console.log("MainNavigation.accentColor", accentColor);
   let navAccent = accentColor || randomColor(),
     textColor = IdealTextColor(accentColor);
 
@@ -94,7 +92,7 @@ const MainNavigation = ({
               if (!item || !item.href) {
                 return;
               }
-              console.log('item.href', item.href)
+
               return (
                 <ITEM
                   textColor={textColor}

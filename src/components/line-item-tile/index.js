@@ -25,7 +25,6 @@ export default function LineItemTile({
     title,
     product
   } = variant;
-  console.log('image', image.src);
 
   return (
     <ObjectTile

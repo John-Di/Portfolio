@@ -52,10 +52,6 @@ const UtilNavigation = ({
     accentColor
   } = useContext(ThemeContext);
 
-  console.log('UtilNavigation.accentColor', accentColor);
-
-  console.log("UtilNavigation", checkoutURL);
-
   return (
     <UTIL>
       <ITEMS
