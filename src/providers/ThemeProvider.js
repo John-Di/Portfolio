@@ -1,16 +1,16 @@
 import React from 'react';
 import {
-  randomColor,
-  randomImage,
-  randomIntegerEx,
-  randomBool
+  randomColor
 } from '../utils/randoms';
 import ThemeContext from '../contexts/ThemeContext';
 
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ location = {}, children }) => {
+  const accentColor = location.state ? location.state.accentColor : randomColor();
+  console.log('ThemeProvider.accentColor', accentColor);
+
   return (
     <ThemeContext.Provider value={{
-      accentColor: randomColor()
+      accentColor
     }} >
       {children}
     </ThemeContext.Provider>

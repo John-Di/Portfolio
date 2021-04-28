@@ -30,6 +30,8 @@ const Header = ({
   } = useContext(PageContext), {
     accentColor
   } = useContext(ThemeContext);
+  console.log('Header.accentColor', accentColor);
+
 
   let navAccent = accentColor || randomColor(),
     textColor = IdealTextColor(accentColor);

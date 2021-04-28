@@ -1,17 +1,19 @@
 import React, {
   useContext
 } from "react";
-import ThemeContext from "../../../contexts/PageContext";
+import ThemeContext from "../../../contexts/ThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
 import AccountIcon from '../../../images/svgs/account.svg';
 import CartIcon from '../../../images/svgs/cart.svg';
+import IdealTextColor from "../../../utils/IdealTextColor";
 import {
   LINK,
   UTIL,
   ITEM,
   ITEMS,
-  EXTERNAL
+  EXTERNAL,
+  ICON
 } from './styles';
 
 const nav = [
@@ -40,7 +42,8 @@ const UtilNavigation = ({
 
   const {
     store,
-    checkoutURL
+    checkoutURL,
+    cartCount
   } = useContext(ShopContext), {
     isMenuOpen,
     selectMenuItem,
@@ -48,6 +51,8 @@ const UtilNavigation = ({
   } = useContext(PageContext), {
     accentColor
   } = useContext(ThemeContext);
+
+  console.log('UtilNavigation.accentColor', accentColor);
 
   console.log("UtilNavigation", checkoutURL);
 
@@ -69,7 +74,8 @@ const UtilNavigation = ({
                 checkout: store.checkout,
                 cartIsEmpty,
                 label: 'account',
-                color: accentColor
+                color: accentColor,
+                accentColor
               }}
             >
               <AccountIcon />
@@ -79,13 +85,20 @@ const UtilNavigation = ({
         {checkoutURL &&
           <li>
             <EXTERNAL
-              to={checkoutURL}
+              href={`/cart/`}
               onClick={selectMenuItem.bind(this, nav.length)}
               activeClassName="active"
               partiallyActive={true}
-              cartIsEmpty
+              cartIsEmpty={cartIsEmpty}
+              cartCount={cartCount}
+              color={accentColor}
+              textColor={IdealTextColor(accentColor)}
             >
-              <CartIcon />
+              <ICON
+                accentColor={accentColor}
+                textColor={IdealTextColor(accentColor)}>
+                <CartIcon />
+              </ICON>
             </EXTERNAL>
           </li>
         }

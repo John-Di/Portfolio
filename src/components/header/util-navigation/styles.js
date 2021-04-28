@@ -79,6 +79,12 @@ export const EXTERNAL = styled.a`
     align-items: flex-start;
     width: 100%;
   }
+
+  svg {
+    width: 2em;
+    height: 2em;
+    transform: scale(-1,1);
+  }
 `;
 
 export const LINK = styled(GatsbyLink)`
@@ -110,5 +116,28 @@ export const LINK = styled(GatsbyLink)`
   @media screen and ${device.max_tablet} {
     align-items: flex-start;
     width: 100%;
+  }
+`;
+
+export const ICON = styled.span`
+  ${FlexCentered}
+  position: relative;
+
+  &::after {
+    ${FlexCentered}
+    content: '${({ cartCount = 0 }) => cartCount}';
+    font-size: 0.75em;
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    bottom: ${100 * 2 / 3}%;
+    left: ${100 * 3 / 4}%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: ${({ accentColor }) => accentColor};
+    color: ${({ textColor }) => textColor};
   }
 `;

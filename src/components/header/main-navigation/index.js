@@ -66,6 +66,7 @@ const MainNavigation = ({
   } = useContext(ThemeContext);
 
   console.log("MainNavigation", store);
+  console.log("MainNavigation.accentColor", accentColor);
   let navAccent = accentColor || randomColor(),
     textColor = IdealTextColor(accentColor);
 
@@ -108,6 +109,7 @@ const MainNavigation = ({
                     activeClassName="active"
                     partiallyActive={true}
                     state={{
+                      accentColor,
                       wasRedirected: true,
                       store,
                       checkout: store.checkout,
