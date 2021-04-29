@@ -15,7 +15,7 @@ import {
 import ProductContext from "../../contexts/ProductContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
 
-const SwatchGrid = ({ gap = 0.25 }) => {
+const SwatchGrid = ({ gap = 0.25, values = [], name }) => {
 
   const {
     store,
@@ -33,33 +33,25 @@ const SwatchGrid = ({ gap = 0.25 }) => {
   } = useContext(ProductFormContext);
   const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState.id);
   console.log('options', options)
+  let Swatch = SwatchType(name);
 
-  console.log('formState', selectedVariant.selectedOptions, formState)
+  console.log('formState', selectedVariant.selectedOptions, formState);
+  const selectedOptionValue = selectedVariant.selectedOptions.find(option => option.name === name).value;
 
+  console.log('selectedOptionValue', selectedOptionValue);
 
-  let SwatchMap = (option, i) => {
-    let Swatch = SwatchType(option.name);
-    let selected = selectedVariant.selectedOptions.find(selected => option.name === selected.name);
-
-    const {
-      name,
-      value
-    } = selected;
-
-    return (
-      <ITEM key={i} gutter={gap}>
-        <Swatch
-          id={`swatch-${value.replace('#', '')}-${Date.now()}`}
-          isCurrent={option.value === value}
-          value={value}
-          key={i}
-          toggleSwatch={() => updateOption(option)}
-        />
-      </ITEM>
-    );
-  }
-
-  let tiles = arrayToComponentSiblings(options, SwatchMap);
+  let SwatchMap = (value, i) => (
+    <ITEM key={i} gutter={gap}>
+      <Swatch
+        id={`swatch-${value.replace('#', '')}-${Date.now()}`}
+        isCurrent={selectedOptionValue === value}
+        value={value}
+        key={i}
+        toggleSwatch={() => updateOption({ value, name })}
+      />
+    </ITEM>
+  )
+  let tiles = arrayToComponentSiblings(values, SwatchMap);
 
 
   return (

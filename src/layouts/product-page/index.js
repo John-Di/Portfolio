@@ -64,7 +64,7 @@ const ProductPage = () => {
             {
               arrayToComponentSiblings(options, (option, i) => (
                 <ProductOptionSelector key={i} name={option.name}>
-                  <SwatchGrid />
+                  <SwatchGrid values={option.values} name={option.name} />
                 </ProductOptionSelector>
               ))
             }
