@@ -64,7 +64,7 @@ const ProductPage = () => {
             {
               arrayToComponentSiblings(options, (option, i) => (
                 <ProductOptionSelector key={i} name={option.name}>
-                  <SwatchGrid {...option} selected={selectedOptions.find(o => o.name === option.name).value} updateOption={updateOption} />
+                  <SwatchGrid />
                 </ProductOptionSelector>
               ))
             }

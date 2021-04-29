@@ -13,11 +13,6 @@ export const GRID = styled.ul`
   }
 
   li {
-    ${ListReset}
-    display: inline-block;
-    vertical-align: bottom;
-    float: left;
-    margin: auto;
     padding: ${props => props.gutterOffset}em;
     width: 100%;
 
@@ -34,4 +29,9 @@ export const GRID = styled.ul`
 `;
 
 export const ITEM = styled.li`
+  ${ListReset}
+  display: inline-block;
+  vertical-align: bottom;
+  float: left;
+  margin: auto;
 `;
