@@ -5,6 +5,7 @@ import {
 } from '../../utils/AssessProps';
 import VisuallyHidden from '../../utils/VisuallyHidden';
 import IdealTextColor from '../../utils/IdealTextColor';
+import { color } from '../../utils/variables';
 
 export const INPUT = styled.input`
   ${VisuallyHidden}
@@ -16,7 +17,7 @@ export const LABEL = styled.label`
   ${props => {
     return props;
   }}
-  ${props => conditionalProp(props.backgroundColor, `background-color: ${props.backgroundColor};`, 'white')};
+  ${props => conditionalProp(props.backgroundColor, `background-color: ${color[props.backgroundColor]};`, 'white')};
   width: 2.5em;
   height: 2.5em;
   border: 1px solid black;
@@ -30,7 +31,7 @@ export const LABEL = styled.label`
   &:hover,
   &:focus {
     outline: 1px solid black;
-    border: 2px solid ${props => IdealTextColor(props.backgroundColor)};
+    border: 2px solid ${props => IdealTextColor(color[props.backgroundColor])};
   }
 `;
 

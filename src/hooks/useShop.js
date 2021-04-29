@@ -131,7 +131,16 @@ function useShop() {
   const lineItems = store.checkout.lineItems.map(item => ({ ...item, variant: ({ ...item.variant }) })),
     cartCount = store.checkout.lineItems.reduce((acc, curr, i) => acc + curr.quantity, 0);
 
-  return { store, lineItems, cartCount, addVariantToCart, removeLineItem, updateLineItem, clearCart, checkoutURL: store.checkout.webUrl };
+  return {
+    store,
+    lineItems,
+    cartCount,
+    checkoutURL: store.checkout.webUrl,
+    addVariantToCart,
+    removeLineItem,
+    updateLineItem,
+    clearCart
+  };
 }
 
 export default useShop;

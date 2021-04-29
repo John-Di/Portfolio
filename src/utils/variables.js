@@ -30,3 +30,29 @@ export const device = {
   desktopL: `(min-width: ${size.desktopL}px)`,
   max_desktopL: `(max-width: ${size.desktopL - 1}px)`
 };
+
+export const color = {
+  'Ash': "#eef0f2",
+  'Black': "#27262b",
+  'Dark Grey': "#444444",
+  'Dark Grey Heather': "#3e3c3d",
+  'Forest': "#1f4a2e",
+  'Green': "#82e6e3",
+  'Heather Deep Teal': "#487485",
+  'Heather Mint': "#72d3b4",
+  'Heather Prism Ice Blue': "#c0e3e4",
+  'Heather Prism Lilac': "#d9b0cb",
+  'Heather Prism Mint': "#aad4b7",
+  'Heather Prism Peach': "#eec1b3",
+  'Heather Raspberry': "#fc667d",
+  'Kelly': "#1a9462",
+  'Lilac': "#f4b0c8",
+  'Mauve': "#bf6e6e",
+  'Navy': "#192e3d",
+  'Ocean Blue': "#619dc1",
+  'Pink': "#fcd1db",
+  'Purple': "#634cd2",
+  'True Royal': "#18498c",
+  'White': "#ffffff",
+  'Yellow': "#fbf271",
+}
