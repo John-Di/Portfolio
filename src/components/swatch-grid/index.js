@@ -31,7 +31,7 @@ const SwatchGrid = ({ gap = 0.25, values = [], name }) => {
     updateVariant,
     updateOption
   } = useContext(ProductFormContext);
-  const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState.id);
+  const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState);
   console.log('options', options)
   let Swatch = SwatchType(name);
 

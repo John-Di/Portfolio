@@ -37,14 +37,12 @@ const ProductPage = () => {
   } = useContext(ProductContext), {
     formState,
     updateOption
-  } = useContext(ProductFormContext), {
-    id
-  } = formState;
+  } = useContext(ProductFormContext);
 
   let {
     price,
     selectedOptions
-  } = variants.find(variant => variant.shopifyId === id);
+  } = variants.find(variant => variant.shopifyId === formState);
   return (
     <PageTemplate>
       <ARTICLE>

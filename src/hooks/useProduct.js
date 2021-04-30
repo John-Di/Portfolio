@@ -68,7 +68,7 @@ function useProduct({ reducer = productReducer, product, selectedVariant } = {})
   const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selectedVariant, selectedOption, variants });
 
   console.log('useProduct', formState)
-  return { formState, updateVariant, updateOption };
+  return { product, formState, updateVariant, updateOption };
 }
 
 export default useProduct;

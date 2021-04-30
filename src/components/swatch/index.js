@@ -9,9 +9,7 @@ export default function Swatch({
   children,
   isCurrent,
   backgroundColor,
-  borderColor,
   name = "Option Name",
-  gap = 0.25,
   toggleSwatch
 }) {
   return (
@@ -21,7 +19,6 @@ export default function Swatch({
         isCurrent={isCurrent}
         htmlFor={id}
         backgroundColor={backgroundColor}
-        borderColor={borderColor}
         onClick={toggleSwatch}>
         {children}
       </LABEL>

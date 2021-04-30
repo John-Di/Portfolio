@@ -25,7 +25,7 @@ export const LABEL = styled.label`
 
   ${props => conditionalProp(props.isCurrent, `
     outline: 1px solid black;
-    border: 2px solid ${props.borderColor};
+    border: 2px solid ${IdealTextColor(color[props.backgroundColor])};
   `)};
 
   &:hover,

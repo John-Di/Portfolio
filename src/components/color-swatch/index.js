@@ -20,7 +20,6 @@ export default function ColorSwatch({
       name={name}
       isCurrent={isCurrent}
       backgroundColor={value}
-      borderColor={(value === '#FFFFFF' || value === 'white') ? `#000000` : '#FFFFFF'}
       toggleSwatch={toggleSwatch}
     >
       <VALUE
