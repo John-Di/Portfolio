@@ -11,7 +11,7 @@ const ProductTemplate = ({ location, children, activeHeader = false, hasCart = f
   return (
     <ShopProvider>
       <ProductProvider product={data.pageContext.product}>
-        <ProductPage />
+        <ProductPage location={location} />
       </ProductProvider>
     </ShopProvider>
   )

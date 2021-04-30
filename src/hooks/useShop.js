@@ -127,7 +127,17 @@ function useShop() {
       })
   };
 
-  console.log(store.checkout.lineItems.map(item => ({ ...item, variant: ({ ...item.variant }) })));
+  const emptyCart = (async e => {
+    e.preventDefault();
+    return clearCart();
+  });
+
+  const removeFromCart = (async (e, id) => {
+    console.log('removeFromCart', e, id);
+    e.preventDefault();
+    return removeLineItem(id);
+  });
+
   const lineItems = store.checkout.lineItems.map(item => ({ ...item, variant: ({ ...item.variant }) })),
     cartCount = store.checkout.lineItems.reduce((acc, curr, i) => acc + curr.quantity, 0);
 
@@ -137,9 +147,9 @@ function useShop() {
     cartCount,
     checkoutURL: store.checkout.webUrl,
     addVariantToCart,
-    removeLineItem,
-    updateLineItem,
-    clearCart
+    emptyCart,
+    removeFromCart,
+    removeLineItem
   };
 }
 

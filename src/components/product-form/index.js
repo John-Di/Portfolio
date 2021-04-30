@@ -16,27 +16,12 @@ const ProductForm = ({
   children
 }) => {
   const {
-    formState
+    addToCart,
+    removeFromCart
   } = useContext(ProductFormContext), {
-    addVariantToCart,
-    clearCart,
-    store,
-    removeLineItem
+    emptyCart
   } = useContext(ShopContext);
-  const addToCart = (async e => {
-    e.preventDefault();
-    return addVariantToCart(formState, 1);
-  });
 
-  const emptyCart = (async e => {
-    e.preventDefault();
-    return clearCart();
-  });
-
-  const removeFromCart = async e => {
-    e.preventDefault();
-    return clearCart(store.checkout.lineItems.find(item => item.variant.id === formState).id);
-  }
   return (
     <FORM>
       {children}

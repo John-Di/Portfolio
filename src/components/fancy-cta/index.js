@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ThemeContext from '../../contexts/ThemeContext';
 import Button from '../button';
 
-export default function FancyCTA({ children, type, onClick, modest, accentColor, backgroundColor, maxWidth, textColor = "#000000", borderColor }) {
+export default function FancyCTA({ children, type, onClick, modest, backgroundColor, maxWidth, textColor = "#000000", borderColor }) {
 
   borderColor = borderColor ? borderColor : textColor;
+
+  const {
+    updateTheme,
+    accentColor,
+    name
+  } = useContext(ThemeContext);
 
   return (
     <Button
@@ -12,7 +19,7 @@ export default function FancyCTA({ children, type, onClick, modest, accentColor,
       backgroundColor={backgroundColor}
       textColor={textColor}
       borderColor={borderColor}
-      theme={'fancy'}
+      theme={name}
       maxWidth={maxWidth}
       onClick={onClick}
       type={type}

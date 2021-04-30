@@ -27,7 +27,7 @@ import {
 import RemoveDuplicates from "../../utils/RemoveDuplicates";
 
 // markup
-const ProductPage = () => {
+const ProductPage = ({ location = {} }) => {
   const {
     title,
     images,
@@ -44,7 +44,7 @@ const ProductPage = () => {
     selectedOptions
   } = variants.find(variant => variant.shopifyId === formState);
   return (
-    <PageTemplate>
+    <PageTemplate location={location}>
       <ARTICLE>
         <TITLE>{title}</TITLE>
         <MEDIA>

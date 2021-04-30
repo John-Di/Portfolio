@@ -9,7 +9,7 @@ const IdealTextColor = (bgColor, color = { lightColor: `#000000`, darkColor: `#f
     return `#000000`;
   }
 
-  let background = colorMap[bgColor] ? colorMap[bgColor] : bgColor;
+  let background = colorMap[bgColor.toLowerCase()] ? colorMap[bgColor.toLowerCase()] : bgColor.toLowerCase();
   let opacity = Math.round(resultOpacity * 255).toString(16);
   var nThreshold = 105;
   var components = getRGBComponents(background);

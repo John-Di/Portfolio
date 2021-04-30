@@ -12,4 +12,5 @@ export const FIELDSET = styled.fieldset`
 `;
 
 export const LEGEND = styled.legend`
+  margin-bottom: 0.25em;
 `;

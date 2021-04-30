@@ -152,19 +152,6 @@ export const HEADER = styled.header`
   top: -1px;
   padding-top: 1px;
 
-  a {
-    color: ${props => props.textColor};
-
-    &:active,
-    &.active {
-      color: ${props => props.accentColor};
-
-      @media screen and ${device.tablet} {
-        background-color: ${props => props.textColor};
-      }
-    }
-  }
-
   ${onStuck}
 
   @media screen and ${device.max_tablet} {
@@ -182,5 +169,22 @@ export const HEADER = styled.header`
         ${HeaderTabletProps}
       }
     `)}
+  }
+
+  a,
+  button {
+    color: ${props => props.textColor};
+    padding: 0.75em;
+    width: 3em;
+    height: 3em;
+
+    &:active,
+    &.active {
+      color: ${props => props.accentColor};
+
+      @media screen and ${device.tablet} {
+        background-color: ${props => props.textColor};
+      }
+    }
   }
 `;

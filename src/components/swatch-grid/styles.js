@@ -6,14 +6,14 @@ import { device } from '../../utils/variables';
 
 export const GRID = styled.ul`
   ${ListReset}
-  margin: -4%;
-
-  @media screen and ${device.tablet} {
-    margin: -${props => props.gutterOffset}em;
-  }
+  margin: 0 -${props => props.gutterOffset / 2}em -${props => props.gutterOffset}em;
 
   li {
-    padding: ${props => props.gutterOffset}em;
+    padding: 0 ${props => props.gutterOffset}em ${props => props.gutterOffset}em;
+
+    @media screen and ${device.tablet} {
+      padding: ${props => props.gutterOffset}em;
+    }
   }
 
   ${Clearfix}

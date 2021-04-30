@@ -21,25 +21,16 @@ const SwatchGrid = ({ gap = 0.25, values = [], name }) => {
     store,
     lineItems
   } = useContext(ShopContext), {
-    title,
-    images,
-    description,
-    options = [],
     variants = []
   } = useContext(ProductContext), {
     formState,
-    updateVariant,
     updateOption
   } = useContext(ProductFormContext);
-  const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState);
-  console.log('options', options)
+
+  const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState),
+    selectedOptionValue = selectedVariant.selectedOptions.find(option => option.name === name).value;
+
   let Swatch = SwatchType(name);
-
-  console.log('formState', selectedVariant.selectedOptions, formState);
-  const selectedOptionValue = selectedVariant.selectedOptions.find(option => option.name === name).value;
-
-  console.log('selectedOptionValue', selectedOptionValue);
-
   let SwatchMap = (value, i) => (
     <ITEM key={i} gutter={gap}>
       <Swatch

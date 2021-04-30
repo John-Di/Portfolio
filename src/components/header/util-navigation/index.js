@@ -36,7 +36,6 @@ const nav = [
 ];
 
 const UtilNavigation = ({
-  hasCart = false,
   hasAccount = false
 }) => {
 
@@ -85,13 +84,14 @@ const UtilNavigation = ({
               onClick={selectMenuItem.bind(this, nav.length)}
               activeClassName="active"
               partiallyActive={true}
-              cartIsEmpty={cartIsEmpty}
               cartCount={cartCount}
+              cartIsEmpty={cartIsEmpty}
               color={accentColor}
               textColor={IdealTextColor(accentColor)}
             >
               <ICON
                 accentColor={accentColor}
+                cartCount={cartCount}
                 textColor={IdealTextColor(accentColor)}>
                 <CartIcon />
               </ICON>
