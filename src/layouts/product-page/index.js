@@ -39,6 +39,7 @@ const ProductPage = ({ location = {} }) => {
     formState,
     updateOption
   } = useContext(ProductFormContext);
+  console.log('ProductPage', location);
 
   let {
     price,

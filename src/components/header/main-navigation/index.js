@@ -17,13 +17,12 @@ import ShopContext from "../../../contexts/ShopContext";
 import {
   NAV,
   ITEM,
-  LINK,
   MENU,
   ITEMS,
   TOGGLE
 } from './styles';
 import ThemeContext from '../../../contexts/ThemeContext';
-import ProductContext from '../../../contexts/ProductContext';
+import TextLink from "../text-link";
 
 const nav = [
   {
@@ -33,14 +32,6 @@ const nav = [
   {
     href: "/style-guide/",
     label: () => "Style Guide"
-  },
-  {
-    href: "/products/color-cookie-hoodie",
-    label: prod => prod && prod.title ? prod.title : 'Color Cookie Hoodie'
-  },
-  {
-    href: "/products/full-strawberry-tee",
-    label: prod => prod && prod.title ? prod.title : 'Full Strawberry Tee'
   }
 ];
 
@@ -101,22 +92,10 @@ const MainNavigation = ({
                   whiteOnHover={whiteOnHover}
                   isActive={isActive}
                 >
-                  <LINK
-                    to={item.href}
-                    onClick={selectMenuItem.bind(this, i + 1)}
-                    activeClassName="active"
-                    partiallyActive={true}
-                    state={{
-                      accentColor,
-                      wasRedirected: true,
-                      store,
-                      checkout: store.checkout,
-                      cartIsEmpty,
-                      label: item.label(title)
-                    }}
-                  >
-                    {item.label(title)}
-                  </LINK>
+                  <TextLink
+                    index={i + 1}
+                    label={item.label(title)}
+                    href={item.href} />
                 </ITEM>
               )
             })

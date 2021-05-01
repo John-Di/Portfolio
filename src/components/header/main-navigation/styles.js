@@ -32,7 +32,6 @@ export const TOGGLE = styled.button`
   ${FlexCentered}
   width: 3em;
   height: 3em;
-  padding: 0.75em;
   cursor: pointer;
   ${ToggleTransitions}
   transition: color 0.1s 0.05s;

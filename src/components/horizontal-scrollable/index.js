@@ -19,7 +19,11 @@ export default function HorizontalScrollable({
   scrollRef
 }) {
   return (
-    <SCROLLABLE ref={scrollRef} className="image-gallery__scrollable" gap={gap} hasButtons={hasButtons} buttonPadding={hasButtons && buttonsInside}>
+    <SCROLLABLE
+      ref={scrollRef}
+      className="image-gallery__scrollable" gap={gap}
+      hasButtons={hasButtons}
+      buttonPadding={hasButtons && buttonsInside}>
       {PreviousButton}
       {children}
       {NextButton}

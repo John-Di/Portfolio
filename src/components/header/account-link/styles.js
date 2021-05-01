@@ -14,9 +14,7 @@ import {
 
 export const ITEMS = styled.ul`
   ${ListReset}
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
+  ${ResponsiveLine}
   align-items: stretch;
   width: 100%;
   height: 100%;

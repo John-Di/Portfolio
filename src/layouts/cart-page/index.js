@@ -7,9 +7,9 @@ import {
 } from './styles';
 
 // markup
-const CartPage = () => {
+const CartPage = ({ location = {} }) => {
   return (
-    <PageTemplate>
+    <PageTemplate location={location}>
       <ARTICLE>
         <TITLE>Cart</TITLE>
         <LineItemGrid />
