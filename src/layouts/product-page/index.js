@@ -25,6 +25,7 @@ import {
   DESCRIPTION
 } from './styles';
 import RemoveDuplicates from "../../utils/RemoveDuplicates";
+import ProductGalleryProvider from "../../providers/ProductGalleryProvider";
 
 // markup
 const ProductPage = ({ location = {} }) => {
@@ -48,7 +49,9 @@ const ProductPage = ({ location = {} }) => {
       <ARTICLE>
         <TITLE>{title}</TITLE>
         <MEDIA>
-          <ImageGallery maxWidth={`75%`} images={variants.map(({ image }) => image.originalSrc).filter(RemoveDuplicates) || images} selectedFirst={randomBool()} />
+          <ProductGalleryProvider>
+            <ImageGallery maxWidth={`75%`} selectedFirst={randomBool()} />
+          </ProductGalleryProvider>
         </MEDIA>
         <PRICING>
           <PRICE>${price}</PRICE>
