@@ -14,7 +14,7 @@ export const SCROLLABLE = styled.div`
   max-width: 100%;
 
   ${props => responsiveBreakpoints([device.laptopL], `
-    ${conditionalProp(props.buttonPadding, `padding: 0 ${BUTTON_WIDTH}em;`)}
+    ${conditionalProp(props.buttonsInside, `padding: 0 ${BUTTON_WIDTH}em;`)}
   `, true)}
 
   -ms-overflow-style: none;  /* IE and Edge */

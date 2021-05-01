@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { device, size } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
 import { conditionalProp } from '../../utils/AssessProps';
-import { ButtonReset } from '../../utils/Resets';
-import { responsiveBreakpoints } from '../../styles/util';
 import { VerticalLine } from '../../utils/Flex';
 
 export const WRAPPER = styled.div`
@@ -48,63 +46,6 @@ export const MAIN_IMAGE = styled.div`
   }
 `;
 
-const BUTTON_WIDTH = 3;
-
-export const NAVIGATION = styled.nav`
-  width: 100%;
-
-  li {
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    padding: 2.5%;
-    max-width: ${100 / 4}%;
-
-
-    @media screen and ${device.mobileXL} {
-      max-width: ${100 / 4}%;
-    }
-    @media screen and ${device.mobileXL} {
-      padding: ${props => props.gap}em;
-    }
-  }
-`;
-
-export const THUMBNAIL = styled.button`
-  ${ButtonReset}
-  vertical-align: bottom;
-  width: 100%;
-  position: relative;
-
-  ${props => conditionalProp(!props.isCurrent, `
-    cursor: pointer;
-
-    img {
-      transform: scale(0.85);
-    }
-
-    &:focus,
-    &:hover {
-      img {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    img {
-      ${conditionalProp(props.transparency, `opacity : ${props.transparency};`)}
-    }
-  `, `
-  `)}
-
-  &::before {
-    content: '';
-    display: block;
-    padding-top: 100%;
-    width: 100%;
-  }
-`;
-
 export const IMG = styled.img`
   display: block;
   max-width: 100%;
@@ -122,55 +63,4 @@ export const IMG = styled.img`
   .current & {
     transform: scale(1);
   }
-`
-
-const GALLERY_NAV_BUTTON = `
-  ${ButtonReset}
-  cursor: pointer;
-  padding: 0;
-  min-width: unset;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: ${BUTTON_WIDTH}em;
-  transition: opacity 0.1s, background-color 0.1s, color 0.1s;
-  opacity: 0.25;
-
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
-  &[disabled] {
-    display: none;
-  }
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    fill: inherit;
-    color: inherit;
-  }
-`;
-export const PREVIOUS = styled.button`
-  ${GALLERY_NAV_BUTTON}
-  ${props => responsiveBreakpoints([device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')], `
-    ${conditionalProp(props.buttonPadding, `left: -0.0625em;`, `display: none;`)}
-  `)}
-
-  ${() => responsiveBreakpoints([[device.mobileXL, device.max_laptop].join(' and '), device.laptopL], `right: calc(100% + 1em);`)}
-
-  ${props => conditionalProp(props.isDisabled, `display: none;`)}
-`;
-
-export const NEXT = styled.button`
-  ${GALLERY_NAV_BUTTON}
-  ${props => responsiveBreakpoints([device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')], `
-    ${conditionalProp(props.buttonPadding, `right: -0.0625em;`, `display: none;`)}
-  `)}
-
-  ${() => responsiveBreakpoints([[device.mobileXL, device.max_laptop].join(' and '), device.laptopL], `left: calc(100% + 1em);`)}
-
-  ${props => conditionalProp(props.isDisabled, `display: none;`)}
 `;

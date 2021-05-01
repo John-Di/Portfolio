@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import GalleryContext from "../../../contexts/GalleryContext";
 import ThumbnailGrid from "./thumbnail-grid";
-import PreviousButton from "../previous-button";
-import NextButton from "../next-button";
+import LeftChevron from '../../../images/svgs/left-chevron.svg';
+import RightChevron from '../../../images/svgs/right-chevron.svg';
+import Button from "../button";
 import {
   SCROLLABLE,
   NAVIGATION,
@@ -11,7 +12,7 @@ import {
 export default function ThumbnailNavigation({
   gap = 0.75,
   maxWidth = '100%',
-  buttonsInside = false
+  buttonsInside = true
 }) {
   const {
     scrollRef,
@@ -23,19 +24,29 @@ export default function ThumbnailNavigation({
       ref={scrollRef}
       className="image-gallery__scrollable" gap={gap}
       hasButtons={hasNavButtons}
-      buttonPadding={hasNavButtons && buttonsInside}
+      buttonsInside={hasNavButtons && buttonsInside}
     >
-      {hasNavButtons && <PreviousButton
-        hasButtons={hasNavButtons}
-        buttonPadding={hasNavButtons && buttonsInside}
-      />}
+      {
+        hasNavButtons &&
+        <Button
+          buttonInside={buttonsInside}
+          isPrev={true}
+        >
+          <LeftChevron />
+        </Button>
+      }
       <NAVIGATION gap={gap} className="image-gallery__navigation" maxWidth={maxWidth}>
         <ThumbnailGrid gutterOffset={gap} />
       </NAVIGATION>
-      {hasNavButtons && <NextButton
-        hasButtons={hasNavButtons}
-        buttonPadding={hasNavButtons && buttonsInside}
-      />}
+      {
+        hasNavButtons &&
+        <Button
+          buttonInside={buttonsInside}
+          isPrev={false}
+        >
+          <RightChevron />
+        </Button>
+      }
     </SCROLLABLE>
   );
 }

@@ -6,7 +6,7 @@ import { device } from '../../utils/variables';
 
 export const GRID = styled.ul`
   ${ListReset}
-  margin: -4%;
+  margin: -${props => props.gutterOffset}em;
 
   @media screen and ${device.tablet} {
     margin: -${props => props.gutterOffset}em -4%;

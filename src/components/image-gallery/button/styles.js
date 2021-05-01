@@ -36,13 +36,26 @@ const GALLERY_NAV_BUTTON = `
   }
 `;
 
-export const PREVIOUS = styled.button`
-  ${GALLERY_NAV_BUTTON}
-  ${props => responsiveBreakpoints([device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')], `
-    ${conditionalProp(props.buttonPadding, `left: -0.0625em;`, `display: none;`)}
+const sideBySide = [[device.mobileXL, device.max_laptop].join(' and '), device.laptopL],
+  stacked = [device.max_mobileXL, [device.laptop, device.max_laptopL].join(' and ')];
+
+const AssessProps = ({ isPrev, buttonInside, isDisabled, hideForce = true }) => `
+  ${responsiveBreakpoints(stacked, `
+    ${conditionalProp(buttonInside, `${isPrev ? `left` : `right`}: -0.0625em;`)}
+    ${conditionalProp(hideForce, `display: none;`)}
   `)}
 
-  ${() => responsiveBreakpoints([[device.mobileXL, device.max_laptop].join(' and '), device.laptopL], `right: calc(100% + 1em);`)}
+  ${responsiveBreakpoints(sideBySide,
+  conditionalProp(
+    buttonInside,
+    `${isPrev ? `left` : `right`}: 0;`,
+    `${!isPrev ? `left` : `right`}: calc(100% + 1em);`)
+)}
 
-  ${props => conditionalProp(props.isDisabled, `display: none;`)}
+  ${conditionalProp(isDisabled, `display: none;`)}
+`
+
+export const BUTTON = styled.button`
+  ${GALLERY_NAV_BUTTON}
+  ${AssessProps}
 `;

@@ -2,31 +2,36 @@ import React, { useContext } from "react";
 import GalleryContext from "../../../contexts/GalleryContext";
 import LeftChevron from '../../../images/svgs/left-chevron.svg';
 import {
-  PREVIOUS
+  BUTTON
 } from './styles';
 
-export default function PreviousButton({
-  buttonsInside = false
+export default function Button({
+  buttonInside = false,
+  isPrev,
+  children
 }) {
   const {
     hasNavButtons,
     atBeginning,
+    atEnd,
+    scrollNext,
     scrollPrevious
   } = useContext(GalleryContext),
+    scrollSlide = isPrev ? scrollPrevious : scrollNext,
     onClick = e => {
       e.preventDefault();
-      console.log('scrollPrevious', 'atBeginning');
-      scrollPrevious();
+      scrollSlide();
     };
 
   return (
-    <PREVIOUS
-      buttonPadding={hasNavButtons && buttonsInside}
-      isDisabled={atBeginning}
-      buttonsInside={buttonsInside}
+    <BUTTON
+      isPrev={isPrev}
+      buttonPadding={hasNavButtons && buttonInside}
+      isDisabled={isPrev ? atBeginning : atEnd}
+      buttonInside={buttonInside}
       onClick={onClick}
     >
-      <LeftChevron />
-    </PREVIOUS>
+      {children}
+    </BUTTON>
   );
 }
