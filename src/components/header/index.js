@@ -42,6 +42,7 @@ const Header = ({
       textColorEmphasis={textColor}
       whiteOnHover={whiteOnHover}
       ref={headerRef}
+      quickCartTop={headerRef.current ? headerRef.current.scrollHeight : 0}
       isStuck={isStuck}
       isActive={isActive}
     >

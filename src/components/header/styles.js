@@ -4,6 +4,7 @@ import {
   conditionalProp
 } from '../../utils/AssessProps';
 import IdealTextColor from '../../utils/IdealTextColor';
+import { preparePathsFilter } from 'graphql-compose/lib/utils/filterByDotPaths';
 
 const HeaderTabletProps = ({ isActive, whiteOnHover, textColor, accentColor }) => `
   cursor: pointer;
@@ -153,7 +154,6 @@ export const HEADER = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
   top: -1px;
   padding: 0 4%;
   padding-top: 1px;
@@ -188,4 +188,10 @@ export const HEADER = styled.header`
       }
     }
   }
+
+  ${props => conditionalProp(props.quickCartTop, `
+    ~ aside {
+      top: ${(props.quickCartTop - 1) / 16}em;
+    }
+  `)}
 `;

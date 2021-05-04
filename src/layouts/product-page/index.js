@@ -26,6 +26,7 @@ import {
 } from './styles';
 import RemoveDuplicates from "../../utils/RemoveDuplicates";
 import ProductGalleryProvider from "../../providers/ProductGalleryProvider";
+import Page from "../page";
 
 // markup
 const ProductPage = ({ location = {} }) => {
@@ -46,7 +47,7 @@ const ProductPage = ({ location = {} }) => {
     selectedOptions
   } = variants.find(variant => variant.shopifyId === formState);
   return (
-    <PageTemplate location={location}>
+    <Page location={location}>
       <ARTICLE>
         <TITLE>{title}</TITLE>
         <MEDIA>
@@ -73,7 +74,7 @@ const ProductPage = ({ location = {} }) => {
           </VariantSelector>
         </ProductForm>
       </ARTICLE>
-    </PageTemplate>
+    </Page>
   )
 }
 

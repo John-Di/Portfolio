@@ -1,6 +1,7 @@
 import {
   useCallback,
-  useReducer
+  useReducer,
+  useState
 } from "react";
 import { randomColor } from "../utils/randoms";
 
@@ -15,15 +16,15 @@ export const themeReducer = (state, { theme }) => ({
   theme
 });
 
-function useTheme({ reducer = themeReducer, accentColor = randomColor(), initTheme = 'fancy' }) {
+function useTheme({ reducer = themeReducer, accentColor, initTheme = 'fancy' }) {
 
 
-  const [theme, changeTheme] = useReducer(reducer, {
-    accentColor,
+  const [theme, changeTheme] = useState({
+    accentColor: randomColor(),
     name: initTheme
   });
 
-  const updateTheme = theme => (changeTheme({ type: 'THEME', theme }));
+  const updateTheme = theme => changeTheme({ accentColor, ...theme });
   return {
     ...theme,
     updateTheme

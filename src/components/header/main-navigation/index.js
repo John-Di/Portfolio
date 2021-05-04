@@ -32,6 +32,10 @@ const nav = [
   {
     href: "/style-guide/",
     label: () => "Style Guide"
+  },
+  {
+    href: "/products/full-strawberry-tee",
+    label: prod => prod && prod.title ? prod.title : 'Full Strawberry Tee'
   }
 ];
 

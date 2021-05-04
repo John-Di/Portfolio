@@ -3,7 +3,8 @@ import ProductPage from '../layouts/product-page';
 import ShopProvider from "../providers/ShopProvider";
 import ProductProvider from "../providers/ProductProvider";
 import useLocation from "../hooks/useLocation";
-import LocationProvider from "../providers/LocationProvider";
+import PageTemplateProvider from "../providers/PageTemplateProvider";
+import StoreTemplateProvider from "../providers/StoreTemplateProvider";
 
 const ProductTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
 
@@ -11,13 +12,13 @@ const ProductTemplate = ({ location, children, activeHeader = false, hasCart = f
   console.log('ProductTemplate.location.state', location.state);
 
   return (
-    <LocationProvider location={location}>
-      <ShopProvider>
-        <ProductProvider product={data.pageContext.product}>
+    <StoreTemplateProvider location={location} >
+      <ProductProvider product={data.pageContext.product}>
+        <PageTemplateProvider location={location}>
           <ProductPage location={location} />
-        </ProductProvider>
-      </ShopProvider>
-    </LocationProvider>
+        </PageTemplateProvider>
+      </ProductProvider>
+    </StoreTemplateProvider>
   )
 }
 

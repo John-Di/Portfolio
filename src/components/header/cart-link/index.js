@@ -12,6 +12,7 @@ import {
   ICON
 } from './styles';
 import LocationContext from "../../../contexts/LocationContext";
+import CartFlyoutContext from "../../../contexts/CartFlyoutContext";
 
 const nav = [
   {
@@ -45,7 +46,10 @@ const CartLink = () => {
     accentColor
   } = useContext(ThemeContext), {
     pathContains
-  } = useContext(LocationContext);
+  } = useContext(LocationContext), {
+    isOpen,
+    toggleFlyout
+  } = useContext(CartFlyoutContext);
 
   console.log('accentColor', accentColor)
   console.log('checkoutURL', checkoutURL)
@@ -53,12 +57,16 @@ const CartLink = () => {
   if (!checkoutURL) {
     return;
   }
+  const onClick = e => {
+    e.preventDefault();
+    toggleFlyout();
+  }
 
   return (
     <CART
       to={`/cart/`}
       href={`/cart/`}
-      onClick={selectMenuItem.bind(this, nav.length)}
+      onClick={onClick}
       partiallyActive={true}
       activeClassName='active'
       state={{

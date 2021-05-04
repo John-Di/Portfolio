@@ -1,7 +1,7 @@
 import React from "react";
 import CartPage from '../../layouts/cart-page';
 import ShopProvider from "../../providers/ShopProvider";
-import ProductProvider from "../../providers/ProductProvider";
+import StoreTemplateProvider from "../../providers/StoreTemplateProvider";
 import LocationProvider from "../../providers/LocationProvider";
 import useLocation from "../../hooks/useLocation";
 
@@ -9,11 +9,9 @@ import useLocation from "../../hooks/useLocation";
 const Cart = ({ location = {} }) => {
   console.log('Cart.location', location);
   return (
-    <LocationProvider location={location}>
-      <ShopProvider>
-        <CartPage />
-      </ShopProvider>
-    </LocationProvider>
+    <StoreTemplateProvider location={location}>
+      <CartPage />
+    </StoreTemplateProvider>
   )
 }
 

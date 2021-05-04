@@ -15,18 +15,16 @@ export const locationReducer = (state, action) => ({
   ...state
 });
 
-function useLocation({ reducer = locationReducer, location }) {
+function useLocation({ reducer = locationReducer, location, accentColor = randomColor() }) {
 
   console.log('useLocation', location, location.pathname)
-  const [state, updateLocation] = useState(typeof window !== 'undefined' ? window.location.href : '');
+  const [state, updateLocation] = useState({
+    pathname: typeof window !== 'undefined' ? window.location.href : '',
+    accentColor
+  });
 
   console.log('useLocation', state, state)
-  const pathContains = str => {
-
-    console.log('pathContains', str, state, state.indexOf(str) >= 0)
-
-    return (state.indexOf(str) >= 0)
-  };
+  const pathContains = str => (state.pathname.indexOf(str) >= 0);
 
   return {
     ...state,

@@ -1,23 +1,15 @@
 import React from "react";
-import Overlay from '../components/overlay';
 import Page from '../layouts/page';
-import LocationProvider from "../providers/LocationProvider";
-import PageProvider from "../providers/PageProvider";
-import ThemeProvider from "../providers/ThemeProvider";
+import PageTemplateProvider from "../providers/PageTemplateProvider";
 
 const PageTemplate = ({ location = {}, children }) => {
 
   return (
-    <LocationProvider location={location}>
-      <ThemeProvider location={location}>
-        <PageProvider>
-          <Page>
-            {children}
-            <Overlay />
-          </Page>
-        </PageProvider>
-      </ThemeProvider>
-    </LocationProvider>
+    <PageTemplateProvider location={location}>
+      <Page>
+        {children}
+      </Page>
+    </PageTemplateProvider>
   )
 }
 

@@ -10,6 +10,8 @@ import {
 } from './styles';
 import Header from '../../components/header';
 import PageContext from "../../contexts/PageContext";
+import Overlay from "../../components/overlay";
+import QuickCart from "../../components/quick-cart";
 
 // styles
 const pageStyles = {
@@ -36,6 +38,8 @@ const Page = ({ children }) => {
       <main ref={mainRef}>
         {children}
       </main>
+      <QuickCart />
+      <Overlay />
       <BackToTop isActive={scrollTop > 0} />
     </PAGE>
   )
