@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import GalleryContext from "../../../contexts/GalleryContext";
-import ThumbnailGrid from "./thumbnail-grid";
-import LeftChevron from '../../../images/svgs/left-chevron.svg';
-import RightChevron from '../../../images/svgs/right-chevron.svg';
-import Button from "../button";
+import GalleryContext from "../../contexts/GalleryContext";
+import ThumbnailGrid from "../thumbnail-grid";
+import LeftChevron from '../../images/svgs/left-chevron.svg';
+import RightChevron from '../../images/svgs/right-chevron.svg';
+import Button from "./button";
 import {
   SCROLLABLE,
   NAVIGATION,

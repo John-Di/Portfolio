@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import GalleryContext from "../../../../../contexts/GalleryContext";
+import GalleryContext from "../../contexts/GalleryContext";
 
 import {
   THUMBNAIL,

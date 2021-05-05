@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { device, size } from '../../../utils/variables';
-import Clearfix from '../../../utils/Clearfix';
-import { conditionalProp } from '../../../utils/AssessProps';
-import { ButtonReset } from '../../../utils/Resets';
-import { responsiveBreakpoints } from '../../../styles/util';
-import { VerticalLine } from '../../../utils/Flex';
+import { device, size } from '../../utils/variables';
+import Clearfix from '../../utils/Clearfix';
+import { conditionalProp } from '../../utils/AssessProps';
+import { ButtonReset } from '../../utils/Resets';
+import { responsiveBreakpoints } from '../../styles/util';
+import { VerticalLine } from '../../utils/Flex';
 
 const BUTTON_WIDTH = 3;
 

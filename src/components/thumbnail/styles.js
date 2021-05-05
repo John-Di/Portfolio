@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { conditionalProp } from '../../../../../utils/AssessProps';
-import { ButtonReset } from '../../../../../utils/Resets';
+import { conditionalProp } from '../../utils/AssessProps';
+import { ButtonReset } from '../../utils/Resets';
 
 
 export const THUMBNAIL = styled.button`

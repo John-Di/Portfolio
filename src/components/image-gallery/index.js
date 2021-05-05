@@ -6,7 +6,7 @@ import {
   IMG
 } from './styles';
 import GalleryContext from "../../contexts/GalleryContext";
-import ThumbnailNavigation from "./thumbnail-navigation";
+import ThumbnailNavigation from "../thumbnail-navigation";
 
 export default function ImageGallery({
   gap = 0.75,

@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import {
   QUICKCART,
-  GALLERY,
-  MAIN_IMAGE,
-  IMG
+  ITEMS,
+  H1,
+  ITEM
 } from './styles';
 import ShopContext from "../../contexts/ShopContext";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
+import LineItem from "./line-item";
 
-export default function QuickCart() {
+export default function QuickCart({
+  innerPadding = false
+}) {
   const {
     lineItems,
   } = useContext(ShopContext), {
@@ -19,18 +22,18 @@ export default function QuickCart() {
   return (
     <QUICKCART
       isOpen={isOpen}
+      innerPadding={innerPadding}
     >
-      <ul>
+      <H1>Cart</H1>
+      <ITEMS>
         {arrayToComponentSiblings(lineItems, (item, i) => {
           return (
-            <li>
-              <div>
-                <p>{item.title} {item.variant.title}</p>
-              </div>
-            </li>
+            <ITEM>
+              <LineItem item={item} />
+            </ITEM>
           )
         })}
-      </ul>
+      </ITEMS>
     </QUICKCART>
   );
 }

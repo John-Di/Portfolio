@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { device } from '../../../../utils/variables';
-import Clearfix from '../../../../utils/Clearfix';
-import { ListReset } from '../../../../utils/Resets';
+import { device } from '../../utils/variables';
+import Clearfix from '../../utils/Clearfix';
+import { ListReset } from '../../utils/Resets';
 
 export const LIST = styled.ul`
   ${ListReset}

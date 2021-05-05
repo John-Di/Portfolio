@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import GalleryContext from "../../../contexts/GalleryContext";
-import LeftChevron from '../../../images/svgs/left-chevron.svg';
 import {
   BUTTON
 } from './styles';
