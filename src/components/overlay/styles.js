@@ -20,5 +20,12 @@ export const OVERLAY = styled.div`
   ${AssessProps}
   ${assessState}
   position: fixed;
-  pointer-events: none;
+  pointer-events: auto;
+  transition: 0.1s opacity;
+  z-index: 1;
+
+  ${props => conditionalProp(props.isActive, `
+    opacity: 0.3;
+    cursor: pointer;
+  `)}
 `;

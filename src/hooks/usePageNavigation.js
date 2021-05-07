@@ -5,19 +5,22 @@ import {
   useContext,
   useCallback
 } from "react";
+import CartFlyoutContext from "../contexts/CartFlyoutContext";
 import ShopContext from '../contexts/ShopContext';
 import HandleScrollLock from '../utils/ScrollLock';
 
 function usePageNavigation() {
   const {
     store
-  } = useContext(ShopContext);
+  } = useContext(ShopContext), {
+    isOpen
+  } = useContext(CartFlyoutContext);
 
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [isStuck, SetStickyState] = useState(false);
   const [scrollTop, SaveScrollTop] = useState(0);
 
-  let isScrollLocked = !!~menuIndex;
+  let isScrollLocked = !!~menuIndex || isOpen;
 
   const selectMenuItem = index => ((menuIndex !== 0 && index >= 0) || index < 0) && SetMenuIndex(index),
     toggleMenu = () => menuIndex === 0 && SetMenuIndex(0),

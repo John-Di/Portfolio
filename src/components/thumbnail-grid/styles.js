@@ -18,7 +18,7 @@ export const ITEM = styled.li`
   ${ListReset}
   display: inline-block;
   vertical-align: bottom;
-  padding: ${props => props.gutterOffset}em;
+  padding: ${props => props.gutter}em;
   float: left;
   margin: auto;
   width: 100%;

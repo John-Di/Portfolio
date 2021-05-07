@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
+import Thumbnail from './thumbnail';
 import {
   LINEITEM,
+  THUMBNAIL,
+  DETAILS
 } from './styles';
+import Options from "./options";
 
 export default function LineItem({
   item,
@@ -18,12 +22,19 @@ export default function LineItem({
     price,
     id,
     title,
-    product
+    product,
+    selectedOptions
   } = variant;
 
   return (
     <LINEITEM>
-      <p>{item.title} {item.variant.title}</p>
+      <THUMBNAIL>
+        <Thumbnail image={image.src} />
+      </THUMBNAIL>
+      <DETAILS>
+        <p>{item.title} {item.variant.title}</p>
+        <Options options={selectedOptions} />
+      </DETAILS>
     </LINEITEM>
   );
 }

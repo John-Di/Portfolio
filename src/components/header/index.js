@@ -43,8 +43,8 @@ const Header = ({
       whiteOnHover={whiteOnHover}
       ref={headerRef}
       quickCartTop={headerRef.current ? headerRef.current.scrollHeight : 0}
-      isStuck={isStuck}
-      isActive={isActive}
+      isStuck={navAccent}
+      isActive={navAccent}
     >
       <MainNavigation
         isActive={false}

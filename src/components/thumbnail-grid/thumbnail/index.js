@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import GalleryContext from "../../contexts/GalleryContext";
 
 import {
   THUMBNAIL,
@@ -7,21 +6,13 @@ import {
 } from './styles';
 
 export default function Thumbnail({
-  index = -1,
+  isCurrent = false,
+  onClick,
   image
 }) {
-  const {
-    updateIndex,
-    isCurrent
-  } = useContext(GalleryContext),
-    onClick = e => {
-      e.preventDefault();
-      updateIndex(index);
-    };
-
   return (
     <THUMBNAIL
-      isCurrent={isCurrent(index)}
+      isCurrent={isCurrent}
       onClick={onClick}
       transparency={1 / 3}
     >

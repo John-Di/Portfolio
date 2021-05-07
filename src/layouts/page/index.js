@@ -34,12 +34,12 @@ const Page = ({ children }) => {
       scrollPosition={scrollTop}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
+      <Overlay />
       <Header title={'Cart'} />
       <main ref={mainRef}>
         {children}
       </main>
       <QuickCart />
-      <Overlay />
       <BackToTop isActive={scrollTop > 0} />
     </PAGE>
   )

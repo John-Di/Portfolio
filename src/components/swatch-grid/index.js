@@ -18,9 +18,6 @@ import ProductFormContext from "../../contexts/ProductFormContext";
 const SwatchGrid = ({ gap = 0.25, values = [], name }) => {
 
   const {
-    store,
-    lineItems
-  } = useContext(ShopContext), {
     variants = []
   } = useContext(ProductContext), {
     formState,

@@ -3,15 +3,27 @@ import React, {
 } from "react";
 import { OVERLAY } from './styles';
 import PageContext from '../../contexts/PageContext';
+import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 
 // markup
 const Overlay = () => {
   const {
     isMenuOpen
-  } = useContext(PageContext);
+  } = useContext(PageContext), {
+    isOpen,
+    closeFlyout
+  } = useContext(CartFlyoutContext)
 
+  const onClick = e => {
+    e.preventDefault();
+    closeFlyout();
+  }
   return (
-    <OVERLAY isActive={isMenuOpen} backgroundColor={`black`} />
+    <OVERLAY
+      isActive={isMenuOpen}
+      backgroundColor={`black`}
+      onClick={onClick}
+    />
   )
 }
 

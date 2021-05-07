@@ -14,6 +14,7 @@ export const QUICKCART = styled.aside`
   width: ${size.mobileL / 16}em;
   max-width: 100vw;
   transition: right 0.1s;
+  z-index: 3;
 
   ${props => conditionalProp(props.isOpen, `
     right: 0;
@@ -21,14 +22,14 @@ export const QUICKCART = styled.aside`
 
   ${props => conditionalProp(props.innerPadding, `
     h1 {
-      padding: 0.5em 4%;
+      padding: 0.5em 2%;
     }
 
     li {
-      padding: 0 4%;
+      padding: 0 2%;
     }
   `, `
-    padding: 0 4%;
+    padding: 0 2%;
   `)}
 `;
 
