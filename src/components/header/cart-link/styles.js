@@ -12,18 +12,26 @@ import {
 } from '../../../utils/Flex';
 import IdealTextColor from '../../../utils/IdealTextColor';
 
+const activeState = ({ accentColor }) => `
+  background-color: ${accentColor};
+  color: ${IdealTextColor(accentColor)};
+  font-weight: bold;
+  text-decoration: underline;
+
+  svg {
+    color: ${IdealTextColor(accentColor)};
+    fill: ${IdealTextColor(accentColor)};
+  }
+
+  span::after {
+    background: ${IdealTextColor(accentColor)};
+    color: ${accentColor};
+  }
+`;
+
 export const CART = styled(GatsbyLink)`
   ${LinkReset}
   ${FlexCentered}
-  ${props => conditionalProp('props.cartIsempty', props.state.cartIsEmpty)}
-  ${props => conditionalProp(!props.state.cartIsEmpty, `
-    color: black;
-    fill: black;
-  `, `
-    color: ${props.state.accentColor};
-    fill: ${props.state.accentColor};
-  `)}
-
   display: inline-flex;
   line-height: 1.33;
   height: 100%;
@@ -33,49 +41,14 @@ export const CART = styled(GatsbyLink)`
   transition: background-color 0.1s 0.05s, color 0.1s 0s;
   margin-left: auto;
 
-  &:hover,
-  &:focus {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-
-  ${props => conditionalProp(props.state.isActive, `
-    background-color: ${props => props.state.accentColor};
-    color: ${props => IdealTextColor(props.state.accentColor)};
-    font-weight: bold;
-    text-decoration: underline;
-
-    svg {
-      color: ${props => IdealTextColor(props.state.accentColor)};
-      fill: ${props => IdealTextColor(props.state.accentColor)};
-    }
-
-    span::after {
-      background: ${props => IdealTextColor(props.state.accentColor)};
-      color: ${props => props.state.accentColor};
-    }
-  `)}
+  ${({ state }) => conditionalProp(state.isActive, activeState(state))}
 
   &.active,
   &:active,
   &:hover,
   &:focus {
-    background-color: ${props => props.state.accentColor};
-    color: ${props => IdealTextColor(props.state.accentColor)};
-    font-weight: bold;
-    text-decoration: underline;
-
-    svg {
-      color: ${props => IdealTextColor(props.state.accentColor)};
-      fill: ${props => IdealTextColor(props.state.accentColor)};
-    }
-
-    span::after {
-      background: ${props => IdealTextColor(props.state.accentColor)};
-      color: ${props => props.state.accentColor};
-    }
+    ${({ state }) => activeState(state)}
   }
-
 
   @media screen and ${device.max_tablet} {
     align-items: flex-start;
@@ -83,7 +56,6 @@ export const CART = styled(GatsbyLink)`
   }
 
   svg {
-    transform: scale(-1,1);
 
     @media screen and ${device.tablet} {
     }
@@ -93,14 +65,6 @@ export const CART = styled(GatsbyLink)`
 export const CHECKOUT = styled.a`
   ${LinkReset}
   ${FlexCentered}
-  ${props => conditionalProp('props.cartIsempty', props.cartIsEmpty)}
-  ${props => conditionalProp(!props.cartIsEmpty, `
-    color: black;
-    fill: black;
-  `, `
-    color: ${props.accentColor};
-    fill: ${props.accentColor};
-  `)}
 
   display: inline-flex;
   line-height: 1.33;
@@ -166,9 +130,21 @@ export const CHECKOUT = styled.a`
     }
   }
 `;
+
 export const ICON = styled.span`
   ${FlexCentered}
   position: relative;
+
+  svg {
+    transform: scale(-1,1);
+    ${({ cartCount, accentColor }) => conditionalProp(cartCount === 0, `
+      color: black;
+      fill: black;
+    `, `
+      color: ${accentColor};
+      fill: ${accentColor};
+    `)}
+  }
 
   &::after {
     ${FlexCentered}

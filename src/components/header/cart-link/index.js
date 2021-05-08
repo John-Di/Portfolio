@@ -73,7 +73,7 @@ const CartLink = () => {
         isActive: pathContains('/cart'),
         partiallyActive: true,
         cartCount,
-        cartIsEmpty,
+        cartIsEmpty: cartCount === 0,
         accentColor
       }}
     >
