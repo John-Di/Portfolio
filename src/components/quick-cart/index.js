@@ -14,7 +14,7 @@ export default function QuickCart({
   innerPadding = false
 }) {
   const {
-    lineItems,
+    lineItems
   } = useContext(ShopContext), {
     isOpen
   } = useContext(CartFlyoutContext);

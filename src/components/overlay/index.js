@@ -17,7 +17,8 @@ const Overlay = () => {
   const onClick = e => {
     e.preventDefault();
     closeFlyout();
-  }
+  };
+
   return (
     <OVERLAY
       isActive={isMenuOpen}

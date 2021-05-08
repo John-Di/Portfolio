@@ -1,30 +1,55 @@
 import React, { useContext } from "react";
 import Thumbnail from './thumbnail';
 import {
+  TITLE,
   LINEITEM,
   THUMBNAIL,
-  DETAILS
+  DETAILS,
+  CONTAINER,
+  QUANTITYSTEPPER
 } from './styles';
 import Options from "./options";
+import QuantitySelector from "../../quantity-selector";
+import ShopContext from "../../../contexts/ShopContext";
 
 export default function LineItem({
-  item,
-  children
+  item
 }) {
-
   const {
-    description,
-    variant
-  } = item;
-
-  let {
+    variant,
+    id
+  } = item, {
     image,
-    price,
-    id,
-    title,
-    product,
     selectedOptions
   } = variant;
+
+  console.log('item', item);
+  const {
+    updateLineItem,
+    removeFromCart
+  } = useContext(ShopContext),
+    increase = async e => {
+      e.preventDefault();
+      e.target.value = item.quantity + 1;
+      await updateLineItem(id, item.quantity + 1);
+    },
+    decrease = async e => {
+      e.preventDefault();
+      if (item.quantity <= 0) {
+        return;
+      }
+      e.target.value = item.quantity - 1;
+      await updateLineItem(id, item.quantity - 1);
+    },
+    onChange = async e => {
+      e.preventDefault();
+
+      if (item.quantity <= 0) {
+        return;
+      }
+
+      await updateLineItem(id, Math.max(0, e.target.value));
+    }
 
   return (
     <LINEITEM>
@@ -32,8 +57,19 @@ export default function LineItem({
         <Thumbnail image={image.src} />
       </THUMBNAIL>
       <DETAILS>
-        <p>{item.title} {item.variant.title}</p>
-        <Options options={selectedOptions} />
+        <CONTAINER>
+          <TITLE>{item.title}</TITLE>
+          <Options options={selectedOptions} />
+          <QUANTITYSTEPPER>
+            <QuantitySelector
+              id={`quantity-stepper-${id}`}
+              value={item.quantity}
+              increase={increase}
+              decrease={decrease}
+              onChange={onChange}
+            />
+          </QUANTITYSTEPPER>
+        </CONTAINER>
       </DETAILS>
     </LINEITEM>
   );

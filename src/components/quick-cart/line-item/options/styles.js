@@ -14,3 +14,31 @@ export const IMG = styled.img`
   width: 100%;
   transition: transform 0.15s ease-in 0s, opacity 0.15s ease-in 0s;
 `
+
+export const OPTIONS = styled.dl`
+  display: flex;
+  margin: 0.75em -0.25em -0.25em;
+`;
+
+export const DESCRIPTION = styled.div`
+  padding: 0 0.25em 0.25em;
+`;
+
+
+export const NAME = styled.dt`
+  font-weight: bold;
+  font-size: 0.75em;
+  margin-bottom: 0.25em;
+`;
+
+
+export const SWATCH = styled.dd`
+  label {
+    height: 1.5em;
+
+    span {
+      font-size: 0.75em;
+    }
+  }
+`;
+

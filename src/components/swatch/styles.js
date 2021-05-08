@@ -14,14 +14,11 @@ export const INPUT = styled.input`
 export const LABEL = styled.label`
   cursor: pointer;
   ${FlexCentered}
-  ${props => {
-    return props;
-  }}
   ${props => conditionalProp(props.backgroundColor, `background-color: ${color[props.backgroundColor]};`, 'white')};
   width: 2.5em;
   height: 2.5em;
   border: 1px solid black;
-  margin: 0;
+  margin: 0 auto;
 
   ${props => conditionalProp(props.isCurrent, `
     outline: 1px solid black;

@@ -5,27 +5,34 @@ import {
 import {
   arrayToComponentSiblings
 } from '../../../../utils/dom-builder';
+import {
+  OPTIONS,
+  DESCRIPTION,
+  NAME,
+  SWATCH
+} from './styles';
 
 const Options = ({ options }) => {
   return (
-    <dl>
+    <OPTIONS>
       {
         arrayToComponentSiblings(options, ({ name, value }, i) => {
           let Swatch = SwatchType(name);
           return (
-            <React.Fragment key={i}>
-              <dt>{name}</dt>
-
-              <Swatch
-                id={`swatch-${value.replace('#', '')}-${Date.now()}`}
-                value={value}
-                key={i}
-              />
-            </React.Fragment>
+            <DESCRIPTION key={i}>
+              <NAME>{name}</NAME>
+              <SWATCH>
+                <Swatch
+                  id={`swatch-${value.replace('#', '')}-${Date.now()}`}
+                  value={value}
+                  key={i}
+                />
+              </SWATCH>
+            </DESCRIPTION>
           )
         })
       }
-    </dl>
+    </OPTIONS>
   );
 }
 export default Options;

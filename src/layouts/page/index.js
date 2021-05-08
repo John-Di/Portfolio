@@ -1,7 +1,4 @@
 import React, {
-  useState,
-  useRef,
-  useEffect,
   useContext
 } from "react";
 import BackToTop from '../../components/back-to-top';
@@ -35,7 +32,7 @@ const Page = ({ children }) => {
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
       <Overlay />
-      <Header title={'Cart'} />
+      <Header />
       <main ref={mainRef}>
         {children}
       </main>

@@ -155,12 +155,12 @@ export const HEADER = styled.header`
   left: 0;
   right: 0;
   top: -1px;
-  padding: 0 4%;
   padding-top: 1px;
   z-index: 2;
 
   @media screen and ${device.tablet} {
     grid-template: "logo nav util" / 6em 1fr 6em;
+    padding: 0 4%;
   }
 
   ${onStuck}

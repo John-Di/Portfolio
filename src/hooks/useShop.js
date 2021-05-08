@@ -147,6 +147,7 @@ function useShop() {
     cartCount,
     checkoutURL: store.checkout.webUrl,
     addVariantToCart,
+    updateLineItem,
     emptyCart,
     removeFromCart,
     removeLineItem
