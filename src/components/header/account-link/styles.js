@@ -2,64 +2,36 @@ import styled from 'styled-components';
 import { device } from '../../../utils/variables';
 import { ListReset, LinkReset } from '../../../utils/Resets';
 import {
+  Link as GatsbyLink
+} from "gatsby";
+import {
   conditionalProp
 } from '../../../utils/AssessProps';
 import {
-  FlexCentered,
-  ResponsiveLine
+  FlexCentered
 } from '../../../utils/Flex';
-import {
-  Link as GatsbyLink
-} from "gatsby";
+import IdealTextColor from '../../../utils/IdealTextColor';
 
-export const ITEMS = styled.ul`
-  ${ListReset}
-  ${ResponsiveLine}
-  align-items: stretch;
-  width: 100%;
-  height: 100%;
+const activeState = ({ accentColor }) => `
+  background-color: ${accentColor};
+  color: ${IdealTextColor(accentColor)};
+  font-weight: bold;
+  text-decoration: underline;
 
-  @media screen and ${device.max_tablet} {
-    background: white;
-    transition: height 2s 0s;
+  svg {
+    color: ${IdealTextColor(accentColor)};
+    fill: ${IdealTextColor(accentColor)};
   }
 
-  @media screen and ${device.tablet} {
-    justify-content: ${props => props.desktopNavAlignment};
-  }
-
-  li {
-    margin-bottom: 0;
+  span::after {
+    background: ${IdealTextColor(accentColor)};
+    color: ${accentColor};
   }
 `;
 
-export const ITEM = styled.li`
-  ${ListReset}
-  height: 100%;
-
-  @media screen and ${device.max_tablet} {
-    width: 100%;
-  }
-`;
-
-export const UTIL = styled.nav`
-  grid-area: util;
-  width: 100%;
-  height: 100%;
-`;
-
-export const EXTERNAL = styled.a`
+export const LINK = styled(GatsbyLink)`
   ${LinkReset}
   ${FlexCentered}
-  ${props => conditionalProp('props.cartIsempty', props.cartIsEmpty)}
-  ${props => conditionalProp(!props.cartIsEmpty, `
-    color: black;
-    fill: black;
-  `, `
-    color: ${props.color};
-    fill: ${props.color};
-  `)}
-
   display: inline-flex;
   line-height: 1.33;
   height: 100%;
@@ -67,11 +39,15 @@ export const EXTERNAL = styled.a`
   box-shadow: none;
   border: 0.25em solid transparent;
   transition: background-color 0.1s 0.05s, color 0.1s 0s;
+  margin-left: auto;
 
+  ${({ state }) => conditionalProp(state.isActive, activeState(state))}
+
+  &.active,
+  &:active,
   &:hover,
   &:focus {
-    font-weight: bold;
-    text-decoration: underline;
+    ${({ state }) => activeState(state)}
   }
 
   @media screen and ${device.max_tablet} {
@@ -80,44 +56,9 @@ export const EXTERNAL = styled.a`
   }
 
   svg {
-    transform: scale(-1,1);
 
     @media screen and ${device.tablet} {
-      width: 2em;
-      height: 2em;
     }
-  }
-`;
-
-export const LINK = styled(GatsbyLink)`
-  ${LinkReset}
-  ${FlexCentered}
-  ${props => conditionalProp(!props.state.cartIsEmpty, `
-    color: black;
-    fill: black;
-  `, `
-    color: ${props.state.color};
-    fill: ${props.state.color};
-  `)}
-
-  display: inline-flex;
-  padding: 1em 1.5em;
-  line-height: 1.33;
-  height: 100%;
-  outline-width: 0;
-  box-shadow: none;
-  border: 0.25em solid transparent;
-  transition: background-color 0.1s 0.05s, color 0.1s 0s;
-
-  &:hover,
-  &:focus {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-
-  @media screen and ${device.max_tablet} {
-    align-items: flex-start;
-    width: 100%;
   }
 `;
 
@@ -125,16 +66,28 @@ export const ICON = styled.span`
   ${FlexCentered}
   position: relative;
 
+  svg {
+    transform: scale(-1,1);
+    ${({ cartCount, accentColor }) => conditionalProp(cartCount === 0, `
+      color: black;
+      fill: black;
+    `, `
+      color: ${accentColor};
+      fill: ${accentColor};
+    `)}
+  }
+
   &::after {
     ${FlexCentered}
     content: '${({ cartCount }) => cartCount}';
+    position: relative;
     font-size: 0.75em;
-    width: 1.5em;
-    height: 1.5em;
+    width: ${({ cartCount }) => conditionalProp(cartCount > 99, 2.5, 1.5)}em;
+    height: ${({ cartCount }) => conditionalProp(cartCount > 99, 2, 1.5)}em;
     line-height: 1;
     position: absolute;
     bottom: ${100 * 2 / 3}%;
-    left: ${100 * 3 / 4}%;
+    left: ${({ cartCount }) => conditionalProp(cartCount > 99, 100 * 3 / 5, 100 * 3 / 4)}%;
     overflow: hidden;
     border-radius: 50%;
     background: ${({ accentColor }) => accentColor};

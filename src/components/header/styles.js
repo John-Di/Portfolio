@@ -83,6 +83,7 @@ const onStuck = ({ whiteOnHover, textColor, accentColor, isStuck = true }) => co
   box-shadow: 0 3px 1px rgba(0,0,0,0.2);
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
 
+  ${console.log('whiteOnHover', whiteOnHover)}
   @media screen and ${device.max_tablet} {
     a {
       background-color: transparent;
