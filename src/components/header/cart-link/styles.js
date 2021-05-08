@@ -173,13 +173,14 @@ export const ICON = styled.span`
   &::after {
     ${FlexCentered}
     content: '${({ cartCount }) => cartCount}';
+    position: relative;
     font-size: 0.75em;
-    width: 1.5em;
-    height: 1.5em;
+    width: ${({ cartCount }) => conditionalProp(cartCount > 99, 2.5, 1.5)}em;
+    height: ${({ cartCount }) => conditionalProp(cartCount > 99, 2, 1.5)}em;
     line-height: 1;
     position: absolute;
     bottom: ${100 * 2 / 3}%;
-    left: ${100 * 3 / 4}%;
+    left: ${({ cartCount }) => conditionalProp(cartCount > 99, 100 * 3 / 5, 100 * 3 / 4)}%;
     overflow: hidden;
     border-radius: 50%;
     background: ${({ accentColor }) => accentColor};

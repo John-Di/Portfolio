@@ -79,7 +79,7 @@ const CartLink = () => {
     >
       <ICON
         accentColor={accentColor}
-        cartCount={cartCount}
+        cartCount={+cartCount}
         textColor={IdealTextColor(accentColor)}>
         <CartIcon />
       </ICON>
