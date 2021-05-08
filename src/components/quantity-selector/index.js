@@ -3,7 +3,8 @@ import ShopContext from "../../contexts/ShopContext";
 import {
   LABEL,
   STEPPER,
-  BUTTON,
+  INCREASE,
+  DECREASE,
   INPUT
 } from './styles';
 
@@ -13,14 +14,14 @@ const QuantitySelector = ({ id, value = 0, increase, decrease, onChange }) => {
     <>
       <LABEL for={`quantity-stepper-${id}`}>Quantity</LABEL>
       <STEPPER>
-        <BUTTON onClick={decrease}></BUTTON>
+        <INCREASE onClick={increase}></INCREASE>
         <INPUT
           id={id}
           type="number"
           value={value}
           onChange={onChange}
         />
-        <BUTTON onClick={increase}></BUTTON>
+        <DECREASE onClick={decrease}></DECREASE>
       </STEPPER>
     </>
   );

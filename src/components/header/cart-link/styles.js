@@ -144,6 +144,8 @@ export const ICON = styled.span`
       color: ${accentColor};
       fill: ${accentColor};
     `)}
+    color: black;
+    fill: black;
   }
 
   &::after {

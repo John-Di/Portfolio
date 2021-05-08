@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Clearfix from '../../utils/Clearfix';
-import { FloatRight } from '../../utils/Float';
+import { FloatLeft, FloatRight } from '../../utils/Float';
 import FullSizeOverlay from '../../utils/FullSizeOverlay';
 import { ButtonReset } from '../../utils/Resets';
 
@@ -8,13 +8,14 @@ export const STEPPER = styled.div`
   ${Clearfix}
   display: inline-block;
   border: 1px solid black;
+  direction: rtl;
 
   > * {
     vertical-align: bottom;
   }
 `;
 
-export const BUTTON = styled.button`
+const minusButton = `
   ${ButtonReset}
   ${FloatRight}
   border: 0;
@@ -22,13 +23,12 @@ export const BUTTON = styled.button`
   height: 1.75em;
   position: relative;
 
-  &::before,
-  ~ button::after {
+  &::before {
     content: '';
+    background: black;
     position: absolute;
     top: 50%;
     left: 50%;
-    background: black;
     transform: translate(-50%, -50%);
   }
 
@@ -37,14 +37,29 @@ export const BUTTON = styled.button`
     width: ${100 / 2}%;
   }
 
-  ~ button::after {
+`;
+
+export const DECREASE = styled.button`
+  ${minusButton}
+`;
+
+export const INCREASE = styled.button`
+  ${minusButton}
+
+  &::after {
+    content: '';
+    background: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     height: ${100 / 2}%;
     width: 2px;
+    transform: translate(-50%, -50%);
   }
 `;
 
 export const INPUT = styled.input`
-  ${FloatRight}
+  ${FloatLeft}
   border: 0;
   width: 1.875em;
   height: 1.75em;

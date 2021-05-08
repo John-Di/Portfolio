@@ -22,7 +22,7 @@ export const THUMBNAIL = styled.div`
 export const DETAILS = styled.div`
   ${FloatLeftHalf}
   width: 100%;
-  max-width: 50%;
+  max-width: calc(100% - 6em);
 `;
 
 export const CONTAINER = styled.form`

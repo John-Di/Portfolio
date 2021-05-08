@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import { conditionalProp } from '../../../../utils/AssessProps';
-import { ButtonReset } from '../../../../utils/Resets';
-
 
 export const THUMBNAIL = styled.div`
   width: 100%;
@@ -18,6 +15,7 @@ export const IMG = styled.img`
 export const OPTIONS = styled.dl`
   display: flex;
   margin: 0.75em -0.25em -0.25em;
+  display: none;
 `;
 
 export const DESCRIPTION = styled.div`
