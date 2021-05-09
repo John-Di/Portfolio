@@ -29,8 +29,12 @@ export const QUICKCART = styled.aside`
       padding: 0 2%;
     }
   `, `
-    padding: 0 2%;
   `)}
+`;
+
+export const HEADER = styled.header`
+  padding: 0 6%;
+  box-shadow: 0 3px 0px 0px rgba(0,0,0,0.2);;
 `;
 
 export const ITEMS = styled.ul`
@@ -42,6 +46,13 @@ export const ITEM = styled.li`
 `;
 
 export const H1 = styled.h1`
+  display: block;
   margin: 0;
-  padding: 0.5em 0;
+  height: 1.6em;
+  line-height: 1.6;
+  vertical-align: middle;
+`;
+
+export const FOOTER = styled.footer`
+
 `;

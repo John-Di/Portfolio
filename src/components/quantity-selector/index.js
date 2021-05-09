@@ -5,23 +5,30 @@ import {
   STEPPER,
   INCREASE,
   DECREASE,
-  INPUT
+  INPUT,
+  ICON,
+  ARROWICON,
+  MATHICON
 } from './styles';
 
 const QuantitySelector = ({ id, value = 0, increase, decrease, onChange }) => {
 
   return (
     <>
-      <LABEL for={`quantity-stepper-${id}`}>Quantity</LABEL>
+      {/* <LABEL for={`quantity-stepper-${id}`}>Quantity</LABEL> */}
       <STEPPER>
-        <INCREASE onClick={increase}></INCREASE>
+        <INCREASE onClick={increase}>
+          <ARROWICON />
+        </INCREASE>
         <INPUT
           id={id}
           type="number"
           value={value}
           onChange={onChange}
         />
-        <DECREASE onClick={decrease}></DECREASE>
+        <DECREASE onClick={decrease}>
+          <ARROWICON />
+        </DECREASE>
       </STEPPER>
     </>
   );

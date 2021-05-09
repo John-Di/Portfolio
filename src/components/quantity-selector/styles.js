@@ -6,63 +6,91 @@ import { ButtonReset } from '../../utils/Resets';
 
 export const STEPPER = styled.div`
   ${Clearfix}
+
+  > * {
+    vertical-align: bottom;
+  }
+
+  button {
+    ${ButtonReset}
+    display: block;
+    margin: auto;
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+
+    span {
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -25%);
+    }
+
+    ~ button span {
+      transform: translate(-50%,-75%) rotate(180deg);
+    }
+  }
+`;
+
+const minusButton = `
+  ${FloatRight}
+  border: 0;
+  width: 1.75em;
+  height: 1.75em;
+  position: relative;
+`;
+
+const upArrow = `
+  &::before {
+    content: '';
+    display: inline-block;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    top: 50%;
+    width: ${1.75 / 2}em;
+    height: ${1.75 / 2}em;
+    transform: rotate(45deg);
+  }
+`;
+
+export const ARROWICON = styled.span`
+  ${upArrow}
+`;
+
+export const ICON = styled.span`
+  ${Clearfix}
   display: inline-block;
-  border: 1px solid black;
-  direction: rtl;
 
   > * {
     vertical-align: bottom;
   }
 `;
 
-const minusButton = `
-  ${ButtonReset}
-  ${FloatRight}
-  border: 0;
-  width: 1.75em;
-  height: 1.75em;
-  position: relative;
+export const MATHICON = styled.span`
+  ${Clearfix}
+  display: inline-block;
 
-  &::before {
-    content: '';
-    background: black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  > * {
+    vertical-align: bottom;
   }
-
-  &::before {
-    height: 2px;
-    width: ${100 / 2}%;
-  }
-
 `;
 
 export const DECREASE = styled.button`
-  ${minusButton}
+  span {
+    transform: rotate(180deg);
+  }
 `;
 
 export const INCREASE = styled.button`
-  ${minusButton}
-
-  &::after {
-    content: '';
-    background: black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: ${100 / 2}%;
-    width: 2px;
-    transform: translate(-50%, -50%);
-  }
 `;
 
 export const INPUT = styled.input`
   ${FloatLeft}
+  background: none;
   border: 0;
-  width: 1.875em;
-  height: 1.75em;
+  width: 100%;
+  height: 1.5em;
   text-align: center;
 
   &[type=number] {

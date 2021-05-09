@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import {
   QUICKCART,
   ITEMS,
+  HEADER,
   H1,
   ITEM
 } from './styles';
@@ -24,7 +25,10 @@ export default function QuickCart({
       isOpen={isOpen}
       innerPadding={innerPadding}
     >
-      <H1>Cart</H1>
+      <HEADER>
+        <H1>Cart</H1>
+
+      </HEADER>
       <ITEMS>
         {arrayToComponentSiblings(lineItems, (item, i) => {
           return (
@@ -34,6 +38,9 @@ export default function QuickCart({
           )
         })}
       </ITEMS>
+      <footer>
+        Footer
+      </footer>
     </QUICKCART>
   );
 }

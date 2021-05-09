@@ -6,6 +6,7 @@ import {
   THUMBNAIL,
   DETAILS,
   CONTAINER,
+  OPTIONS,
   QUANTITYSTEPPER
 } from './styles';
 import Options from "./options";
@@ -58,13 +59,12 @@ export default function LineItem({
       </THUMBNAIL>
       <DETAILS>
         <CONTAINER>
-          <TITLE>{item.title}<br /><span style={{
-            "font-weight": "normal",
-            "font-size": "0.875em",
-            "text-transform": "lowercase",
-            "margin-top": "0.5em"
-          }}>{item.variant.title}</span></TITLE>
-          <Options options={selectedOptions} />
+          <TITLE>
+            {item.title} <span>${item.variant.price}</span>
+          </TITLE>
+          <OPTIONS>
+            <Options options={selectedOptions} />
+          </OPTIONS>
           <QUANTITYSTEPPER>
             <QuantitySelector
               id={`quantity-stepper-${id}`}
