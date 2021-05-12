@@ -4,6 +4,7 @@ const FloatLeft = (maxWidth = '50%') => `
   max-width: ${maxWidth};
   flex: 1 ${maxWidth};
   vertical-align: bottom;
+  width: 100%;
 `;
 export const FloatLeftHalf = FloatLeft();
 export const FloatLeftThird = FloatLeft(`${100 / 3}%`);
@@ -15,6 +16,7 @@ const FloatRight = (maxWidth = '50%') => `
   max-width: ${maxWidth};
   flex: 1 ${maxWidth};
   vertical-align: bottom;
+  width: 100%;
 `;
 
 export const FloatRightHalf = FloatRight();

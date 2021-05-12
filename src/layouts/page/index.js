@@ -9,6 +9,7 @@ import Header from '../../components/header';
 import PageContext from "../../contexts/PageContext";
 import Overlay from "../../components/overlay";
 import QuickCart from "../../components/quick-cart";
+import ThemeContext from '../../contexts/ThemeContext';
 
 // styles
 const pageStyles = {
@@ -22,13 +23,16 @@ const Page = ({ children }) => {
     scrollTop,
     isMenuOpen,
     mainRef
-  } = useContext(PageContext);
+  } = useContext(PageContext), {
+    accentColor
+  } = useContext(ThemeContext);
 
   // console.log('menuIndex', menuIndex, isScrollLocked);
   return (
     <PAGE style={pageStyles}
       isLocked={isMenuOpen}
       scrollPosition={scrollTop}
+      accentColor={accentColor}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
       <Overlay />

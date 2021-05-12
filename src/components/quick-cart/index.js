@@ -4,7 +4,11 @@ import {
   ITEMS,
   HEADER,
   H1,
-  ITEM
+  ITEM,
+  FOOTER,
+  TOTALS,
+  CART,
+  CHECKOUT
 } from './styles';
 import ShopContext from "../../contexts/ShopContext";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
@@ -15,10 +19,16 @@ export default function QuickCart({
   innerPadding = false
 }) {
   const {
-    lineItems
+    store,
+    lineItems,
+    checkoutURL
   } = useContext(ShopContext), {
-    isOpen
-  } = useContext(CartFlyoutContext);
+    ref,
+    isOpen,
+    footerHeight
+  } = useContext(CartFlyoutContext), {
+    subtotalPrice
+  } = store.checkout;
 
   return (
     <QUICKCART
@@ -29,7 +39,7 @@ export default function QuickCart({
         <H1>Cart</H1>
 
       </HEADER>
-      <ITEMS>
+      <ITEMS footerHeight={footerHeight}>
         {arrayToComponentSiblings(lineItems, (item, i) => {
           return (
             <ITEM>
@@ -38,9 +48,14 @@ export default function QuickCart({
           )
         })}
       </ITEMS>
-      <footer>
-        Footer
-      </footer>
+      <FOOTER ref={ref} footerHeight={footerHeight}>
+        <TOTALS>
+          <dt>Subtotal</dt>
+          <dd>{`$${subtotalPrice}`}</dd>
+        </TOTALS>
+        <CART href={`/cart/`}>Go to Cart</CART>
+        <CHECKOUT href={checkoutURL} target="_blank">Checkout</CHECKOUT>
+      </FOOTER>
     </QUICKCART>
   );
 }

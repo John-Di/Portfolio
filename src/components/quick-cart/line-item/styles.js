@@ -34,8 +34,8 @@ export const THUMBNAIL = styled.div`
 export const DETAILS = styled.div`
   display: inline-block;
   float: left;
-  flex: 1 ${100 * 3 / 4}%;
-  max-width: ${100 * 3 / 4}%;
+  flex: 1 ${(100 * 3 / 4) - 3}%;
+  max-width: ${(100 * 3 / 4) - 3}%;
   width: 100%;
 `;
 

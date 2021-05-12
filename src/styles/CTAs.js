@@ -18,6 +18,7 @@ export const FancyButtonStyles = ({
   font-weight: normal;
   border-style: solid;
   min-width: 5em;
+  text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.2px;
   transition: background-color 0.1s, color 0.1s;

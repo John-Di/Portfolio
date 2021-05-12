@@ -20,6 +20,33 @@ export const PAGE = styled.div`
   overflow: auto;
   position: relative;
 
+  &,
+  & * {
+      /* width */
+    ::-webkit-scrollbar {
+      cursor: pointer;
+      width: 0.75em;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      cursor: pointer;
+      box-shadow: inset 0 0 1px grey;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      cursor: pointer;
+      background: ${({ accentColor }) => accentColor}55;
+      transition: width 0.5s ease-in 0;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${({ accentColor }) => accentColor}AA;
+    }
+  }
+
   ${assessState}
 
   main {
