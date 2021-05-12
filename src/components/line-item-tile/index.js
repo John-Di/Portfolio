@@ -15,7 +15,8 @@ export default function LineItemTile({
 
   const {
     description,
-    variant
+    variant,
+    handle
   } = useContext(ProductContext);
 
   let {
@@ -31,6 +32,7 @@ export default function LineItemTile({
       className="line-item-tile"
       heading={title}
       backgroundImage={image.src}
+      url={`/products/${product.handle}`}
       value={price && <PRICE>{price}</PRICE>}
     >
       {children && (<BODY>{children}</BODY>)}

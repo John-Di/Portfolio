@@ -35,10 +35,10 @@ const AccountLink = ({ hasAccount = false }) => {
   const {
     store,
     cartCount,
-    checkoutURL
-  } = useContext(ShopContext), {
-    selectMenuItem,
+    checkoutURL,
     cartIsEmpty
+  } = useContext(ShopContext), {
+    selectMenuItem
   } = useContext(PageContext), {
     accentColor
   } = useContext(ThemeContext);

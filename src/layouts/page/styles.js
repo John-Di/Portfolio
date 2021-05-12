@@ -50,6 +50,6 @@ export const PAGE = styled.div`
   ${assessState}
 
   main {
-    margin: 5.1875em 0;
+    margin: 4em 0;
   }
 `;

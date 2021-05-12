@@ -6,15 +6,8 @@ import {
   useCallback
 } from "react";
 import CartFlyoutContext from "../contexts/CartFlyoutContext";
-import ShopContext from '../contexts/ShopContext';
-import HandleScrollLock from '../utils/ScrollLock';
 
-function usePageNavigation() {
-  const {
-    store
-  } = useContext(ShopContext), {
-    isOpen
-  } = useContext(CartFlyoutContext);
+function usePageNavigation({ isOpen }) {
 
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [isStuck, SetStickyState] = useState(false);
@@ -41,7 +34,7 @@ function usePageNavigation() {
   };
 
   const HandleMenuClose = () => {
-
+    if (!headerRef.current) return
     function isValidHeaderTrigger({ target }) {
       let { current } = headerRef;
       return current.contains(target);
@@ -84,7 +77,6 @@ function usePageNavigation() {
     headerRef,
     drawerRef,
     mainRef,
-    cartIsEmpty: !store.checkout.lineItems.length,
     selectMenuItem,
     toggleMenu,
     closeMenu

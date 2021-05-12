@@ -24,6 +24,7 @@ import {
 import { arrayToComponentSiblings, jsxCloneArray } from '../utils/dom-builder';
 import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
+import ShopPageTemplate from "../templates/shop-page";
 
 
 export const query = graphql`
@@ -33,6 +34,7 @@ export const query = graphql`
         title
         description
         id
+        handle
         variants {
           shopifyId
           priceV2 {
@@ -55,16 +57,17 @@ export const query = graphql`
 `;
 
 // markup
-const StyleGuidePage = ({ data }) => {
+const StyleGuidePage = ({ location = {}, data }) => {
   let accentColor = randomColor();
   let heroWidth = randomBool(1);
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
 
   let featured_products = data.allShopifyProduct.nodes.filter((_, i) => i < 4);
   return (
-    <PageTemplate
+    <ShopPageTemplate
       accentColor={accentColor}
       hasCart={true}
+      location={location}
     >
       <StyleGuideArticle>
         <HeroBanner
@@ -166,7 +169,7 @@ const StyleGuidePage = ({ data }) => {
           })}
         </FeaturedTiles>
       </StyleGuideArticle>
-    </PageTemplate>
+    </ShopPageTemplate>
   )
 }
 

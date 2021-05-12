@@ -10,6 +10,7 @@ import PageContext from "../../contexts/PageContext";
 import Overlay from "../../components/overlay";
 import QuickCart from "../../components/quick-cart";
 import ThemeContext from '../../contexts/ThemeContext';
+import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 
 // styles
 const pageStyles = {
@@ -35,7 +36,7 @@ const Page = ({ children }) => {
       accentColor={accentColor}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
-      <Overlay />
+      {useContext(CartFlyoutContext) && <Overlay />}
       <Header />
       <main ref={mainRef}>
         {children}

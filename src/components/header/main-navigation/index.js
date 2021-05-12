@@ -48,12 +48,12 @@ const MainNavigation = ({
   let whiteOnHover = !!heroImage || isActive;
 
   const {
-    store
+    store,
+    cartIsEmpty
   } = useContext(ShopContext), {
     isStuck,
     isMenuOpen,
     drawerRef,
-    cartIsEmpty,
     selectMenuItem,
     toggleMenu
   } = useContext(PageContext), {

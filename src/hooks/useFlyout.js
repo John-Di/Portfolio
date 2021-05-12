@@ -22,7 +22,7 @@ function useFlyout({ initState = false }) {
     footerHeight = ref.current.offsetHeight;
   }
 
-  useEffect(onFooterHeightChange, [window.innerWidth]);
+  useEffect(onFooterHeightChange, []);
 
   return { ref, isOpen, footerHeight, openFlyout, closeFlyout, toggleFlyout };
 }

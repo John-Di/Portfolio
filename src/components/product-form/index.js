@@ -10,6 +10,7 @@ import {
   FORM,
   CTA
 } from './styles';
+import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 
 // markup
 const ProductForm = ({
@@ -19,8 +20,15 @@ const ProductForm = ({
     addToCart,
     removeFromCart
   } = useContext(ProductFormContext), {
+    openFlyout
+  } = useContext(CartFlyoutContext), {
     emptyCart
   } = useContext(ShopContext);
+
+  const onClick = async (e) => {
+    await addToCart(e);
+    openFlyout();
+  }
 
   return (
     <FORM>
@@ -31,7 +39,7 @@ const ProductForm = ({
           backgroundColor={`#FFFFFF`}
           textColor={`#000000`}
           maxWidth={`${size.mobileXL / 16}em`}
-          onClick={addToCart}
+          onClick={onClick}
         >Add to Cart</FancyCTA>
       </CTA>
       <CTA>

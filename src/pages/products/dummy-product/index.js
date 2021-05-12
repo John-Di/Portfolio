@@ -1,6 +1,4 @@
-import React, {
-  useContext
-} from "react";
+import React from "react";
 import {
   randomColor,
   randomIntegerEx,
@@ -8,7 +6,11 @@ import {
   randomImageArray,
   randomBool
 } from '../../../utils/randoms';
-import ProductPage from '../../../layouts/product-page';
+import ProductProvider from "../../../providers/ProductProvider";
+import PageTemplateProvider from "../../../providers/PageTemplateProvider";
+import StoreTemplateProvider from "../../../providers/StoreTemplateProvider";
+
+
 
 const productOptions = [{
   "name": "Color",
@@ -80,16 +82,18 @@ const DUMMY_PRODUCT = {
   variants
 };
 
-const ProductContext = React.createContext(DUMMY_PRODUCT);
+const ProductTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
 
-// markup
-const DummyProduct = () => {
-  let accentColor = randomColor();
-  const DummyProductContext = useContext(ProductContext);
-  let selectedVariant = DummyProductContext.variants[randomIntegerEx(0, DummyProductContext.variants.length)];
   return (
-    <ProductPage accentColor={accentColor} selectedID={selectedVariant.id} {...DummyProductContext} />
+    <StoreTemplateProvider location={location} >
+      <ProductProvider product={DUMMY_PRODUCT}>
+        <PageTemplateProvider location={location}>
+          {/* <ProductPage location={location} /> */}
+          Sup
+        </PageTemplateProvider>
+      </ProductProvider>
+    </StoreTemplateProvider>
   )
 }
 
-export default DummyProduct;
+export default ProductTemplate;

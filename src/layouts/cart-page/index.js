@@ -1,24 +1,23 @@
 import React, { useContext } from "react";
-import PageTemplate from '../../templates/page';
 import LineItemGrid from '../../components/line-item-grid';
+import PageTemplateProvider from "../../providers/PageTemplateProvider";
+import StoreTemplateProvider from "../../providers/StoreTemplateProvider";
 import {
   ARTICLE,
   TITLE,
 } from './styles';
-import LocationContext from "../../contexts/LocationContext";
 
 // markup
-const CartPage = () => {
-  const {
-    state
-  } = useContext(LocationContext);
+const CartPage = ({ location = {} }) => {
   return (
-    <PageTemplate location={state}>
-      <ARTICLE>
-        <TITLE>Cart</TITLE>
-        <LineItemGrid />
-      </ARTICLE>
-    </PageTemplate>
+    <StoreTemplateProvider location={location} >
+      <PageTemplateProvider location={location}>
+        <ARTICLE>
+          <TITLE>Cart</TITLE>
+          <LineItemGrid />
+        </ARTICLE>
+      </PageTemplateProvider>
+    </StoreTemplateProvider>
   )
 }
 

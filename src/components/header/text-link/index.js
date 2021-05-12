@@ -13,10 +13,10 @@ const TextLink = ({ href, label, index }) => {
   const {
     store,
     cartCount,
-    checkoutURL
+    checkoutURL,
+    cartIsEmpty
   } = useContext(ShopContext), {
     selectMenuItem,
-    cartIsEmpty
   } = useContext(PageContext), {
     accentColor
   } = useContext(ThemeContext);

@@ -146,6 +146,7 @@ function useShop() {
     lineItems,
     cartCount,
     checkoutURL: store.checkout.webUrl,
+    cartIsEmpty: !store.checkout.lineItems.length,
     addVariantToCart,
     updateLineItem,
     emptyCart,

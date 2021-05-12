@@ -54,7 +54,7 @@ export default function QuickCart({
           <dd>{`$${subtotalPrice}`}</dd>
         </TOTALS>
         <CART href={`/cart/`}>Go to Cart</CART>
-        <CHECKOUT href={checkoutURL} target="_blank">Checkout</CHECKOUT>
+        {/* <CHECKOUT href={checkoutURL} target="_blank">Checkout</CHECKOUT> */}
       </FOOTER>
     </QUICKCART>
   );

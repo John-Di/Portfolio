@@ -14,7 +14,8 @@ export default function ProductTile({
   description,
   children,
   price,
-  maxWidth
+  maxWidth,
+  url
 }) {
   return (
     <ObjectTile
@@ -22,6 +23,7 @@ export default function ProductTile({
       heading={heading}
       image={image}
       body={description}
+      url={url}
       maxWidth={`${size.mobileS / 16}em`}
       value={price && <PRICE>{price}</PRICE>}
     >

@@ -6,6 +6,8 @@ import {
   randomBool
 } from '../../utils/randoms';
 import { size } from '../../utils/variables';
+import GalleryContext from "../../contexts/GalleryContext";
+import useGallery from "../../hooks/useGallery";
 
 export default function ImageGallerySection({ children, images, half = false }) {
 
@@ -27,12 +29,18 @@ export default function ImageGallerySection({ children, images, half = false }) 
 
 
   return (
-    <Section maxWidth={`${size.laptopL}px`} hasPadding={true}
-      hasMarginSmall={false}
-      hasMarginLarge={true}
-      heading={(<h1>Image Gallery Section</h1>)}
-      subheading={children && (<h2>with a Text Block</h2>)}>
-      {inner}
-    </Section >
+    <GalleryContext.Provider value={useGallery({
+      max: 8,
+      images,
+      currentIndex: 0
+    })} >
+      <Section maxWidth={`${size.laptopL}px`} hasPadding={true}
+        hasMarginSmall={false}
+        hasMarginLarge={true}
+        heading={(<h1>Image Gallery Section</h1>)}
+        subheading={children && (<h2>with a Text Block</h2>)}>
+        {inner}
+      </Section >
+    </GalleryContext.Provider>
   );
 }
