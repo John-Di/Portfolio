@@ -2,7 +2,7 @@ import {
   conditionalProp
 } from '../utils/AssessProps';
 import { ButtonReset } from '../utils/Resets';
-import IdealTextColor from '../utils/IdealTextColor';
+import BasicContrast from '../utils/BasicContrast';
 
 export const FancyButtonStyles = ({
   modest = { isModest: false },
@@ -37,7 +37,7 @@ export const FancyButtonStyles = ({
   &:hover,
   &:focus {
     ${conditionalProp(textColor, `background-color: ${textColor};`)}
-    ${conditionalProp(accentColor, `color: ${accentColor};`, conditionalProp(backgroundColor, `color: ${backgroundColor};`, `color: ${IdealTextColor(textColor)};`))}
+    ${conditionalProp(accentColor, `color: ${accentColor};`, conditionalProp(backgroundColor, `color: ${backgroundColor};`, `color: ${BasicContrast(textColor)};`))}
     ${conditionalProp(textColor, `border-color: ${textColor};`)}
   }
 `;

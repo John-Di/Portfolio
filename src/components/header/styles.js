@@ -3,7 +3,7 @@ import { device } from '../../utils/variables';
 import {
   conditionalProp
 } from '../../utils/AssessProps';
-import IdealTextColor from '../../utils/IdealTextColor';
+import BasicContrast from '../../utils/BasicContrast';
 import { preparePathsFilter } from 'graphql-compose/lib/utils/filterByDotPaths';
 
 const HeaderTabletProps = ({ isActive, whiteOnHover, textColor, accentColor }) => `
@@ -37,7 +37,7 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, textColor, accentColor }) =
           &:hover,
           &:focus {
             background-color: ${accentColor};
-            color: ${IdealTextColor(textColor)};
+            color: ${BasicContrast(textColor)};
           }
         }
       }
@@ -177,13 +177,13 @@ export const HEADER = styled.header`
       color: ${props => props.accentColor};
 
       // @media screen and ${device.tablet} {
-      //   background-color: ${props => IdealTextColor(props.accentColor)};
+      //   background-color: ${props => BasicContrast(props.accentColor)};
       // }
     }
 
     &:active,
     &.active {
-      color: ${props => IdealTextColor(props.accentColor)};
+      color: ${props => BasicContrast(props.accentColor)};
 
       @media screen and ${device.tablet} {
         background-color: ${props => props.accentColor};
@@ -191,9 +191,9 @@ export const HEADER = styled.header`
     }
   }
 
-  ${props => conditionalProp(props.quickCartTop, `
+  ${({ quickCartTop }) => conditionalProp(quickCartTop, `
     ~ aside {
-      top: ${(props.quickCartTop - 1) / 16}em;
+      top: ${(quickCartTop - 1) / 16}em;
     }
   `)}
 `;

@@ -5,7 +5,7 @@ import ThemeContext from "../../../contexts/ThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
 import AccountIcon from '../../../images/svgs/account.svg';
-import IdealTextColor from "../../../utils/IdealTextColor";
+import BasicContrast from "../../../utils/BasicContrast";
 import {
   LINK,
   ICON
@@ -66,7 +66,7 @@ const AccountLink = ({ hasAccount = false }) => {
       <ICON
         accentColor={accentColor}
         cartCount={cartCount}
-        textColor={IdealTextColor(accentColor)}>
+        textColor={BasicContrast(accentColor)}>
         <AccountIcon />
       </ICON>
     </LINK>

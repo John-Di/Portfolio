@@ -10,21 +10,21 @@ import {
 import {
   FlexCentered
 } from '../../../utils/Flex';
-import IdealTextColor from '../../../utils/IdealTextColor';
+import BasicContrast from '../../../utils/BasicContrast';
 
 const activeState = ({ accentColor }) => `
   background-color: ${accentColor};
-  color: ${IdealTextColor(accentColor)};
+  color: ${BasicContrast(accentColor)};
   font-weight: bold;
   text-decoration: underline;
 
   svg {
-    color: ${IdealTextColor(accentColor)};
-    fill: ${IdealTextColor(accentColor)};
+    color: ${BasicContrast(accentColor)};
+    fill: ${BasicContrast(accentColor)};
   }
 
   span::after {
-    background: ${IdealTextColor(accentColor)};
+    background: ${BasicContrast(accentColor)};
     color: ${accentColor};
   }
 `;
@@ -82,17 +82,17 @@ export const CHECKOUT = styled.a`
 
   ${props => conditionalProp(props.isActive, `
     background-color: ${props => props.accentColor};
-    color: ${props => IdealTextColor(props.accentColor)};
+    color: ${props => BasicContrast(props.accentColor)};
     font-weight: bold;
     text-decoration: underline;
 
     svg {
-      color: ${props => IdealTextColor(props.accentColor)};
-      fill: ${props => IdealTextColor(props.accentColor)};
+      color: ${props => BasicContrast(props.accentColor)};
+      fill: ${props => BasicContrast(props.accentColor)};
     }
 
     span::after {
-      background: ${props => IdealTextColor(props.accentColor)};
+      background: ${props => BasicContrast(props.accentColor)};
       color: ${props => props.accentColor};
     }
   `)}
@@ -100,17 +100,17 @@ export const CHECKOUT = styled.a`
   &:hover,
   &:focus {
     background-color: ${props => props.accentColor};
-    color: ${props => IdealTextColor(props.accentColor)};
+    color: ${props => BasicContrast(props.accentColor)};
     font-weight: bold;
     text-decoration: underline;
 
     svg {
-      color: ${props => IdealTextColor(props.accentColor)};
-      fill: ${props => IdealTextColor(props.accentColor)};
+      color: ${props => BasicContrast(props.accentColor)};
+      fill: ${props => BasicContrast(props.accentColor)};
     }
 
     span::after {
-      background: ${props => IdealTextColor(props.accentColor)};
+      background: ${props => BasicContrast(props.accentColor)};
       color: ${props => props.accentColor};
     }
   }

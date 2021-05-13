@@ -11,7 +11,7 @@ import {
 import {
   Link as GatsbyLink
 } from "gatsby";
-import IdealTextColor from '../../../utils/IdealTextColor';
+import BasicContrast from '../../../utils/BasicContrast';
 
 export const LINK = styled(GatsbyLink)`
   ${LinkReset}

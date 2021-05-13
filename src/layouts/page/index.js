@@ -36,11 +36,11 @@ const Page = ({ children }) => {
       accentColor={accentColor}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
-      {useContext(CartFlyoutContext) && <Overlay />}
       <Header />
       <main ref={mainRef}>
         {children}
       </main>
+      {useContext(CartFlyoutContext) && <Overlay />}
       <QuickCart />
       <BackToTop isActive={scrollTop > 0} />
     </PAGE>

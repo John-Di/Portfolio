@@ -3,6 +3,7 @@ import {
   useReducer,
   useState
 } from "react";
+import BasicContrast from "../utils/BasicContrast";
 import { randomColor } from "../utils/randoms";
 
 const actionTypes = {
@@ -16,11 +17,11 @@ export const themeReducer = (state, { theme }) => ({
   theme
 });
 
-function useTheme({ reducer = themeReducer, accentColor, initTheme = 'fancy' }) {
-
+function useTheme({ reducer = themeReducer, accentColor = randomColor(), initTheme = 'fancy' }) {
 
   const [theme, changeTheme] = useState({
-    accentColor: randomColor(),
+    accentColor,
+    accentContrast: BasicContrast(accentColor),
     name: initTheme
   });
 

@@ -13,7 +13,7 @@ import FourPairSection from '../sections/four-pair-section';
 import PageTemplate from '../templates/page';
 import FancyCTA from '../components/fancy-cta';
 import ImageGallerySection from '../sections/image-gallery-section';
-import IdealTextColor from '../utils/IdealTextColor';
+import BasicContrast from '../utils/BasicContrast';
 import {
   randomColor,
   randomImage,
@@ -87,7 +87,7 @@ const StyleGuidePage = ({ location = {}, data }) => {
             <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
             <FancyCTA
               accentColor={accentColor}
-              textColor={IdealTextColor(accentColor)}
+              textColor={BasicContrast(accentColor)}
             >The Buttons Still Do Nothing</FancyCTA>
           </TextBlock>
         </HeroBanner>

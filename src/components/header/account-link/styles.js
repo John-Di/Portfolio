@@ -10,21 +10,21 @@ import {
 import {
   FlexCentered
 } from '../../../utils/Flex';
-import IdealTextColor from '../../../utils/IdealTextColor';
+import BasicContrast from '../../../utils/BasicContrast';
 
 const activeState = ({ accentColor }) => `
   background-color: ${accentColor};
-  color: ${IdealTextColor(accentColor)};
+  color: ${BasicContrast(accentColor)};
   font-weight: bold;
   text-decoration: underline;
 
   svg {
-    color: ${IdealTextColor(accentColor)};
-    fill: ${IdealTextColor(accentColor)};
+    color: ${BasicContrast(accentColor)};
+    fill: ${BasicContrast(accentColor)};
   }
 
   span::after {
-    background: ${IdealTextColor(accentColor)};
+    background: ${BasicContrast(accentColor)};
     color: ${accentColor};
   }
 `;

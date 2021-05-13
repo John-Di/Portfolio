@@ -57,8 +57,8 @@ export const ITEM = styled.li`
 export const H1 = styled.h1`
   display: block;
   margin: 0;
-  height: 1.6em;
-  line-height: 1.6;
+  height: 1.575em;
+  line-height: 1.575;
   vertical-align: middle;
 `;
 
@@ -68,6 +68,11 @@ export const FOOTER = styled.footer`
   padding: 2% 9% 4% 6%;
   position: relative;
   z-index: 1;
+
+  a,
+  button {
+    margin-top: 1em;
+  }
 `;
 
 export const TOTALS = styled.dl`

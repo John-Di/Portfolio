@@ -5,7 +5,7 @@ import ThemeContext from "../../../contexts/ThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
 import CartIcon from '../../../images/svgs/cart.svg';
-import IdealTextColor from "../../../utils/IdealTextColor";
+import BasicContrast from "../../../utils/BasicContrast";
 import {
   CART,
   CHECKOUT,
@@ -80,7 +80,7 @@ const CartLink = () => {
       <ICON
         accentColor={accentColor}
         cartCount={+cartCount}
-        textColor={IdealTextColor(accentColor)}>
+        textColor={BasicContrast(accentColor)}>
         <CartIcon />
       </ICON>
     </CART>
@@ -95,12 +95,12 @@ const CartLink = () => {
     //   cartCount={cartCount}
     //   cartIsEmpty={cartIsEmpty}
     //   accentColor={accentColor}
-    //   textColor={IdealTextColor(accentColor)}
+    //   textColor={BasicContrast(accentColor)}
     // >
     //   <ICON
     //     accentColor={accentColor}
     //     cartCount={cartCount}
-    //     textColor={IdealTextColor(accentColor)}>
+    //     textColor={BasicContrast(accentColor)}>
     //     <CartIcon />
     //   </ICON>
     // </CHECKOUT>

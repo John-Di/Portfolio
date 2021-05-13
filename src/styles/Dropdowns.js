@@ -3,7 +3,7 @@ import {
 } from '../utils/AssessProps';
 import { ButtonReset, ListReset } from '../utils/Resets';
 import { VerticalLine } from '../utils/Flex';
-import IdealTextColor from '../utils/IdealTextColor';
+import BasicContrast from '../utils/BasicContrast';
 
 export const FancyDropdownStyles = ({
   modest = { isModest: false },
@@ -59,7 +59,7 @@ export const FancyDropdownStyles = ({
     &:hover,
     &:focus {
       ${conditionalProp(textColor, `background-color: ${textColor};`)}
-      ${conditionalProp(accentColor, `color: ${accentColor};`, conditionalProp(backgroundColor, `color: ${backgroundColor};`, `color: ${IdealTextColor(textColor)};`))}
+      ${conditionalProp(accentColor, `color: ${accentColor};`, conditionalProp(backgroundColor, `color: ${backgroundColor};`, `color: ${BasicContrast(textColor)};`))}
     }
   }
 `;

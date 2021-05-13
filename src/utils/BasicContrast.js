@@ -3,7 +3,7 @@ const colorMap = {
   'black': '#000000'
 }
 
-const IdealTextColor = (bgColor, color = { lightColor: `#000000`, darkColor: `#ffffff` }, resultOpacity = 1) => {
+const BasicContrast = (bgColor, color = { lightColor: `#000000`, darkColor: `#ffffff` }, resultOpacity = 1) => {
 
   if (!bgColor) {
     return `#000000`;
@@ -31,4 +31,4 @@ export const getRGBComponents = color => {
   };
 };
 
-export default IdealTextColor;
+export default BasicContrast;

@@ -4,7 +4,7 @@ import {
   conditionalProp
 } from '../../utils/AssessProps';
 import VisuallyHidden from '../../utils/VisuallyHidden';
-import IdealTextColor from '../../utils/IdealTextColor';
+import BasicContrast from '../../utils/BasicContrast';
 import { color } from '../../utils/variables';
 
 export const INPUT = styled.input`
@@ -22,13 +22,13 @@ export const LABEL = styled.label`
 
   ${props => conditionalProp(props.isCurrent, `
     outline: 1px solid black;
-    border: 2px solid ${IdealTextColor(color[props.backgroundColor])};
+    border: 2px solid ${BasicContrast(color[props.backgroundColor])};
   `)};
 
   &:hover,
   &:focus {
     outline: 1px solid black;
-    border: 2px solid ${props => IdealTextColor(color[props.backgroundColor])};
+    border: 2px solid ${props => BasicContrast(color[props.backgroundColor])};
   }
 `;
 

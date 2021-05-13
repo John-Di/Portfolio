@@ -4,7 +4,7 @@ import {
   randomIntegerEx,
   randomBool
 } from '../../utils/randoms';
-import IdealTextColor from '../../utils/IdealTextColor';
+import BasicContrast from '../../utils/BasicContrast';
 import MainNavigation from './main-navigation';
 import UtilNavigation from './util-navigation';
 import React, {
@@ -32,7 +32,7 @@ const Header = ({
   } = useContext(ThemeContext);
 
   let navAccent = accentColor || randomColor(),
-    textColor = IdealTextColor(accentColor);
+    textColor = BasicContrast(accentColor);
 
   return (
     <HEADER
@@ -42,7 +42,7 @@ const Header = ({
       textColorEmphasis={textColor}
       whiteOnHover={whiteOnHover}
       ref={headerRef}
-      quickCartTop={headerRef.current ? headerRef.current.scrollHeight : 0}
+      quickCartTop={headerRef.current && false ? headerRef.current.scrollHeight : 0}
       isStuck={navAccent}
       isActive={navAccent}
     >

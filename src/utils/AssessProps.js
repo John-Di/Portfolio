@@ -1,4 +1,4 @@
-import IdealTextColor from './IdealTextColor';
+import BasicContrast from './BasicContrast';
 import { device } from './variables';
 
 const AssessProps = props => `
@@ -30,7 +30,7 @@ const renderBorder = (color, width = 1) => `
 `;
 
 export const renderText = ({ textColor, backgroundColor, textAlignmentSmall = 'center', textAlignmentLarge = 'center' }) => `
-  ${conditionalProp(textColor, `color: ${textColor}`, conditionalProp(backgroundColor, `color: ${IdealTextColor(backgroundColor)};
+  ${conditionalProp(textColor, `color: ${textColor}`, conditionalProp(backgroundColor, `color: ${BasicContrast(backgroundColor)};
   `))}
   ${conditionalProp(textAlignmentSmall, `text-align: ${textAlignmentSmall};`)}
 

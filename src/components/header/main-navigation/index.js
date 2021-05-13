@@ -7,7 +7,7 @@ import {
   randomIntegerEx,
   randomBool
 } from '../../../utils/randoms';
-import IdealTextColor from '../../../utils/IdealTextColor';
+import BasicContrast from '../../../utils/BasicContrast';
 import HamburgerIcon from '../../../images/svgs/hamburger.svg';
 import React, {
   useContext
@@ -61,7 +61,7 @@ const MainNavigation = ({
   } = useContext(ThemeContext);
 
   let navAccent = accentColor || randomColor(),
-    textColor = IdealTextColor(accentColor);
+    textColor = BasicContrast(accentColor);
 
   return (
     <NAV>

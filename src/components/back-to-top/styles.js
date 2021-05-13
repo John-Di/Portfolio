@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import AssessProps, {
   conditionalProp
 } from '../../utils/AssessProps';
-import IdealTextColor from '../../utils/IdealTextColor';
+import BasicContrast from '../../utils/BasicContrast';
 import { ButtonReset } from '../../utils/Resets';
 import { device } from '../../utils/variables';
 
@@ -22,7 +22,7 @@ const assessTrigger = ({ isActive, lineColor, backgroundColor, accentColor }) =>
       &:hover,
       &:focus,
       &:active {
-        ${conditionalProp(backgroundColor, `background-color: ${IdealTextColor(lineColor)}`, `background-color: ${IdealTextColor(lineColor)}`)};
+        ${conditionalProp(backgroundColor, `background-color: ${BasicContrast(lineColor)}`, `background-color: ${BasicContrast(lineColor)}`)};
         border-color: ${lineColor};
         color: ${lineColor};
         box-shadow: 0 0 0 1pt ${lineColor};

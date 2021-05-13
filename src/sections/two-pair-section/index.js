@@ -9,7 +9,7 @@ import {
   randomImage,
   randomIntegerEx
 } from '../../utils/randoms';
-import IdealTextColor from '../../utils/IdealTextColor';
+import BasicContrast from '../../utils/BasicContrast';
 import { size, device } from '../../utils/variables';
 
 const breakpoints = [
@@ -51,7 +51,7 @@ export default function TwoPairSection(isFullWidth, maxWidth = size.laptopL, has
                 <p>Just for the time being...</p>
                 <FancyCTA
                   backgroundColor={backgroundColor}
-                  textColor={IdealTextColor(backgroundColor)}
+                  textColor={BasicContrast(backgroundColor)}
                 >Learn More</FancyCTA>
               </TextMediaBlock>
             )

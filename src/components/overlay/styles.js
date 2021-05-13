@@ -22,7 +22,7 @@ export const OVERLAY = styled.div`
   position: fixed;
   pointer-events: none;
   transition: 0.1s opacity;
-  z-index: 1;
+  z-index: 3;
 
   ${props => conditionalProp(props.isActive, `
     opacity: 0.3;
