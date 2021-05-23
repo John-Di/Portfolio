@@ -11,7 +11,7 @@ import TwoPairSection from '../sections/two-pair-section';
 import ThreePairSection from '../sections/three-pair-section';
 import FourPairSection from '../sections/four-pair-section';
 import PageTemplate from '../templates/page';
-import FancyCTA from '../components/fancy-cta';
+import ChicCTA from '../components/chic-cta';
 import ImageGallerySection from '../sections/image-gallery-section';
 import BasicContrast from '../utils/BasicContrast';
 import {
@@ -85,10 +85,10 @@ const StyleGuidePage = ({ location = {}, data }) => {
           >
             <h1>Style Guide</h1>
             <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
-            <FancyCTA
+            <ChicCTA
               accentColor={accentColor}
               textColor={BasicContrast(accentColor)}
-            >The Buttons Still Do Nothing</FancyCTA>
+            >The Buttons Still Do Nothing</ChicCTA>
           </TextBlock>
         </HeroBanner>
         <TextBanner

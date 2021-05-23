@@ -3,7 +3,7 @@ import {
   useReducer,
   useState
 } from "react";
-import { BUTTON } from "../components/fancy-cta/styles";
+import { BUTTON } from "../components/chic-cta/styles";
 
 import BasicContrast from "../utils/BasicContrast";
 import { randomColor } from "../utils/randoms";
@@ -47,7 +47,7 @@ export const themeReducer = (state, action) => {
 
 
 
-function useTheme({ reducer = themeReducer, accentColor, initTheme = 'fancy' }) {
+function useTheme({ reducer = themeReducer, accentColor, initTheme = 'chic' }) {
 
   const [theme, UpdateTheme] = useReducer(reducer, {
     primaryColor: accentColor,

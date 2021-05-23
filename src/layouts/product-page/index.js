@@ -62,7 +62,7 @@ const ProductPage = ({ location = {} }) => {
         <ProductForm>
           <VariantSelector
             isHidden={true}
-            theme={'fancy'}
+            theme={'chic'}
           >
             {
               arrayToComponentSiblings(options, (option, i) => (

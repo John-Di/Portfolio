@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import styled from 'styled-components';
 import {
   Link as GatsbyLink
@@ -8,7 +7,6 @@ import AssessProps, {
   conditionalProp
 } from '../../utils/AssessProps';
 import { ButtonReset, LinkReset } from '../../utils/Resets';
-import SiteThemeContext from '../../contexts/SiteThemeContext';
 
 const ChicButtonStyles = ({
   modest = { isModest: false },

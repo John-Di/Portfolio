@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import SiteThemeContext from '../contexts/SiteThemeContext';
 
 
-const FancyButtonStyles = ({
+const ChicButtonStyles = ({
   modest = { isModest: false },
   maxWidth = '15em',
   backgroundColor = false,
@@ -36,7 +36,7 @@ const FancyButtonStyles = ({
   }
 `;
 
-const AssessProps = (props) => FancyButtonStyles(useContext(SiteThemeContext))
+const AssessProps = (props) => ChicButtonStyles(useContext(SiteThemeContext))
 
 export const BUTTON = styled.button`
   cursor: pointer;

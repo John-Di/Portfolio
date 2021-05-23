@@ -6,7 +6,7 @@ import {
   BODY,
   CTA_WRAPPER
 } from './styles';
-import FancyCTA from '../../components/fancy-cta';
+import ChicCTA from '../../components/chic-cta';
 
 export default function ProductTile({
   heading,
@@ -29,8 +29,8 @@ export default function ProductTile({
     >
       {children && (<BODY>{children}</BODY>)}
       <CTA_WRAPPER>
-        <FancyCTA
-        >Add to Cart</FancyCTA>
+        <ChicCTA
+        >Add to Cart</ChicCTA>
       </CTA_WRAPPER>
     </ObjectTile>
   );

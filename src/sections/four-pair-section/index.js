@@ -1,7 +1,7 @@
 import React from "react";
 import Section from '../../components/section';
 import TextMediaBlock from '../../components/text-media-block';
-import FancyCTA from '../../components/fancy-cta';
+import ChicCTA from '../../components/chic-cta';
 import ResponsivePair from '../../layouts/responsive-pair';
 import { jsxCloneArray } from '../../utils/dom-builder';
 import {
@@ -78,10 +78,10 @@ export default function FourPairSection(isFullWidth, maxWidth = size.laptopL, ha
                     >
                       <h2>Text Media Block {index + 1}/{length}</h2>
                       <p>Just for the time being...</p>
-                      <FancyCTA
+                      <ChicCTA
                         backgroundColor={backgroundColor}
                         textColor={BasicContrast(backgroundColor)}
-                      >Learn More</FancyCTA>
+                      >Learn More</ChicCTA>
                     </TextMediaBlock>
                   )
                 })

@@ -3,7 +3,7 @@ import React, {
   useContext
 } from "react";
 import { size } from '../../utils/variables';
-import FancyCTA from '../../components/fancy-cta';
+import ChicCTA from '../../components/chic-cta';
 import ShopContext from '../../contexts/ShopContext';
 import ProductFormContext from "../../contexts/ProductFormContext";
 import {
@@ -34,31 +34,31 @@ const ProductForm = ({
     <FORM>
       {children}
       <CTA>
-        <FancyCTA
+        <ChicCTA
           type="submit"
           backgroundColor={`#FFFFFF`}
           textColor={`#000000`}
           maxWidth={`${size.mobileXL / 16}em`}
           onClick={onClick}
-        >Add to Cart</FancyCTA>
+        >Add to Cart</ChicCTA>
       </CTA>
       <CTA>
-        <FancyCTA
+        <ChicCTA
           type="submit"
           backgroundColor={`#FFFFFF`}
           textColor={`#000000`}
           maxWidth={`${size.mobileXL / 16}em`}
           onClick={removeFromCart}
-        >Remove Cart</FancyCTA>
+        >Remove Cart</ChicCTA>
       </CTA>
       <CTA>
-        <FancyCTA
+        <ChicCTA
           type="submit"
           backgroundColor={`#FFFFFF`}
           textColor={`#000000`}
           maxWidth={`${size.mobileXL / 16}em`}
           onClick={emptyCart}
-        >Clear Cart</FancyCTA>
+        >Clear Cart</ChicCTA>
       </CTA>
     </FORM>
   )

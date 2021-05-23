@@ -1,7 +1,7 @@
 import React from "react";
 import Section from '../../components/section';
 import TextMediaBlock from '../../components/text-media-block';
-import FancyCTA from '../../components/fancy-cta';
+import ChicCTA from '../../components/chic-cta';
 import {
   randomColor,
   randomImage,
@@ -32,10 +32,10 @@ export default function OnePairSection(isFullWidth = true, maxWidth = size.lapto
       >
         <h2>Text Media Block</h2>
         <p>Just for the time being...</p>
-        <FancyCTA
+        <ChicCTA
           backgroundColor={backgroundColor}
           textColor={BasicContrast(backgroundColor)}
-        >Learn More</FancyCTA>
+        >Learn More</ChicCTA>
       </TextMediaBlock >
     </Section >
   );

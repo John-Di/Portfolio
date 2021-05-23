@@ -5,7 +5,7 @@ import { ButtonReset, ListReset } from '../utils/Resets';
 import { VerticalLine } from '../utils/Flex';
 import BasicContrast from '../utils/BasicContrast';
 
-export const FancyDropdownStyles = ({
+export const ChicDropdownStyles = ({
   modest = { isModest: false },
   maxWidth = '15em',
   backgroundColor = false,

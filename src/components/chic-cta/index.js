@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import SiteThemeContext from '../../contexts/SiteThemeContext';
 import { BUTTON } from './styles';
 
-export default function FancyCTA({ children, type, onClick, modest, backgroundColor, maxWidth, textColor = "#000000", borderColor }) {
+export default function ChicCTA({ children, type, onClick, modest, backgroundColor, maxWidth, textColor = "#000000", borderColor }) {
 
   borderColor = borderColor ? borderColor : textColor;
 

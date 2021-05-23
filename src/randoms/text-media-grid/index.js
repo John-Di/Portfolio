@@ -5,7 +5,7 @@ import { size, device } from '../../utils/variables';
 import Grid from '../../layouts/grid';
 import GridItem from '../../components/grid-item';
 import { arrayToJSX } from '../../utils/dom-builder';
-import FancyCTA from '../../components/fancy-cta';
+import ChicCTA from '../../components/chic-cta';
 import {
   randomColor,
   randomImage,
@@ -109,11 +109,11 @@ export default function TextMediaGrid({ responsive = {}, col_count = randomInteg
               >
                 <h2>Text Media {index + 1}/{length}</h2>
                 <p>Just for the time being...</p>
-                <FancyCTA
+                <ChicCTA
                   backgroundColor={backgroundColor}
                   modest={({ isModest: col_count > 2 })}
                   textColor={BasicContrast(background)}
-                >Learn More</FancyCTA>
+                >Learn More</ChicCTA>
               </TextMediaBlock>
             </GridItem>
           )
