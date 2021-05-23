@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import SiteThemeContext from '../contexts/SiteThemeContext';
 import BasicContrast from './BasicContrast';
 import { device } from './variables';
 
@@ -6,6 +8,14 @@ const AssessProps = props => `
   ${conditionalProp(props.borderColor, renderBorder(props.borderColor))}
   ${renderText(props)}
 `;
+
+export const PropMap = (ApplyRules = AssessProps, props) => {
+  var Foo = ApplyRules ? ApplyRules : AssessProps;
+  return Foo({
+    ...useContext(SiteThemeContext),
+    ...props
+  })
+}
 
 const AssessBackground = ({
   backgroundImage,

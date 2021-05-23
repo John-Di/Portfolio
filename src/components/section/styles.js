@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
-import AssessProps, {
+import {
+  PropMap,
   conditionalProp
 } from '../../utils/AssessProps';
 
@@ -75,7 +76,7 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
 `;
 
 const assessProps = (props) => `
-	${AssessProps(props)}
+	${PropMap.bind(this, null)}
 	${generateLayout(props)}
 `
 

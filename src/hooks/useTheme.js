@@ -3,32 +3,67 @@ import {
   useReducer,
   useState
 } from "react";
+import { BUTTON } from "../components/fancy-cta/styles";
+
 import BasicContrast from "../utils/BasicContrast";
 import { randomColor } from "../utils/randoms";
 
 const actionTypes = {
   id: 'ID',
   option: 'OPTION',
-  theme: 'THEME'
+  theme: 'THEME',
+  accent: `ACCENT`
+}, themeTypes = {
+  CHIC: 'chic',
+  FAST: 'fast',
+  FLORAL: 'floral',
+  MINIMAL: 'minimal'
 }
 
-export const themeReducer = (state, { theme }) => ({
-  ...state,
-  theme
-});
+export const themeReducer = (state, action) => {
+  const { type, primaryColor, theme } = action,
+    { name } = theme;
 
-function useTheme({ reducer = themeReducer, accentColor = randomColor(), initTheme = 'fancy' }) {
+  switch (type) {
+    case actionTypes.accent: {
+      return {
+        ...state,
+        primaryColor,
+        accentContrast: BasicContrast(primaryColor),
+        borderColor: primaryColor,
+        name
+      }
+    }
+    case actionTypes.theme: {
+      switch (theme) {
+        case themeTypes.CHIC: return {
+          Button: BUTTON
+        }
+      }
+    }
+    default: return state
+  }
+}
 
-  const [theme, changeTheme] = useState({
-    accentColor,
+
+
+function useTheme({ reducer = themeReducer, accentColor, initTheme = 'fancy' }) {
+
+  const [theme, UpdateTheme] = useReducer(reducer, {
+    primaryColor: accentColor,
     accentContrast: BasicContrast(accentColor),
     name: initTheme
   });
 
-  const updateTheme = theme => changeTheme({ accentColor, ...theme });
+  const updateAccentColor = color => UpdateTheme({
+    type: actionTypes.accent,
+    primaryColor: color
+  });
+
   return {
     ...theme,
-    updateTheme
+    UpdateTheme,
+    updateAccentColor
   };
 }
 

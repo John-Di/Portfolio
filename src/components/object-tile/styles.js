@@ -8,7 +8,7 @@ import {
   Link as GatsbyLink
 } from "gatsby";
 
-import AssessProps, { conditionalProp } from '../../utils/AssessProps';
+import { PropMap, conditionalProp } from '../../utils/AssessProps';
 
 
 const assessProps = ({ overlay, image, whiteOnHover }) => `
@@ -18,7 +18,7 @@ const assessProps = ({ overlay, image, whiteOnHover }) => `
     vertical-align: bottom;
     width: 100%;
     max-width: 100%;
-    ${AssessProps({ overlay, isSquare: true, backgroundImage: image, whiteOnHover })}
+    ${PropMap(null, { overlay, isSquare: true, backgroundImage: image, whiteOnHover })}
     ${conditionalProp(image, `
       padding-top: 100%;
       ${conditionalProp(whiteOnHover, `

@@ -1,15 +1,13 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import {
-  conditionalProp
-} from '../../utils/AssessProps';
 import BasicContrast from '../../utils/BasicContrast';
-import { preparePathsFilter } from 'graphql-compose/lib/utils/filterByDotPaths';
+import { PropMap, conditionalProp } from '../../utils/AssessProps';
+import SiteThemeContext from '../../contexts/SiteThemeContext';
 
-const HeaderTabletProps = ({ isActive, whiteOnHover, textColor, accentColor }) => `
+const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContrast }) => `
   cursor: pointer;
   grid-template: "logo nav util" / 1fr 3fr 1fr;
-  ${isActive ? HeaderTabletProps : null}
 
   ${conditionalProp(whiteOnHover, `
     &:hover,
@@ -24,20 +22,20 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, textColor, accentColor }) =
 
         &:hover,
         &:focus {
-          color: ${accentColor};
+          color: ${primaryColor};
           font-weight: bold;
           text-decoration: underline;
         }
 
         &:active,
         &.active {
-          color: ${accentColor};
+          color: ${primaryColor};
 
           &,
           &:hover,
           &:focus {
-            background-color: ${accentColor};
-            color: ${BasicContrast(textColor)};
+            background-color: ${primaryColor};
+            color: ${accentContrast};
           }
         }
       }
@@ -45,60 +43,28 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, textColor, accentColor }) =
   `)}
 `;
 
-const HeaderMobileProps = ({ isMenuOpen, textColor, accentColor }) => conditionalProp(isMenuOpen, `
+
+const onStuck = ({
+  whiteOnHover, quickCartTop, primaryColor, accentContrast, isStuck = true
+}) => `
   background-color: white;
   box-shadow: 0 3px 1px rgba(0,0,0,0.2);
   transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
 
-  a {
-    background-color: transparent;
-    color: ${`#000000`};
-
-    &:hover,
-    &:focus {
-      color: ${accentColor};
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    &:active,
-    &.active {
-      color: ${accentColor};
-    }
-
-    &:active,
-    &.active {
-      &,
-      &:hover,
-      &:focus {
-        background-color: ${accentColor};
-        color: ${textColor};
-      }
-    }
-  }
-`);
-
-const onStuck = ({ whiteOnHover, textColor, accentColor, isStuck = true }) => conditionalProp(isStuck, `
-  background-color: white;
-  box-shadow: 0 3px 1px rgba(0,0,0,0.2);
-  transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
-
-  ${console.log('whiteOnHover', whiteOnHover)}
   @media screen and ${device.max_tablet} {
     a {
-      background-color: transparent;
       color: ${`#000000`};
 
       &:hover,
       &:focus {
-        color: ${accentColor};
+        color: ${primaryColor};
         font-weight: bold;
         text-decoration: underline;
       }
 
       &:active,
       &.active {
-        color: ${accentColor};
+        color: ${primaryColor};
       }
 
       ${conditionalProp(whiteOnHover, `
@@ -107,8 +73,8 @@ const onStuck = ({ whiteOnHover, textColor, accentColor, isStuck = true }) => co
           &,
           &:hover,
           &:focus {
-            background-color: ${accentColor};
-            color: ${textColor};
+            background-color: ${primaryColor};
+            color: ${accentContrast};
           }
         }
       `)}
@@ -116,35 +82,58 @@ const onStuck = ({ whiteOnHover, textColor, accentColor, isStuck = true }) => co
   }
 
   @media screen and ${device.tablet} {
+    ${conditionalProp(quickCartTop, `
+      ~ aside {
+        top: ${(quickCartTop - 1) / 16}em;
+      }
+    `)}
+
     a {
       background-color: transparent;
       color: ${`#000000`};
 
       &:hover,
       &:focus {
-        color: ${accentColor};
+        color: ${primaryColor};
         font-weight: bold;
         text-decoration: underline;
       }
 
       &:active,
       &.active {
-        background-color: ${textColor};
-        color: ${accentColor};
-      }
+        background-color: ${accentContrast};
+        color: ${primaryColor};
 
-      &:active,
-      &.active {
         &,
         &:hover,
         &:focus {
-          background-color: ${accentColor};
-          color: ${textColor};
+          background-color: ${primaryColor};
+          color: ${accentContrast};
         }
       }
     }
+
+    svg {
+      color: ${`#000000`};
+      fill: ${`#000000`};
+
+      @media screen and ${device.tablet} {
+        color: ${primaryColor};
+        fill: ${primaryColor};
+      }
+    }
   }
-`);
+`;
+
+const AssessLinks = props => HeaderTabletProps({
+  ...useContext(SiteThemeContext),
+  ...props
+})
+
+const AssessHeader = ({ isStuck, ...props }) => conditionalProp(isStuck, onStuck({
+  ...useContext(SiteThemeContext),
+  ...props
+}));
 
 export const HEADER = styled.header`
   max-width: 100vw;
@@ -164,36 +153,14 @@ export const HEADER = styled.header`
     padding: 0 4%;
   }
 
-  ${onStuck}
+  ${props => console.log('Header PropMap')}
+  ${PropMap.bind(this, onStuck)}
 
   a,
   button {
     padding: 0.75em;
     width: 4em;
     height: 4em;
-
-    &:hover,
-    &:focus {
-      color: ${props => props.accentColor};
-
-      // @media screen and ${device.tablet} {
-      //   background-color: ${props => BasicContrast(props.accentColor)};
-      // }
-    }
-
-    &:active,
-    &.active {
-      color: ${props => BasicContrast(props.accentColor)};
-
-      @media screen and ${device.tablet} {
-        background-color: ${props => props.accentColor};
-      }
-    }
+    ${PropMap.bind(this, HeaderTabletProps)}
   }
-
-  ${({ quickCartTop }) => conditionalProp(quickCartTop, `
-    ~ aside {
-      top: ${(quickCartTop - 1) / 16}em;
-    }
-  `)}
 `;

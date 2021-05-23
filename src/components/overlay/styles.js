@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import FullSizeOverlay from '../../utils/FullSizeOverlay';
-import AssessProps, {
+import {
+  PropMap,
   conditionalProp
 } from '../../utils/AssessProps';
 
@@ -17,7 +18,7 @@ const assessState = ({ isActive, backgroundColor = `black` }) => conditionalProp
 export const OVERLAY = styled.div`
   opacity: 0;
   ${FullSizeOverlay}
-  ${AssessProps}
+  ${PropMap.bind(this, null)}
   ${assessState}
   position: fixed;
   pointer-events: none;

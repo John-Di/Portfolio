@@ -1,10 +1,14 @@
+import styled from 'styled-components';
 import {
   conditionalProp
 } from '../utils/AssessProps';
 import { ButtonReset } from '../utils/Resets';
 import BasicContrast from '../utils/BasicContrast';
+import { useContext } from 'react';
+import SiteThemeContext from '../contexts/SiteThemeContext';
 
-export const FancyButtonStyles = ({
+
+const FancyButtonStyles = ({
   modest = { isModest: false },
   maxWidth = '15em',
   backgroundColor = false,
@@ -12,16 +16,6 @@ export const FancyButtonStyles = ({
   borderColor = false,
   accentColor
 }) => `
-  cursor: pointer;
-  ${ButtonReset}
-  font-family: 'Roboto', 'Montserrat', serif;
-  font-weight: normal;
-  border-style: solid;
-  min-width: 5em;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.2px;
-  transition: background-color 0.1s, color 0.1s;
 
   ${conditionalProp(maxWidth, `
     max-width: ${maxWidth};
@@ -41,3 +35,20 @@ export const FancyButtonStyles = ({
     ${conditionalProp(textColor, `border-color: ${textColor};`)}
   }
 `;
+
+const AssessProps = (props) => FancyButtonStyles(useContext(SiteThemeContext))
+
+export const BUTTON = styled.button`
+  cursor: pointer;
+  ${ButtonReset}
+  font-family: 'Roboto', 'Montserrat', serif;
+  font-weight: normal;
+  border-style: solid;
+  min-width: 5em;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  transition: background-color 0.1s, color 0.1s;
+
+  ${AssessProps}
+`

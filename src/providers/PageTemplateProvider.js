@@ -1,16 +1,16 @@
 import React from 'react';
 import LocationProvider from "../providers/LocationProvider";
 import PageProvider from "../providers/PageProvider";
-import ThemeProvider from "../providers/ThemeProvider";
+import SiteThemeProvider from "../providers/SiteThemeProvider";
 
 const PageTemplateProvider = ({ location, children }) => {
   return (
     <LocationProvider location={location}>
-      <ThemeProvider location={location}>
+      <SiteThemeProvider location={location}>
         <PageProvider>
           {children}
         </PageProvider>
-      </ThemeProvider>
+      </SiteThemeProvider>
     </LocationProvider>
   )
 }

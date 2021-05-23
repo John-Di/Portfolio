@@ -1,7 +1,7 @@
 import React, {
   useContext
 } from "react";
-import ThemeContext from "../../../contexts/ThemeContext";
+import SiteThemeContext from "../../../contexts/SiteThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
 import CartLink from '../cart-link';
@@ -24,7 +24,7 @@ const UtilNavigation = ({
     isMenuOpen
   } = useContext(PageContext), {
     accentColor
-  } = useContext(ThemeContext);
+  } = useContext(SiteThemeContext);
 
   return (
     <UTIL>

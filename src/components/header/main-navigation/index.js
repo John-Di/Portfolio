@@ -21,7 +21,7 @@ import {
   ITEMS,
   TOGGLE
 } from './styles';
-import ThemeContext from '../../../contexts/ThemeContext';
+import SiteThemeContext from '../../../contexts/SiteThemeContext';
 import TextLink from "../text-link";
 
 const nav = [
@@ -58,7 +58,7 @@ const MainNavigation = ({
     toggleMenu
   } = useContext(PageContext), {
     accentColor
-  } = useContext(ThemeContext);
+  } = useContext(SiteThemeContext);
 
   let navAccent = accentColor || randomColor(),
     textColor = BasicContrast(accentColor);

@@ -18,15 +18,6 @@ const activeState = ({ accentColor }) => `
   font-weight: bold;
   text-decoration: underline;
 
-  svg {
-    color: ${BasicContrast(accentColor)};
-    fill: ${BasicContrast(accentColor)};
-  }
-
-  span::after {
-    background: ${BasicContrast(accentColor)};
-    color: ${accentColor};
-  }
 `;
 
 export const CART = styled(GatsbyLink)`
@@ -165,3 +156,14 @@ export const ICON = styled.span`
     color: ${({ textColor }) => textColor};
   }
 `;
+
+
+// span::after {
+//   background: ${accentContrast};
+//   color: ${primaryColor};
+
+//   @media screen and ${device.tablet} {
+//     color: ${primaryColor};
+//     fill: ${primaryColor};
+//   }
+// }

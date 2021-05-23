@@ -1,7 +1,7 @@
 import React, {
   useContext
 } from "react";
-import ThemeContext from "../../../contexts/ThemeContext";
+import SiteThemeContext from "../../../contexts/SiteThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
 import AccountIcon from '../../../images/svgs/account.svg';
@@ -41,7 +41,7 @@ const AccountLink = ({ hasAccount = false }) => {
     selectMenuItem
   } = useContext(PageContext), {
     accentColor
-  } = useContext(ThemeContext);
+  } = useContext(SiteThemeContext);
 
   if (!hasAccount) {
     return;

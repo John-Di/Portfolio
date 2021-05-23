@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device, size } from '../../../utils/variables';
-import { conditionalProp } from '../../../utils/AssessProps';
+import { conditionalProp, PropMap } from '../../../utils/AssessProps';
 import { ButtonReset } from '../../../utils/Resets';
 import { responsiveBreakpoints } from '../../../styles/util';
 
@@ -57,5 +57,5 @@ const AssessProps = ({ isPrev, buttonInside, isDisabled, hideForce = true }) => 
 
 export const BUTTON = styled.button`
   ${GALLERY_NAV_BUTTON}
-  ${AssessProps}
+  ${PropMap.bind(this, null)}
 `;

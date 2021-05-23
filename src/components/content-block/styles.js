@@ -4,7 +4,8 @@ import FullSizeOverlay from '../../utils/FullSizeOverlay';
 import {
   FlexCentered
 } from '../../utils/Flex';
-import AssessProps, {
+import {
+  PropMap,
   renderText,
   conditionalProp
 } from '../../utils/AssessProps';
@@ -42,7 +43,7 @@ export const BLOCK = styled.div`
 		align-items: center;
   }
 
-  ${props => AssessProps(props)}
+  ${PropMap.bind(this, null)}
   ${props => assessProps(props)}
 `;
 

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FancyButtonStyles } from '../../styles/CTAs';
 import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import {
@@ -7,6 +6,9 @@ import {
 } from "gatsby";
 import { ListReset } from '../../utils/Resets';
 import { size } from '../../utils/variables';
+import { useContext } from 'react';
+import SiteThemeContext from '../../contexts/SiteThemeContext';
+import { EXTERNAL, LINK } from '../fancy-cta/styles';
 
 const FOOTER_HEIGHT = 275;
 
@@ -71,6 +73,9 @@ export const FOOTER = styled.footer`
 
   a,
   button {
+    display: block;
+    margin: auto;
+    margin-bottom: 1em;
     margin-top: 1em;
   }
 `;
@@ -98,23 +103,6 @@ export const TOTALS = styled.dl`
   }
 `;
 
-const assessTheme = ({ theme, ...props }) => {
-  switch (theme) {
-    case 'fancy':
-    default:
-      return FancyButtonStyles(props);
-  }
-};
+export const CART = LINK;
 
-export const CART = styled(GatsbyLink)`
-	${assessTheme}
-  display: block;
-  margin: auto;
-  margin-bottom: 1em;
-`;
-
-export const CHECKOUT = styled.a`
-	${assessTheme}
-  display: block;
-  margin: auto;
-`;
+export const CHECKOUT = EXTERNAL;

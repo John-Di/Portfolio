@@ -14,7 +14,7 @@ import {
   HEADER,
 } from './styles';
 import PageContext from '../../contexts/PageContext';
-import ThemeContext from '../../contexts/ThemeContext';
+import SiteThemeContext from '../../contexts/SiteThemeContext';
 
 const Header = ({
   isActive = true,
@@ -29,9 +29,9 @@ const Header = ({
     headerRef
   } = useContext(PageContext), {
     accentColor
-  } = useContext(ThemeContext);
+  } = useContext(SiteThemeContext);
 
-  let navAccent = accentColor || randomColor(),
+  let navAccent = accentColor,
     textColor = BasicContrast(accentColor);
 
   return (

@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import { device } from '../../../utils/variables';
 import { ListReset, LinkReset } from '../../../utils/Resets';
 import {
-  conditionalProp
-} from '../../../utils/AssessProps';
-import {
   FlexCentered,
   ResponsiveLine
 } from '../../../utils/Flex';
@@ -12,10 +9,12 @@ import {
   Link as GatsbyLink
 } from "gatsby";
 import BasicContrast from '../../../utils/BasicContrast';
+import { useContext } from 'react';
+import { conditionalProp, PropMap } from '../../../utils/AssessProps';
+import SiteThemeContext from '../../../contexts/SiteThemeContext';
 
-export const LINK = styled(GatsbyLink)`
-  ${LinkReset}
-  ${FlexCentered}
+const HeaderLinkStyles = ({ primaryColor, accentContrast }) => `
+  ${console.log("HeaderLinkStyles", primaryColor, accentContrast)}
 
   display: inline-flex;
   padding: 1em 1.5em;
@@ -31,8 +30,13 @@ export const LINK = styled(GatsbyLink)`
   &:focus {
     font-weight: bold;
     text-decoration: underline;
-    color: ${props => props.accentColor};
+    color: ${primaryColor};
   }
+
+  &.active {
+
+  }
+
 
   @media screen and ${device.max_tablet} {
     align-items: flex-start;
@@ -40,9 +44,20 @@ export const LINK = styled(GatsbyLink)`
   }
 
   @media screen and ${device.tablet} {
-
-    color: ${props => props.textColor};
+    background-color: ${primaryColor};
+    color: ${accentContrast};
     padding: 0.75em;
     height: 3em;
   }
+`;
+
+const AssessProps = props => HeaderLinkStyles({
+  ...useContext(SiteThemeContext),
+  ...props
+})
+
+export const LINK = styled(GatsbyLink)`
+  ${LinkReset}
+  ${FlexCentered}
+  ${PropMap.bind(this, HeaderLinkStyles)}
 `;

@@ -9,7 +9,7 @@ import Header from '../../components/header';
 import PageContext from "../../contexts/PageContext";
 import Overlay from "../../components/overlay";
 import QuickCart from "../../components/quick-cart";
-import ThemeContext from '../../contexts/ThemeContext';
+import SiteThemeContext from '../../contexts/SiteThemeContext';
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 
 // styles
@@ -26,7 +26,7 @@ const Page = ({ children }) => {
     mainRef
   } = useContext(PageContext), {
     accentColor
-  } = useContext(ThemeContext);
+  } = useContext(SiteThemeContext);
 
   // console.log('menuIndex', menuIndex, isScrollLocked);
   return (

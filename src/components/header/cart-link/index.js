@@ -1,7 +1,7 @@
 import React, {
   useContext
 } from "react";
-import ThemeContext from "../../../contexts/ThemeContext";
+import SiteThemeContext from "../../../contexts/SiteThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
 import CartIcon from '../../../images/svgs/cart.svg';
@@ -44,7 +44,7 @@ const CartLink = () => {
     selectMenuItem
   } = useContext(PageContext), {
     accentColor
-  } = useContext(ThemeContext), {
+  } = useContext(SiteThemeContext), {
     pathContains
   } = useContext(LocationContext), {
     isOpen,

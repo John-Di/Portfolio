@@ -6,7 +6,7 @@ import {
   CTA_WRAPPER
 } from './styles';
 import FancyCTA from '../fancy-cta';
-import ThemeContext from "../../contexts/ThemeContext";
+import SiteThemeContext from "../../contexts/SiteThemeContext";
 import ProductContext from "../../contexts/ProductContext";
 
 export default function LineItemTile({

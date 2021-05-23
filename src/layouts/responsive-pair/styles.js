@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import Clearfix from '../../utils/Clearfix';
-import AssessProps, { conditionalProp } from '../../utils/AssessProps';
+import { PropMap, conditionalProp } from '../../utils/AssessProps';
 
 const sideBySide = (acc, rule, i) => `
 	${acc}
@@ -73,7 +73,7 @@ const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpo
 	&::${pseudo} {
 		content: '';
 		display: block;
-    ${AssessProps({ backgroundColor, backgroundImage })}
+    ${PropMap({ backgroundColor, backgroundImage })}
 		${pairItemRules(adjacentBreakpoints, stackedBreakpoints)}
 
 		${isSquare ? `
@@ -132,7 +132,7 @@ export const LAYOUT = styled.div`
 		${Clearfix}
 	}
 
-	${props => conditionalProp(props.hasPseudo, generatePseudo(props), AssessProps(props))}
+	${props => conditionalProp(props.hasPseudo, generatePseudo(props), PropMap(null, props))}
 	${props => assessProps(props)}
 `;
 

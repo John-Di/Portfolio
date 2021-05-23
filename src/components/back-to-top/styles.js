@@ -1,5 +1,8 @@
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import AssessProps, {
+import SiteThemeContext from '../../contexts/SiteThemeContext';
+import {
+  PropMap,
   conditionalProp
 } from '../../utils/AssessProps';
 import BasicContrast from '../../utils/BasicContrast';
@@ -14,7 +17,7 @@ const assessWrapper = ({ isActive = false }) => conditionalProp(isActive, `
 
 const assessTrigger = ({ isActive, lineColor, backgroundColor, accentColor }) => `
   background-color: transparent;
-  ${AssessProps}
+  ${PropMap.bind(this, null)}
   ${conditionalProp(lineColor, `
     border-color: ${lineColor};
 
@@ -40,7 +43,6 @@ export const WRAPPER = styled.div`
   transform: translateY(1000%);
   transition: transform ${1 / 2.5}s;
   ${assessWrapper}
-
 
   @media screen and ${device.tablet} {
     right: 1em;
