@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { FancyButtonStyles } from '../../styles/CTAs';
+import { ChicButtonStyles } from '../../styles/CTAs';
 
 const assessTheme = ({ theme, ...props }) => {
   switch (theme) {
-    case 'fancy':
+    case 'chic':
     default:
-      return FancyButtonStyles(props);
+      return ChicButtonStyles(props);
   }
 };
 

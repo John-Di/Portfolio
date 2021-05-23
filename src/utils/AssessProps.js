@@ -3,9 +3,9 @@ import SiteThemeContext from '../contexts/SiteThemeContext';
 import BasicContrast from './BasicContrast';
 import { device } from './variables';
 
-const AssessProps = props => `
+const AssessProps = ({ borderColor, borderWidth, ...props }) => `
   ${AssessBackground(props)}
-  ${conditionalProp(props.borderColor, renderBorder(props.borderColor))}
+  ${conditionalProp(borderColor, renderBorder(borderColor, borderWidth))}
   ${renderText(props)}
 `;
 
@@ -34,13 +34,14 @@ const renderBackgroundImage = image => `
   background-repeat: no-repeat;
 `;
 
-const renderBorder = (color, width = 1) => `
+const renderBorder = (color, width = `1px`) => `
   border-color: ${color};
-  border-width: ${width}px;
+  ${conditionalProp(width, `border-width: ${width};`)}
+
 `;
 
 export const renderText = ({ textColor, backgroundColor, textAlignmentSmall = 'center', textAlignmentLarge = 'center' }) => `
-  ${conditionalProp(textColor, `color: ${textColor}`, conditionalProp(backgroundColor, `color: ${BasicContrast(backgroundColor)};
+  ${conditionalProp(textColor, `color: ${textColor};`, conditionalProp(backgroundColor, `color: ${BasicContrast(backgroundColor)};
   `))}
   ${conditionalProp(textAlignmentSmall, `text-align: ${textAlignmentSmall};`)}
 

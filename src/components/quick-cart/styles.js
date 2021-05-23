@@ -8,7 +8,7 @@ import { ListReset } from '../../utils/Resets';
 import { size } from '../../utils/variables';
 import { useContext } from 'react';
 import SiteThemeContext from '../../contexts/SiteThemeContext';
-import { EXTERNAL, LINK } from '../fancy-cta/styles';
+import { EXTERNAL, LINK } from '../chic-cta/styles';
 
 const FOOTER_HEIGHT = 275;
 

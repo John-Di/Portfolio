@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { VerticalLine } from '../../utils/Flex';
 import { ButtonReset } from '../../utils/Resets';
-import { FancyButtonStyles } from '../../styles/CTAs';
-import { FancyDropdownStyles } from '../../styles/Dropdowns';
+import { ChicButtonStyles } from '../../styles/CTAs';
+import { ChicDropdownStyles } from '../../styles/Dropdowns';
 
 export const WRAPPER = styled.div`
   margin: 0 auto;
@@ -15,7 +15,7 @@ export const WRAPPER = styled.div`
 `;
 
 export const HEADER = styled.button`
-  ${FancyButtonStyles}
+  ${ChicButtonStyles}
   max-width: unset;
   width: 100%;
 `;
@@ -31,9 +31,9 @@ export const BODY = styled.div`
 
 const assessTheme = ({ theme, ...props }) => {
   switch (theme) {
-    case 'fancy':
+    case 'chic':
     default:
-      return FancyDropdownStyles(props);
+      return ChicDropdownStyles(props);
   }
 };
 

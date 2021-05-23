@@ -3,45 +3,43 @@ import styled from 'styled-components';
 import {
   Link as GatsbyLink
 } from "gatsby";
-import {
+import AssessProps, {
   PropMap,
   conditionalProp
 } from '../../utils/AssessProps';
 import { ButtonReset, LinkReset } from '../../utils/Resets';
 import SiteThemeContext from '../../contexts/SiteThemeContext';
 
-const FancyButtonStyles = ({
+const ChicButtonStyles = ({
   modest = { isModest: false },
   maxWidth = '15em',
-  backgroundColor = '#ffffff',
+  backgroundColor = null,
   primaryColor = '#000000',
-  borderColor = false,
-  accentContrast
 }) => `
 
   ${conditionalProp(maxWidth, `
     max-width: ${maxWidth};
   `)}
 
-  ${conditionalProp(!modest.isModest, `border-width: 0.25em;`)}
-  padding:${conditionalProp(modest.isModest, '0.25em 2em', `0.75em 2em`)};
+  ${AssessProps({
+  backgroundColor,
+  borderColor: '#000000',
+  textColor: '#000000',
+  borderWidth: '0.25em'
+})}
 
-  ${conditionalProp(backgroundColor, `background-color: ${backgroundColor};`)}
-  ${conditionalProp(accentContrast, `color: ${accentContrast};`)}
-  ${conditionalProp(borderColor, `border-color: ${borderColor};`)}
+  padding:${conditionalProp(modest.isModest, '0.25em 2em', `0.75em 2em`)};
 
   &:hover,
   &:focus {
-    ${conditionalProp(accentContrast, `background-color: ${accentContrast};`)}
-    ${conditionalProp(primaryColor, `color: ${primaryColor};`, conditionalProp(backgroundColor, `color: ${backgroundColor};`, `color: ${accentContrast};`))}
-    ${conditionalProp(primaryColor, `border-color: ${primaryColor};`)}
+    ${AssessProps({
+  backgroundColor,
+  borderColor: primaryColor,
+  textColor: primaryColor,
+  borderWidth: '0.25em'
+})}
   }
 `;
-
-const AssessProps = (props) => FancyButtonStyles({
-  ...useContext(SiteThemeContext),
-  ...props
-});
 
 const ButtonStyles = `
   display: inline-block;
@@ -59,17 +57,17 @@ const ButtonStyles = `
 
 export const BUTTON = styled.button`
   ${ButtonStyles}
-  ${PropMap.bind(this, null)}
+  ${PropMap.bind(this, ChicButtonStyles)}
 `;
 
 export const LINK = styled(GatsbyLink)`
   ${LinkReset}
   ${ButtonStyles}
-  ${PropMap.bind(this, null)}
+  ${PropMap.bind(this, ChicButtonStyles)}
 `;
 
 export const EXTERNAL = styled.a`
   ${LinkReset}
   ${ButtonStyles}
-  ${PropMap.bind(this, null)}
+  ${PropMap.bind(this, ChicButtonStyles)}
 `;
