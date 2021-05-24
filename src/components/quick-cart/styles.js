@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
-import {
-  Link as GatsbyLink
-} from "gatsby";
 import { ListReset } from '../../utils/Resets';
-import { size } from '../../utils/variables';
-import { useContext } from 'react';
-import SiteThemeContext from '../../contexts/SiteThemeContext';
+import { device, size } from '../../utils/variables';
 import { EXTERNAL, LINK } from '../chic-cta/styles';
 
 const FOOTER_HEIGHT = 275;
@@ -17,14 +12,22 @@ export const QUICKCART = styled.aside`
   position: fixed;
   top: 0;
   bottom: 0;
-  right: calc(0% - ${size.mobileM / 16 + 1}em);
-  width: ${size.mobileM / 16 + 1}em;
-  max-width: 100vw;
+  width: 100vw;
   transition: right 0.1s;
   z-index: 3;
 
+  @media screen and ${device.laptop} {
+    max-width: ${size.mobileM / 16 + 1}em;
+  }
+
   ${props => conditionalProp(props.isOpen, `
     right: 0;
+  `, `
+    right: -100vw;
+
+    @media screen and ${device.laptop} {
+      right: calc(0% - ${size.mobileM / 16 + 1}em);
+    }
   `)}
 
   ${props => conditionalProp(props.innerPadding, `
