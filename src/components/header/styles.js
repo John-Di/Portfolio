@@ -25,6 +25,11 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContras
           color: ${primaryColor};
           font-weight: bold;
           text-decoration: underline;
+
+          svg {
+            color: ${primaryColor};
+            fill: ${primaryColor};
+          }
         }
 
         &:active,
@@ -36,6 +41,16 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContras
           &:focus {
             background-color: ${primaryColor};
             color: ${accentContrast};
+
+            svg {
+              color: ${accentContrast};
+              fill: ${accentContrast};
+            }
+
+            span::after {
+              background: ${accentContrast};
+              color: ${primaryColor};
+            }
           }
         }
       }
@@ -97,11 +112,15 @@ const onStuck = ({
         color: ${primaryColor};
         font-weight: bold;
         text-decoration: underline;
+
+        svg {
+          color: ${primaryColor};
+          fill: ${primaryColor};
+        }
       }
 
       &:active,
       &.active {
-        background-color: ${accentContrast};
         color: ${primaryColor};
 
         &,
@@ -109,17 +128,17 @@ const onStuck = ({
         &:focus {
           background-color: ${primaryColor};
           color: ${accentContrast};
+
+          span::after {
+            background: ${accentContrast};
+            color: ${primaryColor};
+          }
+
+          svg {
+            color: ${accentContrast};
+            fill: ${accentContrast};
+          }
         }
-      }
-    }
-
-    svg {
-      color: ${`#000000`};
-      fill: ${`#000000`};
-
-      @media screen and ${device.tablet} {
-        color: ${primaryColor};
-        fill: ${primaryColor};
       }
     }
   }

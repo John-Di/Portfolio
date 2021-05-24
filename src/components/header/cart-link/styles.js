@@ -5,7 +5,7 @@ import {
   Link as GatsbyLink
 } from "gatsby";
 import {
-  conditionalProp
+  conditionalProp, PropMap
 } from '../../../utils/AssessProps';
 import {
   FlexCentered
@@ -122,39 +122,38 @@ export const CHECKOUT = styled.a`
   }
 `;
 
-export const ICON = styled.span`
-  ${FlexCentered}
-  position: relative;
+const IconStyles = ({
+  cartCount,
+  primaryColor,
+  accentContrast
+}) => `
 
   svg {
     transform: scale(-1,1);
-    ${({ cartCount, accentColor }) => conditionalProp(cartCount === 0, `
-      color: black;
-      fill: black;
-    `, `
-      color: ${accentColor};
-      fill: ${accentColor};
-    `)}
-    color: black;
-    fill: black;
   }
 
   &::after {
     ${FlexCentered}
-    content: '${({ cartCount }) => cartCount}';
+    content: '${cartCount}';
     position: relative;
     font-size: 0.75em;
-    width: ${({ cartCount }) => conditionalProp(cartCount > 99, 2.5, 1.5)}em;
-    height: ${({ cartCount }) => conditionalProp(cartCount > 99, 2, 1.5)}em;
+    width: ${conditionalProp(cartCount > 99, 2.5, 1.5)}em;
+    height: ${conditionalProp(cartCount > 99, 2, 1.5)}em;
     line-height: 1;
     position: absolute;
     bottom: ${100 * 2 / 3}%;
-    left: ${({ cartCount }) => conditionalProp(cartCount > 99, 100 * 3 / 5, 100 * 3 / 4)}%;
+    left: ${conditionalProp(cartCount > 99, 100 * 3 / 5, 100 * 3 / 4)}%;
     overflow: hidden;
     border-radius: 50%;
-    background: ${({ accentColor }) => accentColor};
-    color: ${({ textColor }) => textColor};
+    background: ${primaryColor};
+    color: ${accentContrast};
   }
+`
+
+export const ICON = styled.span`
+  ${FlexCentered}
+  position: relative;
+  ${PropMap.bind(this, IconStyles)}
 `;
 
 
