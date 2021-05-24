@@ -26,10 +26,16 @@ export default function QuickCart({
   } = useContext(ShopContext), {
     ref,
     isOpen,
-    footerHeight
+    footerHeight,
+    closeFlyout
   } = useContext(CartFlyoutContext), {
     subtotalPrice
   } = store.checkout;
+
+  const onClick = e => {
+    e.preventDefault();
+    closeFlyout();
+  };
 
   return (
     <QUICKCART
@@ -38,7 +44,7 @@ export default function QuickCart({
     >
       <HEADER>
         <H1>Cart</H1>
-        <ICON>
+        <ICON type="button" onClick={onClick}>
           <CloseIcon />
         </ICON>
       </HEADER>
