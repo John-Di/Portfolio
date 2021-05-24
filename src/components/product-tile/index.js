@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ObjectTile from '../object-tile';
 import { size } from '../../utils/variables';
 import {
@@ -7,6 +7,9 @@ import {
   CTA_WRAPPER
 } from './styles';
 import ChicCTA from '../../components/chic-cta';
+import ShopContext from "../../contexts/ShopContext";
+import CartFlyoutContext from "../../contexts/CartFlyoutContext";
+import ProductFormContext from "../../contexts/ProductFormContext";
 
 export default function ProductTile({
   heading,
@@ -17,6 +20,19 @@ export default function ProductTile({
   maxWidth,
   url
 }) {
+  const {
+    addToCart,
+    removeFromCart
+  } = useContext(ProductFormContext), {
+    openFlyout
+  } = useContext(CartFlyoutContext), {
+    emptyCart
+  } = useContext(ShopContext);
+
+  const onClick = async (e) => {
+    await addToCart(e);
+    openFlyout();
+  }
   return (
     <ObjectTile
       className="product-tile"
@@ -30,6 +46,7 @@ export default function ProductTile({
       {children && (<BODY>{children}</BODY>)}
       <CTA_WRAPPER>
         <ChicCTA
+          onClick={onClick}
         >Add to Cart</ChicCTA>
       </CTA_WRAPPER>
     </ObjectTile>

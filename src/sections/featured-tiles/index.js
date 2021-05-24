@@ -5,6 +5,7 @@ import TileRow from "../../layouts/tile-row";
 import ProductTile from '../../components/product-tile';
 import { size } from '../../utils/variables';
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
+import ProductProvider from "../../providers/ProductProvider";
 
 export default function FeaturedTiles({ heading = `Featured Tiles`, children, items = [], accentColor }) {
 
@@ -16,14 +17,16 @@ export default function FeaturedTiles({ heading = `Featured Tiles`, children, it
         <TileRow>
           {items.map((product, index) => {
             return (
-              <ProductTile
-                key={index}
-                url={`/products/${product.handle}`}
-                heading={product.title}
-                price={`$${parseFloat(product.variants[0].priceV2.amount).toFixed(2)}`}
-                accentColor={accentColor}
-                image={product.images[0].localFile.childImageSharp.fixed}
-              />
+              <ProductProvider product={product}>
+                <ProductTile
+                  key={index}
+                  url={`/products/${product.handle}`}
+                  heading={product.title}
+                  price={`$${parseFloat(product.variants[0].priceV2.amount).toFixed(2)}`}
+                  accentColor={accentColor}
+                  image={product.images[0].localFile.childImageSharp.fixed}
+                />
+              </ProductProvider>
             )
           })}
         </TileRow>
