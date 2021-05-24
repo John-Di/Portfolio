@@ -51,7 +51,7 @@ const CartLink = () => {
   } = useContext(CartFlyoutContext);
 
   console.log('accentColor', accentColor)
-  console.log('checkoutURL', checkoutURL)
+  // console.log('checkoutURL', checkoutURL)
   console.log('isActive', pathContains('/cart'))
   if (!checkoutURL) {
     return;
