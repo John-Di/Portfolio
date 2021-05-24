@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
-import { ListReset } from '../../utils/Resets';
+import { FlexCentered } from '../../utils/Flex';
+import { ButtonReset, ListReset } from '../../utils/Resets';
 import { device, size } from '../../utils/variables';
 import { EXTERNAL, LINK } from '../chic-cta/styles';
 
@@ -47,6 +48,8 @@ export const HEADER = styled.header`
   position: relative;
   box-shadow: 0 3px 0px 0px rgba(0,0,0,0.2);
   z-index: 1;
+
+  ${Clearfix}
 `;
 
 export const ITEMS = styled.ul`
@@ -60,12 +63,29 @@ export const ITEM = styled.li`
 `;
 
 export const H1 = styled.h1`
-  display: block;
+  display: inline-block;
   margin: 0;
   height: 1.575em;
   line-height: 1.575;
   vertical-align: middle;
 `;
+
+export const ICON = styled.button`
+  ${ButtonReset}
+  ${FlexCentered}
+  display: inline-flex;
+  float: right;
+  width: 3.9375em;
+  height: 3.9375em;
+  vertical-align: middle;
+
+  svg {
+    color: #000000;
+    fill: #000000;
+    transform: scale(0.875)
+  }
+`;
+
 
 export const FOOTER = styled.footer`
   border-top: 1px solid lightgrey;

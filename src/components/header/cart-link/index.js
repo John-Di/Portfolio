@@ -8,7 +8,6 @@ import CartIcon from '../../../images/svgs/cart.svg';
 import BasicContrast from "../../../utils/BasicContrast";
 import {
   CART,
-  CHECKOUT,
   ICON
 } from './styles';
 import LocationContext from "../../../contexts/LocationContext";
@@ -77,33 +76,10 @@ const CartLink = () => {
         accentColor
       }}
     >
-      <ICON
-        accentColor={accentColor}
-        cartCount={+cartCount}
-        textColor={BasicContrast(accentColor)}>
+      <ICON cartCount={+cartCount}>
         <CartIcon />
       </ICON>
     </CART>
-
-    // <CHECKOUT
-    //   to={`/cart/`}
-    //   href={`/cart/`}
-    // className={'active'}
-    //   onClick={selectMenuItem.bind(this, nav.length)}
-    //   isActive={pathContains('/cart')}
-    //   partiallyActive={true}
-    //   cartCount={cartCount}
-    //   cartIsEmpty={cartIsEmpty}
-    //   accentColor={accentColor}
-    //   textColor={BasicContrast(accentColor)}
-    // >
-    //   <ICON
-    //     accentColor={accentColor}
-    //     cartCount={cartCount}
-    //     textColor={BasicContrast(accentColor)}>
-    //     <CartIcon />
-    //   </ICON>
-    // </CHECKOUT>
   )
 }
 

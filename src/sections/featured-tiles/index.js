@@ -17,9 +17,9 @@ export default function FeaturedTiles({ heading = `Featured Tiles`, children, it
         <TileRow>
           {items.map((product, index) => {
             return (
-              <ProductProvider product={product}>
+              <ProductProvider
+                key={index} product={product}>
                 <ProductTile
-                  key={index}
                   url={`/products/${product.handle}`}
                   heading={product.title}
                   price={`$${parseFloat(product.variants[0].priceV2.amount).toFixed(2)}`}

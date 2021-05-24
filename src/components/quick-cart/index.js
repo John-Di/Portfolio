@@ -8,12 +8,13 @@ import {
   FOOTER,
   TOTALS,
   CART,
-  CHECKOUT
+  ICON
 } from './styles';
 import ShopContext from "../../contexts/ShopContext";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 import LineItem from "./line-item";
+import CloseIcon from '../../images/svgs/x.svg'
 
 export default function QuickCart({
   innerPadding = false
@@ -37,7 +38,9 @@ export default function QuickCart({
     >
       <HEADER>
         <H1>Cart</H1>
-
+        <ICON>
+          <CloseIcon />
+        </ICON>
       </HEADER>
       <ITEMS footerHeight={footerHeight}>
         {arrayToComponentSiblings(lineItems, (item, i) => {

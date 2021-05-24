@@ -34,14 +34,12 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContras
 
         &:active,
         &.active {
+          background-color: ${primaryColor};
           color: ${primaryColor};
 
           &,
           &:hover,
           &:focus {
-            background-color: ${primaryColor};
-            color: ${accentContrast};
-
             svg {
               color: ${accentContrast};
               fill: ${accentContrast};
@@ -143,16 +141,6 @@ const onStuck = ({
     }
   }
 `;
-
-const AssessLinks = props => HeaderTabletProps({
-  ...useContext(SiteThemeContext),
-  ...props
-})
-
-const AssessHeader = ({ isStuck, ...props }) => conditionalProp(isStuck, onStuck({
-  ...useContext(SiteThemeContext),
-  ...props
-}));
 
 export const HEADER = styled.header`
   max-width: 100vw;
