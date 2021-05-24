@@ -141,12 +141,15 @@ function useShop() {
   const lineItems = store.checkout.lineItems.map(item => ({ ...item, variant: ({ ...item.variant }) })),
     cartCount = store.checkout.lineItems.reduce((acc, curr, i) => acc + curr.quantity, 0);
 
+  const getLineItem = shopifyId => lineItems.find(({ variant }) => variant.id === shopifyId);
+
   return {
     store,
     lineItems,
     cartCount,
     checkoutURL: store.checkout.webUrl,
     cartIsEmpty: !store.checkout.lineItems.length,
+    getLineItem,
     addVariantToCart,
     updateLineItem,
     emptyCart,

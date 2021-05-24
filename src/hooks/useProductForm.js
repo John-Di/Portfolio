@@ -8,28 +8,35 @@ function useProductForm({ product, selectedVariant, shop } = {}) {
   const {
     addVariantToCart,
     removeLineItem,
-    lineItems
+    lineItems,
+    getLineItem
   } = shop, {
     variants = []
-  } = product, {
+  } = product;
+
+  const [formState, UpdateFormState] = useState(selectedVariant);
+  const {
     id,
-    shopifyId
-  } = selectedVariant;
+    shopifyId,
+    selectedOptions
+  } = variants[formState];
 
-  const getSelectedVariantID = ({ name, value }, { selectedOptions }) => {
+  const getSelectedVariantID = ({ name, value }) => {
     const selectedOptionIndex = selectedOptions.findIndex((option => option.name === name));
+    const selectedVariantObj = variants.reduce((currentIndex, variant, index) => {
+      let isSelected = variant.selectedOptions.every((option, index) => {
+        return selectedOptionIndex === index ?
+          isSameOption(option, { name, value }) : isSameOption(option, selectedOptions[index])
+      });
+      return isSelected ? index : currentIndex;
+    }, formState)
 
-    return variants.reduce((currentID, variant, index) => {
-      let isSelected = variant.selectedOptions.every((option, index) => selectedOptionIndex === index ?
-        isSameOption(option, { name, value }) : isSameOption(option, selectedOptions[index]));
-      return isSelected ? variant.shopifyId : currentID;
-    }, variants[0].shopifyId)
+    return selectedVariantObj;
   }
 
-  const [formState, UpdateFormState] = useState(shopifyId || id);
 
   const updateVariant = id => UpdateFormState(id);
-  const updateOption = selectedOption => UpdateFormState(getSelectedVariantID(selectedOption, selectedVariant));
+  const updateOption = selectedOption => UpdateFormState(getSelectedVariantID(selectedOption));
   const addToCart = (async e => {
     e.preventDefault();
     return addVariantToCart(formState, 1);
@@ -37,12 +44,20 @@ function useProductForm({ product, selectedVariant, shop } = {}) {
 
   const removeFromCart = (async e => {
     e.preventDefault();
-    removeLineItem(lineItems.find(({ variant }) => variant.id === formState).id);
+    removeLineItem(getLineItem(shopifyId).id);
   })
+
+  const optionIsSelected = (option) => {
+    const selectedOptionIndex = selectedOptions.findIndex((o => o.name === option.name));
+    // console.log('optionIsSelected', selectedOptions);
+    const { name, value } = selectedOptions[selectedOptionIndex];
+    return option.name === name && option.value === value;
+  }
 
   return {
     product,
     formState,
+    optionIsSelected,
     updateVariant,
     updateOption,
     addToCart,

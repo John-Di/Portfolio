@@ -24,7 +24,7 @@ export default function LineItem({
     selectedOptions
   } = variant;
 
-  console.log('item', item);
+  // console.log('item', item);
   const {
     updateLineItem,
     removeFromCart

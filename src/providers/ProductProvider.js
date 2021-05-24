@@ -4,9 +4,7 @@ import ProductContext from '../contexts/ProductContext';
 import ProductFormContext from '../contexts/ProductFormContext';
 import ShopContext from "../contexts/ShopContext";
 
-const ProductProvider = ({ product = {}, children }) => {
-
-  let selectedVariant = product.variants[0];
+const ProductProvider = ({ product = {}, selectedVariant = 0, children }) => {
 
   return (
     <ProductContext.Provider value={product}>

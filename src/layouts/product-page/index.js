@@ -45,7 +45,7 @@ const ProductPage = ({ location = {} }) => {
   let {
     price,
     selectedOptions
-  } = variants.find(variant => variant.shopifyId === formState);
+  } = variants[formState];
   return (
     <Page location={location}>
       <ARTICLE>
@@ -59,20 +59,7 @@ const ProductPage = ({ location = {} }) => {
           <PRICE>${price}</PRICE>
         </PRICING>
         <DESCRIPTION>{description}</DESCRIPTION>
-        <ProductForm>
-          <VariantSelector
-            isHidden={true}
-            theme={'chic'}
-          >
-            {
-              arrayToComponentSiblings(options, (option, i) => (
-                <ProductOptionSelector key={i} name={option.name}>
-                  <SwatchGrid values={option.values} name={option.name} />
-                </ProductOptionSelector>
-              ))
-            }
-          </VariantSelector>
-        </ProductForm>
+        <ProductForm />
       </ARTICLE>
     </Page>
   )

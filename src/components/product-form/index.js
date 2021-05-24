@@ -11,19 +11,27 @@ import {
   CTA
 } from './styles';
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
+import VariantSelector from "../variant-selector";
+import { arrayToComponentSiblings } from "../../utils/dom-builder";
+import ProductOptionSelector from "../product-option-selector";
+import SwatchGrid from "../swatch-grid";
+import ProductContext from "../../contexts/ProductContext";
 
 // markup
 const ProductForm = ({
   children
 }) => {
   const {
+    product,
     addToCart,
     removeFromCart
   } = useContext(ProductFormContext), {
     openFlyout
   } = useContext(CartFlyoutContext), {
     emptyCart
-  } = useContext(ShopContext);
+  } = useContext(ShopContext), {
+    options
+  } = product;
 
   const onClick = async (e) => {
     await addToCart(e);
@@ -32,7 +40,18 @@ const ProductForm = ({
 
   return (
     <FORM>
-      {children}
+      <VariantSelector
+        isHidden={true}
+        theme={'chic'}
+      >
+        {
+          arrayToComponentSiblings(options, (option, i) => (
+            <ProductOptionSelector key={i} name={option.name}>
+              <SwatchGrid values={option.values} name={option.name} />
+            </ProductOptionSelector>
+          ))
+        }
+      </VariantSelector>
       <CTA>
         <ChicCTA
           type="submit"

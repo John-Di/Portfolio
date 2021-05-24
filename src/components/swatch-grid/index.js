@@ -21,24 +21,27 @@ const SwatchGrid = ({ gap = 0.25, values = [], name }) => {
     variants = []
   } = useContext(ProductContext), {
     formState,
-    updateOption
+    updateOption,
+    optionIsSelected
   } = useContext(ProductFormContext);
 
-  const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState),
-    selectedOptionValue = selectedVariant.selectedOptions.find(option => option.name === name).value;
+  const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState);
 
   let Swatch = SwatchType(name);
-  let SwatchMap = (value, i) => (
-    <ITEM key={i} gutter={gap}>
-      <Swatch
-        id={`swatch-${value.replace('#', '')}-${Date.now()}`}
-        isCurrent={selectedOptionValue === value}
-        value={value}
-        key={i}
-        toggleSwatch={() => updateOption({ value, name })}
-      />
-    </ITEM>
-  )
+  let SwatchMap = (value, i) => {
+    const isSelected = optionIsSelected({ name, value });
+    return (
+      <ITEM key={i} gutter={gap}>
+        <Swatch
+          id={`swatch-${value.replace('#', '')}-${Date.now()}`}
+          isCurrent={isSelected}
+          value={value}
+          key={i}
+          toggleSwatch={() => updateOption({ value, name })}
+        />
+      </ITEM>
+    )
+  }
   let tiles = arrayToComponentSiblings(values, SwatchMap);
 
 
