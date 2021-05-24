@@ -1,9 +1,11 @@
 import {
   useCallback,
+  useContext,
   useReducer,
   useState
 } from "react";
 import { BUTTON } from "../components/chic-cta/styles";
+import LocationContext from "../contexts/LocationContext";
 
 import BasicContrast from "../utils/BasicContrast";
 import { randomColor } from "../utils/randoms";
@@ -47,11 +49,17 @@ export const themeReducer = (state, action) => {
 
 
 
-function useTheme({ reducer = themeReducer, accentColor, initTheme = 'chic' }) {
+function useTheme({ reducer = themeReducer, initTheme = 'chic' }) {
+
+  const {
+    state
+  } = useContext(LocationContext), {
+    primaryColor
+  } = state;
 
   const [theme, UpdateTheme] = useReducer(reducer, {
-    primaryColor: accentColor,
-    accentContrast: BasicContrast(accentColor),
+    primaryColor: primaryColor,
+    accentContrast: BasicContrast(primaryColor),
     name: initTheme
   });
 

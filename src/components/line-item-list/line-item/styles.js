@@ -5,10 +5,7 @@ import { FloatLeft, FloatLeftHalf, FloatLeftThird } from '../../../utils/Float';
 export const TITLE = styled.p`
   font-weight: bold;
   margin: 0;
-  display: inline-block;
-  float: left;
   width: 100%;
-  max-width: calc(100% - 2.5em);
 
   span {
     display: block;
@@ -34,12 +31,9 @@ export const THUMBNAIL = styled.div`
 export const DETAILS = styled.div`
   display: inline-block;
   float: left;
-  flex: 1 ${(100 * 3 / 4) - 3}%;
-  max-width: ${(100 * 3 / 4) - 3}%;
-  width: 100%;
 `;
 
-export const CONTAINER = styled.form`
+export const CONTAINER = styled.div`
   ${Clearfix}
   width: 100%;
 `;
@@ -51,9 +45,9 @@ export const OPTIONS = styled.div`
   max-width: calc(100% - 2.5em);
 `;
 
-export const QUANTITYSTEPPER = styled.div`
+export const QUANTITYSTEPPER = styled.form`
   display: inline-block;
-  margin-left: auto;
+  float: right;
   width: 2em;
   vertical-align: bottom;
 

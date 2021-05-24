@@ -41,10 +41,20 @@ export const QUICKCART = styled.aside`
     }
   `, `
   `)}
+
+  ul {
+    height: calc(100% - ${FOOTER_HEIGHT / 16}em);
+  }
+
+  article > div + div {
+    flex: 1 ${(100 * 3 / 4) - 3}%;
+    max-width: ${(100 * 3 / 4) - 3}%;
+  }
 `;
 
 export const HEADER = styled.header`
   padding: 0 6%;
+  padding-right: 0;
   position: relative;
   box-shadow: 0 3px 0px 0px rgba(0,0,0,0.2);
   z-index: 1;

@@ -14,7 +14,7 @@ import QuantitySelector from "../../quantity-selector";
 import ShopContext from "../../../contexts/ShopContext";
 
 export default function LineItem({
-  item
+  item,
 }) {
   const {
     variant,
@@ -58,24 +58,22 @@ export default function LineItem({
         <Thumbnail image={image.src} />
       </THUMBNAIL>
       <DETAILS>
-        <CONTAINER>
-          <TITLE>
-            {item.title} <span>${item.variant.price}</span>
-          </TITLE>
-          <OPTIONS>
-            <Options options={selectedOptions} />
-          </OPTIONS>
-          <QUANTITYSTEPPER>
-            <QuantitySelector
-              id={`quantity-stepper-${id}`}
-              value={item.quantity}
-              increase={increase}
-              decrease={decrease}
-              onChange={onChange}
-            />
-          </QUANTITYSTEPPER>
-        </CONTAINER>
+        <TITLE>
+          {item.title} <span>${item.variant.price}</span>
+        </TITLE>
+        <OPTIONS>
+          <Options options={selectedOptions} />
+        </OPTIONS>
       </DETAILS>
+      <QUANTITYSTEPPER>
+        <QuantitySelector
+          id={`quantity-stepper-${id}-${(new Date()).getTime()}`}
+          value={item.quantity}
+          increase={increase}
+          decrease={decrease}
+          onChange={onChange}
+        />
+      </QUANTITYSTEPPER>
     </LINEITEM>
   );
 }

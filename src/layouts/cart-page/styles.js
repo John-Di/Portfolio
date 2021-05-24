@@ -14,6 +14,11 @@ export const ARTICLE = styled.article`
   @media screen and ${device.laptop} {
     max-width: ${size.laptopL}px;
   }
+
+  ul {
+    overflow: auto;
+    height: auto;
+  }
 `;
 
 export const TITLE = styled.h1`

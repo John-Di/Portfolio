@@ -132,15 +132,15 @@ function useShop() {
     return clearCart();
   });
 
+  const getLineItem = shopifyId => lineItems.find(({ variant }) => variant.id === shopifyId);
+
   const removeFromCart = (async (e, id) => {
     e.preventDefault();
-    return removeLineItem(id);
+    return removeLineItem(getLineItem(id).id);
   });
 
   const lineItems = store.checkout.lineItems.map(item => ({ ...item, variant: ({ ...item.variant }) })),
     cartCount = store.checkout.lineItems.reduce((acc, curr, i) => acc + curr.quantity, 0);
-
-  const getLineItem = shopifyId => lineItems.find(({ variant }) => variant.id === shopifyId);
 
   return {
     store,
@@ -148,7 +148,6 @@ function useShop() {
     cartCount,
     checkoutURL: store.checkout.webUrl,
     cartIsEmpty: !store.checkout.lineItems.length,
-    getLineItem,
     addVariantToCart,
     updateLineItem,
     emptyCart,

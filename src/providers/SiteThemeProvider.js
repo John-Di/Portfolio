@@ -7,14 +7,14 @@ import useTheme from '../hooks/useTheme';
 
 
 const SiteThemeProvider = ({ location = {}, children }) => {
-  const accentColor = location.state ? location.state.accentColor : randomColor();
+  const primaryColor = location.state ? location.state.primaryColor : randomColor();
   console.log('SiteThemeProvider', location);
-  console.log('SiteThemeProvider', accentColor);
+  console.log('SiteThemeProvider', primaryColor);
 
   return (
     <SiteThemeContext.Provider value={
       useTheme({
-        accentColor,
+        primaryColor,
         location
       })
     }>

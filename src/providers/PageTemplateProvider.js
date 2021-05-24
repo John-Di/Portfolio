@@ -6,7 +6,7 @@ import SiteThemeProvider from "../providers/SiteThemeProvider";
 const PageTemplateProvider = ({ location, children }) => {
   return (
     <LocationProvider location={location}>
-      <SiteThemeProvider location={location}>
+      <SiteThemeProvider>
         <PageProvider>
           {children}
         </PageProvider>

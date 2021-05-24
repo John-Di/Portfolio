@@ -39,12 +39,12 @@ function useProductForm({ product, selectedVariant, shop } = {}) {
   const updateOption = selectedOption => UpdateFormState(getSelectedVariantID(selectedOption));
   const addToCart = (async e => {
     e.preventDefault();
-    return addVariantToCart(formState, 1);
+    return addVariantToCart(variants[formState].shopifyId, 1);
   });
 
   const removeFromCart = (async e => {
     e.preventDefault();
-    removeLineItem(getLineItem(shopifyId).id);
+    removeLineItem(shopifyId);
   })
 
   const optionIsSelected = (option) => {

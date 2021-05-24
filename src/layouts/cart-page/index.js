@@ -7,6 +7,7 @@ import {
   ARTICLE,
   TITLE,
 } from './styles';
+import LineItemList from "../../components/line-item-list";
 
 // markup
 const CartPage = ({ location = {} }) => {
@@ -16,7 +17,7 @@ const CartPage = ({ location = {} }) => {
         <Page location={location}>
           <ARTICLE>
             <TITLE>Cart</TITLE>
-            <LineItemGrid />
+            <LineItemList />
           </ARTICLE>
         </Page>
       </PageTemplateProvider>
