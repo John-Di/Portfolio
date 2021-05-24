@@ -2,12 +2,9 @@ import React, { useContext } from "react";
 import {
   SwatchType
 } from './helpers';
-import LineItemTile from "../line-item-tile";
 import {
   arrayToComponentSiblings
 } from '../../utils/dom-builder';
-import ShopContext from "../../contexts/ShopContext";
-import LineItemProvider from "../../providers/LineItemProvider";
 import {
   GRID,
   ITEM
@@ -28,20 +25,17 @@ const SwatchGrid = ({ gap = 0.25, values = [], name }) => {
   const selectedVariant = variants.find(({ shopifyId }) => shopifyId === formState);
 
   let Swatch = SwatchType(name);
-  let SwatchMap = (value, i) => {
-    const isSelected = optionIsSelected({ name, value });
-    return (
-      <ITEM key={i} gutter={gap}>
-        <Swatch
-          id={`swatch-${value.replace('#', '')}-${Date.now()}`}
-          isCurrent={isSelected}
-          value={value}
-          key={i}
-          toggleSwatch={() => updateOption({ value, name })}
-        />
-      </ITEM>
-    )
-  }
+  let SwatchMap = (value, i) => (
+    <ITEM key={i} gutter={gap}>
+      <Swatch
+        id={`swatch-${value.replace('#', '')}-${Date.now()}`}
+        isCurrent={optionIsSelected({ name, value })}
+        value={value}
+        key={i}
+        toggleSwatch={() => updateOption({ value, name })}
+      />
+    </ITEM>
+  );
   let tiles = arrayToComponentSiblings(values, SwatchMap);
 
 

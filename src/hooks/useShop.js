@@ -133,7 +133,6 @@ function useShop() {
   });
 
   const removeFromCart = (async (e, id) => {
-    console.log('removeFromCart', e, id);
     e.preventDefault();
     return removeLineItem(id);
   });
