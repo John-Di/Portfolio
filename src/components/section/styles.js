@@ -76,7 +76,7 @@ const generateLayout = ({ maxWidth = '100%', hasPadding = false, textAlignmentSm
 `;
 
 const assessProps = (props) => `
-	${PropMap.bind(this, null)}
+	${PropMap.bind(this, generateLayout)}
 	${generateLayout(props)}
 `
 

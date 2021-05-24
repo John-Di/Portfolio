@@ -57,5 +57,5 @@ const AssessProps = ({ isPrev, buttonInside, isDisabled, hideForce = true }) => 
 
 export const BUTTON = styled.button`
   ${GALLERY_NAV_BUTTON}
-  ${PropMap.bind(this, null)}
+  ${PropMap.bind(this, AssessProps)}
 `;

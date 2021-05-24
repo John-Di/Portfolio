@@ -70,39 +70,7 @@ const StyleGuidePage = ({ location = {}, data }) => {
       location={location}
     >
       <StyleGuideArticle>
-        <HeroBanner
-          index={0}
-          cols={1}
-          image_first={`${randomBool()}`}
-          maxWidth={`${heroWidth ? `100%` : `${size.laptopL}px`}`}
-          reversed={!!0}
-          isEven={0 % 2 === 0}
-        >
-          <TextBlock
-            overlay={true}
-            backgroundColor={`${accentColor}`}
-            backgroundImage={heroImage}
-          >
-            <h1>Style Guide</h1>
-            <p>Here's a Hero Banner. It's {heroWidth ? `Full Screen` : `Page Width`}.</p>
-            <ChicCTA
-              accentColor={accentColor}
-              textColor={BasicContrast(accentColor)}
-            >The Buttons Still Do Nothing</ChicCTA>
-          </TextBlock>
-        </HeroBanner>
-        <TextBanner
-          textAlignment={'center'}
-        >
-          <TextBlock
-          >
-            <h2>Sections and Components</h2>
-            <p>Including this Basic Text Banner Section</p>
-          </TextBlock>
-        </TextBanner>
         <FeaturedTiles heading={`Product Tiles`} items={featured_products} />
-        <OnePairSection isFullWidth={true} />
-        <OnePairSection isFullWidth={false} />
         <FeaturedTiles>{
           jsxCloneArray(2, (length, _, index) => {
             return (
@@ -116,58 +84,9 @@ const StyleGuidePage = ({ location = {}, data }) => {
             )
           })}
         </FeaturedTiles>
-        <TwoPairSection isFullWidth={true} />
-        <TwoPairSection isFullWidth={false} />
-        <TextBanner
-          textAlignment={'center'}
-        >
-          <TextBlock
-          >
-            <h2>Just a little White Space Break</h2>
-            <p>Enjoy the Image Gallery</p>
-          </TextBlock>
-        </TextBanner>
         <ImageGallerySection
           images={randomImageArray()}
         />
-        <ThreePairSection isFullWidth={true} />
-        <ThreePairSection isFullWidth={false} />
-        <FeaturedTiles>{
-          jsxCloneArray(3, (length, _, index) => {
-            return (
-              <ObjectTile
-                key={index}
-                heading={`Tile ${index + 1}`}
-                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
-              >
-              </ObjectTile>
-            )
-          })}
-        </FeaturedTiles>
-        <FourPairSection isFullWidth={true} />
-        <FourPairSection isFullWidth={false} />
-        <TextBanner
-          textAlignment={'center'}
-        >
-          <TextBlock
-          >
-            <h2>That's it for now</h2>
-            <p>Try Mobile if you haven't already</p>
-          </TextBlock>
-        </TextBanner>
-        <OnePairSection isFullWidth={true} />
-        <FeaturedTiles>{
-          jsxCloneArray(1, (length, _, index) => {
-            return (
-              <ObjectTile
-                key={index}
-                heading={`Tile ${index + 1}`}
-                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
-              >
-              </ObjectTile>
-            )
-          })}
-        </FeaturedTiles>
       </StyleGuideArticle>
     </ShopPageTemplate>
   )
