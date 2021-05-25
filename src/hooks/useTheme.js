@@ -47,20 +47,19 @@ export const themeReducer = (state, action) => {
   }
 }
 
-
-
-function useTheme({ reducer = themeReducer, initTheme = 'chic' }) {
+function useTheme() {
 
   const {
     state
-  } = useContext(LocationContext), {
+  } = useContext(LocationContext);
+  const {
     primaryColor
   } = state;
 
-  const [theme, UpdateTheme] = useReducer(reducer, {
-    primaryColor: primaryColor,
+  const [theme, UpdateTheme] = useReducer(themeReducer, {
+    primaryColor,
     accentContrast: BasicContrast(primaryColor),
-    name: initTheme
+    name: `chic`
   });
 
   const updateAccentColor = color => UpdateTheme({

@@ -4,7 +4,7 @@ import ShopProvider from "../providers/ShopProvider";
 import ProductProvider from "../providers/ProductProvider";
 import useLocation from "../hooks/useLocation";
 import PageTemplateProvider from "../providers/PageTemplateProvider";
-import StoreTemplateProvider from "../providers/StoreTemplateProvider";
+import ShopPageTemplate from "./shop-page";
 
 const ProductTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
 
@@ -12,13 +12,11 @@ const ProductTemplate = ({ location, children, activeHeader = false, hasCart = f
   console.log('ProductTemplate.location.state', location.state);
 
   return (
-    <StoreTemplateProvider location={location} >
+    <ShopPageTemplate location={location} >
       <ProductProvider product={data.pageContext.product}>
-        <PageTemplateProvider location={location}>
-          <ProductPage location={location} />
-        </PageTemplateProvider>
+        <ProductPage location={location} />
       </ProductProvider>
-    </StoreTemplateProvider>
+    </ShopPageTemplate>
   )
 }
 

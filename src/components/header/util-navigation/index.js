@@ -4,6 +4,7 @@ import React, {
 import SiteThemeContext from "../../../contexts/SiteThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
+import LocationContext from "../../../contexts/LocationContext";
 import CartLink from '../cart-link';
 import {
   UTIL,
@@ -24,7 +25,9 @@ const UtilNavigation = ({
     isMenuOpen
   } = useContext(PageContext), {
     accentColor
-  } = useContext(SiteThemeContext);
+  } = useContext(SiteThemeContext), {
+    showCart
+  } = useContext(LocationContext);
 
   return (
     <UTIL>
@@ -36,7 +39,7 @@ const UtilNavigation = ({
             <AccountLink />
           </ITEM>
         }
-        {checkoutURL &&
+        {showCart &&
           <li>
             <CartLink />
           </li>

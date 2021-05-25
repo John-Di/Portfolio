@@ -13,7 +13,7 @@ const ShopPageTemplate = ({ location, children, activeHeader = false, hasCart = 
   console.log('ProductTemplate.location.state', location.state);
 
   return (
-    <StoreTemplateProvider location={location} >
+    <StoreTemplateProvider>
       <PageTemplateProvider location={location}>
         <Page location={location}>
           {children}

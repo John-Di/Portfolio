@@ -25,7 +25,7 @@ const Page = ({ children }) => {
     isMenuOpen,
     mainRef
   } = useContext(PageContext), {
-    accentColor
+    primaryColor
   } = useContext(SiteThemeContext);
 
   // console.log('menuIndex', menuIndex, isScrollLocked);
@@ -33,7 +33,7 @@ const Page = ({ children }) => {
     <PAGE style={pageStyles}
       isLocked={isMenuOpen}
       scrollPosition={scrollTop}
-      accentColor={accentColor}
+      accentColor={primaryColor}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
       <Header />

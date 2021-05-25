@@ -12,16 +12,12 @@ import LineItemList from "../../components/line-item-list";
 // markup
 const CartPage = ({ location = {} }) => {
   return (
-    <StoreTemplateProvider location={location} >
-      <PageTemplateProvider location={location}>
-        <Page location={location}>
-          <ARTICLE>
-            <TITLE>Cart</TITLE>
-            <LineItemList />
-          </ARTICLE>
-        </Page>
-      </PageTemplateProvider>
-    </StoreTemplateProvider >
+    <Page location={location}>
+      <ARTICLE>
+        <TITLE>Cart</TITLE>
+        <LineItemList />
+      </ARTICLE>
+    </Page>
   )
 }
 

@@ -42,7 +42,7 @@ const CartLink = () => {
   } = useContext(ShopContext), {
     selectMenuItem
   } = useContext(PageContext), {
-    accentColor
+    primaryColor
   } = useContext(SiteThemeContext), {
     pathContains
   } = useContext(LocationContext), {
@@ -50,12 +50,9 @@ const CartLink = () => {
     toggleFlyout
   } = useContext(CartFlyoutContext);
 
-  console.log('accentColor', accentColor)
   // console.log('checkoutURL', checkoutURL)
   console.log('isActive', pathContains('/cart'))
-  if (!checkoutURL) {
-    return;
-  }
+
   const onClick = e => {
     e.preventDefault();
     toggleFlyout();
@@ -73,7 +70,7 @@ const CartLink = () => {
         partiallyActive: true,
         cartCount,
         cartIsEmpty: cartCount === 0,
-        accentColor
+        primaryColor
       }}
     >
       <ICON cartCount={+cartCount}>

@@ -12,12 +12,7 @@ const SiteThemeProvider = ({ location = {}, children }) => {
   console.log('SiteThemeProvider', primaryColor);
 
   return (
-    <SiteThemeContext.Provider value={
-      useTheme({
-        primaryColor,
-        location
-      })
-    }>
+    <SiteThemeContext.Provider value={useTheme()}>
       {children}
     </SiteThemeContext.Provider>
   )
