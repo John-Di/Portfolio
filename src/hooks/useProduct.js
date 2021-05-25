@@ -25,13 +25,11 @@ const actionTypes = {
 const isSameOption = (selectedOption, { name, value }) => selectedOption.name === name && selectedOption.value === value;
 
 const getSelectedVariant = (selectedOption, variants = [], { selectedOptions }) => {
-  console.log('getSelectedVariant', selectedOption, variants, selectedOptions)
   return variants.reduce((currentID, variant, index) => {
     const selectedOptionIndex = selectedOptions.findIndex(({ name }) => name === selectedOption.name);
     let isSelected = variant.selectedOptions.every((option, index) => {
       return selectedOptionIndex === index ? isSameOption(option, selectedOption) : isSameOption(option, selectedOptions[index]);
     });
-    console.log(isSelected ? variant : currentID);
     return isSelected ? variant.id : currentID;
   }, variants[0].id)
 }
@@ -67,7 +65,6 @@ function useProduct({ reducer = productReducer, product, selectedVariant } = {})
   const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selectedVariant, variants });
   const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selectedVariant, selectedOption, variants });
 
-  console.log('useProduct', formState)
   return { product, formState, updateVariant, updateOption };
 }
 

@@ -5,7 +5,6 @@ import ProductFormContext from '../contexts/ProductFormContext';
 
 const LineItemProvider = ({ lineItem = {}, children }) => {
 
-  console.log('LineItemProvider', lineItem)
   let selectedVariant = lineItem.variant;
 
   return (

@@ -1,9 +1,6 @@
-import { useContext } from 'react';
 import styled from 'styled-components';
 import { device } from '../../utils/variables';
-import BasicContrast from '../../utils/BasicContrast';
 import { PropMap, conditionalProp } from '../../utils/AssessProps';
-import SiteThemeContext from '../../contexts/SiteThemeContext';
 
 const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContrast }) => `
   cursor: pointer;
@@ -160,7 +157,6 @@ export const HEADER = styled.header`
     padding: 0 4%;
   }
 
-  ${props => console.log('Header PropMap')}
   ${PropMap.bind(this, onStuck)}
 
   a,

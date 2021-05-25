@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 import { device } from '../../../utils/variables';
-import { ListReset, LinkReset } from '../../../utils/Resets';
+import { LinkReset } from '../../../utils/Resets';
 import {
-  FlexCentered,
-  ResponsiveLine
+  FlexCentered
 } from '../../../utils/Flex';
 import {
   Link as GatsbyLink
 } from "gatsby";
-import BasicContrast from '../../../utils/BasicContrast';
 import { useContext } from 'react';
-import { conditionalProp, PropMap } from '../../../utils/AssessProps';
+import { PropMap } from '../../../utils/AssessProps';
 import SiteThemeContext from '../../../contexts/SiteThemeContext';
 
 const HeaderLinkStyles = ({ primaryColor, accentContrast }) => `
-  ${console.log("HeaderLinkStyles", primaryColor, accentContrast)}
 
   display: inline-flex;
   padding: 1em 1.5em;

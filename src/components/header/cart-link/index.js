@@ -35,10 +35,7 @@ const nav = [
 const CartLink = () => {
 
   const {
-    store,
-    cartCount,
-    checkoutURL,
-    cartIsEmpty
+    cartCount
   } = useContext(ShopContext), {
     selectMenuItem
   } = useContext(PageContext), {
@@ -49,9 +46,6 @@ const CartLink = () => {
     isOpen,
     toggleFlyout
   } = useContext(CartFlyoutContext);
-
-  // console.log('checkoutURL', checkoutURL)
-  console.log('isActive', pathContains('/cart'))
 
   const onClick = e => {
     e.preventDefault();

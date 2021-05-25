@@ -8,7 +8,6 @@ import useLocation from "../../hooks/useLocation";
 
 // markup
 const Cart = ({ location = {} }) => {
-  console.log('Cart.location', location);
   return (
     <ShopPageTemplate location={location}>
       <CartPage />

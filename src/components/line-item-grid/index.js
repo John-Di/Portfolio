@@ -18,8 +18,6 @@ const LineItemGrid = ({ gap = 1.25 }) => {
     lineItems
   } = useContext(ShopContext);
 
-  console.log('lineItems', lineItems);
-
   let TileMap = (tile, i) => (
     <ITEM key={i} gutter={gap}>
       <LineItemProvider lineItem={tile}>
@@ -29,8 +27,6 @@ const LineItemGrid = ({ gap = 1.25 }) => {
   )
 
   let tiles = arrayToComponentSiblings(lineItems, TileMap);
-
-  console.log(tiles)
 
   return (
     <GRID ref={list => list} gutterOffset={gap}>

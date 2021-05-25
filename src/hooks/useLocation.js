@@ -17,7 +17,6 @@ const actionTypes = {
 };
 
 export const locationReducer = (state, action) => {
-  console.log('locationReducer', state, action)
   const { type, primaryColor, theme } = action,
     { name } = theme;
 
@@ -37,7 +36,6 @@ export const locationReducer = (state, action) => {
 
 function useLocation({ location, primaryColor }) {
 
-  console.log('useLocation', location, location.pathname)
   const {
     store,
     checkoutURL,
@@ -50,7 +48,6 @@ function useLocation({ location, primaryColor }) {
     primaryColor: primaryColor || randomColor()
   });
 
-  console.log('useLocation', state, state)
   const pathContains = str => (state.pathname.indexOf(str) >= 0);
 
   return {

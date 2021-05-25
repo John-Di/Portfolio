@@ -5,7 +5,6 @@ import {
   LINEITEM,
   THUMBNAIL,
   DETAILS,
-  CONTAINER,
   OPTIONS,
   QUANTITYSTEPPER
 } from './styles';
