@@ -73,7 +73,7 @@ const generatePseudo = ({ pseudo = `before`, adjacentBreakpoints, stackedBreakpo
 	&::${pseudo} {
 		content: '';
 		display: block;
-    ${PropMap({ backgroundColor, backgroundImage })}
+    ${PropMap(undefined, { backgroundColor, backgroundImage })}
 		${pairItemRules(adjacentBreakpoints, stackedBreakpoints)}
 
 		${isSquare ? `
@@ -132,7 +132,7 @@ export const LAYOUT = styled.div`
 		${Clearfix}
 	}
 
-	${props => conditionalProp(props.hasPseudo, generatePseudo(props), PropMap(null, props))}
+	${props => conditionalProp(props.hasPseudo, generatePseudo(props), PropMap(undefined, props))}
 	${props => assessProps(props)}
 `;
 

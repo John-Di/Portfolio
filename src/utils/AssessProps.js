@@ -9,13 +9,10 @@ const AssessProps = ({ borderColor, borderWidth, ...props }) => `
   ${renderText(props)}
 `;
 
-export const PropMap = (ApplyRules = AssessProps, props) => {
-  var Foo = ApplyRules ? ApplyRules : AssessProps;
-  return Foo({
-    ...useContext(SiteThemeContext),
-    ...props
-  })
-}
+export const PropMap = (ApplyRules = AssessProps, props) => ApplyRules({
+  ...useContext(SiteThemeContext),
+  ...props
+})
 
 const AssessBackground = ({
   backgroundImage,

@@ -17,7 +17,7 @@ const assessWrapper = ({ isActive = false }) => conditionalProp(isActive, `
 
 const assessTrigger = ({ isActive, lineColor, backgroundColor, accentColor }) => `
   background-color: transparent;
-  ${PropMap.bind(this, null)}
+  ${PropMap.bind(this, undefined)}
   ${conditionalProp(lineColor, `
     border-color: ${lineColor};
 

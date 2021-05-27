@@ -18,7 +18,7 @@ const assessProps = ({ overlay, image, whiteOnHover }) => `
     vertical-align: bottom;
     width: 100%;
     max-width: 100%;
-    ${PropMap(null, { overlay, isSquare: true, backgroundImage: image, whiteOnHover })}
+    ${PropMap(undefined, { overlay, isSquare: true, backgroundImage: image, whiteOnHover })}
     ${conditionalProp(image, `
       padding-top: 100%;
       ${conditionalProp(whiteOnHover, `

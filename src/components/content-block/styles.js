@@ -43,7 +43,7 @@ export const BLOCK = styled.div`
 		align-items: center;
   }
 
-  ${PropMap.bind(this, null)}
+  ${PropMap.bind(this, undefined)}
   ${props => assessProps(props)}
 `;
 
