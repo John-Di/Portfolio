@@ -11,12 +11,10 @@ import LineItem from "./line-item";
 export default function LineItemList() {
   const {
     lineItems
-  } = useContext(ShopContext), {
-    footerHeight
-  } = useContext(CartFlyoutContext);
+  } = useContext(ShopContext);
 
   return (
-    <ITEMS footerHeight={footerHeight}>
+    <ITEMS>
       {arrayToComponentSiblings(lineItems, (item, i) => {
         return (
           <ITEM>

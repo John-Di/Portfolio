@@ -11,9 +11,7 @@ import {
   ICON
 } from './styles';
 import ShopContext from "../../contexts/ShopContext";
-import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
-import LineItem from "../line-item-list/line-item";
 import CloseIcon from '../../images/svgs/x.svg'
 import LineItemList from "../line-item-list";
 

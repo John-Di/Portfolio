@@ -3,7 +3,7 @@ import { device } from '../../../utils/variables';
 import { ButtonReset, ListReset, LinkReset } from '../../../utils/Resets';
 import FullSizeOverlay from '../../../utils/FullSizeOverlay';
 import {
-  conditionalProp
+  conditionalProp, PropMap
 } from '../../../utils/AssessProps';
 import {
   FlexCentered,
@@ -18,7 +18,7 @@ const ToggleTransitions = ({ isActive, iconColor, iconColorEmphasis }) => `
   `color: ${iconColorEmphasis};`)}
 `;
 
-export const NAV = styled.nav`
+export const MENU = styled.div`
   grid-area: nav;
   width: 100%;
   height: 100%;
@@ -38,37 +38,44 @@ export const TOGGLE = styled.button`
   }
 `;
 
-export const MENU = styled.div`
+const MobileNav = ({
+  height,
+  isMenuOpen
+}) => `
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.1s 0s;
+
+  &::before {
+    opacity: 0;
+    z-index: -1;
+    background-color: rgba(0,0,0,0.5);
+    ${FullSizeOverlay}
+    position: fixed;
+    transition: opacity 0.1s 0.05s;
+    ${conditionalProp(height, `top: ${height}px;`)}
+  }
+
+  ${conditionalProp(isMenuOpen && height, `
+    transition: height 0.1s 0.1s;
+    height: ${height}px;
+
+    &::before {
+      opacity: 1;
+    }
+  `)};
+`;
+
+export const NAV = styled.nav`
   width: 100%;
   height: 100%;
 
   @media screen and ${device.max_tablet} {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 0;
-    overflow: hidden;
-    transition: height 0.1s 0s;
-
-    &::before {
-      opacity: 0;
-      z-index: -1;
-      background-color: rgba(0,0,0,0.5);
-      ${FullSizeOverlay}
-      position: fixed;
-      transition: opacity 0.1s 0.05s;
-      ${props => conditionalProp(props.height, `top: ${props.height}px;`)}
-    }
-
-    ${props => conditionalProp(props.isMenuOpen && props.height, `
-      transition: height 0.1s 0.1s;
-      height: ${props.height}px;
-
-      &::before {
-        opacity: 1;
-      }
-    `)};
+    ${PropMap.bind(this, MobileNav)}
   }
 `;
 
@@ -76,14 +83,14 @@ export const ITEMS = styled.ul`
   ${ListReset}
   ${ResponsiveLine}
   width: 100%;
-  height: 100%;
 
   @media screen and ${device.max_tablet} {
     background: white;
-    transition: height 2s 0s;
+    transition: height .1s 0s;
   }
 
   @media screen and ${device.tablet} {
+    height: 100%;
     justify-content: ${props => props.desktopNavAlignment};
   }
 
@@ -94,10 +101,22 @@ export const ITEMS = styled.ul`
 
 export const ITEM = styled.li`
   ${ListReset}
-  height: 100%;
 
   @media screen and ${device.max_tablet} {
     width: 100%;
+  }
+
+  @media screen and ${device.tablet} {
+    height: 100%;
+  }
+
+  > a {
+    height: 4em;
+    width: 100%;
+
+    @media screen and ${device.tablet} {
+      width: 4em;
+    }
   }
 `;
 

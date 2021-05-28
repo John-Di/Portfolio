@@ -10,9 +10,6 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContras
     &:hover,
     &focus {
 
-      box-shadow: 0 3px 1px rgba(0,0,0,0.2);
-      transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
-
       a {
         background-color: transparent;
         color: ${`#000000`};
@@ -162,8 +159,6 @@ export const HEADER = styled.header`
   a,
   button {
     padding: 0.75em;
-    width: 4em;
-    height: 4em;
     ${PropMap.bind(this, HeaderTabletProps)}
   }
 `;

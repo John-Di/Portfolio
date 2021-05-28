@@ -29,3 +29,13 @@ export const TITLE = styled.h1`
     font-size: 3em;
   }
 `;
+
+export const LINEITEMS = styled.div`
+  display: inline-block;
+  vertical-align: bottom;
+  width: 100%;
+
+  @media screen and ${device.laptop} {
+    max-width: 75%;
+  }
+`;

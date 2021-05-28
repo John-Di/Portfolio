@@ -2,18 +2,19 @@ import {
   useState,
   useEffect,
   useRef,
-  useContext,
-  useCallback
+  useContext
 } from "react";
 import CartFlyoutContext from "../contexts/CartFlyoutContext";
+import MobileMenuFlyoutContext from "../contexts/MobileMenuFlyoutContext";
 
-function usePageNavigation({ isOpen }) {
+function usePageNavigation() {
 
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [isStuck, SetStickyState] = useState(false);
   const [scrollTop, SaveScrollTop] = useState(0);
 
-  let isScrollLocked = !!~menuIndex || isOpen;
+
+  let isScrollLocked = !!~menuIndex;
 
   const selectMenuItem = index => ((menuIndex !== 0 && index >= 0) || index < 0) && SetMenuIndex(index),
     toggleMenu = () => menuIndex === 0 && SetMenuIndex(0),
@@ -77,6 +78,7 @@ function usePageNavigation({ isOpen }) {
     headerRef,
     drawerRef,
     mainRef,
+    mobileNavHeight: drawerRef.current && [...drawerRef.current.querySelectorAll('li')].reduce((a, b, c) => a + b.scrollHeight, 0),
     selectMenuItem,
     toggleMenu,
     closeMenu

@@ -6,6 +6,7 @@ import StoreTemplateProvider from "../../providers/StoreTemplateProvider";
 import {
   ARTICLE,
   TITLE,
+  LINEITEMS
 } from './styles';
 import LineItemList from "../../components/line-item-list";
 
@@ -15,7 +16,9 @@ const CartPage = ({ location = {} }) => {
     <Page location={location}>
       <ARTICLE>
         <TITLE>Cart</TITLE>
-        <LineItemList />
+        <LINEITEMS>
+          <LineItemList />
+        </LINEITEMS>
       </ARTICLE>
     </Page>
   )

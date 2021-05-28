@@ -4,10 +4,10 @@ import {
   useState
 } from "react";
 
-function useFlyout({ initState = false }) {
+function useFlyout() {
 
   const ref = useRef(null),
-    [isOpen, toggleState] = useState(initState),
+    [isOpen, toggleState] = useState(false),
     openFlyout = () => toggleState(true),
     closeFlyout = () => toggleState(false),
     toggleFlyout = () => toggleState(!isOpen);

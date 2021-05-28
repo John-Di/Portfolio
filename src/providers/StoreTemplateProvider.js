@@ -2,10 +2,10 @@ import React from 'react';
 import CartFlyoutProvider from './CartFlyoutProvider';
 import ShopProvider from './ShopProvider';
 
-const StoreTemplateProvider = ({ location, children }) => {
+const StoreTemplateProvider = ({ children }) => {
   return (
     <ShopProvider>
-      <CartFlyoutProvider location={location}>
+      <CartFlyoutProvider>
         {children}
       </CartFlyoutProvider>
     </ShopProvider>

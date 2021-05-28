@@ -24,30 +24,16 @@ const Header = ({
   let whiteOnHover = !!heroImage || isActive;
 
   const {
-    isStuck,
-    isMenuOpen,
     headerRef
-  } = useContext(PageContext), {
-    accentColor
-  } = useContext(SiteThemeContext);
-
-  let navAccent = accentColor,
-    textColor = BasicContrast(accentColor);
+  } = useContext(PageContext);
 
   return (
     <HEADER
-      isMenuOpen={isMenuOpen}
-      textColor={textColor}
-      accentColor={navAccent}
-      textColorEmphasis={textColor}
       whiteOnHover={whiteOnHover}
       ref={headerRef}
       quickCartTop={headerRef.current && false ? headerRef.current.scrollHeight : 0}
-      isStuck={navAccent}
-      isActive={navAccent}
     >
       <MainNavigation
-        isActive={false}
         desktopNavAlignment={desktopNavAlignment}
       />
       <UtilNavigation

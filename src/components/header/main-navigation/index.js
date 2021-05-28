@@ -23,6 +23,7 @@ import {
 } from './styles';
 import SiteThemeContext from '../../../contexts/SiteThemeContext';
 import TextLink from "../text-link";
+import MobileMenuFlyoutContext from '../../../contexts/MobileMenuFlyoutContext';
 
 const nav = [
   {
@@ -48,38 +49,30 @@ const MainNavigation = ({
   let whiteOnHover = !!heroImage || isActive;
 
   const {
-    store,
-    cartIsEmpty
-  } = useContext(ShopContext), {
     isStuck,
-    isMenuOpen,
-    drawerRef,
-    selectMenuItem,
-    toggleMenu
+    mobileNavHeight,
+    drawerRef
   } = useContext(PageContext), {
-    accentColor
-  } = useContext(SiteThemeContext);
+    isOpen,
+    toggleFlyout
+  } = useContext(MobileMenuFlyoutContext);
 
-  let navAccent = accentColor || randomColor(),
-    textColor = BasicContrast(accentColor);
 
   return (
-    <NAV>
+    <MENU>
       <TOGGLE
-        isActive={isMenuOpen}
-        iconColor={isStuck || isActive ? `black` : textColor}
-        iconColorEmphasis={navAccent}
-        onClick={toggleMenu}
+        isActive={isOpen}
+        onClick={toggleFlyout}
       >
         <HamburgerIcon />
       </TOGGLE>
-      <MENU
+      <NAV
         ref={drawerRef}
-        isMenuOpen={isMenuOpen}
-        height={isMenuOpen ? drawerRef.current.scrollHeight : 0}
+        isMenuOpen={isOpen}
+        height={isOpen ? mobileNavHeight : 0}
       >
         <ITEMS
-          isMenuOpen={isMenuOpen}
+          isMenuOpen={isOpen}
           desktopNavAlignment={desktopNavAlignment}
         >
           {
@@ -90,9 +83,6 @@ const MainNavigation = ({
 
               return (
                 <ITEM
-                  textColor={textColor}
-                  accentColor={navAccent}
-                  textColorEmphasis={textColor}
                   whiteOnHover={whiteOnHover}
                   isActive={isActive}
                 >
@@ -105,8 +95,8 @@ const MainNavigation = ({
             })
           }
         </ITEMS>
-      </MENU>
-    </NAV>
+      </NAV>
+    </MENU>
   )
 }
 
