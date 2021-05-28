@@ -11,7 +11,7 @@ import { useContext } from 'react';
 import { PropMap } from '../../../utils/AssessProps';
 import SiteThemeContext from '../../../contexts/SiteThemeContext';
 
-const HeaderLinkStyles = ({ primaryColor, accentContrast }) => `
+const HeaderLinkStyles = ({ primaryColor, primaryContrast }) => `
 
   display: inline-flex;
   padding: 1em 1.5em;
@@ -21,7 +21,7 @@ const HeaderLinkStyles = ({ primaryColor, accentContrast }) => `
   outline-width: 0;  box-shadow: none;
   border: 0.25em solid transparent;
   text-align: center;
-  transition: background-color 0.1s 0.05s, color 0.1s 0s;
+  transition: background-color 0.25s 0.05s, color 0.25s 0s;
 
   &:hover,
   &:focus {
@@ -42,7 +42,7 @@ const HeaderLinkStyles = ({ primaryColor, accentContrast }) => `
 
   @media screen and ${device.tablet} {
     background-color: ${primaryColor};
-    color: ${accentContrast};
+    color: ${primaryContrast};
     padding: 0.75em;
     height: 3em;
   }

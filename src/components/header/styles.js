@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { device } from '../../utils/variables';
 import { PropMap, conditionalProp } from '../../utils/AssessProps';
 
-const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContrast }) => `
+const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, primaryContrast }) => `
   cursor: pointer;
-  grid-template: "logo nav util" / 1fr 3fr 1fr;
+  border: 0.25em solid transparent;
+  padding: 0.75em;
 
   ${conditionalProp(whiteOnHover, `
     &:hover,
@@ -35,12 +36,12 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContras
           &:hover,
           &:focus {
             svg {
-              color: ${accentContrast};
-              fill: ${accentContrast};
+              color: ${primaryContrast};
+              fill: ${primaryContrast};
             }
 
             span::after {
-              background: ${accentContrast};
+              background: ${primaryContrast};
               color: ${primaryColor};
             }
           }
@@ -50,15 +51,27 @@ const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, accentContras
   `)}
 `;
 
+const headerShadowHeight = 3;
 
 const onStuck = ({
-  whiteOnHover, quickCartTop, primaryColor, accentContrast, isStuck = true
+  whiteOnHover, quickCartTop, primaryColor, primaryContrast, isStuck = true
 }) => `
   background-color: white;
-  box-shadow: 0 3px 1px rgba(0,0,0,0.2);
-  transition: background-color 0.1s 0.1s, box-shadow 0.1s 0.05s;
+  transition: background-color 0.25s 0.25s, box-shadow 0.25s 0.05s;
 
-  @media screen and ${device.max_tablet} {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 ${headerShadowHeight}px 1px rgba(0,0,0,0.2);
+    height: ${headerShadowHeight}px;
+    bottom: ${headerShadowHeight}px;
+
+    @media screen and ${device.tablet} {
+      bottom: 0;
+    }
+  }
+
     a {
       color: ${`#000000`};
 
@@ -81,7 +94,7 @@ const onStuck = ({
           &:hover,
           &:focus {
             background-color: ${primaryColor};
-            color: ${accentContrast};
+            color: ${primaryContrast};
           }
         }
       `)}
@@ -119,16 +132,16 @@ const onStuck = ({
         &:hover,
         &:focus {
           background-color: ${primaryColor};
-          color: ${accentContrast};
+          color: ${primaryContrast};
 
           span::after {
-            background: ${accentContrast};
+            background: ${primaryContrast};
             color: ${primaryColor};
           }
 
           svg {
-            color: ${accentContrast};
-            fill: ${accentContrast};
+            color: ${primaryContrast};
+            fill: ${primaryContrast};
           }
         }
       }
@@ -150,7 +163,7 @@ export const HEADER = styled.header`
   z-index: 2;
 
   @media screen and ${device.tablet} {
-    grid-template: "logo nav util" / 6em 1fr 6em;
+    grid-template: "logo nav util" / 1fr 3fr 1fr;
     padding: 0 4%;
   }
 
@@ -158,7 +171,6 @@ export const HEADER = styled.header`
 
   a,
   button {
-    padding: 0.75em;
     ${PropMap.bind(this, HeaderTabletProps)}
   }
 `;

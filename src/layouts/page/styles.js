@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { conditionalProp, PropMap } from '../../utils/AssessProps';
 
-const AssessState = ({ isLocked = false, scrollPosition = 0, primaryColor, accentContrast }) => `
+const AssessState = ({ isLocked = false, scrollPosition = 0, primaryColor, primaryContrast }) => `
   &,
   & * {
     /* width */
@@ -19,7 +19,7 @@ const AssessState = ({ isLocked = false, scrollPosition = 0, primaryColor, accen
     ::-webkit-scrollbar-thumb {
       cursor: pointer;
       background: ${primaryColor}55;
-      transition: width 0.5s ease-in 0;
+      transition: width 0.25s ease-in 0;
     }
 
     /* Handle on hover */

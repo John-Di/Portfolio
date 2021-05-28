@@ -6,7 +6,7 @@ export const LINK = styled.a`
 	text-decoration: none;
 	overflow: hidden;
 	fill: #${props => props.color};
-	transition: fill 0.1s ease 0s;
+	transition: fill 0.25s ease 0s;
 
 	&:hover {
 		fill: black;

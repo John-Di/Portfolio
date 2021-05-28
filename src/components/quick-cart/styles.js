@@ -14,7 +14,7 @@ export const QUICKCART = styled.aside`
   top: 0;
   bottom: 0;
   width: 100vw;
-  transition: right 0.1s;
+  transition: right 0.25s;
   z-index: 3;
 
   @media screen and ${device.laptop} {

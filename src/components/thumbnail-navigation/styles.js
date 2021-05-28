@@ -37,7 +37,7 @@ export const SCROLLABLE = styled.div`
         overflow-x: scroll;
         overflow-y: hidden;
         white-space: nowrap;
-        transition: left 0.5s;
+        transition: left 0.25s;
 
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */

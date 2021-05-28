@@ -31,7 +31,7 @@ export const themeReducer = (state, action) => {
       return {
         ...state,
         primaryColor,
-        accentContrast: BasicContrast(primaryColor),
+        primaryContrast: BasicContrast(primaryColor),
         borderColor: primaryColor,
         name
       }
@@ -58,7 +58,7 @@ function useTheme() {
 
   const [theme, UpdateTheme] = useReducer(themeReducer, {
     primaryColor,
-    accentContrast: BasicContrast(primaryColor),
+    primaryContrast: BasicContrast(primaryColor),
     name: `chic`
   });
 

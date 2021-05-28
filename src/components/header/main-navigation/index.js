@@ -69,10 +69,11 @@ const MainNavigation = ({
       <NAV
         ref={drawerRef}
         isMenuOpen={isOpen}
-        height={isOpen ? mobileNavHeight : 0}
+        flyoutHeight={mobileNavHeight}
       >
         <ITEMS
           isMenuOpen={isOpen}
+          flyoutHeight={isOpen ? mobileNavHeight : 0}
           desktopNavAlignment={desktopNavAlignment}
         >
           {

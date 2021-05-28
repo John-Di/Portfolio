@@ -25,7 +25,7 @@ export const locationReducer = (state, action) => {
       return {
         ...state,
         primaryColor,
-        accentContrast: BasicContrast(primaryColor),
+        primaryContrast: BasicContrast(primaryColor),
         borderColor: primaryColor,
         name
       }

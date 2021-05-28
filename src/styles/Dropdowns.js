@@ -42,7 +42,7 @@ export const ChicDropdownStyles = ({
     min-width: 5em;
     text-transform: uppercase;
     letter-spacing: 0.2px;
-    transition: background-color 0.1s, color 0.1s;
+    transition: background-color 0.25s, color 0.25s;
 
     ${conditionalProp(backgroundColor, `background-color: ${backgroundColor};`)}
     ${conditionalProp(textColor, `

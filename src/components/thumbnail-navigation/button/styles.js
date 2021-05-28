@@ -15,7 +15,7 @@ const GALLERY_NAV_BUTTON = `
   top: 0;
   bottom: 0;
   width: ${BUTTON_WIDTH}em;
-  transition: opacity 0.1s, background-color 0.1s, color 0.1s;
+  transition: opacity 0.25s, background-color 0.25s, color 0.25s;
   opacity: 0.25;
 
   &:hover,

@@ -11,11 +11,11 @@ import {
 } from '../../../utils/Flex';
 
 
-const ToggleTransitions = ({ isActive, iconColor, iconColorEmphasis }) => `
-  color: ${iconColor};
+const ToggleTransitions = ({ isActive, primaryColor, primaryContrast }) => `
+  color: ${primaryColor};
 
   ${conditionalProp(isActive,
-  `color: ${iconColorEmphasis};`)}
+  `color: ${primaryContrast};`)}
 `;
 
 export const MENU = styled.div`
@@ -27,11 +27,9 @@ export const MENU = styled.div`
 export const TOGGLE = styled.button`
   ${ButtonReset}
   ${FlexCentered}
-  width: 3em;
-  height: 3em;
   cursor: pointer;
-  ${ToggleTransitions}
-  transition: color 0.1s 0.05s;
+  ${PropMap.bind(this, ToggleTransitions)}
+  transition: color 0.25s 0.05s;
 
   @media screen and ${device.tablet} {
     display: none;
@@ -39,33 +37,29 @@ export const TOGGLE = styled.button`
 `;
 
 const MobileNav = ({
-  height,
+  flyoutHeight,
   isMenuOpen
 }) => `
   position: absolute;
-  top: 100%;
+  height: ${flyoutHeight / 16}em;;
   left: 0;
   right: 0;
-  height: 0;
   overflow: hidden;
-  transition: height 0.1s 0s;
 
-  &::before {
-    opacity: 0;
-    z-index: -1;
-    background-color: rgba(0,0,0,0.5);
-    ${FullSizeOverlay}
-    position: fixed;
-    transition: opacity 0.1s 0.05s;
-    ${conditionalProp(height, `top: ${height}px;`)}
+  ul {
+    position: absolute;
+    top: -${flyoutHeight / 16}em;
+    transition: top 0.25s 0s;
   }
 
-  ${conditionalProp(isMenuOpen && height, `
-    transition: height 0.1s 0.1s;
-    height: ${height}px;
+  ${conditionalProp(isMenuOpen, `
 
     &::before {
       opacity: 1;
+    }
+
+    ul {
+      top: 0;
     }
   `)};
 `;
@@ -86,7 +80,6 @@ export const ITEMS = styled.ul`
 
   @media screen and ${device.max_tablet} {
     background: white;
-    transition: height .1s 0s;
   }
 
   @media screen and ${device.tablet} {

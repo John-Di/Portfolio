@@ -48,7 +48,7 @@ export const BUTTON = styled.button`
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.2px;
-  transition: background-color 0.1s, color 0.1s;
+  transition: background-color 0.25s, color 0.25s;
 
   ${AssessProps}
 `

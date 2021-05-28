@@ -11,7 +11,7 @@ import {
   FlexCentered
 } from '../../../utils/Flex';
 
-const activeState = ({ primaryColor, accentContrast }) => `
+const activeState = ({ primaryColor, primaryContrast }) => `
   font-weight: bold;
   text-decoration: underline;
 
@@ -26,7 +26,7 @@ export const CART = styled(GatsbyLink)`
   outline-width: 0;
   box-shadow: none;
   border: 0.25em solid transparent;
-  transition: background-color 0.1s 0.05s, color 0.1s 0s;
+  transition: background-color 0.25s 0.05s, color 0.25s 0s;
   margin-left: auto;
 
   @media screen and ${device.max_tablet} {
@@ -39,7 +39,7 @@ export const CART = styled(GatsbyLink)`
 const IconStyles = ({
   cartCount,
   primaryColor,
-  accentContrast
+  primaryContrast
 }) => `
 
   svg {
@@ -60,7 +60,7 @@ const IconStyles = ({
     overflow: hidden;
     border-radius: 50%;
     background: ${primaryColor};
-    color: ${accentContrast};
+    color: ${primaryContrast};
   }
 `
 
@@ -72,7 +72,7 @@ export const ICON = styled.span`
 
 
 // span::after {
-//   background: ${accentContrast};
+//   background: ${primaryContrast};
 //   color: ${primaryColor};
 
 //   @media screen and ${device.tablet} {

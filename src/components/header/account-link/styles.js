@@ -38,7 +38,7 @@ export const LINK = styled(GatsbyLink)`
   outline-width: 0;
   box-shadow: none;
   border: 0.25em solid transparent;
-  transition: background-color 0.1s 0.05s, color 0.1s 0s;
+  transition: background-color 0.25s 0.05s, color 0.25s 0s;
   margin-left: auto;
 
   ${({ state }) => conditionalProp(state.isActive, activeState(state))}
