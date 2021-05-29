@@ -85,14 +85,14 @@ const DUMMY_PRODUCT = {
 const ProductTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
 
   return (
-    <StoreTemplateProvider location={location} >
-      <ProductProvider product={DUMMY_PRODUCT}>
-        <PageTemplateProvider location={location}>
+    <PageTemplateProvider location={location}>
+      <StoreTemplateProvider location={location} >
+        <ProductProvider product={DUMMY_PRODUCT}>
           {/* <ProductPage location={location} /> */}
           Sup
-        </PageTemplateProvider>
       </ProductProvider>
-    </StoreTemplateProvider>
+      </StoreTemplateProvider>
+    </PageTemplateProvider>
   )
 }
 

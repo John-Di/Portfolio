@@ -13,8 +13,11 @@ function usePageNavigation() {
   const [isStuck, SetStickyState] = useState(false);
   const [scrollTop, SaveScrollTop] = useState(0);
 
+  const cartFlyout = useContext(CartFlyoutContext),
+    mobileMenu = useContext(MobileMenuFlyoutContext);
 
-  let isScrollLocked = !!~menuIndex;
+
+  let isScrollLocked = !!~menuIndex || ((CartFlyoutContext && cartFlyout && cartFlyout.isOpen) || (mobileMenu && mobileMenu.isOpen));
 
   const selectMenuItem = index => ((menuIndex !== 0 && index >= 0) || index < 0) && SetMenuIndex(index),
     toggleMenu = () => menuIndex === 0 && SetMenuIndex(0),

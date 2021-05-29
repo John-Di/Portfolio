@@ -1,7 +1,6 @@
 import React, {
   useContext
 } from "react";
-import SiteThemeContext from "../../../contexts/SiteThemeContext";
 import PageContext from "../../../contexts/PageContext";
 import ShopContext from "../../../contexts/ShopContext";
 import LocationContext from "../../../contexts/LocationContext";
@@ -19,16 +18,14 @@ const UtilNavigation = ({
 
   const {
     store,
-    checkoutURL,
-    cartCount
+    checkoutURL
   } = useContext(ShopContext), {
     isMenuOpen
   } = useContext(PageContext), {
-    accentColor
-  } = useContext(SiteThemeContext), {
-    showCart
+    pathContains
   } = useContext(LocationContext);
 
+  const showCart = checkoutURL || pathContains('/cart') || pathContains('/cart/');
   return (
     <UTIL>
       <ITEMS

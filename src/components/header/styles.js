@@ -65,11 +65,7 @@ const onStuck = ({
     width: 100%;
     box-shadow: 0 ${headerShadowHeight}px 1px rgba(0,0,0,0.2);
     height: ${headerShadowHeight}px;
-    bottom: ${headerShadowHeight}px;
-
-    @media screen and ${device.tablet} {
-      bottom: 0;
-    }
+    bottom: 0;
   }
 
     a {

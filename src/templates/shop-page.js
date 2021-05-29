@@ -6,13 +6,13 @@ import Page from "../layouts/page";
 const ShopPageTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
 
   return (
-    <StoreTemplateProvider>
-      <PageTemplateProvider location={location}>
+    <PageTemplateProvider location={location}>
+      <StoreTemplateProvider>
         <Page location={location}>
           {children}
         </Page>
-      </PageTemplateProvider>
-    </StoreTemplateProvider>
+      </StoreTemplateProvider>
+    </PageTemplateProvider>
   )
 }
 

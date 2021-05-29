@@ -1,11 +1,6 @@
 import {
-  useCallback,
-  useContext,
-  useReducer,
-  useState
+  useReducer
 } from "react";
-import ShopContext from "../contexts/ShopContext";
-import SiteThemeContext from "../contexts/SiteThemeContext";
 import BasicContrast from "../utils/BasicContrast";
 import { randomColor } from "../utils/randoms";
 
@@ -36,12 +31,6 @@ export const locationReducer = (state, action) => {
 
 function useLocation({ location, primaryColor }) {
 
-  const {
-    store,
-    checkoutURL,
-    cartCount
-  } = useContext(ShopContext);
-
   const [state, UpdateLocation] = useReducer(locationReducer, {
     ...location,
     pathname: typeof window !== 'undefined' ? window.location.href : '',
@@ -53,9 +42,7 @@ function useLocation({ location, primaryColor }) {
   return {
     state,
     UpdateLocation,
-    pathContains,
-    checkoutURL,
-    showCart: checkoutURL || pathContains('/cart') || pathContains('/cart/')
+    pathContains
   };
 }
 
