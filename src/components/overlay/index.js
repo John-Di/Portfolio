@@ -8,9 +8,8 @@ import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 // markup
 const Overlay = () => {
   const {
-    isMenuOpen
+    overlayContent
   } = useContext(PageContext), {
-    isOpen,
     closeFlyout
   } = useContext(CartFlyoutContext)
 
@@ -21,7 +20,7 @@ const Overlay = () => {
 
   return (
     <OVERLAY
-      isActive={isMenuOpen}
+      isActive={overlayContent}
       backgroundColor={`black`}
       onClick={onClick}
     />

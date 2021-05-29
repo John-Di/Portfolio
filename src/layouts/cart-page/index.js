@@ -1,8 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import Page from '../../layouts/page';
-import LineItemGrid from '../../components/line-item-grid';
-import PageTemplateProvider from "../../providers/PageTemplateProvider";
-import StoreTemplateProvider from "../../providers/StoreTemplateProvider";
 import {
   ARTICLE,
   TITLE,

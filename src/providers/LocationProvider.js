@@ -2,7 +2,7 @@ import React from 'react';
 import LocationContext from '../contexts/LocationContext';
 import useLocation from '../hooks/useLocation';
 
-const LocationProvider = ({ location, children }) => {
+const LocationProvider = ({ location = {}, children }) => {
   return (
     <LocationContext.Provider value={useLocation({ location })} >
       {children}

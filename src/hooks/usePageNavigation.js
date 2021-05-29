@@ -9,13 +9,16 @@ import MobileMenuFlyoutContext from "../contexts/MobileMenuFlyoutContext";
 
 function usePageNavigation() {
 
+  const [overlayCount, SetOverlayCount] = useState(0);
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [isStuck, SetStickyState] = useState(false);
   const [scrollTop, SaveScrollTop] = useState(0);
 
   const cartFlyout = useContext(CartFlyoutContext),
-    mobileMenu = useContext(MobileMenuFlyoutContext);
+    mobileMenu = useContext(MobileMenuFlyoutContext),
 
+    addOverlayContent = () => SetOverlayCount(overlayCount + 1),
+    subtractOverlayContent = () => SetOverlayCount(overlayCount - 1);
 
   let isScrollLocked = !!~menuIndex || ((CartFlyoutContext && cartFlyout && cartFlyout.isOpen) || (mobileMenu && mobileMenu.isOpen));
 
@@ -84,7 +87,10 @@ function usePageNavigation() {
     mobileNavHeight: drawerRef.current && [...drawerRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0),
     selectMenuItem,
     toggleMenu,
-    closeMenu
+    closeMenu,
+    overlayContent: overlayCount > 0,
+    addOverlayContent,
+    subtractOverlayContent
   };
 }
 

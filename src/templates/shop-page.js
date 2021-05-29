@@ -8,7 +8,7 @@ const ShopPageTemplate = ({ location, children, activeHeader = false, hasCart = 
   return (
     <PageTemplateProvider location={location}>
       <StoreTemplateProvider>
-        <Page location={location}>
+        <Page>
           {children}
         </Page>
       </StoreTemplateProvider>

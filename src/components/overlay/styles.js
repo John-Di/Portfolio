@@ -16,14 +16,13 @@ const assessState = ({ isActive, backgroundColor = `black` }) => conditionalProp
 `);
 
 export const OVERLAY = styled.div`
-  opacity: 0;
   ${FullSizeOverlay}
   ${PropMap.bind(this, undefined)}
   ${assessState}
+  opacity: 0;
   position: fixed;
   pointer-events: none;
-  transition: 0.25s opacity;
-  z-index: 3;
+  transition: 0.125s opacity;
 
   ${props => conditionalProp(props.isActive, `
     opacity: 0.3;
