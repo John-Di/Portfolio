@@ -11,11 +11,6 @@ import {
   FlexCentered
 } from '../../../utils/Flex';
 
-const activeState = ({ primaryColor, primaryContrast }) => `
-  background: ${primaryContrast};
-  color: ${primaryColor};
-`;
-
 export const CART = styled(GatsbyLink)`
   ${LinkReset}
   ${FlexCentered}

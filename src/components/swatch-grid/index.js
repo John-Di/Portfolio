@@ -26,7 +26,10 @@ const SwatchGrid = ({ gap = 0.25, values = [], name }) => {
 
   let Swatch = SwatchType(name);
   let SwatchMap = (value, i) => (
-    <ITEM key={i} gutter={gap}>
+    <ITEM
+      key={i}
+      gutter={gap}
+      isCurrent={optionIsSelected({ name, value })}>
       <Swatch
         id={`swatch-${value.replace('#', '')}-${Date.now()}`}
         isCurrent={optionIsSelected({ name, value })}

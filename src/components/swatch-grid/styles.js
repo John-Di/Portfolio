@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { ListReset } from '../../utils/Resets';
-import { device } from '../../utils/variables';
+import { device, color } from '../../utils/variables';
 
 export const GRID = styled.ul`
   ${ListReset}
@@ -25,4 +25,17 @@ export const ITEM = styled.li`
   vertical-align: bottom;
   float: left;
   margin: auto;
+
+  label {
+    cursor: pointer;
+
+    ${props => conditionalProp(props.isCurrent, `
+    &,`)}
+    &:hover,
+    &:focus {
+      outline: 1px solid black;
+      border-width: 2px;
+      border-style: solid;
+    }
+  }
 `;
