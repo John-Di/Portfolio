@@ -31,7 +31,9 @@ const HeaderLinkStyles = ({ primaryColor, primaryContrast }) => `
   }
 
   &.active {
-
+    font-weight: bold;
+    text-decoration: underline;
+    pointer-events: none;
   }
 
 
@@ -41,10 +43,7 @@ const HeaderLinkStyles = ({ primaryColor, primaryContrast }) => `
   }
 
   @media screen and ${device.tablet} {
-    background-color: ${primaryColor};
-    color: ${primaryContrast};
     padding: 0.75em;
-    height: 3em;
   }
 `;
 

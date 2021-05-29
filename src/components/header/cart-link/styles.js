@@ -12,9 +12,8 @@ import {
 } from '../../../utils/Flex';
 
 const activeState = ({ primaryColor, primaryContrast }) => `
-  font-weight: bold;
-  text-decoration: underline;
-
+  background: ${primaryContrast};
+  color: ${primaryColor};
 `;
 
 export const CART = styled(GatsbyLink)`
@@ -32,6 +31,18 @@ export const CART = styled(GatsbyLink)`
   @media screen and ${device.max_tablet} {
     align-items: flex-start;
     width: 100%;
+  }
+
+  &:active,
+  &.active {
+
+    &,
+    &:hover,
+    &:focus {
+      span::after {
+        ${PropMap.bind(this, activeState)}
+      }
+    }
   }
 `;
 
@@ -59,8 +70,6 @@ const IconStyles = ({
     left: ${conditionalProp(cartCount > 99, 100 * 3 / 5, 100 * 3 / 4)}%;
     overflow: hidden;
     border-radius: 50%;
-    background: ${primaryColor};
-    color: ${primaryContrast};
   }
 `
 

@@ -10,6 +10,7 @@ function useFlyout() {
 
   const ref = useRef(null),
     [isOpen, toggleState] = useState(false), {
+      overlayContent,
       addOverlayContent,
       subtractOverlayContent
     } = useContext(PageContext),
@@ -29,7 +30,7 @@ function useFlyout() {
       }
     };
 
-  let footerHeight;
+  let footerHeight = 0;
 
   const onFooterHeightChange = () => {
     if (!ref.current) {
@@ -37,6 +38,10 @@ function useFlyout() {
     }
 
     footerHeight = ref.current.offsetHeight;
+  }
+
+  if (isOpen && overlayContent <= 0) {
+    toggleState(false);
   }
 
   useEffect(onFooterHeightChange, []);

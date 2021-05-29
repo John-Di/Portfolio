@@ -73,7 +73,7 @@ const MainNavigation = ({
       >
         <ITEMS
           isMenuOpen={isOpen}
-          flyoutHeight={isOpen ? mobileNavHeight : 0}
+          flyoutHeight={mobileNavHeight}
           desktopNavAlignment={desktopNavAlignment}
         >
           {

@@ -23,6 +23,7 @@ export const QUICKCART = styled.aside`
 
   ${props => conditionalProp(props.isOpen, `
     right: 0;
+    box-shadow: -3px 0px 1em 0px rgb(0 0 0 / 20%);
   `, `
     right: -100vw;
 

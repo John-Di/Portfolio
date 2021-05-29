@@ -84,7 +84,7 @@ function usePageNavigation() {
     headerRef,
     drawerRef,
     mainRef,
-    mobileNavHeight: drawerRef.current && [...drawerRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0),
+    mobileNavHeight: drawerRef.current ? [...drawerRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0) : 1000,
     selectMenuItem,
     toggleMenu,
     closeMenu,

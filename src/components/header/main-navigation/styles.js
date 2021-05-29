@@ -43,7 +43,7 @@ const MobileNav = ({
   isMenuOpen
 }) => `
   position: absolute;
-  height: ${flyoutHeight + headerShadowHeight / 16}em;
+  height: ${(flyoutHeight + headerShadowHeight) / 16}em;
   left: 0;
   right: 0;
   overflow: hidden;
