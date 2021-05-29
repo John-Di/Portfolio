@@ -37,6 +37,12 @@ const FilledHeader = ({
       padding: 0.75em;
     }
 
+    @media screen and ${device.tablet} {
+      cursor: pointer;
+      border: 0.25em solid transparent;
+      padding: 0.75em;
+    }
+
     &:hover,
     &:focus {
       color: ${primaryColor};
@@ -51,11 +57,6 @@ const FilledHeader = ({
       &:focus {
         background-color: ${primaryColor};
         color: ${primaryContrast};
-
-        span::after {
-          background: ${primaryContrast};
-          color: ${primaryColor};
-        }
       }
     }
   }
@@ -106,111 +107,3 @@ export const HEADER = styled.header`
 
   ${PropMap.bind(this, HeaderProps)}
 `;
-
-
-// const onStuck = ({
-//   whiteOnHover, quickCartTop, primaryColor, primaryContrast, isStuck = true
-// }) => conditionalProp(isStuck, `
-
-//   @media screen and ${device.tablet} {
-//     ${conditionalProp(quickCartTop, `
-//       ~ aside {
-//         top: ${(quickCartTop - 1) / 16}em;
-//       }
-//     `)}
-//   }
-
-//     a {
-//       background-color: transparent;
-//       color: ${`#000000`};
-
-//       &:hover,
-//       &:focus {
-//         color: ${primaryColor};
-//         font-weight: bold;
-//         text-decoration: underline;
-
-//         svg {
-//           color: ${primaryColor};
-//           fill: ${primaryColor};
-//         }
-//       }
-
-//       &:active,
-//       &.active {
-//         color: ${primaryColor};
-
-//         &,
-//         &:hover,
-//         &:focus {
-//           background-color: ${primaryColor};
-//           color: ${primaryContrast};
-
-//           span::after {
-//             background: ${primaryContrast};
-//             color: ${primaryColor};
-//           }
-
-//           svg {
-//             color: ${primaryContrast};
-//             fill: ${primaryContrast};
-//           }
-//         }
-//       }
-//     }
-//   }
-// `);
-
-// const HeaderTabletProps = ({ isActive, whiteOnHover, primaryColor, primaryContrast }) => `
-//   cursor: pointer;
-//   border: 0.25em solid transparent;
-//   padding: 0.75em;
-
-//   ${conditionalProp(whiteOnHover, `
-//     &:hover,
-//     &focus {
-
-//       a {
-//         background-color: transparent;
-//         color: ${`#000000`};
-
-
-//         span::after {
-//           background: ${primaryColor};
-//           color: ${primaryContrast};
-//         }
-//         &:hover,
-//         &:focus {
-//           color: ${primaryColor};
-//           font-weight: bold;
-//           text-decoration: underline;
-
-//           svg {
-//             color: ${primaryColor};
-//             fill: ${primaryColor};
-//           }
-//         }
-
-//         &:active,
-//         &.active {
-//           background-color: ${primaryColor};
-//           color: ${primaryColor};
-
-//           &,
-//           &:hover,
-//           &:focus {
-//             svg {
-//               color: ${primaryContrast};
-//               fill: ${primaryContrast};
-//             }
-
-//             span::after {
-//               background: ${primaryContrast};
-//               color: ${primaryColor};
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `)}
-// `;

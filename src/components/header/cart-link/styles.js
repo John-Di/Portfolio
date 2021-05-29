@@ -33,17 +33,7 @@ export const CART = styled(GatsbyLink)`
     width: 100%;
   }
 
-  &:active,
-  &.active {
-
-    &,
-    &:hover,
-    &:focus {
-      span::after {
-        ${PropMap.bind(this, activeState)}
-      }
-    }
-  }
+  ${({ state }) => PropMap(IconStyles, state)}
 `;
 
 
@@ -52,12 +42,15 @@ const IconStyles = ({
   primaryColor,
   primaryContrast
 }) => `
-
   svg {
+    color: ${primaryColor};
+    fill: ${primaryColor};
     transform: scale(-1,1);
   }
 
-  &::after {
+  span::after {
+    background: ${primaryColor};
+    color: ${primaryContrast};
     ${FlexCentered}
     content: '${cartCount}';
     position: relative;
@@ -71,21 +64,30 @@ const IconStyles = ({
     overflow: hidden;
     border-radius: 50%;
   }
+
+  &:focus {
+    outline: 0.125em solid ${primaryColor};
+  }
+
+  &:active,
+  &.active {
+    &,
+    &:hover,
+    &:focus {
+      svg {
+        color: ${primaryContrast};
+        fill: ${primaryContrast};
+      }
+
+      span::after {
+        background: ${primaryContrast};
+        color: ${primaryColor};
+      }
+    }
+  }
 `
 
 export const ICON = styled.span`
   ${FlexCentered}
   position: relative;
-  ${PropMap.bind(this, IconStyles)}
 `;
-
-
-// span::after {
-//   background: ${primaryContrast};
-//   color: ${primaryColor};
-
-//   @media screen and ${device.tablet} {
-//     color: ${primaryColor};
-//     fill: ${primaryColor};
-//   }
-// }

@@ -12,10 +12,24 @@ import {
 
 
 const ToggleTransitions = ({ isActive, primaryColor, primaryContrast }) => `
-  color: ${primaryColor};
+  svg {
+    color: ${primaryColor};
+    fill: ${primaryColor};
+  }
 
-  ${conditionalProp(isActive,
-  `color: ${primaryContrast};`)}
+  &:focus {
+    outline: 0.125em solid ${primaryColor};
+  }
+
+  ${conditionalProp(isActive, `
+  &,`)}
+  &:hover {
+    background-color: ${primaryColor};
+    svg {
+      color: ${primaryContrast};
+      fill: ${primaryContrast};
+    }
+  }
 `;
 
 export const MENU = styled.div`
@@ -29,7 +43,7 @@ export const TOGGLE = styled.button`
   ${FlexCentered}
   cursor: pointer;
   ${PropMap.bind(this, ToggleTransitions)}
-  transition: color 0.25s 0.05s;
+  transition: background-color 0.25s 0s, color 0.25s 0s;
 
   @media screen and ${device.tablet} {
     display: none;
@@ -64,6 +78,8 @@ const MobileNav = ({
       top: 0;
       box-shadow: 0 ${headerShadowHeight}px 1px rgba(0,0,0,0.2);
     }
+  `, `
+    pointer-events: none;
   `)};
 `;
 
@@ -107,12 +123,8 @@ export const ITEM = styled.li`
   }
 
   > a {
-    height: 4em;
     width: 100%;
-
-    @media screen and ${device.tablet} {
-      width: 4em;
-    }
+    width: 4em;
   }
 `;
 

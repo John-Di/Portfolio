@@ -62,12 +62,12 @@ const CartLink = () => {
       state={{
         isActive: pathContains('/cart'),
         partiallyActive: true,
-        cartCount,
+        cartCount: +cartCount,
         cartIsEmpty: cartCount === 0,
         primaryColor
       }}
     >
-      <ICON cartCount={+cartCount}>
+      <ICON>
         <CartIcon />
       </ICON>
     </CART>
