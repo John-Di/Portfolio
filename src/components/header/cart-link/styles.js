@@ -72,7 +72,6 @@ const IconStyles = ({
   &:active,
   &.active {
     &,
-    &:hover,
     &:focus {
       svg {
         color: ${primaryContrast};
@@ -82,6 +81,20 @@ const IconStyles = ({
       span::after {
         background: ${primaryContrast};
         color: ${primaryColor};
+      }
+    }
+
+    &:hover {
+      @media screen and ${device.tablet} {
+        svg {
+          color: ${primaryContrast};
+          fill: ${primaryContrast};
+        }
+
+        span::after {
+          background: ${primaryContrast};
+          color: ${primaryColor};
+        }
       }
     }
   }

@@ -13,8 +13,8 @@ import {
 
 const ToggleTransitions = ({ isActive, primaryColor, primaryContrast }) => `
   svg {
-    color: ${primaryColor};
-    fill: ${primaryColor};
+    color: black;
+    fill: black;
   }
 
   &:focus {
@@ -22,12 +22,30 @@ const ToggleTransitions = ({ isActive, primaryColor, primaryContrast }) => `
   }
 
   ${conditionalProp(isActive, `
-  &,`)}
-  &:hover {
     background-color: ${primaryColor};
     svg {
       color: ${primaryContrast};
       fill: ${primaryContrast};
+    }
+
+    &:hover {
+      @media screen and ${device.tablet} {
+        background-color: ${primaryColor};
+        svg {
+          color: ${primaryContrast};
+          fill: ${primaryContrast};
+        }
+      }
+    }`)
+  }
+
+  &:hover {
+    @media screen and ${device.tablet} {
+      background-color: ${primaryColor};
+      svg {
+        color: ${primaryContrast};
+        fill: ${primaryContrast};
+      }
     }
   }
 `;
@@ -124,7 +142,9 @@ export const ITEM = styled.li`
 
   > a {
     width: 100%;
-    width: 4em;
+    @media screen and ${device.tablet} {
+      width: 4em;
+    }
   }
 `;
 
