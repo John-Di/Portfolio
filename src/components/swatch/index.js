@@ -18,7 +18,7 @@ export default function Swatch({
   switch (stringToNumber(type)) {
     case stringToNumber('label'): return (
       <div>
-        <INPUT ref={input => input && input.focus()} id={id} type="radio" name={name} />
+        <INPUT id={id} type="radio" name={name} />
         <LABEL
           isCurrent={isCurrent}
           htmlFor={id}
