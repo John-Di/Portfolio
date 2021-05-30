@@ -49,7 +49,6 @@ const AssessState = ({ isLocked = false, scrollPosition = 0, primaryColor, heade
 export const PAGE = styled.div`
   max-width: 100vw;
   width: 100%;
-  overflow: auto;
   position: relative;
 
   ${PropMap.bind(this, AssessState)}

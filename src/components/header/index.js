@@ -1,10 +1,8 @@
 import {
-  randomColor,
   randomImage,
   randomIntegerEx,
   randomBool
 } from '../../utils/randoms';
-import BasicContrast from '../../utils/BasicContrast';
 import MainNavigation from './main-navigation';
 import UtilNavigation from './util-navigation';
 import React, {
@@ -14,7 +12,6 @@ import {
   HEADER,
 } from './styles';
 import PageContext from '../../contexts/PageContext';
-import SiteThemeContext from '../../contexts/SiteThemeContext';
 
 const Header = ({
   isActive = true,

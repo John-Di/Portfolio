@@ -13,6 +13,7 @@ function usePageNavigation() {
   const [menuIndex, SetMenuIndex] = useState(-1);
   const [isStuck, SetStickyState] = useState(false);
   const [scrollTop, SaveScrollTop] = useState(0);
+  const [headerHeight, UpdateHeaderHeight] = useState(56);
 
   const cartFlyout = useContext(CartFlyoutContext),
     mobileMenu = useContext(MobileMenuFlyoutContext),
@@ -84,7 +85,7 @@ function usePageNavigation() {
     headerRef,
     drawerRef,
     mainRef,
-    headerHeight: headerRef.current ? headerRef.current.scrollHeight : 56,
+    headerHeight,
     mobileNavHeight: drawerRef.current ? [...drawerRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0) : 1000,
     selectMenuItem,
     toggleMenu,
