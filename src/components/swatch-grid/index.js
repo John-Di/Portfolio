@@ -7,7 +7,7 @@ import ProductFormContext from "../../contexts/ProductFormContext";
 import Grid from "../../layouts/grid";
 import GenerateUniqueId from "../../utils/GenerateUniqueId";
 
-const SwatchGrid = ({ gap = 0.25, values = [], name, type }) => {
+const SwatchGrid = ({ gap = 0.5, values = [], name, type }) => {
 
   const {
     //   variants = []

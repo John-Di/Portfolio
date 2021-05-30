@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FlexCentered } from '../../utils/Flex';
-import { color } from '../../utils/variables';
+import { color, device } from '../../utils/variables';
 import {
   conditionalProp
 } from '../../utils/AssessProps';
@@ -11,9 +11,13 @@ import VisuallyHidden from '../../utils/VisuallyHidden';
 const Swatch = ({ backgroundColor }) => `
   ${FlexCentered}
   ${conditionalProp(backgroundColor, `background-color: ${color[backgroundColor]};`, 'white')};
-  width: 2.5em;
+  width: 2em;
   border: 1px solid black;
   margin: 0 auto;
+
+  @media screen and ${device.mobileM} {
+    width: 2.5em;
+  }
 `;
 
 const Selectable = ({ isCurrent, backgroundColor }) => `
@@ -46,7 +50,11 @@ export const DIV = styled.div`
 export const LABEL = styled.label`
   ${Swatch}
   ${Selectable}
-  height: 2.5em;
+  height: 2em;
+
+  @media screen and ${device.mobileM} {
+    height: 2.5em;
+  }
 `;
 
 export const VALUE = styled.span`
