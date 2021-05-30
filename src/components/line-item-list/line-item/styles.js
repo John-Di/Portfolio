@@ -43,14 +43,6 @@ export const OPTIONS = styled.div`
   float: left;
   width: 100%;
   max-width: calc(100% - 2.5em);
-
-  label,
-  label:hover,
-  label:focus {
-    cursor: auto;
-    border-width: 1px;
-    outline: 0;
-  }
 `;
 
 export const QUANTITYSTEPPER = styled.form`

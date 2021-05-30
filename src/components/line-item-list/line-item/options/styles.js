@@ -34,12 +34,5 @@ export const NAME = styled.dt`
 
 export const SWATCH = styled.dd`
   ${ListReset}
-  label {
-    height: 1.5em;
-
-    span {
-      font-size: 0.75em;
-    }
-  }
 `;
 
