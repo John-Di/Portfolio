@@ -13,8 +13,9 @@ export const QUICKCART = styled.aside`
   position: fixed;
   top: 0;
   bottom: 0;
+  opacity: 0;
   width: 100vw;
-  transition: right 0.25s;
+  transition: right 0.25s, opacity 0.1s 0.25s;
   z-index: 3;
 
   @media screen and ${device.laptop} {
@@ -23,12 +24,15 @@ export const QUICKCART = styled.aside`
 
   ${props => conditionalProp(props.isOpen, `
     right: 0;
+    transition: right 0.25s, opacity 0.1s 0s;
     box-shadow: -3px 0px 1em 0px rgb(0 0 0 / 20%);
+    opacity: 1;
   `, `
     right: -100vw;
 
     @media screen and ${device.laptop} {
       right: calc(0% - ${size.mobileM / 16 + 1}em);
+      opacity: 0;
     }
   `)}
 
