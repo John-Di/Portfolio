@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { conditionalProp, PropMap } from '../../utils/AssessProps';
 
-const AssessState = ({ isLocked = false, scrollPosition = 0, primaryColor, primaryContrast }) => `
+const AssessState = ({ isLocked = false, scrollPosition = 0, primaryColor, headerHeight }) => `
   &,
   & * {
     /* width */
@@ -28,6 +28,10 @@ const AssessState = ({ isLocked = false, scrollPosition = 0, primaryColor, prima
     }
   }
 
+  main {
+    margin-top: ${headerHeight / 16}em;
+  }
+
   ${conditionalProp(isLocked && scrollPosition, `
     overflow: hidden;
     height: 100vh;
@@ -49,8 +53,4 @@ export const PAGE = styled.div`
   position: relative;
 
   ${PropMap.bind(this, AssessState)}
-
-  main {
-    margin: 4em 0;
-  }
 `;

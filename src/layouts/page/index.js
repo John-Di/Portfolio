@@ -23,17 +23,16 @@ const Page = ({ children }) => {
   const {
     scrollTop,
     isMenuOpen,
-    mainRef
-  } = useContext(PageContext), {
-    primaryColor
-  } = useContext(SiteThemeContext);
+    mainRef,
+    headerHeight
+  } = useContext(PageContext)
 
   // console.log('menuIndex', menuIndex, isScrollLocked);
   return (
     <PAGE style={pageStyles}
       isLocked={isMenuOpen}
       scrollPosition={scrollTop}
-      accentColor={primaryColor}
+      headerHeight={headerHeight}
     // ontouchstart={e => isScrollLocked && e.preventDefault()}
     >
       <Header />

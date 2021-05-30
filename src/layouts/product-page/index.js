@@ -46,21 +46,19 @@ const ProductPage = ({ location = {} }) => {
     selectedOptions
   } = variants[formState];
   return (
-    <Page location={location}>
-      <ARTICLE>
-        <TITLE>{title}</TITLE>
-        <MEDIA>
-          <ProductGalleryProvider>
-            <ImageGallery maxWidth={`75%`} selectedFirst={randomBool()} />
-          </ProductGalleryProvider>
-        </MEDIA>
-        <PRICING>
-          <PRICE>${price}</PRICE>
-        </PRICING>
-        <DESCRIPTION>{description}</DESCRIPTION>
-        <ProductForm />
-      </ARTICLE>
-    </Page>
+    <ARTICLE>
+      <TITLE>{title}</TITLE>
+      <MEDIA>
+        <ProductGalleryProvider>
+          <ImageGallery maxWidth={`75%`} selectedFirst={randomBool()} />
+        </ProductGalleryProvider>
+      </MEDIA>
+      <PRICING>
+        <PRICE>${price}</PRICE>
+      </PRICING>
+      <DESCRIPTION>{description}</DESCRIPTION>
+      <ProductForm />
+    </ARTICLE>
   )
 }
 

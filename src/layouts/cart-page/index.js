@@ -10,14 +10,12 @@ import LineItemList from "../../components/line-item-list";
 // markup
 const CartPage = ({ location = {} }) => {
   return (
-    <Page location={location}>
-      <ARTICLE>
-        <TITLE>Cart</TITLE>
-        <LINEITEMS>
-          <LineItemList />
-        </LINEITEMS>
-      </ARTICLE>
-    </Page>
+    <ARTICLE>
+      <TITLE>Cart</TITLE>
+      <LINEITEMS>
+        <LineItemList />
+      </LINEITEMS>
+    </ARTICLE>
   )
 }
 

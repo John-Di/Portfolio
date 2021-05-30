@@ -29,7 +29,6 @@ export const ARTICLE = styled.article`
   }
 
   @media screen and ${device.laptop} {
-    margin: 5em auto;
     max-width: ${size.laptopL}px;
   }
 `;
