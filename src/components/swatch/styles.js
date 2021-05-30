@@ -7,18 +7,41 @@ import {
 import BasicContrast from '../../utils/BasicContrast';
 import VisuallyHidden from '../../utils/VisuallyHidden';
 
-export const INPUT = styled.input`
-  ${VisuallyHidden}
-`;
 
-export const LABEL = styled.label`
+const Swatch = ({ backgroundColor }) => `
   ${FlexCentered}
-  ${props => conditionalProp(props.backgroundColor, `background-color: ${color[props.backgroundColor]};`, 'white')};
+  ${conditionalProp(backgroundColor, `background-color: ${color[backgroundColor]};`, 'white')};
   width: 2.5em;
   height: 2.5em;
   border: 1px solid black;
   margin: 0 auto;
-  border-color: ${props => BasicContrast(color[props.backgroundColor])};
+`;
+
+const Selectable = ({ isCurrent, backgroundColor }) => `
+  cursor: pointer;
+
+  ${conditionalProp(isCurrent, `
+  &,`)}
+  &:hover,
+  &:focus {
+    outline: 1px solid black;
+    border-width: 2px;
+    border-style: solid;
+    border-color: ${BasicContrast(color[backgroundColor])};
+  }
+`;
+
+export const INPUT = styled.input`
+  ${VisuallyHidden}
+`;
+
+export const DIV = styled.div`
+  ${Swatch}
+`;
+
+export const LABEL = styled.label`
+  ${Swatch}
+  ${Selectable}
 `;
 
 export const VALUE = styled.span`

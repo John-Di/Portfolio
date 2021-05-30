@@ -10,12 +10,14 @@ export default function TextSwatch({
   value = [],
   gap = 0.25,
   toggleSwatch,
-  isCurrent
+  isCurrent,
+  type
 }) {
   let inputID = id || `${name}-${value}`;
   return (
     <Swatch
       id={inputID}
+      type={type}
       gap={gap}
       name={name}
       backgroundColor={'white'}

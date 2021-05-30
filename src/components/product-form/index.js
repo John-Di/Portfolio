@@ -47,7 +47,7 @@ const ProductForm = ({
         {
           arrayToComponentSiblings(options, (option, i) => (
             <ProductOptionSelector key={i} name={option.name}>
-              <SwatchGrid values={option.values} name={option.name} />
+              <SwatchGrid values={option.values} name={option.name} type={`label`} />
             </ProductOptionSelector>
           ))
         }

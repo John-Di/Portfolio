@@ -11,6 +11,7 @@ import {
 import Options from "./options";
 import QuantitySelector from "../../quantity-selector";
 import ShopContext from "../../../contexts/ShopContext";
+import GenerateUniqueId from "../../../utils/GenerateUniqueId";
 
 export default function LineItem({
   item,
@@ -47,7 +48,6 @@ export default function LineItem({
       if (item.quantity <= 0) {
         return;
       }
-
       await updateLineItem(id, Math.max(0, e.target.value));
     }
 
@@ -66,7 +66,7 @@ export default function LineItem({
       </DETAILS>
       <QUANTITYSTEPPER>
         <QuantitySelector
-          id={`quantity-stepper-${id}-${(new Date()).getTime()}`}
+          id={GenerateUniqueId(`quantity-stepper`)}
           value={item.quantity}
           increase={increase}
           decrease={decrease}

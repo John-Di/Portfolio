@@ -10,11 +10,13 @@ export default function ColorSwatch({
   value = 'white',
   gap = 0.25,
   toggleSwatch,
-  isCurrent
+  isCurrent,
+  type
 }) {
   let inputID = id || `${name}-${value}`;
   return (
     <Swatch
+      type={type}
       id={inputID}
       gap={gap}
       name={name}

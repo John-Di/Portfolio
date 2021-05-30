@@ -1,7 +1,9 @@
 import React from "react";
+import stringToNumber from "../../utils/StringToNumber";
 import {
   INPUT,
-  LABEL
+  LABEL,
+  DIV
 } from './styles';
 
 export default function Swatch({
@@ -10,18 +12,29 @@ export default function Swatch({
   isCurrent,
   backgroundColor,
   name = "Option Name",
-  toggleSwatch
+  toggleSwatch,
+  type = ''
 }) {
-  return (
-    <div>
-      <INPUT ref={input => input && input.focus()} id={id} type="radio" name={name} />
-      <LABEL
+  switch (stringToNumber(type)) {
+    case stringToNumber('label'): return (
+      <div>
+        <INPUT ref={input => input && input.focus()} id={id} type="radio" name={name} />
+        <LABEL
+          isCurrent={isCurrent}
+          htmlFor={id}
+          backgroundColor={backgroundColor}
+          onClick={toggleSwatch}>
+          {children}
+        </LABEL>
+      </div>
+    );
+    case stringToNumber('div'):
+    default: return (
+      <DIV
         isCurrent={isCurrent}
-        htmlFor={id}
-        backgroundColor={backgroundColor}
-        onClick={toggleSwatch}>
+        backgroundColor={backgroundColor}>
         {children}
-      </LABEL>
-    </div>
-  );
+      </DIV>
+    );
+  }
 }
