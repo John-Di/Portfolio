@@ -59,13 +59,11 @@ export const IMAGE = styled(GatsbyLink)`
   width: 100%;
   grid-area: img;
   margin-bottom: 2em;
-  ${assessProps}
 
   .gatsby-image-wrapper {
     max-width: 100%;
   }
 `;
-
 
 export const BODY = styled.p`
   margin: 1em 0;

@@ -8,7 +8,7 @@ const ProductTemplate = ({ location, children, activeHeader = false, hasCart = f
   return (
     <ShopPageTemplate location={location} >
       <ProductProvider product={data.pageContext.product}>
-        <ProductPage location={location} />
+        <ProductPage />
       </ProductProvider>
     </ShopPageTemplate>
   )

@@ -10,15 +10,13 @@ import ChicCTA from '../../components/chic-cta';
 import ShopContext from "../../contexts/ShopContext";
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
+import ProductContext from "../../contexts/ProductContext";
 
 export default function ProductTile({
   heading,
-  image,
-  description,
   children,
-  price,
-  maxWidth,
-  url
+  maxWidth
+
 }) {
   const {
     addToCart,
@@ -27,7 +25,22 @@ export default function ProductTile({
     openFlyout
   } = useContext(CartFlyoutContext), {
     emptyCart
-  } = useContext(ShopContext);
+  } = useContext(ShopContext), {
+    title,
+    images,
+    description,
+    options,
+    variants,
+    url
+  } = useContext(ProductContext), {
+    formState,
+    updateOption
+  } = useContext(ProductFormContext), {
+    price,
+    image
+  } = variants[formState];
+
+  console.log('images', images[0]);
 
   const onClick = async (e) => {
     await addToCart(e);
@@ -36,12 +49,12 @@ export default function ProductTile({
   return (
     <ObjectTile
       className="product-tile"
-      heading={heading}
-      image={image}
+      heading={title}
+      image={images[0]}
       body={description}
       url={url}
       maxWidth={`${size.mobileS / 16}em`}
-      value={price && <PRICE>{price}</PRICE>}
+      value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
     >
       {children && (<BODY>{children}</BODY>)}
       <CTA_WRAPPER>

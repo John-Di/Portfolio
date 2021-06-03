@@ -2,39 +2,52 @@ import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { ListReset } from '../../utils/Resets';
-import { device } from '../../utils/variables';
+import { size } from '../../utils/variables';
 
-const GridRules = ({ row, col, perRow }) => `
-  margin: -${row / 4}em -${col / 4}em;
+const GridRules = ({ row = 0, col = 0, perRow }) => `
+  ${conditionalProp(row && col, `margin: 0 -${col}em;`)}
 
-  @media screen and ${device.tablet} {
-    margin: -${row / 2}em -${col / 2}em;
-  }
+  ul {
+    padding: ${row}em 0 0;
+    margin-bottom: -${row}em;
 
-  li {
-    ${ListReset}
-    display: inline-block;
-    vertical-align: bottom;
-    float: left;
-    margin: auto;
-    padding: ${row / 2}em ${col / 2}em;
-    ${conditionalProp(perRow, `
-      max-width: ${(100 / perRow)}%;
-    `)}
-  }
-`
-
-const RenderGrid = ({ gutterOffset, perRow }) => gutterOffset.reduce((acc, { breakpoint, ...gaps }, i) => `
-  ${acc}
-  ${conditionalProp(breakpoint, `
-    @media screen and ${breakpoint} {
-      ${GridRules({ ...gaps, perRow })}
+    li {
+      padding: 0 ${col}em ${row}em;
+      ${conditionalProp(perRow, `
+        width: ${100 / perRow}%;
+      `)}
     }
-  `, GridRules({ ...gaps, perRow }))}
+  }
+`;
+
+const RenderGridBreakpoint = ({ breakpoint, gap = [0, 0], perRow }) => {
+  const rules = GridRules({ row: gap[0], col: gap[1], perRow });
+  return conditionalProp(breakpoint, `
+    @media screen and ${breakpoint} {
+      ${rules}
+    }
+  `, rules)
+};
+
+const RenderGridRules = ({ rules }) => rules.reduce((acc, rule, index) => `
+  ${acc}
+  ${RenderGridBreakpoint(rule)}
 `, ``);
 
-export const GRID = styled.ul`
-  ${ListReset}
-  ${RenderGrid}
-  ${Clearfix}
+export const CONTAINER = styled.div`
+  ul {
+    ${ListReset}
+    width: 100%;
+    margin: auto;
+
+    li {
+      ${ListReset}
+      display: inline-block;
+      vertical-align: bottom;
+      float: left;
+    }
+    ${Clearfix}
+  }
+
+  ${RenderGridRules}
 `;

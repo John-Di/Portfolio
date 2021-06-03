@@ -8,13 +8,13 @@ import {
   // SUBHEADING,
   BODY
 } from './styles';
+import { randomImage } from "../../utils/randoms";
 
 export default function ObjectTile({
   heading,
-  // subheading,
+  backgroundImage,
   image,
   body,
-  backgroundImage,
   maxWidth,
   children,
   value,
@@ -41,7 +41,7 @@ export default function ObjectTile({
           product: { title: heading }
         }}
       >
-        {image ? <Image fixed={image} /> : undefined}
+        {image && image.localFile ? <Image fixed={image.localFile.childImageSharp.fixed} /> : < img src={randomImage()} />}
       </IMAGE>
       {value}
       {body && <BODY>{body}</BODY>}
