@@ -11,14 +11,15 @@ import {
 // markup
 const CollectionPage = ({ products = [] }) => {
 
-  const ProductTileMap = ({ title, handle, variants = [], images, ...product }, index) => {
-    console.log('ProductTileMap', index, { title, handle, variants, images, ...product })
+  const ProductTileMap = ({ variants = [], ...product }, index) => {
     return (
       <ProductProvider
-        key={index} product={{ title, handle, variants, images: randomImageArray(5), ...product }}>
+        key={index} product={{
+          variants,
+          ...product
+        }}>
         <ProductTile
           key={index}
-          url={`/products/${handle}`}
           price={`$${parseFloat(variants[0].price).toFixed(2)}`}
         />
       </ProductProvider>

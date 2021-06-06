@@ -6,6 +6,7 @@ import {
   PAGE
 } from './styles';
 import Header from '../../components/header';
+import Breadcrumbs from '../../components/breadcrumbs';
 import PageContext from "../../contexts/PageContext";
 import Overlay from "../../components/overlay";
 import QuickCart from "../../components/quick-cart";
@@ -37,6 +38,7 @@ const Page = ({ children }) => {
     >
       <Header />
       <main ref={mainRef}>
+        <Breadcrumbs />
         {children}
       </main>
       {useContext(CartFlyoutContext) && <Overlay />}

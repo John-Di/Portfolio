@@ -7,7 +7,7 @@ import { randomBool } from '../utils/randoms';
 
 const selectedFirst = randomBool();
 
-function useGallery({ max, images = [], currentIndex = 0 } = {}) {
+function useGallery({ images = [], currentIndex = 0 } = {}) {
   const imageCount = images.length;
   const scrollRef = useRef(null);
   const [index, setIndex] = useState(currentIndex);
@@ -33,10 +33,10 @@ function useGallery({ max, images = [], currentIndex = 0 } = {}) {
 
   const updateIndex = index => setIndex(index),
     scrollPrevious = () => {
-      let newIndex = Math.max(index - 1, 0) % images.length;
+      let newIndex = Math.max(index - 1, 0) % imageCount;
       return setIndex(newIndex)
     }, scrollNext = () => {
-      let newIndex = Math.min(index + 1, images.length) % images.length;
+      let newIndex = Math.min(index + 1, imageCount) % imageCount;
       return setIndex(newIndex)
     };
 
@@ -48,7 +48,7 @@ function useGallery({ max, images = [], currentIndex = 0 } = {}) {
     isCurrent: i => index === i,
     hasNavButtons: imageCount > 4,
     atBeginning: index === 0,
-    atEnd: index === images.length - 1,
+    atEnd: index === imageCount - 1,
     scrollPrevious,
     scrollNext
   };

@@ -34,20 +34,15 @@ export const ARTICLE = styled.article`
 `;
 
 export const TITLE = styled.h1`
-  grid-area: title;
   font-size: 2em;
 
   @media screen and ${device.laptop} {
     ${pageRight}
     margin-bottom: 0;
-  }
-
-  @media screen and ${device.laptop} {
     font-size: 3em;
   }
 `;
 export const MEDIA = styled.div`
-  grid-area: media;
   width: 100%;
 
   @media screen and ${device.laptop} {
@@ -63,7 +58,6 @@ export const MEDIA = styled.div`
 export const DESCRIPTION = styled.p`
   margin: 0.5em 0;
   max-width: ${size.mobileXL / 16}em;
-  grid-area: description;
   text-align: left;
   line-height: 1.33;
 
@@ -87,7 +81,6 @@ export const FORM = styled.form`
 `;
 
 export const PRICING = styled.p`
-  grid-area: price;
   font-size: 2em;
   font-family: 'Roboto', 'Montserrat', serif;
   line-height: 1.33;

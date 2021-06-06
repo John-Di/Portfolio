@@ -1,4 +1,18 @@
 import styled from 'styled-components';
+import {
+  Link as GatsbyLink
+} from "gatsby";
+
+
+export const IMAGE = styled(GatsbyLink)`
+  width: 100%;
+  grid-area: img;
+  margin-bottom: 2em;
+
+  .gatsby-image-wrapper {
+    max-width: 100%;
+  }
+`;
 
 export const PRICE = styled.p`
     grid-area: value;

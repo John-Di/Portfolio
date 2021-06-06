@@ -62,10 +62,12 @@ function useProduct({ reducer = productReducer, product, selectedVariant } = {})
     id: shopifyId || id
   });
 
+  const selectedVariant = variants.find(variant => variant.id === id);
+
   const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selectedVariant, variants });
   const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selectedVariant, selectedOption, variants });
 
-  return { product, formState, updateVariant, updateOption };
+  return { product, formState, selectedVariant, updateVariant, updateOption };
 }
 
 export default useProduct;

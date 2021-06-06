@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import ObjectTile from '../object-tile';
 import { size } from '../../utils/variables';
 import {
+  IMAGE,
   PRICE,
   BODY,
   CTA_WRAPPER
@@ -13,10 +15,7 @@ import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
 
 export default function ProductTile({
-  heading,
-  children,
-  maxWidth
-
+  children
 }) {
   const {
     addToCart,
@@ -30,8 +29,8 @@ export default function ProductTile({
     images,
     description,
     options,
-    variants,
-    url
+    url,
+    variants
   } = useContext(ProductContext), {
     formState,
     updateOption
@@ -40,7 +39,6 @@ export default function ProductTile({
     image
   } = variants[formState];
 
-  console.log('images', images[0]);
 
   const onClick = async (e) => {
     await addToCart(e);
@@ -50,12 +48,21 @@ export default function ProductTile({
     <ObjectTile
       className="product-tile"
       heading={title}
-      image={images[0]}
       body={description}
       url={url}
       maxWidth={`${size.mobileS / 16}em`}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
     >
+      <IMAGE
+        to={url}
+        activeClassName="active"
+        partiallyActive={true}
+        state={{
+          product: { title }
+        }}
+      >
+        {getImage(images[0]) && <GatsbyImage image={getImage(images[0])} alt={`alt`} />}
+      </IMAGE>
       {children && (<BODY>{children}</BODY>)}
       <CTA_WRAPPER>
         <ChicCTA

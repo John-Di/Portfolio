@@ -1,5 +1,5 @@
 import React from "react";
-import Image from 'gatsby-image'
+import Image from 'gatsby-image';
 import {
   TILE,
   IMAGE,
@@ -12,8 +12,6 @@ import { randomImage } from "../../utils/randoms";
 
 export default function ObjectTile({
   heading,
-  backgroundImage,
-  image,
   body,
   maxWidth,
   children,
@@ -32,17 +30,6 @@ export default function ObjectTile({
       >
         {heading}
       </HEADING>
-      <IMAGE
-        to={url}
-        activeClassName="active"
-        partiallyActive={true}
-        image={!image ? backgroundImage : undefined}
-        state={{
-          product: { title: heading }
-        }}
-      >
-        {image && image.localFile ? <Image fixed={image.localFile.childImageSharp.fixed} /> : < img src={randomImage()} />}
-      </IMAGE>
       {value}
       {body && <BODY>{body}</BODY>}
       {children}

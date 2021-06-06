@@ -36,14 +36,6 @@ export const GALLERY = styled.div`
 export const MAIN_IMAGE = styled.div`
   grid-area: a;
   position: relative;
-  background-color: grey;
-
-  &::before {
-    content: '';
-    display: block;
-    padding-top: 100%;
-    width: 100%;
-  }
 `;
 
 export const IMG = styled.img`

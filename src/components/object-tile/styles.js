@@ -55,16 +55,6 @@ export const TILE = styled.article`
   grid-template: 'img img' 2fr 'title value' 5em 'body body' auto 'cta cta' auto / 1fr 1fr;
 `;
 
-export const IMAGE = styled(GatsbyLink)`
-  width: 100%;
-  grid-area: img;
-  margin-bottom: 2em;
-
-  .gatsby-image-wrapper {
-    max-width: 100%;
-  }
-`;
-
 export const BODY = styled.p`
   margin: 1em 0;
   grid-area: body;

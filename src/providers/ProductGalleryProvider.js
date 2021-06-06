@@ -1,19 +1,19 @@
+import { getImage } from 'gatsby-plugin-image';
 import React, { useContext } from 'react';
 import GalleryContext from '../contexts/GalleryContext';
 import ProductContext from '../contexts/ProductContext';
 import useGallery from '../hooks/useGallery';
-import RemoveDuplicates from '../utils/RemoveDuplicates';
 
 const ProductGalleryProvider = ({ children }) => {
   const {
+    images,
     variants
-  } = useContext(ProductContext),
-    images = variants.map(({ image }) => image.originalSrc).filter(RemoveDuplicates);
+  } = useContext(ProductContext);
 
   return (
     <GalleryContext.Provider value={useGallery({
       max: 4,
-      images,
+      images: images.map(image => getImage(image)),
       currentIndex: 0
     })} >
       {children}

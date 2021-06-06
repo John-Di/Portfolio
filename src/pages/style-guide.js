@@ -45,9 +45,11 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(width: 300) {
-                ...GatsbyImageSharpFixed_withWebp_tracedSVG
-              }
+              gatsbyImageData(
+                width: 300
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
         }

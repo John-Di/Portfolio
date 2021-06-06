@@ -1,10 +1,10 @@
-const path = require(`path`)
+const path = require(`path`);
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   // Query for all products in Shopify
   const result = await graphql(`
-    query Products {
+    query Shop {
       allShopifyCollection {
         edges {
           node {
@@ -29,9 +29,8 @@ exports.createPages = async ({ graphql, actions }) => {
               originalSrc
               localFile {
                 childImageSharp {
-                  fixed(width: 300) {
-                    tracedSVG
-                  }
+                  gatsbyImageData(width: 800, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+                  id
                 }
               }
             }
@@ -40,6 +39,10 @@ exports.createPages = async ({ graphql, actions }) => {
               values
             }
             variants {
+              selectedOptions {
+                name
+                value
+              }
               priceV2 {
                 amount
               }
@@ -59,46 +62,57 @@ exports.createPages = async ({ graphql, actions }) => {
                 id
                 localFile {
                   url
+                  childImageSharp {
+                    gatsbyImageData(width: 800, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+                    id
+                  }
                 }
-              }
-              selectedOptions {
-                name
-                value
               }
             }
           }
         }
       }
     }
-  `)
+  `);
 
-
+  const products = result.data.allShopifyProduct.edges.map(({ node }) => {
+    const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
+      images = node.variants.map(({ image }) => image.localFile).filter(
+        ({ childImageSharp }, index) => ids.indexOf(childImageSharp.id) === index);
+    return ({
+      node: {
+        ...node,
+        images,
+        url: `/products/${node.handle}`,
+        variants: node.variants.map(({ image, ...variant }) => ({
+          image: image.localFile,
+          ...variant
+        }))
+      }
+    });
+  });
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
-  result.data.allShopifyProduct.edges.forEach(({ node }) => {
+  products.forEach(({ node }) => {
     createPage({
       path: `/products/${node.handle}`,
       component: path.resolve(`./src/templates/product.js`),
       context: {
-        product: node,
-
-      },
+        product: node
+      }
     })
   })
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
   result.data.allShopifyCollection.edges.forEach(({ node }) => {
-    const allProductHandles = node.products.map(({ handle }) => handle);
-    const products = result.data.allShopifyProduct.edges.filter(({ node }, index) => {
-      return allProductHandles.includes(node.handle)
-    });
+    const allProductHandles = node.products.map(({ handle }) => handle), collectionProducts = products.filter(({ node }, index) => allProductHandles.includes(node.handle));
     createPage({
       path: `/collections/${node.handle}`,
       component: path.resolve(`./src/templates/collection.js`),
       context: {
-        products,
+        products: collectionProducts,
       },
     })
   })

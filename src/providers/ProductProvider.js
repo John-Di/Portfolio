@@ -8,7 +8,11 @@ const ProductProvider = ({ product = {}, selectedVariant = 0, children }) => {
 
   return (
     <ProductContext.Provider value={product}>
-      <ProductFormContext.Provider value={useProductForm({ product, selectedVariant, shop: useContext(ShopContext) })}>
+      <ProductFormContext.Provider value={useProductForm({
+        product,
+        selectedVariant,
+        shop: useContext(ShopContext)
+      })}>
         {children}
       </ProductFormContext.Provider>
     </ProductContext.Provider>

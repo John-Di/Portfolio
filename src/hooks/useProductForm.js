@@ -7,16 +7,14 @@ const isSameOption = (selectedOption, { name, value }) => selectedOption.name ==
 function useProductForm({ product, selectedVariant, shop } = {}) {
   const {
     addVariantToCart,
-    removeLineItem,
-    lineItems,
-    getLineItem
+    removeLineItem
   } = shop, {
+    handle,
     variants = []
   } = product;
 
   const [formState, UpdateFormState] = useState(selectedVariant);
   const {
-    id,
     shopifyId,
     selectedOptions
   } = variants[formState];
@@ -49,7 +47,6 @@ function useProductForm({ product, selectedVariant, shop } = {}) {
 
   const optionIsSelected = (option) => {
     const selectedOptionIndex = selectedOptions.findIndex((o => o.name === option.name));
-    // console.log('optionIsSelected', selectedOptions);
     const { name, value } = selectedOptions[selectedOptionIndex];
     return option.name === name && option.value === value;
   }

@@ -56,3 +56,7 @@ export const color = {
   'White': "#ffffff",
   'Yellow': "#fbf271",
 }
+
+export const breadcrumbs = {
+  'products': ({ handle }) => `/collections/${handle}`
+}
