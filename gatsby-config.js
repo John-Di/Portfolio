@@ -13,9 +13,19 @@ module.exports = {
   },
   plugins: [
     // "gatsby-plugin-netlify-cms",
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`, `avif`],
+          placeholder: `blurred`,
+          breakpoints: [768, 1024, 1440, 1920]
+        }
+      }
+    },
+    `gatsby-transformer-sharp`,
     "gatsby-plugin-styled-components",
     `gatsby-plugin-image`,
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-offline",

@@ -7,7 +7,6 @@ import {
 } from './styles';
 import GalleryContext from "../../contexts/GalleryContext";
 import ThumbnailNavigation from "../thumbnail-navigation";
-import { GatsbyImage } from 'gatsby-plugin-image';
 
 export default function ImageGallery({
   gap = 0.75,
@@ -15,11 +14,9 @@ export default function ImageGallery({
   hasPadding = false,
 }) {
   const {
-    index,
-    images
-  } = useContext(GalleryContext),
-    mainImage = images[index],
-    Image = typeof mainImage === 'object' ? GatsbyImage : IMG;
+    Image,
+    mainImage
+  } = useContext(GalleryContext);
 
   return (
     <WRAPPER maxWidth={maxWidth} className="image-gallery-wrapper" hasPadding={hasPadding}>

@@ -3,6 +3,7 @@ import {
   useRef,
   useEffect
 } from "react";
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { randomBool } from '../utils/randoms';
 
 const selectedFirst = randomBool();
@@ -10,7 +11,9 @@ const selectedFirst = randomBool();
 function useGallery({ images = [], currentIndex = 0 } = {}) {
   const imageCount = images.length;
   const scrollRef = useRef(null);
-  const [index, setIndex] = useState(currentIndex);
+  const [index, setIndex] = useState(currentIndex),
+    mainImage = images[index],
+    Image = typeof mainImage === 'object' ? GatsbyImage : undefined;
 
   const ScrollController = () => {
     if (!scrollRef) {
@@ -44,6 +47,8 @@ function useGallery({ images = [], currentIndex = 0 } = {}) {
     scrollRef,
     index,
     images,
+    Image,
+    mainImage,
     updateIndex,
     isCurrent: i => index === i,
     hasNavButtons: imageCount > 4,

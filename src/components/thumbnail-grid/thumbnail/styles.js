@@ -5,6 +5,7 @@ import { ButtonReset } from '../../../utils/Resets';
 
 export const THUMBNAIL = styled.button`
   ${ButtonReset}
+
   vertical-align: bottom;
   width: 100%;
   position: relative;
@@ -12,30 +13,25 @@ export const THUMBNAIL = styled.button`
   ${props => conditionalProp(!props.isCurrent, `
     cursor: pointer;
 
-    img {
+    .gatsby-image-wrapper {
+      transition: transform 0.15s ease-in 0s, opacity 0.15s ease-in 0s;
       transform: scale(0.85);
+      opacity: 0.85;
     }
 
     &:focus,
     &:hover {
-      img {
+      .gatsby-image-wrapper {
         opacity: 1;
         transform: scale(1);
       }
     }
 
-    img {
+    .gatsby-image-wrapper {
       ${conditionalProp(props.transparency, `opacity : ${props.transparency};`)}
     }
   `, `
   `)}
-
-  &::before {
-    content: '';
-    display: block;
-    padding-top: 100%;
-    width: 100%;
-  }
 `;
 
 export const IMG = styled.img`

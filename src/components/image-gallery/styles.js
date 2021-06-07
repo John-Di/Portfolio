@@ -36,6 +36,7 @@ export const GALLERY = styled.div`
 export const MAIN_IMAGE = styled.div`
   grid-area: a;
   position: relative;
+  text-align: center;
 `;
 
 export const IMG = styled.img`

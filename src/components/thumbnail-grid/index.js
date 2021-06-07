@@ -8,12 +8,14 @@ import {
   ITEM
 } from './styles';
 import GalleryContext from "../../contexts/GalleryContext";
+import { getImage } from "gatsby-plugin-image";
 
 export default function ThumbnailGrid({
   gutterOffset = 1.5,
   perRow = 4
 }) {
   const {
+    Image,
     updateIndex,
     isCurrent,
     images
@@ -27,8 +29,10 @@ export default function ThumbnailGrid({
           e.preventDefault();
           updateIndex(i);
         }}
-        image={images[i]}
-      />
+        image={image}
+      >
+        <Image image={getImage(image)} alt={`thumbnail ${i}`} />
+      </Thumbnail>
     </ITEM>
   );
 

@@ -18,7 +18,7 @@ export const QUICKCART = styled.aside`
   transition: right 0.25s, opacity 0.1s 0.25s;
   z-index: 3;
 
-  @media screen and ${device.laptop} {
+  @media screen and ${device.mobileXL} {
     max-width: ${size.mobileM / 16 + 1}em;
   }
 
