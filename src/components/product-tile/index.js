@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import ObjectTile from '../object-tile';
 import { size } from '../../utils/variables';
+import Options from "./options";
 import {
   IMAGE,
   PRICE,
   BODY,
+  OPTIONS,
   CTA_WRAPPER
 } from './styles';
 import ChicCTA from '../../components/chic-cta';
@@ -13,6 +15,7 @@ import ShopContext from "../../contexts/ShopContext";
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
+import SwatchGrid from "../swatch-grid";
 
 export default function ProductTile({
   children
@@ -36,9 +39,11 @@ export default function ProductTile({
     updateOption
   } = useContext(ProductFormContext), {
     price,
-    image
+    selectedOptions
   } = variants[formState];
 
+  const values = options.filter(({ name }) => name.toLowerCase() === 'color').map(({ values }) => values).flat();
+  console.log('ProductTile', values)
 
   const onClick = async (e) => {
     await addToCart(e);
@@ -48,7 +53,7 @@ export default function ProductTile({
     <ObjectTile
       className="product-tile"
       heading={title}
-      body={description}
+      body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit`}
       url={url}
       maxWidth={`${size.mobileS / 16}em`}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
@@ -63,7 +68,12 @@ export default function ProductTile({
       >
         {getImage(images[0]) && <GatsbyImage image={getImage(images[0])} alt={`alt`} />}
       </IMAGE>
-      {children && (<BODY>{children}</BODY>)}
+      <BODY>
+        {children}
+      </BODY>
+      <OPTIONS>
+        <SwatchGrid values={values} name={'Color'} type={`label`} />
+      </OPTIONS>
       <CTA_WRAPPER>
         <ChicCTA
           onClick={onClick}

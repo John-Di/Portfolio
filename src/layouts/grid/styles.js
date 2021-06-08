@@ -5,13 +5,18 @@ import { ListReset } from '../../utils/Resets';
 import { size } from '../../utils/variables';
 
 const GridRules = ({ row = 0, col = 0, perRow }) => `
+  ${(() => {
+    console.log('GridRules', row, col, perRow, conditionalProp(perRow, `
+  width: ${100 / perRow}%;
+`, `k`)); return ``
+  })()}
   ${conditionalProp(row && col, `margin: 0 -${col}em;`)}
 
-  ul {
+  > ul {
     padding: ${row}em 0 0;
     margin-bottom: -${row}em;
 
-    li {
+    > li {
       padding: 0 ${col}em ${row}em;
       ${conditionalProp(perRow, `
         width: ${100 / perRow}%;
@@ -37,10 +42,9 @@ const RenderGridRules = ({ rules }) => rules.reduce((acc, rule, index) => `
 export const CONTAINER = styled.div`
   ul {
     ${ListReset}
-    width: 100%;
-    margin: auto;
+    display: inline-block;
 
-    li {
+    > li {
       ${ListReset}
       display: inline-block;
       vertical-align: bottom;

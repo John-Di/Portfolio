@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   Link as GatsbyLink
 } from "gatsby";
+import Clearfix from '../../utils/Clearfix';
 
 
 export const IMAGE = styled(GatsbyLink)`
@@ -15,10 +16,37 @@ export const IMAGE = styled(GatsbyLink)`
 `;
 
 export const PRICE = styled.p`
-    grid-area: value;
-    font-size: 1.25em;
-    text-align: right;
+    grid-area: price;
+    font-size: 1.125em;
+    text-align: center;
+    margin-bottom: 0.75em;
     margin: 0;
+`;
+
+export const OPTIONS = styled.div`
+  grid-area: properties;
+  display: block;
+  margin: 0.75em 0;
+  width: 100%;
+  text-align: center;
+
+  ul {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  li label {
+    height: 1.5em;
+    width: 1.5em;
+
+    &,
+    &:focus,
+    &:hover {
+      border-width: 1px;
+    }
+  }
+
+  ${Clearfix}
 `;
 
 export const BODY = styled.p`

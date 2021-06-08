@@ -31,14 +31,14 @@ const assessProps = ({ overlay, image, whiteOnHover }) => `
 
 export const HEADING = styled(GatsbyLink)`
   ${LinkReset}
-
-  font-size: 1.25em;
+  font-size: 1.125em;
   font-weight: bold;
   margin: 0;
   grid-area: title;
-  text-align: left;
-  margin-right: auto;
+  text-align: center;
+  margin-bottom: 0.25em;
   line-height: 1.25;
+  width: 100%;
 
   &:hover,
   &:focus {
@@ -52,12 +52,14 @@ export const TILE = styled.article`
   ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth};`)}
   margin: auto;
   display: grid;
-  grid-template: 'img img' 2fr 'title value' 5em 'body body' auto 'cta cta' auto / 1fr 1fr;
+  grid-template: 'img img' 2fr 'title title' auto 'price price' auto 'body body' auto 'properties properties' auto 'cta cta' auto / 1fr 1fr;
+  padding-bottom: 2em;
 `;
 
 export const BODY = styled.p`
+  font-size: 1.em;
   margin: 1em 0;
   grid-area: body;
-  text-align: left;
+  text-align: center;
   line-height: 1.33;
 `;

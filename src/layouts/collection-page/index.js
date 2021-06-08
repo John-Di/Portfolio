@@ -35,16 +35,12 @@ const CollectionPage = ({ products = [] }) => {
           perRow: 1
         }, {
           breakpoint: device.tablet,
-          gap: [1, 1],
+          gap: [2, 1],
           perRow: 2
         }, {
           breakpoint: device.laptop,
-          gap: [2, 2],
+          gap: [4, 2],
           perRow: 4
-        }]}
-        gutterOffset={[{
-          row: 2,
-          col: 2
         }]} />
     </PRODUCTS>
   )

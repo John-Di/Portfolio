@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { FlexCentered } from '../../utils/Flex';
 
 export const PRICE = styled.p`
-    grid-area: value;
-    font-size: 1.25em;
-    text-align: right;
-    margin: 0;
+  grid-area: price;
+  font-size: 1.25em;
+  text-align: right;
+  margin: 0;
 `;
 
 export const BODY = styled.p`
