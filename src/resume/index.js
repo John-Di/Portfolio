@@ -1,9 +1,9 @@
 import React from "react";
-import YAMLData from "../../../resume/resume.yaml";
-import SEO from "../../components/seo";
-import Basics from "../../components/resume/basics";
-import About from "../../components/resume/about";
-import ResumeLayout from "../../layouts/resume-layout";
+import YAMLData from "../../static/resume.yaml";
+import SEO from "../components/seo";
+import Basics from "./basics";
+import About from "./about";
+import ResumeLayout from "../layouts/resume-layout";
 
 
 export default function Resume({ data = YAMLData, pageContext, location }) {
