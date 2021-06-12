@@ -12,6 +12,7 @@ import {
   ARTICLE,
   TITLE,
   MEDIA,
+  FORM,
   PRICE,
   PRICING,
   DESCRIPTION
@@ -47,7 +48,9 @@ const ProductPage = () => {
         <PRICE>${price}</PRICE>
       </PRICING>
       <DESCRIPTION>{description}</DESCRIPTION>
-      <ProductForm />
+      <FORM>
+        <ProductForm />
+      </FORM>
     </ARTICLE>
   )
 }

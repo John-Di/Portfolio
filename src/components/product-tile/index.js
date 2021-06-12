@@ -7,6 +7,7 @@ import {
   IMAGE,
   PRICE,
   BODY,
+  FORM,
   OPTIONS,
   CTA_WRAPPER
 } from './styles';
@@ -16,6 +17,7 @@ import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
 import SwatchGrid from "../swatch-grid";
+import ProductForm from "../product-form";
 
 export default function ProductTile({
   children
@@ -71,14 +73,9 @@ export default function ProductTile({
       <BODY>
         {children}
       </BODY>
-      <OPTIONS>
-        <SwatchGrid values={values} name={'Color'} type={`label`} />
-      </OPTIONS>
-      <CTA_WRAPPER>
-        <ChicCTA
-          onClick={onClick}
-        >Add to Cart</ChicCTA>
-      </CTA_WRAPPER>
+      <FORM>
+        <ProductForm />
+      </FORM>
     </ObjectTile>
   );
 }

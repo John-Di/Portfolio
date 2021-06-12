@@ -4,67 +4,68 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   // Query for all products in Shopify
   const result = await graphql(`
-  query Shop {
-    allShopifyCollection {
-      edges {
-        node {
-          handle
-          products {
+    query Shop {
+      allShopifyCollection {
+        edges {
+          node {
             handle
+            products {
+              handle
+            }
           }
         }
       }
-    }
-    allShopifyProduct {
-      edges {
-        node {
-          title
-          tags
-          productType
-          id
-          handle
-          availableForSale
-          description
-          images {
-            originalSrc
-            localFile {
-              childImageSharp {
-                gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
-                id
-              }
-            }
-          }
-          options {
-            name
-            values
-          }
-          variants {
-            selectedOptions {
-              name
-              value
-            }
-            priceV2 {
-              amount
-            }
-            price
-            id
-            shopifyId
+      allShopifyProduct {
+        edges {
+          node {
             title
-            sku
+            tags
+            productType
+            id
+            handle
             availableForSale
-            compareAtPrice
-            compareAtPriceV2 {
-              currencyCode
-              amount
-            }
-            image {
+            description
+            images {
               originalSrc
-              id
               localFile {
-                url
                 childImageSharp {
                   gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
                   id
+                }
+              }
+            }
+            options {
+              name
+              values
+            }
+            variants {
+              selectedOptions {
+                name
+                value
+              }
+              priceV2 {
+                amount
+              }
+              price
+              id
+              shopifyId
+              title
+              sku
+              availableForSale
+              compareAtPrice
+              compareAtPriceV2 {
+                currencyCode
+                amount
+              }
+              image {
+                originalSrc
+                id
+                localFile {
+                  url
+                  childImageSharp {
+                    gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
+                    id
+                  }
                 }
               }
             }
@@ -72,9 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  }
-
-`);
+  `);
 
   const products = result.data.allShopifyProduct.edges.map(({ node }) => {
     const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
@@ -108,7 +107,8 @@ exports.createPages = async ({ graphql, actions }) => {
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
   result.data.allShopifyCollection.edges.forEach(({ node }) => {
-    const allProductHandles = node.products.map(({ handle }) => handle), collectionProducts = products.filter(({ node }, index) => allProductHandles.includes(node.handle));
+    const allProductHandles = node.products.map(({ handle }) => handle),
+      collectionProducts = products.filter(({ node }) => allProductHandles.includes(node.handle));
     createPage({
       path: `/collections/${node.handle}`,
       component: path.resolve(`./src/templates/collection.js`),

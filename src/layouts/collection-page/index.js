@@ -39,7 +39,7 @@ const CollectionPage = ({ products = [] }) => {
           perRow: 2
         }, {
           breakpoint: device.laptop,
-          gap: [4, 2],
+          gap: [4, 1],
           perRow: 4
         }]} />
     </PRODUCTS>

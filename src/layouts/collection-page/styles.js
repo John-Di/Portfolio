@@ -8,18 +8,28 @@ export const PRODUCTS = styled.div`
   margin: auto;
   max-width: ${size.laptopL}px;
 
-  > div > ul > li {
-    article {
-      position: relative;
+  > div {
+    text-align: center;
 
-      &::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: ${100 * 3 / 5}%;
-        bottom: 0;
-        box-shadow: 0 0.5em 2em lightgrey;
-        z-index: -1;
+    > ul > li {
+      article {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: ${100 * 1.875 / 3}%;
+          bottom: 0;
+          box-shadow: 0 0.25em 0.5em lightgrey;
+          z-index: -1;
+        }
+
+        form ul > li [type="radio"] ~ label {
+          height: 1.5em;
+          width: 1.5em;
+          border-width: 1px;
+        }
       }
     }
   }

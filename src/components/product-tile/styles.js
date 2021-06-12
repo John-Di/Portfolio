@@ -54,6 +54,12 @@ export const BODY = styled.p`
   grid-area: body;
   text-align: left;
   line-height: 1.33;
+  line-height: 1.33;
+`;
+
+export const FORM = styled.div`
+  margin: 0.5em 0;
+  grid-area: form;
 `;
 
 export const CTA_WRAPPER = styled.div`

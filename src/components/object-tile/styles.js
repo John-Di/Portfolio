@@ -47,13 +47,13 @@ export const HEADING = styled(GatsbyLink)`
 `;
 
 export const TILE = styled.article`
-  max-width: ${+size.mobileL / 16}em;
+  max-width: ${+size.mobileXL / 16}em;
   width: 100%;
   ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth};`)}
   margin: auto;
   display: grid;
-  grid-template: 'img img' 2fr 'title title' auto 'price price' auto 'body body' auto 'properties properties' auto 'cta cta' auto / 1fr 1fr;
-  padding-bottom: 2em;
+  grid-template: 'img img' 2fr 'title title' auto 'price price' auto 'body body' auto 'form form' auto 'cta cta' auto / 1fr 1fr;
+  padding: 0 1em 2em;
 `;
 
 export const BODY = styled.p`
