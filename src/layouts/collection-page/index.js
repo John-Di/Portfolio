@@ -35,7 +35,8 @@ const CollectionPage = ({ products = [] }) => {
         items={products}
         ItemMap={ProductTileMap}
         rules={[{
-          perRow: 1
+          perRow: 1,
+          gap: [2, 0]
         }, {
           breakpoint: device.tablet,
           gap: [2, 1],
