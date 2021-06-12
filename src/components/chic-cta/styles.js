@@ -50,7 +50,7 @@ const ButtonStyles = `
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.2px;
-  transition: background-color 0.25s 0s, color 0.25s 0s;
+  transition: background-color 0.25s 0s, color 0.25s 0s, border-color 0.25s 0s;
 `
 
 export const BUTTON = styled.button`
