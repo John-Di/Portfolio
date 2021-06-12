@@ -8,6 +8,7 @@ import ShopContext from '../../contexts/ShopContext';
 import ProductFormContext from "../../contexts/ProductFormContext";
 import {
   FORM,
+  OPTIONS,
   CTA
 } from './styles';
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
@@ -16,13 +17,14 @@ import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import ProductOptionSelector from "../product-option-selector";
 import SwatchGrid from "../swatch-grid";
 import ProductContext from "../../contexts/ProductContext";
+import Options from "../line-item-list/line-item/options";
 
 // markup
 const ProductForm = () => {
   const {
     product,
     addToCart,
-    removeFromCart,
+    formState,
     staticOptions = [],
     hiddenOptions = []
   } = useContext(ProductFormContext), {
@@ -30,15 +32,15 @@ const ProductForm = () => {
   } = useContext(CartFlyoutContext), {
     emptyCart
   } = useContext(ShopContext), {
-    options
-  } = product;
-
-  const onClick = async (e) => {
-    await addToCart(e);
-    openFlyout();
-  }
-
-  ProductOptionSelector.hasLabel = hiddenOptions.length === options.length - 1;
+    options,
+    variants
+  } = product,
+    selectedVariantOptions = variants[formState].selectedOptions,
+    onClick = async (e) => {
+      await addToCart(e);
+      openFlyout();
+    },
+    hasLabel = hiddenOptions.length < options.length - 1;
 
   return (
     <FORM>
@@ -47,22 +49,20 @@ const ProductForm = () => {
         theme={'chic'}
       >
         {
-          arrayToComponentSiblings(options, ({ name, values }, i) => staticOptions.includes(name) ? (
-            <ProductOptionSelector key={i} name={name} isHidden={hiddenOptions.includes(name)}>
-              <SwatchGrid values={values} name={name} type={`label`} />
+          arrayToComponentSiblings(options, ({ name, values }, i) =>
+            <ProductOptionSelector key={i} name={name} isHidden={hiddenOptions.includes(name)} hasLabel={hasLabel}>
+              {
+                staticOptions.includes(name) ?
+                  <SwatchGrid values={[selectedVariantOptions.find(option => option.name === name).value]} name={name} type={`div`} /> :
+                  <SwatchGrid values={values} name={name} type={`label`} />
+              }
             </ProductOptionSelector>
-          ) : (
-            <ProductOptionSelector key={i} name={name}>
-              <SwatchGrid values={values} name={name} type={`label`} />
-            </ProductOptionSelector>
-          ))
+          )
         }
       </VariantSelector>
       <CTA>
         <ChicCTA
           type="submit"
-          backgroundColor={`#FFFFFF`}
-          textColor={`#000000`}
           maxWidth={`${size.mobileXL / 16}em`}
           onClick={onClick}
         >Add to Cart</ChicCTA>

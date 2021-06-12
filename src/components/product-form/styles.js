@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { device, size } from '../../utils/variables';
 
@@ -8,6 +9,11 @@ export const FORM = styled.form`
     width: 100%;
     ${Clearfix}
   }
+`;
+
+export const OPTIONS = styled.div`
+  ${props => conditionalProp(props.isHidden, `display: none;`)}
+  width: 100%;
 `;
 
 export const CTA = styled.div`

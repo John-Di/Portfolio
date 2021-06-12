@@ -1,22 +1,17 @@
 import React, { useContext } from "react";
-import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import ObjectTile from '../object-tile';
 import { size } from '../../utils/variables';
-import Options from "./options";
 import {
   IMAGE,
   PRICE,
   BODY,
-  FORM,
-  OPTIONS,
-  CTA_WRAPPER
+  FORM
 } from './styles';
-import ChicCTA from '../../components/chic-cta';
 import ShopContext from "../../contexts/ShopContext";
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
-import SwatchGrid from "../swatch-grid";
 import ProductForm from "../product-form";
 
 export default function ProductTile({

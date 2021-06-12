@@ -8,7 +8,7 @@ import {
 const ProductOptionSelector = ({ name = "Option Name", isHidden = false, hasLabel = true, children }) => {
   return (
     <FIELDSET isHidden={isHidden}>
-      <LEGEND isHidden={hasLabel}>{name}</LEGEND>
+      <LEGEND isHidden={!hasLabel}>{name}</LEGEND>
       {children}
     </FIELDSET>
   )
