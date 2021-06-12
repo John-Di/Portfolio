@@ -22,7 +22,7 @@ export const CTA = styled.div`
 
   @media screen and ${device.laptop} {
     display: inline-block;
-    margin: 3em auto 0.5em 0;
+    margin: 1em auto 0.5em 0;
     max-width: ${size.mobileL / 16}em;
     width: 100%;
     text-align: center;

@@ -61,10 +61,3 @@ export const FORM = styled.div`
   margin: 0.5em 0;
   grid-area: form;
 `;
-
-export const CTA_WRAPPER = styled.div`
-  text-align: center;
-  width: 100%;
-  grid-area: cta;
-  margin-top: 1em;
-`;
