@@ -17,7 +17,10 @@ const CollectionPage = ({ products = [] }) => {
         key={index} product={{
           variants,
           ...product
-        }}>
+        }}
+        staticOptions={['Size']}
+        hiddenOptions={['Size']}
+      >
         <ProductTile
           key={index}
           price={`$${parseFloat(variants[0].price).toFixed(2)}`}

@@ -5,10 +5,10 @@ import {
 } from './styles';
 
 // markup
-const ProductOptionSelector = ({ name = "Option Name", values = [], swatch, children }) => {
+const ProductOptionSelector = ({ name = "Option Name", isHidden = false, hasLabel = true, children }) => {
   return (
-    <FIELDSET>
-      <LEGEND>{name}</LEGEND>
+    <FIELDSET isHidden={isHidden}>
+      <LEGEND isHidden={hasLabel}>{name}</LEGEND>
       {children}
     </FIELDSET>
   )

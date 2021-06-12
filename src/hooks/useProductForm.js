@@ -1,11 +1,18 @@
 import {
+  useContext,
   useState
 } from "react";
+import ShopContext from "../contexts/ShopContext";
 
 const isSameOption = (selectedOption, { name, value }) => selectedOption.name === name && selectedOption.value === value;
 
-function useProductForm({ product, selectedVariant, shop } = {}) {
-  const {
+function useProductForm({
+  product = {},
+  staticOptions = [],
+  hiddenOptions = [],
+  selectedVariant = 0 }) {
+
+  const shop = useContext(ShopContext), {
     addVariantToCart,
     removeLineItem
   } = shop, {
@@ -54,6 +61,8 @@ function useProductForm({ product, selectedVariant, shop } = {}) {
   return {
     product,
     formState,
+    staticOptions,
+    hiddenOptions,
     optionIsSelected,
     updateVariant,
     updateOption,

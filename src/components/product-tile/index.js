@@ -45,12 +45,7 @@ export default function ProductTile({
   } = variants[formState];
 
   const values = options.filter(({ name }) => name.toLowerCase() === 'color').map(({ values }) => values).flat();
-  console.log('ProductTile', values)
 
-  const onClick = async (e) => {
-    await addToCart(e);
-    openFlyout();
-  }
   return (
     <ObjectTile
       className="product-tile"

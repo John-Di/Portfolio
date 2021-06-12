@@ -18,13 +18,13 @@ import SwatchGrid from "../swatch-grid";
 import ProductContext from "../../contexts/ProductContext";
 
 // markup
-const ProductForm = ({
-  children
-}) => {
+const ProductForm = () => {
   const {
     product,
     addToCart,
-    removeFromCart
+    removeFromCart,
+    staticOptions = [],
+    hiddenOptions = []
   } = useContext(ProductFormContext), {
     openFlyout
   } = useContext(CartFlyoutContext), {
@@ -38,6 +38,8 @@ const ProductForm = ({
     openFlyout();
   }
 
+  ProductOptionSelector.hasLabel = hiddenOptions.length === options.length - 1;
+
   return (
     <FORM>
       <VariantSelector
@@ -45,9 +47,13 @@ const ProductForm = ({
         theme={'chic'}
       >
         {
-          arrayToComponentSiblings(options, (option, i) => (
-            <ProductOptionSelector key={i} name={option.name}>
-              <SwatchGrid values={option.values} name={option.name} type={`label`} />
+          arrayToComponentSiblings(options, ({ name, values }, i) => staticOptions.includes(name) ? (
+            <ProductOptionSelector key={i} name={name} isHidden={hiddenOptions.includes(name)}>
+              <SwatchGrid values={values} name={name} type={`label`} />
+            </ProductOptionSelector>
+          ) : (
+            <ProductOptionSelector key={i} name={name}>
+              <SwatchGrid values={values} name={name} type={`label`} />
             </ProductOptionSelector>
           ))
         }
@@ -61,7 +67,7 @@ const ProductForm = ({
           onClick={onClick}
         >Add to Cart</ChicCTA>
       </CTA>
-      <CTA>
+      {/* <CTA>
         <ChicCTA
           type="submit"
           backgroundColor={`#FFFFFF`}
@@ -78,7 +84,7 @@ const ProductForm = ({
           maxWidth={`${size.mobileXL / 16}em`}
           onClick={emptyCart}
         >Clear Cart</ChicCTA>
-      </CTA>
+      </CTA> */}
     </FORM>
   )
 }

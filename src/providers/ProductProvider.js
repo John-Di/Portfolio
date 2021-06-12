@@ -1,17 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import useProductForm from '../hooks/useProductForm';
 import ProductContext from '../contexts/ProductContext';
 import ProductFormContext from '../contexts/ProductFormContext';
-import ShopContext from "../contexts/ShopContext";
 
-const ProductProvider = ({ product = {}, selectedVariant = 0, children }) => {
+const ProductProvider = ({
+  product = {},
+  staticOptions = [],
+  hiddenOptions = [],
+  selectedVariant = 0,
+  children
+}) => {
 
   return (
     <ProductContext.Provider value={product}>
       <ProductFormContext.Provider value={useProductForm({
         product,
-        selectedVariant,
-        shop: useContext(ShopContext)
+        staticOptions,
+        hiddenOptions,
+        selectedVariant
       })}>
         {children}
       </ProductFormContext.Provider>

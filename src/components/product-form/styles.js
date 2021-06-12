@@ -3,8 +3,6 @@ import Clearfix from '../../utils/Clearfix';
 import { device, size } from '../../utils/variables';
 
 export const FORM = styled.form`
-  margin: 2em auto;
-
   @media screen and ${device.laptop} {
     display: block;
     width: 100%;
