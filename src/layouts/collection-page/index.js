@@ -21,10 +21,7 @@ const CollectionPage = ({ products = [] }) => {
         staticOptions={['Size']}
         hiddenOptions={['Size']}
       >
-        <ProductTile
-          key={index}
-          price={`$${parseFloat(variants[0].price).toFixed(2)}`}
-        />
+        <ProductTile />
       </ProductProvider>
     )
   };
@@ -38,11 +35,15 @@ const CollectionPage = ({ products = [] }) => {
           perRow: 1,
           gap: [2, 0]
         }, {
-          breakpoint: device.tablet,
+          breakpoint: device.mobileXL,
           gap: [2, 1],
           perRow: 2
         }, {
           breakpoint: device.laptop,
+          gap: [2, 1],
+          perRow: 3
+        }, {
+          breakpoint: device.laptopL,
           gap: [4, 1],
           perRow: 4
         }]} />
