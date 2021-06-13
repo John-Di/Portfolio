@@ -26,8 +26,8 @@ export const PRODUCTS = styled.div`
         }
 
         form ul > li [type="radio"] ~ label {
-          height: 1.5em;
-          width: 1.5em;
+          height: 2em;
+          width: 2em;
           border-width: 1px;
         }
       }
