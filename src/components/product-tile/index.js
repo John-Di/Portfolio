@@ -13,11 +13,14 @@ import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
 import ProductForm from "../product-form";
+import LocationContext from "../../contexts/LocationContext";
 
 export default function ProductTile({
   children
 }) {
   const {
+    state
+  } = useContext(LocationContext), {
     addToCart,
     removeFromCart
   } = useContext(ProductFormContext), {
@@ -36,10 +39,15 @@ export default function ProductTile({
     updateOption
   } = useContext(ProductFormContext), {
     price,
-    selectedOptions
+    image
   } = variants[formState];
 
   const values = options.filter(({ name }) => name.toLowerCase() === 'color').map(({ values }) => values).flat();
+  const locationState = {
+    ...state,
+    product: { title },
+    selectedVariant: formState
+  };
 
   return (
     <ObjectTile
@@ -47,6 +55,7 @@ export default function ProductTile({
       heading={title}
       body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit`}
       url={url}
+      state={locationState}
       maxWidth={`${size.mobileS / 16}em`}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
     >
@@ -54,11 +63,9 @@ export default function ProductTile({
         to={url}
         activeClassName="active"
         partiallyActive={true}
-        state={{
-          product: { title }
-        }}
+        state={locationState}
       >
-        {getImage(images[0]) && <GatsbyImage image={getImage(images[0])} alt={`alt`} />}
+        {getImage(image) && <GatsbyImage image={getImage(image)} alt={`alt`} />}
       </IMAGE>
       <BODY>
         {children}

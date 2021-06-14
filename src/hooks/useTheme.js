@@ -50,17 +50,14 @@ export const themeReducer = (state, action) => {
 function useTheme() {
 
   const {
-    state
-  } = useContext(LocationContext);
-  const {
     primaryColor
-  } = state;
-
-  const [theme, UpdateTheme] = useReducer(themeReducer, {
-    primaryColor,
-    primaryContrast: BasicContrast(primaryColor),
-    name: `chic`
-  });
+  } = useContext(LocationContext),
+    color = primaryColor ? primaryColor : randomColor(),
+    [theme, UpdateTheme] = useReducer(themeReducer, {
+      primaryColor: color,
+      primaryContrast: BasicContrast(color),
+      name: `chic`
+    });
 
   const updateAccentColor = color => UpdateTheme({
     type: actionTypes.accent,

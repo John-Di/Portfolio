@@ -2,6 +2,7 @@ import {
   useContext,
   useState
 } from "react";
+import LocationContext from "../contexts/LocationContext";
 import ShopContext from "../contexts/ShopContext";
 
 const isSameOption = (selectedOption, { name, value }) => selectedOption.name === name && selectedOption.value === value;
@@ -9,13 +10,13 @@ const isSameOption = (selectedOption, { name, value }) => selectedOption.name ==
 function useProductForm({
   product = {},
   staticOptions = [],
-  hiddenOptions = [],
-  selectedVariant = 0 }) {
-
+  hiddenOptions = [] }) {
   const shop = useContext(ShopContext), {
     addVariantToCart,
     removeLineItem
   } = shop, {
+    selectedVariant = 0
+  } = useContext(LocationContext), {
     handle,
     variants = []
   } = product;

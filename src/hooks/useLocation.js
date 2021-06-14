@@ -8,14 +8,20 @@ const actionTypes = {
   id: 'ID',
   option: 'OPTION',
   theme: 'THEME',
-  accent: `ACCENT`
+  accent: `ACCENT`,
+  addProperty: `ADD`
 };
 
 export const locationReducer = (state, action) => {
-  const { type, primaryColor, theme } = action,
+  const { type, primaryColor, theme, key, value } = action,
     { name } = theme;
 
   switch (type) {
+    case actionTypes.addProperty: {
+      let newState = state;
+      newState[key] = value;
+      return newState;
+    }
     case actionTypes.accent: {
       return {
         ...state,
@@ -29,18 +35,18 @@ export const locationReducer = (state, action) => {
   }
 }
 
-function useLocation({ location, primaryColor }) {
+function useLocation({ location }) {
 
   const [state, UpdateLocation] = useReducer(locationReducer, {
     ...location,
-    pathname: typeof window !== 'undefined' ? window.location.href : '',
-    primaryColor: primaryColor || randomColor()
+    state: location.state,
+    pathname: typeof window !== 'undefined' ? window.location.href : ''
   });
 
   const pathContains = str => (state.pathname.indexOf(str) >= 0);
-
   return {
-    state,
+    ...state,
+    ...state.state,
     UpdateLocation,
     pathContains
   };

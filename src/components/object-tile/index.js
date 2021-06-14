@@ -15,6 +15,7 @@ export default function ObjectTile({
   body,
   maxWidth,
   children,
+  state,
   value,
   url = '/products/dummy-product'
 }) {
@@ -27,6 +28,7 @@ export default function ObjectTile({
         to={url}
         activeClassName="active"
         partiallyActive={true}
+        state={state}
       >
         {heading}
       </HEADING>

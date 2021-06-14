@@ -7,7 +7,6 @@ const ProductProvider = ({
   product = {},
   staticOptions = [],
   hiddenOptions = [],
-  selectedVariant = 0,
   children
 }) => {
 
@@ -16,8 +15,7 @@ const ProductProvider = ({
       <ProductFormContext.Provider value={useProductForm({
         product,
         staticOptions,
-        hiddenOptions,
-        selectedVariant
+        hiddenOptions
       })}>
         {children}
       </ProductFormContext.Provider>
