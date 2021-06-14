@@ -68,7 +68,7 @@ export const DESCRIPTION = styled.p`
   }
 `;
 
-export const FORM = styled.form`
+export const FORM = styled.div`
   margin: 2em auto;
 
   @media screen and ${device.laptop} {
