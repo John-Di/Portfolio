@@ -11,7 +11,7 @@ import ThumbnailNavigation from "../thumbnail-navigation";
 export default function ImageGallery({
   gap = 0.75,
   maxWidth = '100%',
-  hasPadding = false,
+  hasPadding = false
 }) {
   const {
     Image,

@@ -41,7 +41,7 @@ const ProductPage = () => {
       <TITLE>{title}</TITLE>
       <MEDIA>
         <ProductGalleryProvider>
-          <ImageGallery maxWidth={`75%`} selectedFirst={randomBool()} />
+          <ImageGallery maxWidth={`75%`} selectedFirst={formState} />
         </ProductGalleryProvider>
       </MEDIA>
       <PRICING>
