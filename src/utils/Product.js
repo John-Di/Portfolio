@@ -59,14 +59,14 @@ function useProduct({ reducer = productReducer, product, selectedVariantId } = {
   let selectedId = selectedVariantId || variants[0].id;
   let selectedVariant = variants.find(v => v.id === selectedId);
 
-  const [formState, UpdateFormState] = useReducer(reducer, {
+  const [selectedVariantIndex, UpdateSelectedVariantIndex] = useReducer(reducer, {
     selectedVariant
   });
 
-  const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selectedVariant, variants });
-  const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selectedVariant, selectedOption, variants });
+  const updateVariant = selectedVariant => UpdateSelectedVariantIndex({ type: 'ID', selectedVariant, variants });
+  const updateOption = selectedOption => UpdateSelectedVariantIndex({ type: 'OPTION', selectedVariant, selectedOption, variants });
 
-  return { ProductContext: ProductContext(product), formState, updateVariant, updateOption };
+  return { ProductContext: ProductContext(product), selectedVariantIndex, updateVariant, updateOption };
 }
 
 export { useProduct }

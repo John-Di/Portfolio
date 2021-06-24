@@ -8,13 +8,14 @@ import { randomBool } from '../utils/randoms';
 
 const selectedFirst = randomBool();
 
-function useGallery({ images = [], currentIndex = 0 } = {}) {
-  const imageCount = images.length;
+function useGallery({ images = [], currentImages = [], currentIndex = 0 }) {
+  const imageCount = currentImages.length ? currentImages.length : images.length;
   const scrollRef = useRef(null);
   const [index, setIndex] = useState(currentIndex),
-    mainImage = images[index],
+    mainImage = currentImages.length ? currentImages[index] : images[index],
     Image = typeof mainImage === 'object' ? GatsbyImage : undefined;
 
+  // console.log('useGallery', images, currentImages, currentIndex, mainImage)
   const ScrollController = () => {
     if (!scrollRef) {
       return;
@@ -46,16 +47,16 @@ function useGallery({ images = [], currentIndex = 0 } = {}) {
   return {
     scrollRef,
     index,
-    images,
+    images: currentImages.length ? currentImages : images,
     Image,
     mainImage,
-    updateIndex,
-    isCurrent: i => index === i,
     hasNavButtons: imageCount > 4,
     atBeginning: index === 0,
     atEnd: index === imageCount - 1,
     scrollPrevious,
-    scrollNext
+    scrollNext,
+    updateIndex,
+    isCurrent: i => index === i
   };
 }
 

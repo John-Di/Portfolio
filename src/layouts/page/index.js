@@ -38,7 +38,7 @@ const Page = ({ children }) => {
     >
       <Header />
       <main ref={mainRef}>
-        <Breadcrumbs />
+        {/* <Breadcrumbs /> */}
         {children}
       </main>
       {useContext(CartFlyoutContext) && <Overlay />}

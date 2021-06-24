@@ -7,7 +7,6 @@ import {
 import ImageGallery from "../../components/image-gallery";
 import ProductForm from "../../components/product-form";
 import ProductContext from "../../contexts/ProductContext";
-import ProductFormContext from "../../contexts/ProductFormContext";
 import {
   ARTICLE,
   TITLE,
@@ -23,25 +22,19 @@ import ProductGalleryProvider from "../../providers/ProductGalleryProvider";
 const ProductPage = () => {
   const {
     title,
-    images,
     description,
-    options = [],
-    variants = []
-  } = useContext(ProductContext), {
-    formState,
-    updateOption
-  } = useContext(ProductFormContext);
+    selectedVariant
+  } = useContext(ProductContext);
 
   let {
-    price,
-    selectedOptions
-  } = variants[formState];
+    price
+  } = selectedVariant;
   return (
     <ARTICLE>
       <TITLE>{title}</TITLE>
       <MEDIA>
         <ProductGalleryProvider>
-          <ImageGallery maxWidth={`75%`} selectedFirst={formState} />
+          <ImageGallery maxWidth={`75%`} selectedFirst={randomBool()} />
         </ProductGalleryProvider>
       </MEDIA>
       <PRICING>

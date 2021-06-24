@@ -2,10 +2,12 @@ import StringToNumber from '../../utils/StringToNumber';
 import ColorSwatch from "../color-swatch";
 import TextSwatch from "../text-swatch";
 
-export const SwatchType = (name) => {
-  let type = StringToNumber(name.toLowerCase());
-  if (type === StringToNumber('color')) {
-    return ColorSwatch;
-  }
-  return TextSwatch;
+const SwatchType = {
+  'color': ColorSwatch,
+  'text': TextSwatch
 }
+
+export const getSwatch = (type = 'text') => {
+  const key = type.toLowerCase();
+  return SwatchType.hasOwnProperty(key) ? SwatchType[key] : SwatchType['text'];
+};

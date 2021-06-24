@@ -1,73 +1,47 @@
 import {
-  useReducer
+  useContext,
+  useState
 } from "react";
+import LocationContext from "../contexts/LocationContext";
 
 const actionTypes = {
   id: 'ID',
   option: 'OPTION'
-}
+};
 
-// const getSelectedVariant = ({ name, value }, variants = [], { selectedOptions }) => {
-//   return variants.filter(variant => {
-//     variant.selectedOptions.every((option, index) => {
-//       return (option.name === name && option.value === value)
-//         || (option.name === selectedOptions[index].name && option.value === selectedOptions[index].value)
-//     })
-//     let selectedOptionIndex = variant.selectedOptions.findIndex(option => option.name === name);
-//     const selectedOption = variant.selectedOptions[selectedOptionIndex];
-//     return variant.selectedOptions.every((option, index) => (option.name === name && option.value === value)
-//       || (selectedOption.name === name && selectedOption.value === value
-//         && option.name === selectedOptions[index].name
-//         && option.value === selectedOptions[index].value));
-//   })[0].id
-// }
+const productReducer = (state, action) => {
+  const { type, primaryColor, theme } = action,
+    { name } = theme;
 
-const isSameOption = (selectedOption, { name, value }) => selectedOption.name === name && selectedOption.value === value;
-
-const getSelectedVariant = (selectedOption, variants = [], { selectedOptions }) => {
-  return variants.reduce((currentID, variant, index) => {
-    const selectedOptionIndex = selectedOptions.findIndex(({ name }) => name === selectedOption.name);
-    let isSelected = variant.selectedOptions.every((option, index) => {
-      return selectedOptionIndex === index ? isSameOption(option, selectedOption) : isSameOption(option, selectedOptions[index]);
-    });
-    return isSelected ? variant.id : currentID;
-  }, variants[0].id)
-}
-
-export const productReducer = (state, action) => {
-  let { selectedVariant, selectedOption, variants = [] } = action;
-  switch (action.type) {
-    case actionTypes.id:
-      return {
-        id: selectedVariant.id
-      };
-    case actionTypes.option:
-      return {
-        id: getSelectedVariant(selectedOption, variants, selectedVariant)
-      };
-    default:
+  switch (type) {
+    case actionTypes.id: {
       return state
+    }
+    case actionTypes.option: {
+      return state
+    }
+    default: return state
   }
 }
 
-function useProduct({ reducer = productReducer, product, selectedVariant } = {}) {
+function useProduct({
+  reducer = productReducer,
+  product = { variants: [] }
+}) {
   const {
+    selectedVariantIndex = 0
+  } = useContext(LocationContext), {
     variants = []
-  } = product, {
-    id,
-    shopifyId
-  } = selectedVariant;
+  } = product;
 
-  const [formState, UpdateFormState] = useReducer(reducer, {
-    id: shopifyId || id
-  });
+  const [selectedIndex, UpdateSelectedVariantIndex] = useState(selectedVariantIndex);
 
-  const selectedVariant = variants.find(variant => variant.id === id);
-
-  const updateVariant = selectedVariant => UpdateFormState({ type: 'ID', selectedVariant, variants });
-  const updateOption = selectedOption => UpdateFormState({ type: 'OPTION', selectedVariant, selectedOption, variants });
-
-  return { product, formState, selectedVariant, updateVariant, updateOption };
+  return {
+    ...product,
+    selectedVariant: variants[selectedIndex],
+    selectedVariantIndex: selectedIndex,
+    UpdateSelectedVariantIndex
+  };
 }
 
 export default useProduct;

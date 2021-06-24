@@ -14,15 +14,12 @@ export default function LineItemTile({
 }) {
 
   const {
-    description,
-    variant,
-    handle
+    variant
   } = useContext(ProductContext);
 
   let {
     image,
     price,
-    id,
     title,
     product
   } = variant;

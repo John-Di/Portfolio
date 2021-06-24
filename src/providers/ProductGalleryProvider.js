@@ -6,21 +6,25 @@ import ProductFormContext from '../contexts/ProductFormContext';
 import useGallery from '../hooks/useGallery';
 
 const ProductGalleryProvider = ({ children }) => {
-  const {
-    variants
-  } = useContext(ProductContext), {
-    formState
-  } = useContext(ProductFormContext),
-    ids = variants.map(({ image }) => image.childImageSharp.id),
-    images = variants.filter(({ image }, index) => ids.indexOf(image.childImageSharp.id) === index)
-      .map(({ image }) => image);
-
-  return (
-    <GalleryContext.Provider value={useGallery({
+  const product = useContext(ProductContext), {
+    images,
+    currentImages
+  } = product, {
+    gatsbyImages,
+    currentImageIndex = 0
+  } = images,
+    gallery = useGallery({
       max: 4,
-      images: images.map(({ childImageSharp }) => getImage(childImageSharp.gatsbyImageData)),
-      currentIndex: images.findIndex(({ childImageSharp }) => childImageSharp.id === variants[formState].image.childImageSharp.id)
-    })} >
+      images: currentImages,
+      currentIndex: currentImageIndex
+    });
+  // console.log('ProductGalleryProvider', {
+  //   images,
+  //   currentImages,
+  //   gatsbyImages
+  // })
+  return (
+    <GalleryContext.Provider value={gallery}>
       {children}
     </GalleryContext.Provider>
   )

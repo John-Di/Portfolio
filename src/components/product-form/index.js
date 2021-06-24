@@ -22,20 +22,18 @@ import Options from "../line-item-list/line-item/options";
 // markup
 const ProductForm = () => {
   const {
-    product,
+    options,
+    selectedVariantIndex
+  } = useContext(ProductContext), {
     addToCart,
-    formState,
+    selectedOptions = [],
     staticOptions = [],
     hiddenOptions = []
   } = useContext(ProductFormContext), {
     openFlyout
   } = useContext(CartFlyoutContext), {
     emptyCart
-  } = useContext(ShopContext), {
-    options,
-    variants
-  } = product,
-    selectedVariantOptions = variants[formState].selectedOptions,
+  } = useContext(ShopContext),
     onClick = async (e) => {
       await addToCart(e);
       openFlyout();
@@ -53,7 +51,7 @@ const ProductForm = () => {
             <ProductOptionSelector key={i} name={name} isHidden={hiddenOptions.includes(name)} hasLabel={hasLabel}>
               {
                 staticOptions.includes(name) ?
-                  <SwatchGrid values={[selectedVariantOptions.find(option => option.name === name).value]} name={name} type={`div`} /> :
+                  <SwatchGrid values={[selectedOptions.find(option => option.name === name).value]} name={name} type={`div`} /> :
                   <SwatchGrid values={values} name={name} type={`label`} />
               }
             </ProductOptionSelector>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import {
-  SwatchType
+  getSwatch
 } from '../../../swatch-grid/helpers';
 import {
   arrayToComponentSiblings
@@ -17,7 +17,7 @@ const Options = ({ options }) => {
     <OPTIONS>
       {
         arrayToComponentSiblings(options, ({ name, value }, i) => {
-          let Swatch = SwatchType(name);
+          let Swatch = getSwatch(name);
           return (
             <DESCRIPTION key={i}>
               <NAME>{name}</NAME>

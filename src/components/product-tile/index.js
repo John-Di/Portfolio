@@ -8,8 +8,6 @@ import {
   BODY,
   FORM
 } from './styles';
-import ShopContext from "../../contexts/ShopContext";
-import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
 import ProductForm from "../product-form";
@@ -21,32 +19,21 @@ export default function ProductTile({
   const {
     state
   } = useContext(LocationContext), {
-    addToCart,
-    removeFromCart
-  } = useContext(ProductFormContext), {
-    openFlyout
-  } = useContext(CartFlyoutContext), {
-    emptyCart
-  } = useContext(ShopContext), {
     title,
-    images,
-    description,
     options,
     url,
-    variants
+    variants,
+    selectedVariantIndex
   } = useContext(ProductContext), {
-    formState,
-    updateOption
-  } = useContext(ProductFormContext), {
     price,
     image
-  } = variants[formState];
+  } = variants[selectedVariantIndex];
 
   const values = options.filter(({ name }) => name.toLowerCase() === 'color').map(({ values }) => values).flat();
   const locationState = {
     ...state,
     product: { title },
-    selectedVariant: formState
+    selectedVariantIndex
   };
 
   return (
