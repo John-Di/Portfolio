@@ -6,7 +6,7 @@ import {
 import LocationContext from "../../contexts/LocationContext";
 import ShopContext from "../../contexts/ShopContext";
 import useProduct from "../useProduct";
-import productFormReducer, { actionTypes } from './productFormReducer';
+import productFormReducer, { actionTypes } from './reducer';
 
 
 function useProductForm({ product = { selectedVariantIndex: 0 } }) {
@@ -60,12 +60,8 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
     }
 
   return {
-    product: {
-      ...product,
-      selectedOptions,
-      selectedVariantIndex
-    },
-    shopifyId,
+    product,
+    selectedOptions,
     ...formState,
     optionIsSelected,
     updateVariant,

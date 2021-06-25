@@ -25,7 +25,6 @@ const productReducer = (state, action) => {
 }
 
 function useProduct({
-  reducer = productReducer,
   product = { variants: [] }
 }) {
   const {

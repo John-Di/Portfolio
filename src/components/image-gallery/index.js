@@ -15,7 +15,8 @@ export default function ImageGallery({
 }) {
   const {
     Image,
-    mainImage
+    mainImage,
+    updateIndex
   } = useContext(GalleryContext);
 
   return (

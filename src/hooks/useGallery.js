@@ -50,7 +50,6 @@ function useGallery({ images = [], currentImages = [], currentIndex = 0 }) {
     images: currentImages.length ? currentImages : images,
     Image,
     mainImage,
-    hasNavButtons: imageCount > 4,
     atBeginning: index === 0,
     atEnd: index === imageCount - 1,
     scrollPrevious,

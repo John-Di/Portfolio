@@ -15,9 +15,10 @@ export default function ThumbnailNavigation({
   buttonsInside = true
 }) {
   const {
+    images,
     scrollRef,
-    hasNavButtons,
-  } = useContext(GalleryContext);
+  } = useContext(GalleryContext),
+    hasNavButtons = images.length > 4;
 
   return (
     <SCROLLABLE

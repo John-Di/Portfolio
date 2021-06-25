@@ -10,17 +10,18 @@ export default function Button({
   children
 }) {
   const {
-    hasNavButtons,
     atBeginning,
     atEnd,
     scrollNext,
-    scrollPrevious
+    scrollPrevious,
+    images
   } = useContext(GalleryContext),
     scrollSlide = isPrev ? scrollPrevious : scrollNext,
     onClick = e => {
       e.preventDefault();
       scrollSlide();
-    };
+    },
+    hasNavButtons = images.length > 4;
 
   return (
     <BUTTON
