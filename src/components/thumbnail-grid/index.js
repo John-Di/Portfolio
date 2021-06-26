@@ -16,18 +16,19 @@ export default function ThumbnailGrid({
 }) {
   const {
     Image,
-    getColorFromImage,
+    updateByVisibleOption,
     isCurrent,
-    images
+    images,
+    index
   } = useContext(GalleryContext)
 
   const WrapElement = (image, i) => (
     <ITEM key={i} gutter={gutterOffset} maxWidth={perRow ? `${100 / perRow}%` : null}>
       <Thumbnail
-        isCurrent={isCurrent(i)}
+        isCurrent={index === i}
         onClick={e => {
           e.preventDefault();
-          getColorFromImage(i);
+          updateByVisibleOption(i);
         }}
         image={image}
       >

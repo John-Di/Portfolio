@@ -1,6 +1,5 @@
 const isSameOption = (selectedOption, { name, value }) => selectedOption.name === name && selectedOption.value === value;
 
-
 export const actionTypes = {
   id: 'ID',
   option: 'OPTION'

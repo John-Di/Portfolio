@@ -27,12 +27,16 @@ const ProductGalleryProvider = ({ children }) => {
     updateOption
   } = useContext(ProductFormContext);
 
-  const getColorFromImage = idIndex => updateOption(variants.find(({ image }) => image.childImageSharp.id === ids[idIndex]).selectedOptions.find(({ name, value }) => imageOptions.includes(name.toLowerCase())));
+  const updateByVisibleOption = idIndex => {
+    const selectedVariantIndex = variants.findIndex(({ image }) => image.childImageSharp.id === ids[idIndex]),
+      selectedOption = variants[selectedVariantIndex].selectedOptions.find(({ name, value }) => imageOptions.includes(name.toLowerCase()));
+    updateOption(selectedOption);
+  };
 
   return (
     <GalleryContext.Provider value={{
       ...gallery,
-      getColorFromImage,
+      updateByVisibleOption,
       mainImage: gatsbyImages[currentImageIndex || 0]
     }}>
       {children}

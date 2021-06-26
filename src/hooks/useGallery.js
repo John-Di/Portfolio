@@ -15,7 +15,6 @@ function useGallery({ images = [], currentImages = [], currentIndex = 0 }) {
     mainImage = currentImages.length ? currentImages[index] : images[index],
     Image = typeof mainImage === 'object' ? GatsbyImage : undefined;
 
-  // console.log('useGallery', images, currentImages, currentIndex, mainImage)
   const ScrollController = () => {
     if (!scrollRef) {
       return;
@@ -46,7 +45,7 @@ function useGallery({ images = [], currentImages = [], currentIndex = 0 }) {
 
   return {
     scrollRef,
-    index,
+    index: currentIndex,
     images: currentImages.length ? currentImages : images,
     Image,
     mainImage,
