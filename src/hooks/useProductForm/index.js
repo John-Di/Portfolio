@@ -28,10 +28,11 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
     selectedVariantIndex: location.selectedVariantIndex || 0,
     value: selectedVariant.shopifyId
   }), {
-    shopifyId,
     selectedVariantIndex,
     selectedOptions = variants[selectedVariantIndex].selectedOptions
-  } = formState;
+  } = formState, {
+    shopifyId
+  } = variants[selectedVariantIndex];
 
   const updateVariant = shopifyId => UpdateFormState({
     type: actionTypes.id,

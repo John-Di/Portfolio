@@ -23,7 +23,9 @@ import Options from "../line-item-list/line-item/options";
 const ProductForm = () => {
   const {
     options,
-    selectedVariantIndex
+    variants,
+    selectedVariantIndex = 0,
+    ...product
   } = useContext(ProductContext), {
     addToCart,
     selectedOptions = [],
@@ -45,6 +47,7 @@ const ProductForm = () => {
       <VariantSelector
         isHidden={true}
         theme={'chic'}
+        selected={variants[selectedVariantIndex].shopifyId}
       >
         {
           arrayToComponentSiblings(options, ({ name, values }, i) =>

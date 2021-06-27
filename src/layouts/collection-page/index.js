@@ -5,6 +5,7 @@ import { randomImageArray } from "../../utils/randoms";
 import Grid from "../grid";
 import { device } from '../../utils/variables';
 import {
+  ARTICLE,
   PRODUCTS
 } from './styles';
 
@@ -27,6 +28,7 @@ const CollectionPage = ({ products = [] }) => {
   };
 
   return (
+    <ARTICLE>
     <PRODUCTS>
       <Grid
         items={products}
@@ -48,6 +50,7 @@ const CollectionPage = ({ products = [] }) => {
           perRow: 4
         }]} />
     </PRODUCTS>
+    </ARTICLE>
   )
 }
 
