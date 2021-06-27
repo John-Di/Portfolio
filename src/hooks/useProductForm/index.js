@@ -20,7 +20,6 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
     selectedVariant = variants[location.selectedVariantIndex || 0];
 
   const [formState, UpdateFormState] = useReducer(productFormReducer, {
-    value: shopifyId,
     ...useProduct({
       product,
       ...location
