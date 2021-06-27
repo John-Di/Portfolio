@@ -17,7 +17,10 @@ const ProductGalleryProvider = ({ children }) => {
     gatsbyImages,
     currentImageIndex = 0
   } = images, {
+    index,
     updateIndex,
+    scrollNext,
+    scrollPrevious,
     ...gallery
   } = useGallery({
     max: 4,
@@ -29,7 +32,8 @@ const ProductGalleryProvider = ({ children }) => {
 
   const updateByVisibleOption = idIndex => {
     const selectedVariantIndex = variants.findIndex(({ image }) => image.childImageSharp.id === ids[idIndex]),
-      selectedOption = variants[selectedVariantIndex].selectedOptions.find(({ name, value }) => imageOptions.includes(name.toLowerCase()));
+      { selectedOptions = [] } = variants[selectedVariantIndex],
+      selectedOption = selectedOptions.find(({ name, value }) => imageOptions.includes(name.toLowerCase()));
     updateOption(selectedOption);
   };
 
@@ -37,7 +41,9 @@ const ProductGalleryProvider = ({ children }) => {
     <GalleryContext.Provider value={{
       ...gallery,
       updateByVisibleOption,
-      mainImage: gatsbyImages[currentImageIndex || 0]
+      scrollNextOption: idIndex => updateByVisibleOption(scrollNext(idIndex)),
+      scrollPreviousOption: idIndex => updateByVisibleOption(scrollPrevious(idIndex)),
+      mainImage: gatsbyImages[index || 0]
     }}>
       {children}
     </GalleryContext.Provider>

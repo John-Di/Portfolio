@@ -25,7 +25,7 @@ export default function ThumbnailGrid({
   const WrapElement = (image, i) => (
     <ITEM key={i} gutter={gutterOffset} maxWidth={perRow ? `${100 / perRow}%` : null}>
       <Thumbnail
-        isCurrent={index === i}
+        isCurrent={isCurrent(i)}
         onClick={e => {
           e.preventDefault();
           updateByVisibleOption(i);

@@ -33,19 +33,24 @@ function useGallery({ images = [], currentImages = [], currentIndex = 0 }) {
     })
   };
   useEffect(ScrollController, [index]);
+  useEffect(() => {
+    setIndex(currentIndex)
+  }, [currentIndex]);
 
   const updateIndex = index => setIndex(index),
     scrollPrevious = () => {
       let newIndex = Math.max(index - 1, 0) % imageCount;
-      return setIndex(newIndex)
+      setIndex(newIndex)
+      return newIndex;
     }, scrollNext = () => {
       let newIndex = Math.min(index + 1, imageCount) % imageCount;
-      return setIndex(newIndex)
+      setIndex(newIndex)
+      return newIndex;
     };
 
   return {
     scrollRef,
-    index: currentIndex,
+    index,
     images: currentImages.length ? currentImages : images,
     Image,
     mainImage,

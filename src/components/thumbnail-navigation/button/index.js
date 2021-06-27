@@ -12,11 +12,11 @@ export default function Button({
   const {
     atBeginning,
     atEnd,
-    scrollNext,
-    scrollPrevious,
+    scrollNextOption,
+    scrollPreviousOption,
     images
   } = useContext(GalleryContext),
-    scrollSlide = isPrev ? scrollPrevious : scrollNext,
+    scrollSlide = isPrev ? scrollPreviousOption : scrollNextOption,
     onClick = e => {
       e.preventDefault();
       scrollSlide();
