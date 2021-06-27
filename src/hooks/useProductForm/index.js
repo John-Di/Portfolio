@@ -16,7 +16,8 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
   } = shop,
     location = useContext(LocationContext), {
       variants = []
-    } = product;
+    } = product,
+    selectedVariant = variants[location.selectedVariantIndex || 0];
 
   const [formState, UpdateFormState] = useReducer(productFormReducer, {
     value: shopifyId,
@@ -24,12 +25,12 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
       product,
       ...location
     }),
-    ...variants[selectedVariantIndex || 0],
-    selectedVariantIndex
+    ...selectedVariant,
+    selectedVariantIndex,
+    value: selectedVariant.shopifyId
   }), {
     shopifyId,
     selectedVariantIndex,
-    selectedVariant,
     selectedOptions = variants[selectedVariantIndex].selectedOptions
   } = formState;
 
