@@ -25,31 +25,63 @@ import { arrayToComponentSiblings, jsxCloneArray } from '../utils/dom-builder';
 import { size } from '../utils/variables';
 import StyleGuideArticle from '../components/style-guide-article';
 import ShopPageTemplate from "../templates/shop-page";
+import CollectionPage from "../layouts/collection-page";
 
 
 export const query = graphql`
   {
     allShopifyProduct {
-      nodes {
-        title
-        description
-        id
-        handle
-        variants {
-          shopifyId
-          priceV2 {
-            amount
-            currencyCode
+      edges {
+        node {
+          title
+          tags
+          productType
+          id
+          handle
+          availableForSale
+          description
+          images {
+            originalSrc
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
+                id
+              }
+            }
           }
-        }
-        images {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                width: 300
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
+          options {
+            name
+            values
+          }
+          variants {
+            selectedOptions {
+              name
+              value
+            }
+            priceV2 {
+              amount
+            }
+            price
+            id
+            shopifyId
+            title
+            sku
+            availableForSale
+            compareAtPrice
+            compareAtPriceV2 {
+              currencyCode
+              amount
+            }
+            image {
+              originalSrc
+              id
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
+                  id
+                }
+              }
             }
           }
         }
@@ -64,7 +96,22 @@ const StyleGuidePage = ({ location = {}, data }) => {
   let heroWidth = randomBool(1);
   let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
 
-  let featured_products = data.allShopifyProduct.nodes.filter((_, i) => i < 4);
+  const featured_products = data.allShopifyProduct.edges.filter((_, i) => i < 4).map(({ node }) => {
+    const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
+      images = node.variants.map(({ image }) => image.localFile).filter(
+        ({ childImageSharp }, index) => ids.indexOf(childImageSharp.id) === index);
+
+    return {
+      ...node,
+      images,
+      url: `/products/${node.handle}`,
+      variants: node.variants.map(({ image, ...variant }) => ({
+        image: image.localFile,
+        ...variant
+      }))
+    }
+  });
+
   return (
     <ShopPageTemplate
       accentColor={accentColor}
@@ -72,23 +119,7 @@ const StyleGuidePage = ({ location = {}, data }) => {
       location={location}
     >
       <StyleGuideArticle>
-        <FeaturedTiles heading={`Product Tiles`} items={featured_products} />
-        <FeaturedTiles>{
-          jsxCloneArray(2, (length, _, index) => {
-            return (
-              <ObjectTile
-                key={index}
-                heading={`Tile ${index + 1}`}
-                backgroundImage={randomImage(randomIntegerEx(0, 10000) + index, +size.mobileXL, +size.mobileXL)}
-                body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
-              >
-              </ObjectTile>
-            )
-          })}
-        </FeaturedTiles>
-        <ImageGallerySection
-          images={randomImageArray()}
-        />
+        <CollectionPage products={featured_products} />
       </StyleGuideArticle>
     </ShopPageTemplate>
   )
