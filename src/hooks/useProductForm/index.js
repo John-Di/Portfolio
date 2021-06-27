@@ -25,7 +25,7 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
       ...location
     }),
     ...selectedVariant,
-    selectedVariantIndex,
+    selectedVariantIndex: location.selectedVariantIndex || 0,
     value: selectedVariant.shopifyId
   }), {
     shopifyId,
