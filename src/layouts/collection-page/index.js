@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductTile from "../../components/product-tile";
 import ProductProvider from "../../providers/ProductProvider";
 import { randomImageArray } from "../../utils/randoms";
@@ -8,9 +8,17 @@ import {
   ARTICLE,
   PRODUCTS
 } from './styles';
+import Sort from "../../components/sort";
+import Filter from "../../components/filter";
+import RemoveDuplicates from "../../utils/RemoveDuplicates";
+import CollectionContext from "../../contexts/CollectionContext";
 
 // markup
 const CollectionPage = ({ products = [] }) => {
+
+  const {
+    activeProducts = []
+  } = useContext(CollectionContext);
 
   const ProductTileMap = ({ variants = [], ...product }, index) => {
     return (
@@ -29,27 +37,29 @@ const CollectionPage = ({ products = [] }) => {
 
   return (
     <ARTICLE>
-    <PRODUCTS>
-      <Grid
-        items={products}
-        ItemMap={ProductTileMap}
-        rules={[{
-          perRow: 1,
-          gap: [2, 0]
-        }, {
-          breakpoint: device.mobileXL,
-          gap: [2, 1],
-          perRow: 2
-        }, {
-          breakpoint: device.laptop,
-          gap: [2, 1],
-          perRow: 3
-        }, {
-          breakpoint: device.laptopL,
-          gap: [4, 1],
-          perRow: 4
-        }]} />
-    </PRODUCTS>
+      <Sort />
+      <Filter />
+      <PRODUCTS>
+        <Grid
+          items={activeProducts}
+          ItemMap={ProductTileMap}
+          rules={[{
+            perRow: 1,
+            gap: [2, 0]
+          }, {
+            breakpoint: device.mobileXL,
+            gap: [2, 1],
+            perRow: 2
+          }, {
+            breakpoint: device.laptop,
+            gap: [2, 1],
+            perRow: 3
+          }, {
+            breakpoint: device.laptopL,
+            gap: [4, 1],
+            perRow: 4
+          }]} />
+      </PRODUCTS>
     </ARTICLE>
   )
 }

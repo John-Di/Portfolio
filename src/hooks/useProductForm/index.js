@@ -46,8 +46,11 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
       selectedVariantIndex
     });
 
+  // console.log('useProductForm.shopifyId', shopifyId);
+
   const addToCart = (async e => {
     e.preventDefault();
+    // console.log('useProductForm.addToCart', shopifyId, variants[formState.selectedVariantIndex].shopifyId);
     return addVariantToCart(shopifyId, 1);
   }),
     removeFromCart = (async e => {

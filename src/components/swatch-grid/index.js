@@ -22,7 +22,6 @@ const SwatchGrid = ({ gap = 0.25, values = [], name, type }) => {
       key={i}
       type={type}
       toggleSwatch={() => {
-        // updateIndex(i)
         return updateOption({ value, name })
       }}
     />

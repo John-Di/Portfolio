@@ -1,5 +1,6 @@
 import React from "react";
 import CollectionPage from "../layouts/collection-page";
+import CollectionProvider from "../providers/CollectionProvider";
 import ShopPageTemplate from "./shop-page";
 
 const CollectionTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
@@ -8,7 +9,9 @@ const CollectionTemplate = ({ location, children, activeHeader = false, hasCart 
     titles = products.map(({ title }) => title);
   return (
     <ShopPageTemplate location={location} >
-      <CollectionPage products={products} />
+      <CollectionProvider products={products}>
+        <CollectionPage products={products} />
+      </CollectionProvider>
     </ShopPageTemplate>
   )
 }
