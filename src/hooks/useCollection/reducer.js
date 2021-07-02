@@ -39,6 +39,7 @@ const collectionReducer = (state, action) => {
       if (!filters.hasOwnProperty(name)) {
         filters[name] = [];
       }
+
       if (!filters[name].includes(value)) {
         filters[name].push(value);
       }
@@ -49,10 +50,11 @@ const collectionReducer = (state, action) => {
     }
     case actionTypes.remove: {
       if (filters.hasOwnProperty(name) && filters[name].includes(value)) {
-        filters[name] = filters[name].filter((f, i, s) => !~s.indexOf(value))
+        filters[name] = filters[name].filter((f, i, s) => f !== value)
 
         if (!filters[name].length) {
-          delete filters[name]
+          filters[name] = undefined
+          delete filters[name];
         }
       }
 

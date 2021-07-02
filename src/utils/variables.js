@@ -57,6 +57,8 @@ export const color = {
   'Yellow': "#fbf271",
 }
 
+export const size_order = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
+
 export const breadcrumbs = {
   'products': ({ handle }) => `/collections/${handle}`
 }

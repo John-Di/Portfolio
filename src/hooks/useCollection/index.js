@@ -3,8 +3,6 @@ import {
 } from "react";
 import collectionReducer, { actionTypes, isActiveFilter } from './reducer';
 
-
-
 function useCollection({
   products = [],
   ...props
@@ -35,12 +33,12 @@ function useCollection({
     }),
     clearAllFilters: () => UpdateState({
       type: actionTypes.option,
-      ...collectionState,
-      filters: []
+      ...collectionState
     }),
     toggleFilter: ({ name, value }) => {
       UpdateState({
         type: filters.hasOwnProperty(name) && filters[name].includes(value) ? actionTypes.remove : actionTypes.add,
+        ...collectionState,
         filter: { name, value }
       })
     }
