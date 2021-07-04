@@ -8,7 +8,6 @@ import { device, size } from '../../utils/variables';
 
 
 export const NAV = styled.nav`
-  position: fixed;
   display: block;
   width: 50%;
   left: 50%;

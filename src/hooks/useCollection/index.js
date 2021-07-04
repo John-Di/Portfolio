@@ -35,13 +35,11 @@ function useCollection({
       type: actionTypes.option,
       ...collectionState
     }),
-    toggleFilter: ({ name, value }) => {
-      UpdateState({
-        type: filters.hasOwnProperty(name) && filters[name].includes(value) ? actionTypes.remove : actionTypes.add,
-        ...collectionState,
-        filter: { name, value }
-      })
-    }
+    toggleFilter: ({ name, value }) => UpdateState({
+      type: filters.hasOwnProperty(name) && filters[name].includes(value) ? actionTypes.remove : actionTypes.add,
+      ...collectionState,
+      filter: { name, value }
+    })
   };
 
   const activeProducts = Object.keys(filters).length ?

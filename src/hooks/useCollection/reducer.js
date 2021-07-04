@@ -7,11 +7,11 @@ export const actionTypes = {
 };
 
 export const sortTypes = {
-  bestSeller: 'bestseller',
-  azAsc: 'alphabetical_ascending',
-  azDes: 'alphabetical_descending',
-  priceAs: 'price_ascending',
-  priceDes: 'price_descending'
+  bestSeller: 'Best Seller',
+  azAsc: 'Name: A-Z',
+  azDes: 'Name: Z-A',
+  priceAsc: 'Price: High to Low',
+  priceDesc: 'Price: Low to High'
 };
 
 const getHighestPrice = variants => variants.reduce((acc, { price }) => +price > acc ? +price : acc, +variants[0].price)
@@ -69,7 +69,8 @@ const collectionReducer = (state, action) => {
 
       return {
         ...state,
-        activeProducts: activeProducts.sort(sortMethod)
+        activeProducts: activeProducts.sort(sortMethod),
+        sorting
       }
     }
     default: return {

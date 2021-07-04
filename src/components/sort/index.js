@@ -12,18 +12,47 @@ import { sortTypes } from "../../hooks/useCollection/reducer";
 
 export default function Sort() {
   const {
-    updateSorting
-  } = useContext(CollectionContext);
+    updateSorting,
+    sorting
+  } = useContext(CollectionContext),
+    udpateSelect = ({ target }) => updateSorting(target.value)
 
   return (
     <NAV>
-      <UL>
-        {arrayToComponentSiblings(Object.keys(sortTypes), (name, i) => (
-          <LI key={i}>
-            <button className={'Tim'} onClick={updateSorting.bind(this, name)}>{sortTypes[name]}</button>
-          </LI>
-        ))}
-      </UL>
+      {
+        <select
+          id="collection-sort"
+          name='sort'
+          value={sorting}
+          onChange={udpateSelect.bind(this)}>
+          {
+            arrayToComponentSiblings(Object.keys(sortTypes), (name, i) => (
+              <option
+                value={name}
+              >{sortTypes[name]}</option>
+            ))
+          }
+        </select>
+      }
+      {/* <UL>
+        {
+          arrayToComponentSiblings(Object.keys(sortTypes), (name, i) => (
+            <LI key={i}>
+              <div>
+                <input
+                  id={sortTypes[name]}
+                  name={name}
+                  type="radio" onChange={updateSorting.bind(this, name)}
+                  defaultChecked={sortTypes[name] === sorting}
+                />
+                <label htmlFor={sortTypes[name]}>
+                  {sortTypes[name]}
+                </label>
+              </div>
+            </LI>
+          ))
+        }
+      </UL> */}
     </NAV>
   );
 }
