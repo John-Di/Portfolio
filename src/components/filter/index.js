@@ -15,29 +15,40 @@ const Option = (props) => {
   const {
     toggleFilter,
     filters = []
-  } = useContext(CollectionContext),
-    onClick = (filter, e) => {
-      toggleFilter(filter)
-    }
+  } = useContext(CollectionContext);
 
   return (
-    <div>
-      <input
-        {...props}
-        type="checkbox" onChange={onClick.bind(this, { name, value })}
-        defaultChecked={filters.hasOwnProperty(name) && filters[name].includes(value)} />
-      <label htmlFor={id}>
-        {value}
-      </label>
-    </div>
+    <option
+      value={value}
+    >{name}</option>
+    // <div>
+    //   <input
+    //     {...props}
+    //     type="checkbox" onChange={onClick.bind(this, { name, value })}
+    //     defaultChecked={filters.hasOwnProperty(name) && filters[name].includes(value)} />
+    //   <label htmlFor={id}>
+    //     {value}
+    //   </label>
+    // </div>
   );
 }
 export default function Filter() {
 
   const {
     products = [],
-    updateSorting
+    toggleFilter,
+    filters = [],
+    selectUpdate
   } = useContext(CollectionContext),
+    onClick = (filter) => {
+      toggleFilter(filter)
+    },
+    onChange = ({ target }) => {
+      console.log('target', target)
+      const { name, value } = target;
+      console.log('target', { name, value })
+      toggleFilter({ name, value });
+    },
     unique_options = products.reduce((acc, { options = [] }) => {
       options.forEach(({ name, values }) => {
         if (!acc.hasOwnProperty(name)) {
@@ -49,18 +60,34 @@ export default function Filter() {
       return acc;
     }, {});
 
+  console.log('filters', filters)
+  console.log('unique_options', unique_options)
+
   return (
     <NAV>
       <UL>
         {arrayToComponentSiblings(Object.keys(unique_options), (name, i) => (
           <LI key={i}>
-            <button className={'Tim'} onClick={updateSorting}>{name}</button>
-            <UL>
+            <select
+              id="collection-filter"
+              name={name}
+              value={filters.hasOwnProperty(name) ?
+                filters[name].value : undefined}
+              onChange={onChange.bind(this)}>
+              <option>Select {Object.keys(unique_options)[i]}</option>
+              {
+                arrayToComponentSiblings(unique_options[name], (value, j) => (
+                  <Option {...{ name: value, value, id: `unique_options${i}-${j}` }} />
+
+                ))
+              }
+            </select>
+            {/* <UL>
               {arrayToComponentSiblings(unique_options[name], (value, j) =>
                 <LI key={j}>
                   <Option {...{ name, value, id: `unique_options${i}-${j}` }} />
                 </LI>)}
-            </UL>
+            </UL> */}
           </LI>
         ))}
       </UL>

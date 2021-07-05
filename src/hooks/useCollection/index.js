@@ -36,7 +36,7 @@ function useCollection({
       ...collectionState
     }),
     toggleFilter: ({ name, value }) => UpdateState({
-      type: filters.hasOwnProperty(name) && filters[name].includes(value) ? actionTypes.remove : actionTypes.add,
+      type: actionTypes.swap,
       ...collectionState,
       filter: { name, value }
     })

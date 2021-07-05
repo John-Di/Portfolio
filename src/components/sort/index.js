@@ -8,7 +8,7 @@ import {
   LI
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
-import { sortTypes } from "../../hooks/useCollection/reducer";
+import { sortTypes } from "../../hooks/useCollection/sorting";
 
 export default function Sort() {
   const {

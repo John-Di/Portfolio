@@ -1,32 +1,48 @@
+import { faTrailer } from "@fortawesome/free-solid-svg-icons";
+import { sortMethods } from "./sorting";
+
 export const actionTypes = {
   sort: 'SORT',
   filter: 'FILTER',
   page: 'PAGE',
+  add: 'ADD',
   remove: 'REMOVE',
-  add: 'ADD'
-};
-
-export const sortTypes = {
-  bestSeller: 'Best Seller',
-  azAsc: 'Name: A-Z',
-  azDes: 'Name: Z-A',
-  priceAsc: 'Price: High to Low',
-  priceDesc: 'Price: Low to High'
-};
-
-const getHighestPrice = variants => variants.reduce((acc, { price }) => +price > acc ? +price : acc, +variants[0].price)
-
-export const sortMethods = {
-  bestSeller: (a, b) => 1,
-  azAsc: (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0,
-  azDes: (a, b) => a.title > b.title ? -1 : a.title < b.title ? 1 : 0,
-  priceAs: (a, b) => getHighestPrice(a.variants) - getHighestPrice(b.variants),
-  priceDes: (a, b) => getHighestPrice(a.variants) - getHighestPrice(b.variants)
+  swap: 'SWAP'
 };
 
 const filterEquals = (targetFilter, { name, value }) => targetFilter.name === name && targetFilter.value === value,
   isActiveFilter = (filters, filter) => {
     return !!~filters.findIndex(filterEquals.bind(this, filter))
+  },
+  addFilter = (filters, { name, value }) => {
+    console.log('addFilter', filters);
+    if (!filters.hasOwnProperty(name)) {
+      filters[name] = [];
+    }
+
+    if (!filters[name].includes(value)) {
+      filters[name].push(value);
+    }
+    return filters;
+  },
+  removeFilter = (filters = {}, { name, value }) => {
+    console.log('removeFilter b4', filters);
+    if (filters.hasOwnProperty(name) && filters[name].includes(value)) {
+      filters[name] = filters[name].filter((f, i, s) => f !== value);
+
+      if (!filters[name].length) {
+        filters[name] = undefined
+        delete filters[name];
+      }
+    }
+
+    console.log('removeFilter atr', filters);
+    return filters;
+  },
+  getOption = (filters, { name, value }) => {
+    const index = Object.keys(filters).findIndex(filter => filter === name);
+    console.log(filters, Object.keys(filters), { name, value });
+    return index < 0 ? [{ name, value }] : filters[Object.keys(filters)[index]];
   };
 
 const collectionReducer = (state, action) => {
@@ -36,32 +52,16 @@ const collectionReducer = (state, action) => {
 
   switch (type) {
     case actionTypes.add: {
-      if (!filters.hasOwnProperty(name)) {
-        filters[name] = [];
-      }
-
-      if (!filters[name].includes(value)) {
-        filters[name].push(value);
-      }
       return {
         ...state,
-        filters: filters
-      }
+        filters: addFilter(filters, filter)
+      };
     }
     case actionTypes.remove: {
-      if (filters.hasOwnProperty(name) && filters[name].includes(value)) {
-        filters[name] = filters[name].filter((f, i, s) => f !== value)
-
-        if (!filters[name].length) {
-          filters[name] = undefined
-          delete filters[name];
-        }
-      }
-
       return {
         ...state,
-        filters
-      }
+        filters: removeFilter(filters, filter)
+      };
     }
     case actionTypes.sort: {
       let { activeProducts = [] } = state;
@@ -71,6 +71,15 @@ const collectionReducer = (state, action) => {
         ...state,
         activeProducts: activeProducts.sort(sortMethod),
         sorting
+      }
+    }
+    case actionTypes.swap: {
+      if (filters.hasOwnProperty(name)) {
+        filters[name] = []
+      }
+      return {
+        ...state,
+        filters: addFilter(filters, filter)
       }
     }
     default: return {
