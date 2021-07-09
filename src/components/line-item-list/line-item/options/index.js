@@ -11,6 +11,7 @@ import {
   NAME,
   SWATCH
 } from './styles';
+import handleize from "../../../../utils/handleize";
 
 const Options = ({ options }) => {
   return (
@@ -23,7 +24,7 @@ const Options = ({ options }) => {
               <NAME>{name}</NAME>
               <SWATCH>
                 <Swatch
-                  id={`swatch-${value.replace('#', '')}-${Date.now()}`}
+                  id={`swatch-${handleize(value.replace('#', ''))}-${Date.now()}`}
                   value={value}
                   key={i}
                 />

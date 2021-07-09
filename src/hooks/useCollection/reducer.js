@@ -1,4 +1,3 @@
-import { faTrailer } from "@fortawesome/free-solid-svg-icons";
 import { sortMethods } from "./sorting";
 
 export const actionTypes = {
@@ -7,15 +6,17 @@ export const actionTypes = {
   page: 'PAGE',
   add: 'ADD',
   remove: 'REMOVE',
-  swap: 'SWAP'
+  swap: 'SWAP',
+  reset: 'RESET'
 };
+
+const getProductOptionValues = (products = [], name) => products.map(({ options = [] }) => options.find(option => option.name === name).values).flat().filter((value, i, self) => self.indexOf(value) === i);
 
 const filterEquals = (targetFilter, { name, value }) => targetFilter.name === name && targetFilter.value === value,
   isActiveFilter = (filters, filter) => {
     return !!~filters.findIndex(filterEquals.bind(this, filter))
   },
   addFilter = (filters, { name, value }) => {
-    console.log('addFilter', filters);
     if (!filters.hasOwnProperty(name)) {
       filters[name] = [];
     }
@@ -26,27 +27,34 @@ const filterEquals = (targetFilter, { name, value }) => targetFilter.name === na
     return filters;
   },
   removeFilter = (filters = {}, { name, value }) => {
-    console.log('removeFilter b4', filters);
     if (filters.hasOwnProperty(name) && filters[name].includes(value)) {
       filters[name] = filters[name].filter((f, i, s) => f !== value);
-
-      if (!filters[name].length) {
-        filters[name] = undefined
-        delete filters[name];
-      }
     }
 
-    console.log('removeFilter atr', filters);
+    if (!filters[name].length || value === null) {
+      filters[name] = undefined
+      delete filters[name];
+    }
+
     return filters;
   },
-  getOption = (filters, { name, value }) => {
-    const index = Object.keys(filters).findIndex(filter => filter === name);
-    console.log(filters, Object.keys(filters), { name, value });
-    return index < 0 ? [{ name, value }] : filters[Object.keys(filters)[index]];
+  resetFilter = (state, filters = {}, { name, value }, options = []) => {
+    if (!value || !filters[name].length) {
+      filters[name] = options;
+    }
+
+    if (!Object.keys(filters).length) {
+      return state;
+    }
+
+    return {
+      ...state,
+      filters
+    }
   };
 
 const collectionReducer = (state, action) => {
-  const { type, filter = {}, sorting = 'bestSeller' } = action,
+  const { type, filter = {}, sorting = 'bestSeller', options = [] } = action,
     { filters = {} } = state,
     { name, value } = filter;
 
@@ -75,13 +83,21 @@ const collectionReducer = (state, action) => {
     }
     case actionTypes.swap: {
       if (filters.hasOwnProperty(name)) {
-        filters[name] = []
+        filters[name] = [];
       }
-      return {
-        ...state,
-        filters: addFilter(filters, filter)
+
+      if (value && options.includes(value)) {
+        filters[name] = [value];
+
+        return {
+          ...state,
+          filters
+        }
       }
+
+      return resetFilter(state, filters, filter, options);
     }
+    case actionTypes.reset: return resetFilter(state, filters, filter, options);
     default: return {
       ...state
 
@@ -89,6 +105,6 @@ const collectionReducer = (state, action) => {
   }
 }
 
-export { filterEquals, isActiveFilter };
+export { filterEquals, isActiveFilter, getProductOptionValues };
 
 export default collectionReducer;

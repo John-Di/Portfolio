@@ -5,6 +5,7 @@ import {
 import ProductFormContext from "../../contexts/ProductFormContext";
 import Grid from "../../layouts/grid";
 import GenerateUniqueId from "../../utils/GenerateUniqueId";
+import handleize from "../../utils/handleize";
 
 const SwatchGrid = ({ gap = 0.25, values = [], name, type }) => {
 
@@ -16,7 +17,7 @@ const SwatchGrid = ({ gap = 0.25, values = [], name, type }) => {
   let Swatch = getSwatch(name);
   let SwatchMap = (value, i) => (
     <Swatch
-      id={GenerateUniqueId(`swatch-${value.replace('#', '')}`)}
+      id={GenerateUniqueId(`swatch-${handleize(value.replace('#', ''))}`)}
       isCurrent={optionIsSelected({ name, value })}
       value={value}
       key={i}

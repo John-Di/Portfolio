@@ -1,7 +1,7 @@
 import {
   useReducer
 } from "react";
-import collectionReducer, { actionTypes, isActiveFilter } from './reducer';
+import collectionReducer, { actionTypes, isActiveFilter, getProductOptionValues } from './reducer';
 
 function useCollection({
   products = [],
@@ -35,10 +35,17 @@ function useCollection({
       type: actionTypes.option,
       ...collectionState
     }),
+    resetFilter: name => UpdateState({
+      type: actionTypes.reset,
+      ...collectionState,
+      filter: { name },
+      options: getProductOptionValues(products, name)
+    }),
     toggleFilter: ({ name, value }) => UpdateState({
       type: actionTypes.swap,
       ...collectionState,
-      filter: { name, value }
+      filter: { name, value },
+      options: getProductOptionValues(products, name)
     })
   };
 
