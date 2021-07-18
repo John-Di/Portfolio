@@ -8,72 +8,68 @@ import {
   LI,
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
-
-const Dropdown = ({ name, options = [] }) => {
-  const {
-    toggleFilter,
-    filters = []
-  } = useContext(CollectionContext),
-    onChange = ({ target }) => {
-      const { value } = target;
-      toggleFilter({ name, value });
-    },
-    defaultValue = filters.hasOwnProperty(name) ? filters[name].value : undefined;
-
-  return (<select
-    id="collection-filter"
-    name={name}
-    value={defaultValue}
-    onChange={onChange.bind(this)}
-  >
-    <option
-      id={`unique_options-${name}-none}`}
-      value={null}
-    >{`Select ${name}`}</option>
-    {
-      arrayToComponentSiblings(options, (value, j) => (
-        <option
-          id={`unique_options-${name}-${value}`}
-          value={value}
-        >{value}</option>
-      ))
-    }
-  </select>)
-}
+import Dropdown from "../dropdown";
+import useDropdown from "../dropdown/useDropdown";
 
 const FilterType = {
   'Color': Dropdown,
   'Size': Dropdown
 };
+const useHook = {
+  'Color': useDropdown,
+  'Size': useDropdown
+};
+
+const groupOptionsByName = (groupings, { options = [] }) => {
+  options.forEach(({ name, values }) => {
+    if (!groupings.hasOwnProperty(name)) {
+      groupings[name] = [];
+    }
+    groupings[name] = groupings[name].concat(values).filter(RemoveDuplicates);
+  })
+
+  return groupings;
+}
 
 export default function Filter() {
 
   const {
+    filters = {},
     products = [],
+    toggleFilter,
     resetFilter,
   } = useContext(CollectionContext),
-    unique_options = products.reduce((acc, { options = [] }) => {
-      options.forEach(({ name, values }) => {
-        if (!acc.hasOwnProperty(name)) {
-          acc[name] = [];
-        }
-        acc[name] = acc[name].concat(values).filter(RemoveDuplicates);
-      })
-
-      return acc;
-    }, {}),
-    onClick = name => resetFilter(name);
-
+    unique_options = products.reduce(groupOptionsByName, {}),
+    onClick = (name, { target }) => toggleFilter({ name, value: target.value }),
+    onChange = option => {
+      toggleFilter(option);
+    };
 
   return (
     <NAV>
-      {arrayToComponentSiblings(Object.keys(unique_options), (name, i) => <button key={i} onClick={onClick.bind(this, name)}>Reset {name}</button>)}
+      {arrayToComponentSiblings(Object.keys(unique_options), (name, i) => (
+        <button
+          key={i}
+          onClick={onClick.bind(this, name)}>Reset {name}
+        </button>
+      ))}
       <UL>
-        {arrayToComponentSiblings(Object.keys(unique_options), (name, i) => {
+        {arrayToComponentSiblings(Object.entries(unique_options), ([name, values], i) => {
           const El = FilterType[name];
+          let value = '';
+          if (!filters.hasOwnProperty(name) || filters[name].length > 1) {
+            value = '';
+          } else if (filters[name].length === 1) {
+            value = filters[name][0];
+          }
           return (
             <LI key={i}>
-              <El name={name} options={unique_options[name]} />
+              <El
+                options={values}
+                name={name}
+                value={value}
+                onChange={onChange}
+              />
             </LI>
           )
         })}

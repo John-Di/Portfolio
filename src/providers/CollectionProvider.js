@@ -6,9 +6,8 @@ const CollectionProvider = ({
   products = [],
   children
 }) => {
-  const hook = useCollection({ products });
   return (
-    <CollectionContext.Provider value={hook}>
+    <CollectionContext.Provider value={useCollection({ products })}>
       {children}
     </CollectionContext.Provider>
   )

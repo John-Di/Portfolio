@@ -1,53 +1,34 @@
-import React, {
-  useState
-} from "react";
-import {
-  arrayToComponentSiblings
-} from '../../utils/dom-builder';
-import {
-  WRAPPER,
-  HEADER,
-  BODY,
-  LIST,
-  ITEM
-} from './styles';
-export default function Dropdown({
-  items = [],
-  updateValue,
-  theme,
-  selected,
-  children
-}) {
-  const [isOpen, setIsOpen] = useState(false);
+import React, { useContext } from "react";
+import { arrayToComponentSiblings } from "../../utils/dom-builder";
+import useDropdown from "./useDropdown";
 
-  const toggleDropdown = e => {
-    e.preventDefault();
-    setIsOpen(!isOpen)
-  };
+export default function Dropdown({ name, options = [], value = ``, onChange }) {
 
-  const ListItem = (item, i) => (
-    <li key={i}>
-      <ITEM type="button" onClick={updateValue} value={item.value}>
-        {item.title || item.name}
-      </ITEM>
-    </li>
-  );
+  const updateValue = ({ target }) => {
+    const { value } = target;
+    onChange({ name, value });
+  }
 
   return (
-    <WRAPPER>
-      {children}
-      <HEADER onClick={toggleDropdown} isOpen={isOpen}>
-        {items.find(i => i.value === selected).title || items.find(i => i.value === selected).name || items[0].value}
-      </HEADER>
-      {isOpen && (
-        <BODY>
-          <LIST
-            theme={theme}
-          >
-            {arrayToComponentSiblings(items, ListItem)}
-          </LIST>
-        </BODY>
-      )}
-    </WRAPPER>
-  );
+    <select
+      id="collection-filter"
+      name={name}
+      value={value}
+      onChange={updateValue}
+    >
+      <option
+        id={`unique_options-${name}-none}`}
+        value={``}
+      >{`Select ${name}`}</option>
+      {
+        arrayToComponentSiblings(options, (value, j) => (
+          <option
+            key={j}
+            id={`unique_options-${name}-${value}`}
+            value={value}
+          >{value}</option>
+        ))
+      }
+    </select >
+  )
 }

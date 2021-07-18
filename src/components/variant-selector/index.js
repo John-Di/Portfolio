@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from '../dropdown';
+import Dropdown from './dropdown';
 import {
   arrayToComponentSiblings
 } from '../../utils/dom-builder';

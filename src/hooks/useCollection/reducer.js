@@ -93,14 +93,13 @@ const collectionReducer = (state, action) => {
           ...state,
           filters
         }
-      }
+      } else { }
 
       return resetFilter(state, filters, filter, options);
     }
     case actionTypes.reset: return resetFilter(state, filters, filter, options);
     default: return {
       ...state
-
     }
   }
 }
