@@ -8,12 +8,13 @@ import {
   LI,
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
-import Dropdown from "../dropdown";
 import useDropdown from "../dropdown/useDropdown";
+import CheckList from "../check-list";
+import DropdownFilter from "./dropdown-filter";
 
 const FilterType = {
-  'Color': Dropdown,
-  'Size': Dropdown
+  'Color': DropdownFilter,
+  'Size': CheckList
 };
 const useHook = {
   'Color': useDropdown,
@@ -34,16 +35,12 @@ const groupOptionsByName = (groupings, { options = [] }) => {
 export default function Filter() {
 
   const {
-    filters = {},
     products = [],
-    toggleFilter,
-    resetFilter,
+    toggleFilter
   } = useContext(CollectionContext),
     unique_options = products.reduce(groupOptionsByName, {}),
     onClick = (name, { target }) => toggleFilter({ name, value: target.value }),
-    onChange = option => {
-      toggleFilter(option);
-    };
+    onChange = option => toggleFilter(option);
 
   return (
     <NAV>
@@ -55,19 +52,11 @@ export default function Filter() {
       ))}
       <UL>
         {arrayToComponentSiblings(Object.entries(unique_options), ([name, values], i) => {
-          const El = FilterType[name];
-          let value = '';
-          if (!filters.hasOwnProperty(name) || filters[name].length > 1) {
-            value = '';
-          } else if (filters[name].length === 1) {
-            value = filters[name][0];
-          }
           return (
             <LI key={i}>
-              <El
+              <DropdownFilter
                 options={values}
                 name={name}
-                value={value}
                 onChange={onChange}
               />
             </LI>
