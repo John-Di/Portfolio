@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
-import RemoveDuplicates from "../../utils/RemoveDuplicates";
-
 import {
   NAV,
   UL,

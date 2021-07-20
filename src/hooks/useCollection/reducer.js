@@ -1,4 +1,10 @@
-import { sortMethods } from "./sorting";
+import {
+  isActiveFilter,
+  addFilter,
+  removeFilter,
+  resetFilter
+}
+  from "./helpers";
 
 export const actionTypes = {
   sort: 'SORT',
@@ -9,52 +15,6 @@ export const actionTypes = {
   swap: 'SWAP',
   reset: 'RESET'
 };
-
-const filterEquals = (targetFilter, { name, value }) => targetFilter.name === name && targetFilter.value === value,
-  isActiveFilter = (filters, filter) => {
-    return !!~filters.findIndex(filterEquals.bind(this, filter))
-  },
-  addFilter = (filters = {}, { name, value }) => {
-    if (!filters.hasOwnProperty(name)) {
-      filters[name] = [];
-    }
-
-    if (!filters[name].includes(value)) {
-      filters[name].push(value);
-    }
-
-    return filters;
-  },
-  removeFilter = (filters = {}, { name, value }) => {
-    if (!filters.hasOwnProperty(name)) {
-      return filters;
-    }
-
-    if (filters.hasOwnProperty(name) && filters[name].includes(value)) {
-      filters[name] = filters[name].filter((f, i, s) => f !== value);
-    }
-
-    if (!filters[name].length || value === null) {
-      filters[name] = undefined
-      delete filters[name];
-    }
-
-    return filters;
-  },
-  resetFilter = (state, filters = {}, { name, value }, options = []) => {
-    if (!value || !filters[name].length) {
-      filters[name] = options;
-    }
-
-    if (!Object.keys(filters).length) {
-      return state;
-    }
-
-    return {
-      ...state,
-      filters
-    }
-  };
 
 const collectionReducer = (state, action) => {
   const { type, filter = {}, sorting = 'bestSeller', options = [] } = action,
@@ -75,12 +35,8 @@ const collectionReducer = (state, action) => {
       };
     }
     case actionTypes.sort: {
-      let { activeProducts = [] } = state;
-      const sortMethod = sortMethods[sorting];
-
       return {
         ...state,
-        activeProducts: activeProducts.sort(sortMethod),
         sorting
       }
     }
@@ -107,6 +63,6 @@ const collectionReducer = (state, action) => {
   }
 }
 
-export { filterEquals, isActiveFilter };
+export { isActiveFilter };
 
 export default collectionReducer;

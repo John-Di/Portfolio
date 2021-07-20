@@ -16,6 +16,51 @@ const optionSort = (order = [], a, b) => {
   }
 }
 
+const filterEquals = (targetFilter, { name, value }) => targetFilter.name === name && targetFilter.value === value,
+  isActiveFilter = (filters, filter) => {
+    return !!~filters.findIndex(filterEquals.bind(this, filter))
+  },
+  addFilter = (filters = {}, { name, value }) => {
+    if (!filters.hasOwnProperty(name)) {
+      filters[name] = [];
+    }
+
+    if (!filters[name].includes(value)) {
+      filters[name].push(value);
+    }
+    filters[name].sort(optionSort.bind(this, option_sort[name]));
+    return filters;
+  },
+  removeFilter = (filters = {}, { name, value }) => {
+    if (!filters.hasOwnProperty(name)) {
+      return filters;
+    }
+
+    if (filters[name].includes(value)) {
+      filters[name] = filters[name].filter((f, i, s) => f !== value);
+      filters[name].sort(optionSort.bind(this, option_sort[name]));
+    }
+
+    if (!filters[name].length || value === null) {
+      filters[name] = undefined
+      delete filters[name];
+    }
+
+    return filters;
+  },
+  resetFilter = (state, filters = {}, { name, value }, options = []) => {
+    if (!value || !filters[name].length) {
+      filters[name] = [];
+    }
+
+    filters[name].sort(optionSort.bind(this, option_sort[name]))
+
+    return {
+      ...state,
+      filters
+    }
+  };
+
 const allOptions = (products = []) => products.map(({ options = [] }) => options).flat().reduce((acc, { name, values = [] }, i) => {
   if (!acc.hasOwnProperty(name)) {
     acc[name] = [];
@@ -25,5 +70,4 @@ const allOptions = (products = []) => products.map(({ options = [] }) => options
 }, {})
 
 
-
-export { allOptions };
+export { allOptions, filterEquals, isActiveFilter, addFilter, removeFilter, resetFilter };

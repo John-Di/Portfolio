@@ -3,58 +3,69 @@ import {
 } from "react";
 import collectionReducer, { actionTypes, isActiveFilter } from './reducer';
 import { allOptions } from './helpers';
+import { sortMethods, sortTypes } from "./sorting";
 
 function useCollection({
   products = [],
   ...props
 }) {
   const options = allOptions(products);
-  const [collectionState, UpdateState] = useReducer(collectionReducer, {
-    sorting: props.defaultSorting,
-    filters: props.activeFilters,
-    activeProducts: products
-  }), {
-    filters = {}
-  } = collectionState;
+  const [collectionState, UpdateState] = useReducer(
+    collectionReducer,
+    {
+      sorting: props.defaultSorting,
+      filters: props.activeFilters,
+      activeProducts: products
+    }
+  ), {
+    filters = {},
+    sorting = Object.keys(sortTypes)[0]
+  } = collectionState,
 
-  const reducers = {
-    updateSorting: sorting => UpdateState({
-      type: actionTypes.sort,
-      ...collectionState,
-      sorting
-    }),
-    addFilter: ({ name, value }) => UpdateState({
-      type: actionTypes.add,
-      ...collectionState,
-      filter: { name, value },
-      options: options[name]
-    }),
-    removeFilter: filter => UpdateState({
-      type: actionTypes.remove,
-      ...collectionState,
-      filter,
-      options: options[filter.name]
-    }),
-    clearAllFilters: () => UpdateState({
-      type: actionTypes.option,
-      ...collectionState
-    }),
-    resetFilter: name => UpdateState({
-      type: actionTypes.reset,
-      ...collectionState,
-      filter: { name },
-      options: options[name]
-    }),
-    toggleFilter: ({ name, value }) => UpdateState({
-      type: actionTypes.swap,
-      ...collectionState,
-      filter: { name, value },
-      options: options[name]
-    })
-  };
+    noSelectionOrIsSelectedOption = ({ name, values }) => {
+      const activeFilters = filters.hasOwnProperty(name) && filters[name].length ? filters[name] : options[name];
+      return !filters.hasOwnProperty(name) || values.some(value => activeFilters.includes(value))
+    },
 
-  const activeProducts = Object.keys(filters).length ?
-    products.filter(({ options }) => options.every(({ name, values }) => !filters.hasOwnProperty(name) || values.some(value => filters[name].includes(value)))) : products;
+    filterOptionBySelection = ({ options }) => options.every(noSelectionOrIsSelectedOption),
+
+    activeProducts = products.filter(filterOptionBySelection).sort(sortMethods[sorting]),
+
+    reducers = {
+      updateSorting: sorting => UpdateState({
+        type: actionTypes.sort,
+        ...collectionState,
+        sorting
+      }),
+      addFilter: ({ name, value }) => UpdateState({
+        type: actionTypes.add,
+        ...collectionState,
+        filter: { name, value },
+        options: options[name]
+      }),
+      removeFilter: filter => UpdateState({
+        type: actionTypes.remove,
+        ...collectionState,
+        filter,
+        options: options[filter.name]
+      }),
+      clearAllFilters: () => UpdateState({
+        type: actionTypes.option,
+        ...collectionState
+      }),
+      resetFilter: ({ name }) => UpdateState({
+        type: actionTypes.reset,
+        ...collectionState,
+        filter: { name },
+        options: options[name]
+      }),
+      toggleFilter: ({ name, value }) => UpdateState({
+        type: actionTypes.swap,
+        ...collectionState,
+        filter: { name, value },
+        options: options[name]
+      })
+    };
 
   return {
     ...collectionState,
