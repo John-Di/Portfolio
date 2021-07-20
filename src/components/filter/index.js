@@ -6,11 +6,11 @@ import {
   LI,
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
-import CheckList from "../check-list";
 import DropdownFilter from "./dropdown-filter";
+import CheckboxListFilter from "./checkbox-list-filter";
 
 const FilterType = {
-  'Color': CheckList,
+  'Color': CheckboxListFilter,
   'Size': DropdownFilter
 };
 

@@ -6,7 +6,6 @@ import {
   SPAN,
   CHECHMARK
 } from './styles';
-import CollectionContext from "../../contexts/CollectionContext";
 
 const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked = false }) => (
   <LABEL
@@ -27,25 +26,13 @@ const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked =
   </LABEL>
 );
 
-export default function CheckList({ context = 'option', name, options = [] }) {
-
-  const {
-    filters = {},
-    addFilter,
-    removeFilter
-  } = useContext(CollectionContext),
-    selected = filters.hasOwnProperty(name) ? filters[name] : [];
-
-  const updateValue = ({ target }) => {
-    const { value } = target,
-      filter = { name, value };
-
-    if (selected.includes(value)) {
-      removeFilter(filter)
-    } else {
-      addFilter(filter)
-    }
-  }
+export default function CheckList({
+  context = 'option',
+  name,
+  options = [],
+  selected = [],
+  onChange
+}) {
 
   return (
     <ul>
@@ -58,7 +45,7 @@ export default function CheckList({ context = 'option', name, options = [] }) {
               name={name}
               value={value}
               checked={selected.includes(value)}
-              onChange={updateValue}
+              onChange={onChange}
               key={j}
             />
           </li>
