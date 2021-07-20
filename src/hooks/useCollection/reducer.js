@@ -10,13 +10,11 @@ export const actionTypes = {
   reset: 'RESET'
 };
 
-const getProductOptionValues = (products = [], name) => products.map(({ options = [] }) => options.find(option => option.name === name).values).flat().filter((value, i, self) => self.indexOf(value) === i);
-
 const filterEquals = (targetFilter, { name, value }) => targetFilter.name === name && targetFilter.value === value,
   isActiveFilter = (filters, filter) => {
     return !!~filters.findIndex(filterEquals.bind(this, filter))
   },
-  addFilter = (filters, { name, value }) => {
+  addFilter = (filters = {}, { name, value }) => {
     if (!filters.hasOwnProperty(name)) {
       filters[name] = [];
     }
@@ -24,9 +22,14 @@ const filterEquals = (targetFilter, { name, value }) => targetFilter.name === na
     if (!filters[name].includes(value)) {
       filters[name].push(value);
     }
+
     return filters;
   },
   removeFilter = (filters = {}, { name, value }) => {
+    if (!filters.hasOwnProperty(name)) {
+      return filters;
+    }
+
     if (filters.hasOwnProperty(name) && filters[name].includes(value)) {
       filters[name] = filters[name].filter((f, i, s) => f !== value);
     }
@@ -104,6 +107,6 @@ const collectionReducer = (state, action) => {
   }
 }
 
-export { filterEquals, isActiveFilter, getProductOptionValues };
+export { filterEquals, isActiveFilter };
 
 export default collectionReducer;

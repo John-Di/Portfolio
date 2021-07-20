@@ -57,8 +57,12 @@ export const color = {
   'Yellow': "#fbf271",
 }
 
+export const color_order = ["White", "Black"];
 export const size_order = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
-
+export const option_sort = {
+  "Color": color_order,
+  "Size": size_order
+}
 export const breadcrumbs = {
   'products': ({ handle }) => `/collections/${handle}`
 }

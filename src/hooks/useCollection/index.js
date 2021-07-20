@@ -1,12 +1,14 @@
 import {
   useReducer
 } from "react";
-import collectionReducer, { actionTypes, isActiveFilter, getProductOptionValues } from './reducer';
+import collectionReducer, { actionTypes, isActiveFilter } from './reducer';
+import { allOptions } from './helpers';
 
 function useCollection({
   products = [],
   ...props
 }) {
+  const options = allOptions(products);
   const [collectionState, UpdateState] = useReducer(collectionReducer, {
     sorting: props.defaultSorting,
     filters: props.activeFilters,
@@ -21,15 +23,17 @@ function useCollection({
       ...collectionState,
       sorting
     }),
-    addFilter: filter => UpdateState({
+    addFilter: ({ name, value }) => UpdateState({
       type: actionTypes.add,
       ...collectionState,
-      filter
+      filter: { name, value },
+      options: options[name]
     }),
     removeFilter: filter => UpdateState({
       type: actionTypes.remove,
       ...collectionState,
-      filter
+      filter,
+      options: options[filter.name]
     }),
     clearAllFilters: () => UpdateState({
       type: actionTypes.option,
@@ -39,13 +43,13 @@ function useCollection({
       type: actionTypes.reset,
       ...collectionState,
       filter: { name },
-      options: getProductOptionValues(products, name)
+      options: options[name]
     }),
     toggleFilter: ({ name, value }) => UpdateState({
       type: actionTypes.swap,
       ...collectionState,
       filter: { name, value },
-      options: getProductOptionValues(products, name)
+      options: options[name]
     })
   };
 
@@ -56,6 +60,7 @@ function useCollection({
     ...collectionState,
     ...reducers,
     products,
+    options,
     activeProducts,
     isActiveFilter
   }

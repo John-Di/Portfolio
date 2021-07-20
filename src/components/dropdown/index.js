@@ -13,9 +13,9 @@ const Dropdown = ({ name, options = [], selected = ``, onChange }) => (
       value={``}
     >{`Select ${name}`}</option>
     {
-      arrayToComponentSiblings(options, (value, j) => (
+      arrayToComponentSiblings(options, (value, i) => (
         <option
-          key={j}
+          key={i}
           id={`unique_options-${name}-${value}`}
           value={value}
         >{value}</option>

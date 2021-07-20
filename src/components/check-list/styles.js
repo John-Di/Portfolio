@@ -1,51 +1,69 @@
 import styled from 'styled-components';
-import {
-  Link as GatsbyLink
-} from "gatsby";
-import { LinkReset, ListReset } from '../../utils/Resets';
-import Clearfix from '../../utils/Clearfix';
-import { device, size } from '../../utils/variables';
+import VisuallyHidden from '../../utils/VisuallyHidden';
 
+const checkmarkHeight = 1.25;
 
-export const NAV = styled.nav`
+export const LABEL = styled.label`
   display: block;
-  width: 45%;
-  padding: 0.5em;
-  background: red;
-  bottom:0;
-  z-index:8;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-  @media screen and ${device.laptop} {
-    margin: auto;
-    max-width: ${size.laptopL}px;
+  &:hover input + span {
+    background-color: #ccc;
+  }
+
+  input:checked + span {
+    background-color: #2196F3;
+
+    &::after {
+      display: block;
+    }
+  }
+`
+
+export const INPUT = styled.input`
+  ${VisuallyHidden}
+  cursor: pointer;
+
+  &:checked + span::after {
+    display: block;
+  }
+`
+export const CHECHMARK = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: ${checkmarkHeight}em;
+  width: ${checkmarkHeight}em;
+  background-color: #eee;
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  &::after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
   }
 `;
 
-export const UL = styled.ul`
-  ${ListReset}
-  width: 100%;
-  ${Clearfix}
-`;
-
-export const LI = styled.li`
-  ${ListReset}
-  zoom: 1.25;
-`;
 
 export const SPAN = styled.span`
-  font-weight: bold;
-`;
-
-export const LINK = styled(GatsbyLink)`
-  ${LinkReset}
-
-  &:active,
-  .active {
-    font-weight: bold;
-  }
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
+  font-size: 0.875em;
+  line-height: ${checkmarkHeight / 0.875};
 `;
