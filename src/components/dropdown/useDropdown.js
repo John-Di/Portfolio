@@ -20,8 +20,6 @@ function useDropdown({
     resetSelection: UpdateState.bind(``)
   };
 
-  console.log('current', name, selected);
-
   return {
     ...reducers,
     name,

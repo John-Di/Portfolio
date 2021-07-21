@@ -13,7 +13,7 @@ export default function CheckboxListFilter({
   } = useContext(CollectionContext),
     selected = filters.hasOwnProperty(name) ? filters[name] : [];
 
-  const updateValue = ({ target }) => {
+  const updateSelected = ({ target }) => {
     const { value } = target,
       filter = { name, value };
 
@@ -30,7 +30,7 @@ export default function CheckboxListFilter({
       options={options}
       selected={selected}
       name={name}
-      onChange={updateValue}
+      onChange={updateSelected}
     />
   )
 }

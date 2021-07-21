@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import ProductTile from "../../components/product-tile";
 import ProductProvider from "../../providers/ProductProvider";
-import { randomImageArray } from "../../utils/randoms";
 import Grid from "../grid";
 import { device } from '../../utils/variables';
 import {
@@ -9,12 +8,15 @@ import {
   PRODUCTS
 } from './styles';
 import Sort from "../../components/sort";
-import Filter from "../../components/filter";
-import RemoveDuplicates from "../../utils/RemoveDuplicates";
 import CollectionContext from "../../contexts/CollectionContext";
+import Filters from "../../components/filters";
+
+const FiltersStyles = {
+  test: Filters
+}
 
 // markup
-const CollectionPage = ({ products = [] }) => {
+const CollectionPage = ({ filtersStyle = 'test' }) => {
 
   const {
     activeProducts = []
@@ -35,10 +37,12 @@ const CollectionPage = ({ products = [] }) => {
     )
   };
 
+  const FiltersComponent = FiltersStyles[filtersStyle];
+
   return (
     <ARTICLE>
       <Sort />
-      <Filter />
+      <FiltersComponent />
       <PRODUCTS>
         <Grid
           items={activeProducts}

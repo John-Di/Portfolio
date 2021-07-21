@@ -9,18 +9,17 @@ import CollectionContext from "../../contexts/CollectionContext";
 import DropdownFilter from "./dropdown-filter";
 import CheckboxListFilter from "./checkbox-list-filter";
 
-const FilterType = {
+const OptionType = {
   'Color': CheckboxListFilter,
   'Size': DropdownFilter
 };
 
-export default function Filter() {
+export default function Filters() {
   const {
     options,
     toggleFilter
   } = useContext(CollectionContext),
-    onClick = (name, { target }) => toggleFilter({ name, value: target.value }),
-    onChange = option => toggleFilter(option);
+    onClick = (name, { target }) => toggleFilter({ name, value: target.value })
 
   return (
     <NAV>
@@ -32,13 +31,12 @@ export default function Filter() {
       ))}
       <UL>
         {arrayToComponentSiblings(Object.entries(options), ([name, values], i) => {
-          const El = FilterType[name]
+          const El = OptionType[name]
           return (
             <LI key={i}>
               <El
                 options={values}
                 name={name}
-                onChange={onChange}
               />
             </LI>
           )
