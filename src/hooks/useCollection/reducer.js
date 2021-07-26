@@ -20,7 +20,6 @@ const collectionReducer = (state, action) => {
   const { type, filter = {}, sorting = 'bestSeller', options = [] } = action,
     { filters = {} } = state,
     { name, value } = filter;
-
   switch (type) {
     case actionTypes.add: {
       return {
@@ -41,11 +40,9 @@ const collectionReducer = (state, action) => {
       }
     }
     case actionTypes.swap: {
-      if (filters.hasOwnProperty(name)) {
-        filters[name] = [];
-      }
+      filters[name] = [];
 
-      if (value && options.includes(value)) {
+      if (value && filters[name].indexOf(value)) {
         filters[name] = [value];
 
         return {

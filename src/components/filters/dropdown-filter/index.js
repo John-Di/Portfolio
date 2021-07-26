@@ -10,12 +10,11 @@ export default function DropdownFilter({
     filters = {},
     toggleFilter
   } = useContext(CollectionContext),
-    selected = filters.hasOwnProperty(name) && filters[name].length === 1 ? filters[name][0] : [];
-
-  const updateFilterOption = ({ target }) => {
-    const { value } = target;
-    toggleFilter({ name, value });
-  }
+    selected = filters.hasOwnProperty(name) && filters[name].length === 1 ? filters[name] : [],
+    updateFilterOption = ({ target }) => {
+      const { value } = target;
+      toggleFilter({ name, value });
+    };
 
   return (
     <Dropdown

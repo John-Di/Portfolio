@@ -10,13 +10,15 @@ import {
 import Sort from "../../components/sort";
 import CollectionContext from "../../contexts/CollectionContext";
 import Filters from "../../components/filters";
+import FiltersBar from "../../components/filters-bar";
 
 const FiltersStyles = {
+  bar: FiltersBar,
   test: Filters
 }
 
 // markup
-const CollectionPage = ({ filtersStyle = 'test' }) => {
+const CollectionPage = ({ filtersStyle = 'bar' }) => {
 
   const {
     activeProducts = []

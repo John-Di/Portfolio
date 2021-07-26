@@ -1,7 +1,8 @@
 import React from "react";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
+import CheckList from "../check-list";
 
-const Dropdown = ({ name, options = [], selected = ``, onChange }) => (
+const SelectDropdown = ({ name, options = [], selected = ``, onChange }) => (
   <select
     id="collection-filter"
     name={name}
@@ -22,5 +23,28 @@ const Dropdown = ({ name, options = [], selected = ``, onChange }) => (
       ))
     }
   </select>
-)
+);
+
+const ListDropdown = ({ name, selected = ``, onChange, ...dropdown }) => {
+
+  return (
+    <CheckList
+      {...dropdown}
+      name={name}
+      selected={selected}
+      onChange={onChange}
+    />
+  )
+};
+
+const dropdownType = {
+  select: SelectDropdown,
+  ul: ListDropdown
+};
+
+const Dropdown = ({ type = 'ul', ...dropdown }) => {
+  const DropdownComponent = dropdownType[type];
+
+  return <DropdownComponent {...dropdown} />;
+}
 export default Dropdown;

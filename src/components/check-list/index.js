@@ -7,24 +7,26 @@ import {
   CHECHMARK
 } from './styles';
 
-const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked = false }) => (
-  <LABEL
-    isCurrent={checked}
-    htmlFor={id}
-  >
-    <INPUT
-      id={id}
-      type="checkbox"
-      name={name}
-      checked={checked}
-      value={value}
-      onChange={onChange} />
-    <CHECHMARK />
-    <SPAN>
-      {value}
-    </SPAN>
-  </LABEL>
-);
+const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked = false }) => {
+  return (
+    <LABEL
+      isCurrent={checked}
+      htmlFor={id}
+    >
+      <INPUT
+        id={id}
+        type="checkbox"
+        name={name}
+        checked={checked}
+        value={value}
+        onChange={onChange} />
+      <CHECHMARK />
+      <SPAN>
+        {value}
+      </SPAN>
+    </LABEL>
+  )
+};
 
 export default function CheckList({
   context = 'option',
@@ -37,19 +39,21 @@ export default function CheckList({
   return (
     <ul>
       {
-        arrayToComponentSiblings(options, (value, j) => (
-          <li>
-            <CheckListItem
-              id={[context, name, value].join('-')}
-              isCurrent={selected.includes(value)}
-              name={name}
-              value={value}
-              checked={selected.includes(value)}
-              onChange={onChange}
-              key={j}
-            />
-          </li>
-        ))
+        arrayToComponentSiblings(options, (value, j) => {
+          return (
+            <li>
+              <CheckListItem
+                id={[context, name, value].join('-')}
+                isCurrent={!!~selected.indexOf(value)}
+                name={name}
+                value={value}
+                checked={!!~selected.indexOf(value)}
+                onChange={onChange}
+                key={j}
+              />
+            </li>
+          )
+        })
       }
     </ul >
   )
