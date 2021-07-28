@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { ListReset } from '../../utils/Resets';
-import { size } from '../../utils/variables';
 
 const GridRules = ({ row = 0, col = 0, perRow }) => `
   ${conditionalProp(row && col, `margin: 0 -${col}em;`)}

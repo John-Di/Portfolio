@@ -35,7 +35,7 @@ export const INPUT = styled.input`
     display: block;
   }
 `
-export const CHECHMARK = styled.span`
+export const CHECKMARK = styled.span`
   position: absolute;
   top: 0;
   left: 0;

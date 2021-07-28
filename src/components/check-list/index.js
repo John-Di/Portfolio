@@ -4,7 +4,7 @@ import {
   LABEL,
   INPUT,
   SPAN,
-  CHECHMARK
+  CHECKMARK
 } from './styles';
 
 const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked = false }) => {
@@ -20,7 +20,7 @@ const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked =
         checked={checked}
         value={value}
         onChange={onChange} />
-      <CHECHMARK />
+      <CHECKMARK />
       <SPAN>
         {value}
       </SPAN>
@@ -41,7 +41,7 @@ export default function CheckList({
       {
         arrayToComponentSiblings(options, (value, j) => {
           return (
-            <li>
+            <li style={{ 'position': 'relative' }}>
               <CheckListItem
                 id={[context, name, value].join('-')}
                 isCurrent={!!~selected.indexOf(value)}
