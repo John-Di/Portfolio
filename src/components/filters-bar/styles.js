@@ -50,6 +50,7 @@ export const DROPDOWN = styled.li`
   margin-right: 10px;
   position: relative;
   z-index: 1;
+  width: auto;
 `;
 
 export const SPAN = styled.span`

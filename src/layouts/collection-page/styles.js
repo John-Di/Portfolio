@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Clearfix from '../../utils/Clearfix';
+import { ListReset } from '../../utils/Resets';
 import { device, size } from '../../utils/variables';
-
 
 export const ARTICLE = styled.article`
   margin: 0 auto;
@@ -16,12 +16,14 @@ export const ARTICLE = styled.article`
   }
 
   ul {
-    overflow: auto;
-    height: auto;
+    ${ListReset}
     ${Clearfix}
+
+    li {
+      ${ListReset}
+    }
   }
 `;
-
 
 export const PRODUCTS = styled.div`
   display: block;
@@ -32,24 +34,29 @@ export const PRODUCTS = styled.div`
   > div {
     text-align: center;
 
-    > ul > li {
-      article {
-        position: relative;
+    > ul {
+      overflow: auto;
+      height: auto;
 
-        &::after {
-          content: '';
-          position: absolute;
-          width: 100%;
-          height: ${100 * 1.875 / 3}%;
-          bottom: 0;
-          box-shadow: 0 0.25em 0.5em lightgrey;
-          z-index: -1;
-        }
+      > li {
+        article {
+          position: relative;
 
-        form ul > li [type="radio"] ~ label {
-          height: 2em;
-          width: 2em;
-          border-width: 1px;
+          &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: ${100 * 1.875 / 3}%;
+            bottom: 0;
+            box-shadow: 0 0.25em 0.5em lightgrey;
+            z-index: -1;
+          }
+
+          form ul > li [type="radio"] ~ label {
+            height: 2em;
+            width: 2em;
+            border-width: 1px;
+          }
         }
       }
     }

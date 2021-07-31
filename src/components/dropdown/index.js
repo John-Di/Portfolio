@@ -6,7 +6,8 @@ import {
   INPUT,
   SPAN,
   CHECKMARK,
-  DEFAULT
+  DEFAULT,
+  DROPDOWN
 } from './styles';
 import useDropdown from "./useDropdown";
 
@@ -76,15 +77,12 @@ function CheckList({
     onClick = e => console.log(e.target.value),
 
     selectedLabel = checked ? selected[0] : `Select ${name}`;
-
   return (
-    <div
+    <DROPDOWN
       ref={dropdownRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      style={{
-        width: dropdownWidth ? dropdownWidth : `100%`
-      }}>
+    >
       <DEFAULT
         isExpanded={isExpanded}
         htmlFor={id}
@@ -122,7 +120,7 @@ function CheckList({
             )
           })
         }</UL>
-    </div>
+    </DROPDOWN>
   )
 }
 

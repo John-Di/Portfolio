@@ -43,8 +43,8 @@ const ButtonStyles = `
   display: inline-block;
   cursor: pointer;
   ${ButtonReset}
-  font-family: 'Roboto', 'Montserrat', serif;
-  font-weight: normal;
+  font-family: 'Open Sans', 'Roboto', 'Montserrat', serif;
+  font-weight: bold;
   border-style: solid;
   min-width: 5em;
   text-align: center;

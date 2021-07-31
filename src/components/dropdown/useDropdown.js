@@ -1,5 +1,5 @@
 import {
-  useReducer, useRef, useState
+  useEffect, useRef, useState
 } from "react";
 
 
@@ -10,7 +10,6 @@ export const actionTypes = {
 
 function useDropdown({
   name,
-  selected,
   options = []
 }) {
   const dropdownRef = useRef(null);
@@ -21,11 +20,20 @@ function useDropdown({
     collapseList: UpdateState.bind(this, false)
   };
 
+  const adjustDropdownWidth = () => {
+    if (!dropdownRef) {
+      return;
+    }
+    const width = [...dropdownRef.current.querySelectorAll('li')].reduce((width, li) => width > li.offsetWidth ? width : li.offsetWidth, 0);
+    dropdownRef.current.style.width = `${width / 16}em`;
+  };
+
+  useEffect(adjustDropdownWidth, [])
+
   return {
     ...reducers,
     dropdownRef,
-    dropdownHeight: isExpanded && dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0) : 0,
-    dropdownWidth: dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce((height, li) => height > li.scrollWidth ? height : li.scrollWidth, 0) : 0,
+    dropdownHeight: isExpanded && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0) : 0,
     name,
     isExpanded,
     options

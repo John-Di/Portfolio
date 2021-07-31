@@ -15,8 +15,7 @@ const dropdownStyles = () => `
   min-width: 23ch;
   width: 100%;
   text-align: left;
-  word-break: none;
-  word-wrap: none;
+  transition: width 0.3s ease;
 
   &:hover {
     color: #ffffff;
@@ -46,6 +45,10 @@ export const LABEL = styled.label`
     background: #000000;
     color: #ffffff;
   }
+`;
+
+export const DROPDOWN = styled.div`
+  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
 `;
 
 export const DEFAULT = styled.button`
@@ -78,7 +81,8 @@ export const UL = styled.ul`
   left: 0;
   z-index: 0;
   overflow: hidden;
-  width: 100%;
+  width: auto;
+  min-width: 100%;
   height: ${({ dropdownHeight = 0 }) => (dropdownHeight + (dropdownHeight ? 2 : 0)) / 16}em;
   transition: height 0.3s ease;
 
@@ -112,4 +116,5 @@ export const CHECKMARK = styled.span`
 export const SPAN = styled.span`
   display: block;
   position: relative;
+  white-space: nowrap;
 `;
