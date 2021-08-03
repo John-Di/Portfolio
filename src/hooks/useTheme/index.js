@@ -4,11 +4,14 @@ import {
   useReducer,
   useState
 } from "react";
-import { BUTTON } from "../components/chic-cta/styles";
-import LocationContext from "../contexts/LocationContext";
+import {
+  BUTTON
+} from "../../components/chic-cta/styles";
+// import Chic from "../../styles";
+import LocationContext from "../../contexts/LocationContext";
 
-import BasicContrast from "../utils/BasicContrast";
-import { randomColor } from "../utils/randoms";
+import BasicContrast from "../../utils/BasicContrast";
+import { randomColor } from "../../utils/randoms";
 
 const actionTypes = {
   id: 'ID',
@@ -38,12 +41,12 @@ export const themeReducer = (state, action) => {
     }
     case actionTypes.theme: {
       switch (theme) {
-        case themeTypes.CHIC: return {
-          Button: BUTTON
-        }
+        case themeTypes.CHIC:
       }
     }
-    default: return state
+    default: return {
+      Button: BUTTON
+    }
   }
 }
 
@@ -56,7 +59,8 @@ function useTheme() {
     [theme, UpdateTheme] = useReducer(themeReducer, {
       primaryColor: color,
       primaryContrast: BasicContrast(color),
-      name: `chic`
+      name: themeTypes.CHIC,
+      theme: themeTypes.CHIC
     });
 
   const updateAccentColor = color => UpdateTheme({

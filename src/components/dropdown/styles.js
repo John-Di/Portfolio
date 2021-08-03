@@ -49,6 +49,38 @@ export const LABEL = styled.label`
 
 export const DROPDOWN = styled.div`
   width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
+
+  ul {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    width: auto;
+    min-width: 100%;
+    height: ${({ dropdownHeight = 0 }) => (dropdownHeight + (dropdownHeight ? 2 : 0)) / 16}em;
+    transition: height 0.3s ease;
+
+    li {
+      position: relative;
+      float: none;
+
+      label {
+        border-top: none;
+        width: 100%;
+        transition: background color 0.3s ease, color 0.3s ease;
+      }
+    }
+
+    li:nth-of-type(1) label {
+      border-top: none;
+
+      &:hover {
+        background: #000000;
+      }
+    }
+  }
 `;
 
 export const DEFAULT = styled.button`

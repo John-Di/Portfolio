@@ -1,5 +1,6 @@
 import React from "react";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
+import CheckList from "../check-list";
 import {
   UL,
   LABEL,
@@ -11,7 +12,7 @@ import {
 } from './styles';
 import useDropdown from "./useDropdown";
 
-const SelectDropdown = ({ name, options = [], selected = ``, onChange }) => (
+const OptionSelectList = ({ name, options = [], selected = ``, onChange }) => (
   <select
     id="collection-filter"
     name={name}
@@ -34,7 +35,6 @@ const SelectDropdown = ({ name, options = [], selected = ``, onChange }) => (
   </select>
 );
 
-
 const CheckListItem = ({ id, name, value, label, onChange, checked = false }) => (
   <LABEL
     isCurrent={checked}
@@ -54,7 +54,7 @@ const CheckListItem = ({ id, name, value, label, onChange, checked = false }) =>
   </LABEL>
 );
 
-function CheckList({
+function OptionCheckList({
   context = 'option',
   name,
   options = [],
@@ -68,7 +68,6 @@ function CheckList({
       expandList,
       collapseList,
       dropdownHeight,
-      dropdownWidth,
       isExpanded
     } = dropdown,
 
@@ -82,6 +81,7 @@ function CheckList({
       ref={dropdownRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      dropdownHeight={dropdownHeight}
     >
       <DEFAULT
         isExpanded={isExpanded}
@@ -92,49 +92,22 @@ function CheckList({
           {selectedLabel}
         </SPAN>
       </DEFAULT>
-      <UL dropdownHeight={dropdownHeight}>
-        <li style={{ 'position': 'relative' }}>
-          <CheckListItem
-            id={id}
-            type="checkbox"
-            name={name}
-            checked={!checked}
-            value={''}
-            label={`Select ${name}`}
-            onChange={onChange}
-          />
-        </li>
-        {
-          arrayToComponentSiblings(options, (value, j) => {
-            return (
-              <li style={{ 'position': 'relative' }}>
-                <CheckListItem
-                  id={[context, name, value].join('-')}
-                  name={name}
-                  value={value}
-                  checked={!!~selected.indexOf(value)}
-                  onChange={onChange}
-                  key={j}
-                />
-              </li>
-            )
-          })
-        }</UL>
+      <CheckList
+        context={'product-option'}
+        options={options}
+        selected={selected}
+        name={name}
+        deselect={true}
+        deselectedLabel={`Select ${name}`}
+        onChange={onChange}
+      />
     </DROPDOWN>
   )
 }
 
-const ListDropdown = ({ name, selected = ``, onChange, ...dropdown }) =>
-  <CheckList
-    {...dropdown}
-    name={name}
-    selected={selected}
-    onChange={onChange}
-  />;
-
 const dropdownType = {
-  select: SelectDropdown,
-  ul: ListDropdown
+  select: OptionSelectList,
+  ul: OptionCheckList
 };
 
 const Dropdown = ({ type = 'ul', ...dropdown }) => {

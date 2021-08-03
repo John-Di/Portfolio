@@ -7,7 +7,7 @@ import {
   CHECKMARK
 } from './styles';
 
-const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked = false }) => {
+const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked = false, label }) => {
   return (
     <LABEL
       isCurrent={checked}
@@ -22,7 +22,7 @@ const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked =
         onChange={onChange} />
       <CHECKMARK />
       <SPAN>
-        {value}
+        {label}
       </SPAN>
     </LABEL>
   )
@@ -33,13 +33,30 @@ export default function CheckList({
   name,
   options = [],
   selected = [],
-  onChange
+  onChange,
+  deselect,
+  deselectedLabel
 }) {
+  console.log(deselectedLabel, deselectedLabel ? deselectedLabel : `Select ${name}`);
+  const noSelection = !selected.length;
 
   return (
     <ul>
+      {deselect &&
+        <li style={{ 'position': 'relative' }}>
+          <CheckListItem
+            id={[context, name, 'deselect'].join('-')}
+            type="checkbox"
+            name={name}
+            checked={noSelection}
+            value={''}
+            label={deselectedLabel ? deselectedLabel : `Select ${name}`}
+            onChange={onChange}
+          />
+        </li>
+      }
       {
-        arrayToComponentSiblings(options, (value, j) => {
+        arrayToComponentSiblings(options, (value, i) => {
           return (
             <li style={{ 'position': 'relative' }}>
               <CheckListItem
@@ -47,9 +64,10 @@ export default function CheckList({
                 isCurrent={!!~selected.indexOf(value)}
                 name={name}
                 value={value}
+                label={value}
                 checked={!!~selected.indexOf(value)}
                 onChange={onChange}
-                key={j}
+                key={`${name}-${value}`}
               />
             </li>
           )

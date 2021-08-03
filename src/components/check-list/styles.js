@@ -1,69 +1,152 @@
 import styled from 'styled-components';
+import { conditionalProp } from '../../utils/AssessProps';
+import { ButtonReset } from '../../utils/Resets';
 import VisuallyHidden from '../../utils/VisuallyHidden';
 
-const checkmarkHeight = 1.25;
+const dropdownStyles = () => `
+  font: 700 14px Open Sans;
+  text-transform: uppercase;
+  position: relative;
+  text-decoration: none;
+  border: 3px solid #000000;
+  letter-spacing: 1px;
+  padding: 1em 2em;
+  display: block;
+  min-width: 23ch;
+  width: 100%;
+  text-align: left;
+  transition: width 0.3s ease;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  i {
+    font-size: 12px !important;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+  }
+
+`;
 
 export const LABEL = styled.label`
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  ${ButtonReset}
+  ${dropdownStyles}
 
-  &:hover input + span {
-    background-color: #ccc;
+
+  ${({ isCurrent }) => conditionalProp(isCurrent, `
+    background: #000000;
+    color: #ffffff;
+  `)}
+
+  ${({ isCurrent }) => conditionalProp(isCurrent, `&,`)}
+  &:hover {
+    background: #000000;
+    color: #ffffff;
   }
+`;
 
-  input:checked + span {
-    background-color: #2196F3;
+export const DROPDOWN = styled.div`
+  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
 
-    &::after {
-      display: block;
+  ul {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    width: auto;
+    min-width: 100%;
+    height: ${({ dropdownHeight = 0 }) => (dropdownHeight + (dropdownHeight ? 2 : 0)) / 16}em;
+    transition: height 0.3s ease;
+
+    li {
+      position: relative;
+      float: none;
+
+      label {
+        border-top: none;
+        width: 100%;
+        transition: background color 0.3s ease, color 0.3s ease;
+      }
+    }
+
+    li:nth-of-type(1) label {
+      border-top: none;
+
+      &:hover {
+        background: #000000;
+      }
     }
   }
-`
+`;
+
+export const DEFAULT = styled.button`
+  ${ButtonReset}
+  ${dropdownStyles}
+  ${({ isExpanded }) => conditionalProp(isExpanded, `color:  #ffffff;`)}
+  transition: background color 0.3s ease, color 0.3s ease;
+
+  &::before {
+    content: '';
+    top: 0;
+    left: -2px;
+    width: 0%;
+    height: calc(100% + 2px);
+    background: #000;
+    position: absolute;
+    transition: 0.3s ease;
+
+    ${({ isExpanded = false }) => conditionalProp(isExpanded, `
+      width: calc(100% + 4px);
+      transition: width 0.3s ease;
+    `)};
+  }
+`;
+
+export const UL = styled.ul`
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  width: auto;
+  min-width: 100%;
+  height: ${({ dropdownHeight = 0 }) => (dropdownHeight + (dropdownHeight ? 2 : 0)) / 16}em;
+  transition: height 0.3s ease;
+
+  li {
+    position: relative;
+    float: none;
+
+    label {
+      border-top: none;
+      width: 100%;
+      transition: background color 0.3s ease, color 0.3s ease;
+    }
+  }
+
+  li:nth-of-type(1) label {
+    border-top: none;
+
+    &:hover {
+      background: #000000;
+    }
+  }
+`;
 
 export const INPUT = styled.input`
   ${VisuallyHidden}
   cursor: pointer;
-
-  &:checked + span::after {
-    display: block;
-  }
 `
 export const CHECKMARK = styled.span`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: ${checkmarkHeight}em;
-  width: ${checkmarkHeight}em;
-  background-color: #eee;
-
-  &::after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-
-  &::after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
 `;
 
-
 export const SPAN = styled.span`
-  font-size: 0.875em;
-  line-height: ${checkmarkHeight / 0.875};
+  display: block;
+  position: relative;
+  white-space: nowrap;
 `;
