@@ -3,12 +3,14 @@ import { conditionalProp } from '../../utils/AssessProps';
 import { ButtonReset } from '../../utils/Resets';
 import VisuallyHidden from '../../utils/VisuallyHidden';
 
+const borderWidth = 3;
+
 const dropdownStyles = () => `
   font: 700 14px Open Sans;
   text-transform: uppercase;
   position: relative;
   text-decoration: none;
-  border: 3px solid #000000;
+  border: ${borderWidth}px solid #000000;
   letter-spacing: 1px;
   padding: 1em 2em;
   display: block;
@@ -91,16 +93,17 @@ export const DEFAULT = styled.button`
 
   &::before {
     content: '';
-    top: 0;
-    left: -2px;
+    bottom: -${borderWidth}px;
+    top: -${borderWidth}px;
+    left: -${borderWidth}px;
+    right: -${borderWidth}px;
     width: 0%;
-    height: calc(100% + 2px);
     background: #000;
     position: absolute;
     transition: 0.3s ease;
 
     ${({ isExpanded = false }) => conditionalProp(isExpanded, `
-      width: calc(100% + 4px);
+      width: calc(100% + ${borderWidth * 2}px);
       transition: width 0.3s ease;
     `)};
   }

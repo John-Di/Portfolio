@@ -35,25 +35,6 @@ const OptionSelectList = ({ name, options = [], selected = ``, onChange }) => (
   </select>
 );
 
-const CheckListItem = ({ id, name, value, label, onChange, checked = false }) => (
-  <LABEL
-    isCurrent={checked}
-    htmlFor={id}
-  >
-    <INPUT
-      id={id}
-      type="checkbox"
-      name={name}
-      checked={checked}
-      value={value}
-      onChange={onChange} />
-    <CHECKMARK />
-    <SPAN>
-      {value ? value : label}
-    </SPAN>
-  </LABEL>
-);
-
 function OptionCheckList({
   context = 'option',
   name,
