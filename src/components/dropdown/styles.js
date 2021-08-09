@@ -5,7 +5,6 @@ import { ButtonReset } from '../../utils/Resets';
 const borderWidth = 3;
 
 const dropdownStyles = () => `
-  color: #000000;
   font: 700 14px Open Sans;
   text-transform: uppercase;
   position: relative;
@@ -19,17 +18,12 @@ const dropdownStyles = () => `
   text-align: left;
   transition: width 0.3s ease;
 
-  &:hover {
-    color: #ffffff;
-  }
-
   i {
     font-size: 12px !important;
     position: absolute;
     right: 10px;
     top: 14px;
   }
-
 `;
 
 export const DROPDOWN = styled.div`
@@ -89,6 +83,10 @@ export const DEFAULT = styled.button`
     background: #000;
     position: absolute;
     transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: #ffffff;
   }
 
   ${({ isExpanded = false }) => conditionalProp(isExpanded, `&::before,`)}
