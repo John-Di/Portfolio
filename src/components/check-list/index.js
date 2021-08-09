@@ -1,32 +1,5 @@
 import React, { useContext } from "react";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
-import {
-  LABEL,
-  INPUT,
-  SPAN,
-  CHECKMARK
-} from './styles';
-
-const CheckListItem = ({ id, name, value, isCurrent = false, onChange, checked = false, label }) => {
-  return (
-    <LABEL
-      isCurrent={checked}
-      htmlFor={id}
-    >
-      <INPUT
-        id={id}
-        type="checkbox"
-        name={name}
-        checked={checked}
-        value={value}
-        onChange={onChange} />
-      <CHECKMARK />
-      <SPAN>
-        {label}
-      </SPAN>
-    </LABEL>
-  )
-};
 
 export default function CheckList({
   context = 'option',
@@ -35,16 +8,16 @@ export default function CheckList({
   selected = [],
   onChange,
   deselect,
-  deselectedLabel
+  deselectedLabel,
+  ListItem
 }) {
-  console.log(deselectedLabel, deselectedLabel ? deselectedLabel : `Select ${name}`);
   const noSelection = !selected.length;
 
   return (
     <ul>
       {deselect &&
         <li style={{ 'position': 'relative' }}>
-          <CheckListItem
+          <ListItem
             id={[context, name, 'deselect'].join('-')}
             type="checkbox"
             name={name}
@@ -59,7 +32,7 @@ export default function CheckList({
         arrayToComponentSiblings(options, (value, i) => {
           return (
             <li style={{ 'position': 'relative' }}>
-              <CheckListItem
+              <ListItem
                 id={[context, name, value].join('-')}
                 isCurrent={!!~selected.indexOf(value)}
                 name={name}
@@ -73,6 +46,6 @@ export default function CheckList({
           )
         })
       }
-    </ul >
+    </ul>
   )
 }

@@ -13,11 +13,18 @@ function useDropdown({
   options = []
 }) {
   const dropdownRef = useRef(null);
-  const [isExpanded, UpdateState] = useState(false)
+  const [isExpanded, UpdateState] = useState(false);
+  const [isLocked, ToggleLock] = useState(false);
 
   const reducers = {
     expandList: UpdateState.bind(this, true),
-    collapseList: UpdateState.bind(this, false)
+    collapseList: UpdateState.bind(this, false),
+    toggleList: e => {
+      const nextState = !isLocked;
+
+      ToggleLock(nextState);
+      UpdateState(nextState);
+    }
   };
 
   const adjustDropdownWidth = () => {
@@ -33,9 +40,9 @@ function useDropdown({
   return {
     ...reducers,
     dropdownRef,
-    dropdownHeight: isExpanded && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0) : 0,
+    dropdownHeight: (isExpanded || isLocked) && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0) : 0,
     name,
-    isExpanded,
+    isExpanded: isExpanded || isLocked,
     options
   }
 };

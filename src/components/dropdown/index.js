@@ -1,12 +1,9 @@
 import React from "react";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import CheckList from "../check-list";
+import CheckboxLabel from "../checkbox-label";
 import {
-  UL,
-  LABEL,
-  INPUT,
   SPAN,
-  CHECKMARK,
   DEFAULT,
   DROPDOWN
 } from './styles';
@@ -48,13 +45,13 @@ function OptionCheckList({
       dropdownRef,
       expandList,
       collapseList,
+      toggleList,
       dropdownHeight,
       isExpanded
     } = dropdown,
 
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
-    onClick = e => console.log(e.target.value),
 
     selectedLabel = checked ? selected[0] : `Select ${name}`;
   return (
@@ -67,7 +64,7 @@ function OptionCheckList({
       <DEFAULT
         isExpanded={isExpanded}
         htmlFor={id}
-        onClick={onClick}
+        onClick={toggleList}
       >
         <SPAN>
           {selectedLabel}
@@ -81,6 +78,7 @@ function OptionCheckList({
         deselect={true}
         deselectedLabel={`Select ${name}`}
         onChange={onChange}
+        ListItem={CheckboxLabel}
       />
     </DROPDOWN>
   )

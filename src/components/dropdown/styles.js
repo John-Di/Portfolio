@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import { ButtonReset } from '../../utils/Resets';
-import VisuallyHidden from '../../utils/VisuallyHidden';
 
 const borderWidth = 3;
 
@@ -32,25 +31,23 @@ const dropdownStyles = () => `
 
 `;
 
-export const LABEL = styled.label`
-  ${ButtonReset}
-  ${dropdownStyles}
-
-
-  ${({ isCurrent }) => conditionalProp(isCurrent, `
-    background: #000000;
-    color: #ffffff;
-  `)}
-
-  ${({ isCurrent }) => conditionalProp(isCurrent, `&,`)}
-  &:hover {
-    background: #000000;
-    color: #ffffff;
-  }
-`;
-
 export const DROPDOWN = styled.div`
   width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
+
+  label {
+    ${dropdownStyles}
+
+    ${({ isCurrent }) => conditionalProp(isCurrent, `
+      background: #000000;
+      color: #ffffff;
+    `)}
+
+    ${({ isCurrent }) => conditionalProp(isCurrent, `&,`)}
+    &:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+  }
 
   ul {
     position: absolute;
@@ -77,10 +74,6 @@ export const DROPDOWN = styled.div`
 
     li:nth-of-type(1) label {
       border-top: none;
-
-      &:hover {
-        background: #000000;
-      }
     }
   }
 `;
@@ -96,7 +89,6 @@ export const DEFAULT = styled.button`
     bottom: -${borderWidth}px;
     top: -${borderWidth}px;
     left: -${borderWidth}px;
-    right: -${borderWidth}px;
     width: 0%;
     background: #000;
     position: absolute;
@@ -107,45 +99,6 @@ export const DEFAULT = styled.button`
       transition: width 0.3s ease;
     `)};
   }
-`;
-
-export const UL = styled.ul`
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  left: 0;
-  z-index: 0;
-  overflow: hidden;
-  width: auto;
-  min-width: 100%;
-  height: ${({ dropdownHeight = 0 }) => (dropdownHeight + (dropdownHeight ? 2 : 0)) / 16}em;
-  transition: height 0.3s ease;
-
-  li {
-    position: relative;
-    float: none;
-
-    label {
-      border-top: none;
-      width: 100%;
-      transition: background color 0.3s ease, color 0.3s ease;
-    }
-  }
-
-  li:nth-of-type(1) label {
-    border-top: none;
-
-    &:hover {
-      background: #000000;
-    }
-  }
-`;
-
-export const INPUT = styled.input`
-  ${VisuallyHidden}
-  cursor: pointer;
-`
-export const CHECKMARK = styled.span`
 `;
 
 export const SPAN = styled.span`
