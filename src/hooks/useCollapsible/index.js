@@ -3,6 +3,9 @@ import {
 } from "react";
 import collapisbleReducer, { actionTypes } from "./reducer";
 
+const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offsetWidth;
+const getDropdownHeight = (height, li) => height + li.scrollHeight;
+
 function useCollapsible({
   name,
   options = []
@@ -35,16 +38,18 @@ function useCollapsible({
     if (!dropdownRef) {
       return;
     }
-    const width = [...dropdownRef.current.querySelectorAll('li')].reduce((width, li) => width > li.offsetWidth ? width : li.offsetWidth, 0);
+    const width = [...dropdownRef.current.querySelectorAll('li')].reduce(getLongestWidth, 0);
     dropdownRef.current.style.width = `${width / 16}em`;
   };
 
   useEffect(adjustDropdownWidth, [])
 
+  const dropdownHeight = isExpanded && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce(getDropdownHeight, 0) : 0
+
   return {
     ...reducers,
     dropdownRef,
-    dropdownHeight: isExpanded && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce((height, li) => height + li.scrollHeight, 0) : 0,
+    dropdownHeight,
     name,
     isExpanded,
     options
