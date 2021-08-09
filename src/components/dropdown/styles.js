@@ -5,6 +5,7 @@ import { ButtonReset } from '../../utils/Resets';
 const borderWidth = 3;
 
 const dropdownStyles = () => `
+  color: #000000;
   font: 700 14px Open Sans;
   text-transform: uppercase;
   position: relative;
@@ -37,12 +38,6 @@ export const DROPDOWN = styled.div`
   label {
     ${dropdownStyles}
 
-    ${({ isCurrent }) => conditionalProp(isCurrent, `
-      background: #000000;
-      color: #ffffff;
-    `)}
-
-    ${({ isCurrent }) => conditionalProp(isCurrent, `&,`)}
     &:hover {
       background: #000000;
       color: #ffffff;
@@ -81,8 +76,9 @@ export const DROPDOWN = styled.div`
 export const DEFAULT = styled.button`
   ${ButtonReset}
   ${dropdownStyles}
-  ${({ isExpanded }) => conditionalProp(isExpanded, `color:  #ffffff;`)}
   transition: background color 0.3s ease, color 0.3s ease;
+
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `color: #ffffff;`)}
 
   &::before {
     content: '';
@@ -92,12 +88,12 @@ export const DEFAULT = styled.button`
     width: 0%;
     background: #000;
     position: absolute;
-    transition: 0.3s ease;
+    transition: width 0.3s ease;
+  }
 
-    ${({ isExpanded = false }) => conditionalProp(isExpanded, `
-      width: calc(100% + ${borderWidth * 2}px);
-      transition: width 0.3s ease;
-    `)};
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `&::before,`)}
+  &:hover::before {
+    width: calc(100% + ${borderWidth * 2}px);
   }
 `;
 

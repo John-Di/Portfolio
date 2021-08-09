@@ -1,4 +1,5 @@
 import React from "react";
+import useCollapsible from "../../hooks/useCollapsible";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import CheckList from "../check-list";
 import CheckboxLabel from "../checkbox-label";
@@ -7,7 +8,6 @@ import {
   DEFAULT,
   DROPDOWN
 } from './styles';
-import useDropdown from "./useDropdown";
 
 const OptionSelectList = ({ name, options = [], selected = ``, onChange }) => (
   <select
@@ -92,6 +92,6 @@ const dropdownType = {
 const Dropdown = ({ type = 'ul', ...dropdown }) => {
   const DropdownComponent = dropdownType[type];
 
-  return <DropdownComponent {...dropdown} {...useDropdown(dropdown)} />;
+  return <DropdownComponent {...dropdown} {...useCollapsible(dropdown)} />;
 }
 export default Dropdown;
