@@ -52,8 +52,8 @@ function OptionCheckList({
 
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
-
     selectedLabel = checked ? selected[0] : `Select ${name}`;
+
   return (
     <DROPDOWN
       ref={dropdownRef}
@@ -76,7 +76,7 @@ function OptionCheckList({
         selected={selected}
         name={name}
         deselect={true}
-        deselectedLabel={`Select ${name}`}
+        deselectedLabel={checked ? `Deselect ${name}` : `Select ${name}`}
         onChange={onChange}
         ListItem={CheckboxLabel}
       />

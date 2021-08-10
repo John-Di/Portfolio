@@ -34,22 +34,24 @@ function useCollapsible({
     })
   };
 
+  const items = dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')] : []
+
   const adjustDropdownWidth = () => {
     if (!dropdownRef) {
       return;
     }
     const width = [...dropdownRef.current.querySelectorAll('li')].reduce(getLongestWidth, 0);
+    const height = isExpanded && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce(getDropdownHeight, 0) : 0;
+
     dropdownRef.current.style.width = `${width / 16}em`;
+    dropdownRef.current.querySelector('ul').style.height = `${(height + (height ? 2 : 0)) / 16}em`;
   };
 
-  useEffect(adjustDropdownWidth, [])
-
-  const dropdownHeight = isExpanded && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce(getDropdownHeight, 0) : 0
+  useEffect(adjustDropdownWidth, [isExpanded, items])
 
   return {
     ...reducers,
     dropdownRef,
-    dropdownHeight,
     name,
     isExpanded,
     options

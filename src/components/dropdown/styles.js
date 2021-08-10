@@ -47,7 +47,7 @@ export const DROPDOWN = styled.div`
     overflow: hidden;
     width: auto;
     min-width: 100%;
-    height: ${({ dropdownHeight = 0 }) => (dropdownHeight + (dropdownHeight ? 2 : 0)) / 16}em;
+    height: 0;
     transition: height 0.3s ease;
 
     li {
