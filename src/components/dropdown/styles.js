@@ -67,7 +67,7 @@ export const DROPDOWN = styled.div`
   }
 `;
 
-export const DEFAULT = styled.button`
+export const TOGGLE = styled.button`
   ${ButtonReset}
   ${dropdownStyles}
   transition: background color 0.3s ease, color 0.3s ease;

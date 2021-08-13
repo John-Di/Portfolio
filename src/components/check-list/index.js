@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
 
 export default function CheckList({

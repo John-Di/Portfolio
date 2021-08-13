@@ -5,7 +5,7 @@ import CheckList from "../check-list";
 import CheckboxLabel from "../checkbox-label";
 import {
   SPAN,
-  DEFAULT,
+  DEFAULT as TOGGLE,
   DROPDOWN
 } from './styles';
 
@@ -61,7 +61,7 @@ function OptionCheckList({
       onMouseLeave={onMouseLeave}
       dropdownHeight={dropdownHeight}
     >
-      <DEFAULT
+      <TOGGLE
         isExpanded={isExpanded}
         htmlFor={id}
         onClick={toggleList}
@@ -69,7 +69,7 @@ function OptionCheckList({
         <SPAN>
           {selectedLabel}
         </SPAN>
-      </DEFAULT>
+      </TOGGLE>
       <CheckList
         context={'product-option'}
         options={options}

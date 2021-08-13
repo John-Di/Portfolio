@@ -34,13 +34,13 @@ export const UL = styled.ul`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
-  margin: 0 auto;
+  margin: -0.5em auto;
   ${Clearfix}
 `;
 
 export const CHECKBOXLIST = styled.li`
   ${ListReset}
-  zoom: 1.25;
+  margin: 0.5em 0;
 `;
 
 export const DROPDOWN = styled.li`

@@ -23,6 +23,7 @@ const GridRules = ({ row = 0, col = 0, perRow }) => `
 
 const RenderGridBreakpoint = ({ breakpoint, gap = [0, 0], perRow }) => {
   const rules = GridRules({ row: gap[0], col: gap[1], perRow });
+  console.log({ row: gap[0], col: gap[1], perRow })
   return conditionalProp(breakpoint, `
     @media screen and ${breakpoint} {
       ${rules}
@@ -39,6 +40,7 @@ export const CONTAINER = styled.div`
   & > ul {
     ${ListReset}
     display: inline-block;
+    width: 100%;
 
     > li {
       ${ListReset}

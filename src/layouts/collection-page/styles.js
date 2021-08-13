@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Clearfix from '../../utils/Clearfix';
-import { ListReset } from '../../utils/Resets';
 import { device, size } from '../../utils/variables';
 
 export const ARTICLE = styled.article`
@@ -15,14 +14,6 @@ export const ARTICLE = styled.article`
     max-width: ${size.laptopL}px;
   }
 
-  ul {
-    ${ListReset}
-    ${Clearfix}
-
-    li {
-      ${ListReset}
-    }
-  }
 `;
 
 export const PRODUCTS = styled.div`
