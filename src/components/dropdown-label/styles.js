@@ -73,6 +73,7 @@ export const LABEL = styled.label`
     left: -${borderWidth}px;
     background: #000;
     position: absolute;
+    transition: width 0.3s ease;
   }
 
   ${({ isExpanded = false }) => conditionalProp(isExpanded, `&,`)}
@@ -81,6 +82,13 @@ export const LABEL = styled.label`
 
     &::before {
       width: calc(100% + ${borderWidth * 2}px);
+    }
+
+    &::after {
+      border-right-color: white;
+      border-bottom-color: white;
+      border-color-right: white;
+      border-color-bottom: white;
     }
   }
 `;

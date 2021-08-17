@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { conditionalProp } from '../../../utils/AssessProps';
 import { ButtonReset, ListReset } from '../../../utils/Resets';
 
-const borderWidth = 3;
+const borderWidth = 2;
 
 export const LIST = styled.div`
   margin: -0.5em 0;
@@ -55,7 +55,8 @@ export const TOGGLE = styled.button`
   text-decoration: none;
   border-bottom: ${borderWidth}px solid #000000;
   letter-spacing: 1px;
-  padding: 1em 2em;
+  padding: 0.375em 0;
+  padding-right: 0.5em;
   display: block;
   width: 100%;
   text-align: left;

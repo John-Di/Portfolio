@@ -49,10 +49,8 @@ export const DROPDOWN = styled.div`
       label {
         border-top: none;
         width: 100%;
-        transition: background color 0.3s ease, color 0.3s ease;
 
         &::before {
-          transition: width 0.3s ease;
         }
       }
     }
@@ -66,7 +64,7 @@ export const DROPDOWN = styled.div`
 export const TOGGLE = styled.button`
   ${ButtonReset}
   ${dropdownStyles}
-  transition: background color 0.3s ease, color 0.3s ease;
+  transition: color 0.05s ease 0.225s;
 
   ${({ isExpanded = false }) => conditionalProp(isExpanded, `color: #ffffff;`)}
 
@@ -81,13 +79,35 @@ export const TOGGLE = styled.button`
     transition: width 0.3s ease;
   }
 
-  &:hover {
-    color: #ffffff;
+  &::after {
+    content: '';
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 1em;
+    height: 1em;
+    transition: border-color 0.05s linear 0.05s;
+    transform: rotateZ(-45deg) translateY(-50%);
   }
 
-  ${({ isExpanded = false }) => conditionalProp(isExpanded, `&::before,`)}
-  &:hover::before {
-    width: calc(100% + ${borderWidth * 2}px);
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `&,`)}
+  &:hover {
+    color: #ffffff;
+    transition: color 0.05s ease 0.025s;
+
+    &::before {
+      width: calc(100% + ${borderWidth * 2}px);
+    }
+
+    &::after {
+      border-right-color: white;
+      border-bottom-color: white;
+      border-color-right: white;
+      border-color-bottom: white;
+      transition: border-color 0.05s linear 0.2s;
+    }
   }
 `;
 

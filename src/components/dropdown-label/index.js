@@ -8,7 +8,6 @@ import {
 
 
 const DropdownLabel = ({ id, name, value, isCurrent = false, onChange, checked = false, label }) => {
-  console.log({ id, name, value, isCurrent, checked });
   return (
     <LABEL
       isCurrent={checked}
