@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import { ButtonReset } from '../../utils/Resets';
+import VisuallyHidden from '../../utils/VisuallyHidden';
 
 const borderWidth = 3;
 
@@ -44,16 +45,12 @@ export const DROPDOWN = styled.div`
     li {
       position: relative;
       float: none;
-      margin: 0;
 
       label {
         border-top: none;
         width: 100%;
         transition: background color 0.3s ease, color 0.3s ease;
 
-        &::before {
-          transition: width 0.3s ease;
-        }
       }
     }
 
@@ -63,32 +60,37 @@ export const DROPDOWN = styled.div`
   }
 `;
 
-export const TOGGLE = styled.button`
+export const LABEL = styled.label`
   ${ButtonReset}
   ${dropdownStyles}
   transition: background color 0.3s ease, color 0.3s ease;
 
-  ${({ isExpanded = false }) => conditionalProp(isExpanded, `color: #ffffff;`)}
-
   &::before {
     content: '';
+    width: 0%;
     bottom: -${borderWidth}px;
     top: -${borderWidth}px;
     left: -${borderWidth}px;
-    width: 0%;
     background: #000;
     position: absolute;
-    transition: width 0.3s ease;
   }
 
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `&,`)}
   &:hover {
     color: #ffffff;
-  }
 
-  ${({ isExpanded = false }) => conditionalProp(isExpanded, `&::before,`)}
-  &:hover::before {
-    width: calc(100% + ${borderWidth * 2}px);
+    &::before {
+      width: calc(100% + ${borderWidth * 2}px);
+    }
   }
+`;
+
+export const INPUT = styled.input`
+  ${VisuallyHidden}
+`;
+
+export const CHECKMARK = styled.span`
+  ${VisuallyHidden}
 `;
 
 export const SPAN = styled.span`

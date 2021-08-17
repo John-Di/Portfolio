@@ -3,57 +3,41 @@ import useCollapsible from "../../hooks/useCollapsible";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import CheckList from "../check-list";
 import CheckboxLabel from "../checkbox-label";
+import DropdownLabel from "../dropdown-label";
 import {
   SPAN,
-  DEFAULT as TOGGLE,
+  TOGGLE,
   DROPDOWN
 } from './styles';
 
-const OptionSelectList = ({ name, options = [], selected = ``, onChange }) => (
-  <select
-    id="collection-filter"
-    name={name}
-    value={selected}
-    onChange={onChange}
-  >
-    <option
-      id={`unique_options-${name}-none}`}
-      value={``}
-    >{`Select ${name}`}</option>
-    {
-      arrayToComponentSiblings(options, (value, i) => (
-        <option
-          key={i}
-          id={`unique_options-${name}-${value}`}
-          value={value}
-        >{value}</option>
-      ))
-    }
-  </select>
-);
-
-function OptionCheckList({
-  context = 'option',
-  name,
-  options = [],
-  selected = [],
-  onChange,
+const Dropdown = ({
+  type = 'ul',
   ...dropdown
-}) {
-  const id = [context, name, 'none'].join('-'),
-    checked = !!selected.length, {
+}) => {
+
+  console.log(dropdown)
+
+  const {
+    context = 'option',
+    name,
+    options = [],
+    selected = [],
+    onChange,
+    checked,
+  } = dropdown,
+    id = [context, name, 'none'].join('-'),
+    {
       dropdownRef,
       expandList,
       collapseList,
       toggleList,
       dropdownHeight,
       isExpanded
-    } = dropdown,
+    } = useCollapsible(dropdown),
 
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
     selectedLabel = checked ? selected[0] : `Select ${name}`;
-
   return (
     <DROPDOWN
       ref={dropdownRef}
@@ -78,20 +62,11 @@ function OptionCheckList({
         deselect={true}
         deselectedLabel={checked ? `Deselect ${name}` : `Select ${name}`}
         onChange={onChange}
-        ListItem={CheckboxLabel}
+        ListItem={DropdownLabel}
       />
     </DROPDOWN>
-  )
-}
+  );
 
-const dropdownType = {
-  select: OptionSelectList,
-  ul: OptionCheckList
-};
-
-const Dropdown = ({ type = 'ul', ...dropdown }) => {
-  const DropdownComponent = dropdownType[type];
-
-  return <DropdownComponent {...dropdown} {...useCollapsible(dropdown)} />;
+  // <DropdownComponent {...dropdown} {...useCollapsible(dropdown)} />;
 }
 export default Dropdown;

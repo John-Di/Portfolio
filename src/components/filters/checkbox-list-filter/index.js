@@ -45,7 +45,17 @@ export default function CheckboxListFilter({
   return (
     <LIST
       ref={dropdownRef}
+      dropdownHeight={dropdownHeight}
     >
+      <TOGGLE
+        isExpanded={isExpanded}
+        htmlFor={id}
+        onClick={toggleList}
+      >
+        <SPAN>
+          {selectedLabel}
+        </SPAN>
+      </TOGGLE>
       <CheckList
         context={'product-option'}
         options={options}

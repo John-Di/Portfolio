@@ -47,6 +47,7 @@ export const DROPDOWN = styled.li`
   ${ListReset}
   float: left;
   list-style: none;
+  margin: 0.5em 0;
   margin-right: 10px;
   position: relative;
   z-index: 1;

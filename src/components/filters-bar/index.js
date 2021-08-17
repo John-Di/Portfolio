@@ -12,13 +12,13 @@ import CheckboxListFilter from "../filters/checkbox-list-filter";
 import DropdownFilter from "../filters/dropdown-filter";
 
 const OptionType = {
-  'Color': CheckboxListFilter,
-  'Size': DropdownFilter
+  'Color': DropdownFilter,
+  'Size': CheckboxListFilter
 };
 
 const ItemType = {
-  'Color': CHECKBOXLIST,
-  'Size': DROPDOWN
+  'Color': DROPDOWN,
+  'Size': CHECKBOXLIST
 };
 
 export default function FiltersBar() {
@@ -38,8 +38,8 @@ export default function FiltersBar() {
       ))}
       <UL>
         {arrayToComponentSiblings(Object.entries(options), ([name, values], i) => {
-          const LI = DROPDOWN;
-          const El = DropdownFilter;
+          const LI = ItemType[name];
+          const El = OptionType[name];
           return (
             <LI key={i}>
               <El
