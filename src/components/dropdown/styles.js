@@ -92,34 +92,52 @@ export const TOGGLE = styled.button`
     }
 
     span + span {
-      border-right-color: white;
-      border-bottom-color: white;
-      border-color-right: white;
-      border-color-bottom: white;
-      transition: border-color 0.05s linear 0.2s;
+      transform: translateY(-35%);
+
+      &::before {
+        border-right-color: white;
+        border-bottom-color: white;
+        border-color-right: white;
+        border-color-bottom: white;
+        transform: rotateZ(-135deg);
+        transition: border-color 0.05s linear 0.2s, transform 0.2s ease;
+      }
     }
   }
 `;
 
 export const CHEVRON = styled.span`
-  content: '';
   position: absolute;
-  right: 1em;
+  right: 1.25em;
   top: 50%;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  width: 0.75em;
-  height: 0.75em;
-  transition: border-color 0.05s linear 0.05s;
-  transform: rotateZ(-45deg) translate(5%,-65%);
+  width: 0.875em;
+  height: 0.875em;
+  transform: translateY(-75%);
+  transition: transform 0.2s ease;
 
   ${({ isExpanded = false }) => conditionalProp(isExpanded, `
-    border-right-color: white;
-    border-bottom-color: white;
-    border-color-right: white;
-    border-color-bottom: white;
-    transition: border-color 0.05s linear 0.2s;
+    transform: translateY(-35%);
   `)}
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotateZ(45deg);
+    transition: border-color 0.05s linear 0.05s, transform 0.2s ease;
+
+    ${({ isExpanded = false }) => conditionalProp(isExpanded, `
+      border-right-color: white;
+      border-bottom-color: white;
+      border-color-right: white;
+      border-color-bottom: white;
+      transform: rotateZ(-135deg);
+      transition: border-color 0.05s linear 0.2s, transform 0.2s ease;
+    `)}
+  }
 `;
 
 export const SPAN = styled.span`
