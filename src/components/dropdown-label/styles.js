@@ -83,13 +83,6 @@ export const LABEL = styled.label`
     &::before {
       width: calc(100% + ${borderWidth * 2}px);
     }
-
-    &::after {
-      border-right-color: white;
-      border-bottom-color: white;
-      border-color-right: white;
-      border-color-bottom: white;
-    }
   }
 `;
 

@@ -80,16 +80,6 @@ export const TOGGLE = styled.button`
   }
 
   &::after {
-    content: '';
-    position: absolute;
-    right: 1em;
-    top: 50%;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-    width: 1em;
-    height: 1em;
-    transition: border-color 0.05s linear 0.05s;
-    transform: rotateZ(-45deg) translateY(-50%);
   }
 
   ${({ isExpanded = false }) => conditionalProp(isExpanded, `&,`)}
@@ -101,7 +91,7 @@ export const TOGGLE = styled.button`
       width: calc(100% + ${borderWidth * 2}px);
     }
 
-    &::after {
+    span + span {
       border-right-color: white;
       border-bottom-color: white;
       border-color-right: white;
@@ -109,6 +99,27 @@ export const TOGGLE = styled.button`
       transition: border-color 0.05s linear 0.2s;
     }
   }
+`;
+
+export const CHEVRON = styled.span`
+  content: '';
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 0.75em;
+  height: 0.75em;
+  transition: border-color 0.05s linear 0.05s;
+  transform: rotateZ(-45deg) translate(5%,-65%);
+
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `
+    border-right-color: white;
+    border-bottom-color: white;
+    border-color-right: white;
+    border-color-bottom: white;
+    transition: border-color 0.05s linear 0.2s;
+  `)}
 `;
 
 export const SPAN = styled.span`

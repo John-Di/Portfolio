@@ -3,7 +3,7 @@ import {
   LABEL,
   INPUT,
   SPAN,
-  CHECKMARK
+  CHEVRON
 } from './styles';
 
 
@@ -22,7 +22,6 @@ const DropdownLabel = ({ id, name, value, isCurrent = false, onChange, checked =
         checked={checked}
         value={value}
         onChange={onChange} />
-      <CHECKMARK checked={checked} />
       <SPAN>
         {label}
       </SPAN>

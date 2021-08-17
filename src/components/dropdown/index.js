@@ -7,7 +7,8 @@ import DropdownLabel from "../dropdown-label";
 import {
   SPAN,
   TOGGLE,
-  DROPDOWN
+  DROPDOWN,
+  CHEVRON
 } from './styles';
 
 const Dropdown = ({
@@ -53,6 +54,7 @@ const Dropdown = ({
         <SPAN>
           {selectedLabel}
         </SPAN>
+        <CHEVRON isExpanded={isExpanded} />
       </TOGGLE>
       <CheckList
         context={'product-option'}
