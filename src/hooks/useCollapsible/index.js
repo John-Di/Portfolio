@@ -3,8 +3,22 @@ import {
 } from "react";
 import collapisbleReducer, { actionTypes } from "./reducer";
 
+/**
+ * Returns the element height including margins
+ * @param element - element
+ * @returns {number}
+ */
+const outerHeight = (element) => {
+  const height = element.offsetHeight,
+    style = window.getComputedStyle(element)
+
+  return ['top', 'bottom']
+    .map(side => parseInt(style[`margin-${side}`]))
+    .reduce((total, side) => total + side, height)
+}
+
 const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offsetWidth;
-const getDropdownHeight = (height, li) => height + li.scrollHeight;
+const getDropdownHeight = (height, li) => height + outerHeight(li);
 
 function useCollapsible({
   name,
