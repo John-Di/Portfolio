@@ -40,7 +40,7 @@ export default function CheckboxListFilter({
 
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
-    selectedLabel = checked ? selected[0] : `Select ${name}`;
+    selectedLabel = checked ? `${name} (${selected.length})` : `Select ${name}`;
 
   return (
     <LIST
