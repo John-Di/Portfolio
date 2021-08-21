@@ -3,7 +3,7 @@ import CheckList from "../../../components/check-list";
 import CollectionContext from "../../../contexts/CollectionContext";
 import useCollapsible from "../../../hooks/useCollapsible";
 import CheckboxLabel from "../../checkbox-label";
-import { LIST, TOGGLE, SPAN } from "./styles";
+import { LIST, TOGGLE, SPAN, CHEVRON } from "./styles";
 
 export default function CheckboxListFilter({
   context = 'option',
@@ -55,6 +55,7 @@ export default function CheckboxListFilter({
         <SPAN>
           {selectedLabel}
         </SPAN>
+        <CHEVRON isExpanded={isExpanded} />
       </TOGGLE>
       <CheckList
         context={'product-option'}

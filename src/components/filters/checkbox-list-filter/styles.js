@@ -7,7 +7,7 @@ const borderWidth = 2;
 export const LIST = styled.div`
   margin: -0.5em 0;
   position: relative;
-  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
+  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 2}em`, '100%')};
 
   ul {
     position: absolute;
@@ -55,6 +55,7 @@ export const TOGGLE = styled.button`
   text-decoration: none;
   border-bottom: ${borderWidth}px solid #000000;
   letter-spacing: 1px;
+  min-width: 15em;
   padding: 0.375em 0;
   padding-right: 0.5em;
   display: block;
@@ -69,10 +70,57 @@ export const TOGGLE = styled.button`
     top: 14px;
   }
 
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `&,`)}
+  &:hover {
+
+    &::before {
+      width: calc(100% + ${borderWidth * 2}px);
+    }
+
+    span + span {
+      transform: translateY(-35%);
+
+      &::before {
+        transform: rotateZ(-135deg);
+        transition: border-color 0.05s linear 0.2s, transform 0.2s ease;
+      }
+    }
+  }
 `;
 
 export const SPAN = styled.span`
   display: block;
   position: relative;
   white-space: nowrap;
+`;
+
+
+export const CHEVRON = styled.span`
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  width: 0.875em;
+  height: 0.875em;
+  transform: translateY(-75%);
+  transition: transform 0.2s ease;
+
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `
+    transform: translateY(-35%);
+  `)}
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotateZ(45deg);
+    transition: border-color 0.05s linear 0.05s, transform 0.2s ease;
+
+    ${({ isExpanded = false }) => conditionalProp(isExpanded, `
+      transform: rotateZ(-135deg);
+      transition: border-color 0.05s linear 0.2s, transform 0.2s ease;
+    `)}
+  }
 `;

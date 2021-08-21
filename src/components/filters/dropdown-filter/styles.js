@@ -27,7 +27,7 @@ const dropdownStyles = () => `
 `;
 
 export const DROPDOWN = styled.div`
-  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
+  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 2}em`, '100%')};
 
   label {
     ${dropdownStyles}

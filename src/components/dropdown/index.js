@@ -24,7 +24,6 @@ const Dropdown = ({
     options = [],
     selected = [],
     onChange,
-    checked,
   } = dropdown,
     id = [context, name, 'none'].join('-'),
     {
@@ -36,9 +35,11 @@ const Dropdown = ({
       isExpanded
     } = useCollapsible(dropdown),
 
+    checked = selected.length,
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
     selectedLabel = checked ? selected[0] : `Select ${name}`;
+
   return (
     <DROPDOWN
       ref={dropdownRef}
