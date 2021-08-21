@@ -24,6 +24,7 @@ const Dropdown = ({
     options = [],
     selected = [],
     onChange,
+    icon
   } = dropdown,
     id = [context, name, 'none'].join('-'),
     {

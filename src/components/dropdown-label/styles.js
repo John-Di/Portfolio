@@ -83,6 +83,15 @@ export const LABEL = styled.label`
     &::before {
       width: calc(100% + ${borderWidth * 2}px);
     }
+
+    span:last-of-type {
+
+      &::before,
+      &::after {
+        background: white;
+        transition: background-color 0.01s linear 0.1375s;
+      }
+    }
   }
 `;
 

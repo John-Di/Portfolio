@@ -20,25 +20,12 @@ const dropdownStyles = () => `
   &:hover {
     color: #ffffff;
   }
-
-  i {
-    font-size: 12px !important;
-    position: absolute;
-    right: 10px;
-    top: 14px;
-  }
-
 `;
 
 export const LABEL = styled.label`
   ${ButtonReset}
   ${dropdownStyles}
 
-
-  ${({ isCurrent }) => conditionalProp(isCurrent, `
-    background: #000000;
-    color: #ffffff;
-  `)}
 
   ${({ isCurrent }) => conditionalProp(isCurrent, `&,`)}
   &:hover {
@@ -50,8 +37,70 @@ export const LABEL = styled.label`
 export const INPUT = styled.input`
   ${VisuallyHidden}
   cursor: pointer;
-`
-export const CHECKMARK = styled.span`
+`;
+
+export const CHEVRON = styled.span`
+  position: absolute;
+  right: 1.25em;
+  top: 50%;
+  width: 0.875em;
+  height: 0.875em;
+  transform: translateY(-75%);
+  transition: transform 0.2s ease;
+
+  ${({ isExpanded = false }) => conditionalProp(isExpanded, `
+    transform: translateY(-35%);
+  `)}
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotateZ(45deg);
+    transition: border-color 0.05s linear 0.05s, transform 0.2s ease;
+
+    ${({ isExpanded = false }) => conditionalProp(isExpanded, `
+      border-right-color: white;
+      border-bottom-color: white;
+      border-color-right: white;
+      border-color-bottom: white;
+      transform: rotateZ(-135deg);
+      transition: border-color 0.05s linear 0.2s, transform 0.2s ease;
+    `)}
+  }
+`;
+
+export const X = styled.span`
+  position: absolute;
+  right: 1.0625em;
+  top: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px;
+    top: 50%;
+    left: 50%;
+    background: black;
+    transition: background-color 0.01s linear 0s;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotateZ(-45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotateZ(45deg);
+  }
 `;
 
 export const SPAN = styled.span`

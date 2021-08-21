@@ -1,5 +1,9 @@
 import React from "react";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
+import {
+  CHEVRON,
+  X
+} from './styles';
 
 export default function CheckList({
   context = 'option',
@@ -25,11 +29,13 @@ export default function CheckList({
             value={''}
             label={deselectedLabel ? deselectedLabel : `Select ${name}`}
             onChange={onChange}
+            icon={!noSelection ? <X /> : undefined}
           />
         </li>
       }
       {
         arrayToComponentSiblings(options, (value, i) => {
+          const checked = !!~selected.indexOf(value);
           return (
             <li style={{ 'position': 'relative' }}>
               <ListItem
@@ -38,7 +44,7 @@ export default function CheckList({
                 name={name}
                 value={value}
                 label={value}
-                checked={!!~selected.indexOf(value)}
+                checked={checked}
                 onChange={onChange}
                 key={`${name}-${value}`}
               />

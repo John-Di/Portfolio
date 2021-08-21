@@ -106,6 +106,12 @@ export const TOGGLE = styled.button`
   }
 `;
 
+export const SPAN = styled.span`
+  display: block;
+  position: relative;
+  white-space: nowrap;
+`;
+
 export const CHEVRON = styled.span`
   position: absolute;
   right: 1.25em;
@@ -138,10 +144,4 @@ export const CHEVRON = styled.span`
       transition: border-color 0.05s linear 0.2s, transform 0.2s ease;
     `)}
   }
-`;
-
-export const SPAN = styled.span`
-  display: block;
-  position: relative;
-  white-space: nowrap;
 `;
