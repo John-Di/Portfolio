@@ -7,7 +7,7 @@ const borderWidth = 2;
 export const LIST = styled.div`
   margin: -0.5em 0;
   position: relative;
-  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 2}em`, '100%')};
+  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 4}em`, '100%')};
 
   ul {
     position: absolute;
