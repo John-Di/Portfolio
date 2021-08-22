@@ -5,20 +5,24 @@ import Grid from "../grid";
 import { device } from '../../utils/variables';
 import {
   ARTICLE,
+  BODY,
+  FILTERS,
   PRODUCTS
 } from './styles';
 import Sort from "../../components/sort";
 import CollectionContext from "../../contexts/CollectionContext";
 import Filters from "../../components/filters";
 import FiltersBar from "../../components/filters-bar";
+import FiltersSideNav from "../../components/filters-side-nav";
 
 const FiltersStyles = {
   bar: FiltersBar,
+  aside: FiltersSideNav,
   test: Filters
 }
 
 // markup
-const CollectionPage = ({ filtersStyle = 'bar' }) => {
+const CollectionPage = ({ filtersStyle = 'aside' }) => {
 
   const {
     activeProducts = []
@@ -43,29 +47,37 @@ const CollectionPage = ({ filtersStyle = 'bar' }) => {
 
   return (
     <ARTICLE>
-      <Sort />
-      <FiltersComponent />
-      <PRODUCTS>
-        <Grid
-          items={activeProducts}
-          ItemMap={ProductTileMap}
-          rules={[{
-            perRow: Math.min(activeProducts, 1),
-            gap: [2, 0]
-          }, {
-            breakpoint: device.mobileXL,
-            gap: [2, 1],
-            perRow: Math.min(activeProducts, 2)
-          }, {
-            breakpoint: device.laptop,
-            gap: [2, 1],
-            perRow: Math.min(activeProducts, 3)
-          }, {
-            breakpoint: device.laptopL,
-            gap: [4, 1],
-            perRow: 4
-          }]} />
-      </PRODUCTS>
+      <br />
+      <br />
+      <br />
+      <br />
+      <BODY>
+        {/* <Sort /> */}
+        <FILTERS>
+          <FiltersComponent />
+        </FILTERS>
+        <PRODUCTS>
+          <Grid
+            items={activeProducts}
+            ItemMap={ProductTileMap}
+            rules={[{
+              perRow: Math.min(activeProducts, 1),
+              gap: [2, 0]
+            }, {
+              breakpoint: device.mobileXL,
+              gap: [2, 1],
+              perRow: Math.min(activeProducts, 2)
+            }, {
+              breakpoint: device.laptop,
+              gap: [2, 1],
+              perRow: Math.min(activeProducts, 2)
+            }, {
+              breakpoint: device.laptopL,
+              gap: [4, 1],
+              perRow: Math.min(activeProducts, 3)
+            }]} />
+        </PRODUCTS>
+      </BODY>
     </ARTICLE>
   )
 }

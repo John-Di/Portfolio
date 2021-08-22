@@ -3,7 +3,7 @@ import {
   LABEL,
   INPUT,
   SPAN,
-  CHECKMARK
+  CHECKBOX
 } from './styles';
 import CheckboxIcon from '../../images/svgs/checkbox.svg';
 
@@ -21,7 +21,7 @@ const CheckboxLabel = ({ id, name, value, isCurrent = false, onChange, checked =
         checked={checked}
         value={value}
         onChange={onChange} />
-      <CHECKMARK checked={checked} />
+      <CHECKBOX checked={checked} />
       <SPAN>
         {label}
       </SPAN>

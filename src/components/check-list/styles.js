@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import { ButtonReset } from '../../utils/Resets';
+import { device } from '../../utils/variables';
 import VisuallyHidden from '../../utils/VisuallyHidden';
 
 const dropdownStyles = () => `
-  font: 700 14px Open Sans;
+  font: 700 12px Open Sans;
   text-transform: uppercase;
   position: relative;
   text-decoration: none;
@@ -19,6 +20,11 @@ const dropdownStyles = () => `
 
   &:hover {
     color: #ffffff;
+  }
+
+
+  @media screen and ${device.laptopL} {
+    font: 700 14px Open Sans;
   }
 `;
 

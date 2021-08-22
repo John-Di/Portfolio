@@ -6,6 +6,7 @@ import { LinkReset, ListReset } from '../../utils/Resets';
 import Clearfix from '../../utils/Clearfix';
 import { device, size } from '../../utils/variables';
 import { ChicDropdownStyles } from '../../styles/Dropdowns';
+import { conditionalProp } from '../../utils/AssessProps';
 
 const assessTheme = ({ theme, ...props }) => {
   switch (theme) {
@@ -16,44 +17,50 @@ const assessTheme = ({ theme, ...props }) => {
 };
 
 export const NAV = styled.nav`
-  @media screen and ${device.laptop} {
-    margin: auto;
-    max-width: ${size.laptopL}px;
-  }
+  background: white;
+  height: 100%;
+  padding: 2em;
+  z-index: 1;
+  transition: left 0.25s, opacity 0.1s 0.25s;
 
-  padding-bottom: 27em;
+  ${props => conditionalProp(props.isOpen, `
+    left: 0;
+    transition: right 0.25s, opacity 0.1s 0s;
+    opacity: 1;
+  `, `
+    left: -100vw;
+
+    @media screen and ${device.laptop} {
+      left: calc(0% - ${size.mobileM / 16 + 1}em);
+      opacity: 0;
+    }
+  `)}
 `;
 
 export const UL = styled.ul`
   ${ListReset}
-  width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-around;
-  margin: -0.5em auto;
+  margin-right: auto;
   ${Clearfix}
 `;
 
 export const CHECKBOXLIST = styled.li`
   ${ListReset}
-  margin: 0.5em 0;
+
+  &:not(:last-of-type) {
+    margin-bottom: 2em;
+  }
+
+  button,
+  label {
+    padding: 0.5em;
+  }
 
   ul {
-    position: absolute;
-    left: 0;
-    
+    margin-top: 0.5em;
   }
-`;
-
-export const DROPDOWN = styled.li`
-  ${ListReset}
-  float: left;
-  list-style: none;
-  margin: 0.5em 0;
-  margin-right: 10px;
-  position: relative;
-  z-index: 1;
-  width: auto;
 `;
 
 export const SPAN = styled.span`

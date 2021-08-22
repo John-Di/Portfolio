@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../../utils/AssessProps';
 import { ButtonReset, ListReset } from '../../../utils/Resets';
-import { device } from '../../../utils/variables';
 
-const borderWidth = 1;
+const borderWidth = 2;
 
 export const LIST = styled.div`
   position: relative;
@@ -12,9 +11,10 @@ export const LIST = styled.div`
   ul {
     padding: 0;
     margin: 0;
-    margin-top: 0.5em;
     z-index: 0;
+    overflow: hidden;
     width: auto;
+    height: 0;
     transition: height 0.3s ease;
 
     li {
@@ -42,25 +42,27 @@ export const LIST = styled.div`
   }
 `;
 
-export const SELECTED = styled.span`
+export const TOGGLE = styled.button`
   ${ButtonReset}
-  font: 700 11px Open Sans;
+  font: 700 12px Open Sans;
   text-transform: uppercase;
   position: relative;
   text-decoration: none;
   border-bottom: ${borderWidth}px solid #000000;
   letter-spacing: 1px;
   min-width: 15em;
-  padding: 0.375em 0 0.75em;
+  padding: 0.375em 0;
   padding-right: 0.5em;
   display: block;
   width: 100%;
-  white-space: nowrap;
   text-align: left;
   transition: background color 0.3s ease, color 0.3s ease, width 0.3s ease;
 
-  @media screen and ${device.laptopL} {
-    font: 700 13px Open Sans;
+  i {
+    font-size: 12px !important;
+    position: absolute;
+    right: 10px;
+    top: 14px;
   }
 
   ${({ isExpanded = false }) => conditionalProp(isExpanded, `&,`)}
@@ -69,7 +71,22 @@ export const SELECTED = styled.span`
     &::before {
       width: calc(100% + ${borderWidth * 2}px);
     }
+
+    span + span {
+      transform: translateY(-35%);
+
+      &::before {
+        transform: rotateZ(-135deg);
+        transition: border-color 0.05s linear 0.2s, transform 0.2s ease;
+      }
+    }
   }
+`;
+
+export const SPAN = styled.span`
+  display: block;
+  position: relative;
+  white-space: nowrap;
 `;
 
 

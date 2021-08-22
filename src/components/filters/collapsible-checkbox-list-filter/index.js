@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import CheckList from "../../../components/check-list";
+import CheckList from "../../check-list";
 import CollectionContext from "../../../contexts/CollectionContext";
 import useCollapsible from "../../../hooks/useCollapsible";
 import CheckboxLabel from "../../checkbox-label";
-import { LIST, SELECTED, SPAN, CHEVRON } from "./styles";
+import { LIST, TOGGLE, SPAN, CHEVRON } from "./styles";
 
-export default function CheckboxListFilter({
+export default function CollapsibleCheckboxListFilter({
   context = 'option',
   name,
   options = [],
@@ -29,16 +29,34 @@ export default function CheckboxListFilter({
     }
   }
   const id = [context, name, 'none'].join('-'),
-    checked = !!selected.length,
+    checked = !!selected.length, {
+      dropdownRef,
+      expandList,
+      collapseList,
+      toggleList,
+      dropdownHeight,
+      isExpanded
+    } = useCollapsible({ options, name }),
+
+    onMouseEnter = expandList.bind(this),
+    onMouseLeave = collapseList.bind(this),
     selectedLabel = checked ? `${name} (${selected.length})` : `Select ${name}`;
 
   return (
-    <LIST    >
-      <SELECTED
+    <LIST
+      ref={dropdownRef}
+      dropdownHeight={dropdownHeight}
+    >
+      <TOGGLE
+        isExpanded={isExpanded}
         htmlFor={id}
+        onClick={toggleList}
       >
-        {selectedLabel}
-      </SELECTED>
+        <SPAN>
+          {selectedLabel}
+        </SPAN>
+        <CHEVRON isExpanded={isExpanded} />
+      </TOGGLE>
       <CheckList
         context={'product-option'}
         options={options}

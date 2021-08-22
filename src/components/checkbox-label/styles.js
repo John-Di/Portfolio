@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { ButtonReset } from '../../utils/Resets';
+import { device } from '../../utils/variables';
 import VisuallyHidden from '../../utils/VisuallyHidden';
 
 export const LABEL = styled.label`
@@ -24,17 +25,21 @@ export const INPUT = styled.input`
 export const SPAN = styled.span`
   position: relative;
   white-space: nowrap;
-  font-size: 0.875em;
+  font-size: 0.8125em;
   margin-left: 1em;
+
+  @media screen and ${device.laptopL} {
+    font-size: 0.9375em;
+  }
 `;
 
-export const CHECKMARK = styled.span`
+export const CHECKBOX = styled.span`
   background-color: white;
-  width: 1.25em;
-  height: 1.25em;
+  width: 1em;
+  height: 1em;
   border-radius: 27.5%;
   position: relative;
-  border: 2px solid black;
+  border: 1px solid black;
 
   &::before {
     position: absolute;

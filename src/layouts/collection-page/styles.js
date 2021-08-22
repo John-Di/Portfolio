@@ -13,14 +13,31 @@ export const ARTICLE = styled.article`
   @media screen and ${device.laptop} {
     max-width: ${size.laptopL}px;
   }
+`;
 
+export const BODY = styled.div`
+  margin: 0 -1em;
+  width: 100%;
+  ${Clearfix}
+`;
+
+
+const block = `
+  display: inline-block;
+  float: left;
+  vertical-align: top;
+  padding: 0 1em;
+`;
+
+export const FILTERS = styled.div`
+  ${block}
+  margin-top: 2em;
+  max-width: ${100 * 1 / 3}%;
 `;
 
 export const PRODUCTS = styled.div`
-  display: block;
-  width: 100%;
-  margin: auto;
-  max-width: ${size.laptopL}px;
+  ${block}
+  max-width: ${100 * 2 / 3}%;
 
   > div {
     text-align: center;
@@ -30,6 +47,8 @@ export const PRODUCTS = styled.div`
       height: auto;
 
       > li {
+        max-width: 33.3333%;
+
         article {
           position: relative;
 
