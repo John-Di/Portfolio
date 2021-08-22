@@ -31,11 +31,11 @@ const assessProps = ({ overlay, image, whiteOnHover }) => `
 
 export const HEADING = styled(GatsbyLink)`
   ${LinkReset}
-  font-size: 1.125em;
+  font-size: 1em;
   font-weight: bold;
   margin: 0;
   grid-area: title;
-  text-align: center;
+  text-align: left;
   margin-bottom: 0.25em;
   line-height: 1.25;
   width: 100%;

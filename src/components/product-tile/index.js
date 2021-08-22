@@ -43,7 +43,6 @@ export default function ProductTile({
       body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit`}
       url={url}
       state={locationState}
-      maxWidth={`${size.mobileS / 16}em`}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
     >
       <IMAGE

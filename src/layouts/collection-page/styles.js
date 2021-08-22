@@ -31,6 +31,8 @@ const block = `
 
 export const FILTERS = styled.div`
   ${block}
+  position: sticky;
+  top: 6em;
   margin-top: 2em;
   max-width: ${100 * 1 / 3}%;
 `;
@@ -63,8 +65,8 @@ export const PRODUCTS = styled.div`
           }
 
           form ul > li [type="radio"] ~ label {
-            height: 2em;
-            width: 2em;
+            height: 1.25em;
+            width: 1.25em;
             border-width: 1px;
           }
         }

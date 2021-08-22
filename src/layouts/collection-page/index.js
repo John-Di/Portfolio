@@ -61,20 +61,20 @@ const CollectionPage = ({ filtersStyle = 'aside' }) => {
             items={activeProducts}
             ItemMap={ProductTileMap}
             rules={[{
-              perRow: Math.min(activeProducts, 1),
+              perRow: 1,
               gap: [2, 0]
             }, {
               breakpoint: device.mobileXL,
               gap: [2, 1],
-              perRow: Math.min(activeProducts, 2)
+              perRow: 2
             }, {
               breakpoint: device.laptop,
               gap: [2, 1],
-              perRow: Math.min(activeProducts, 2)
+              perRow: 2
             }, {
               breakpoint: device.laptopL,
               gap: [4, 1],
-              perRow: Math.min(activeProducts, 3)
+              perRow: 3
             }]} />
         </PRODUCTS>
       </BODY>

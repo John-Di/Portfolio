@@ -44,6 +44,7 @@ const ButtonStyles = `
   cursor: pointer;
   ${ButtonReset}
   font-family: 'Open Sans', 'Roboto', 'Montserrat', serif;
+  font-size: 14px;
   font-weight: bold;
   border-style: solid;
   min-width: 5em;
