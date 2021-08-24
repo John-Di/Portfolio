@@ -35,10 +35,11 @@ export const HEADING = styled(GatsbyLink)`
   font-weight: bold;
   margin: 0;
   grid-area: title;
-  text-align: left;
-  margin-bottom: 0.25em;
+  text-align: center;
+  margin-bottom: 0.5em;
   line-height: 1.25;
   width: 100%;
+  vertical-align: middle;
 
   &:hover,
   &:focus {

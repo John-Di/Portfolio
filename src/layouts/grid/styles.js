@@ -40,7 +40,6 @@ export const CONTAINER = styled.div`
   & > ul {
     ${ListReset}
     display: inline-block;
-    width: 100%;
 
     > li {
       ${ListReset}

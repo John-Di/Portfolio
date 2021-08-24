@@ -4,6 +4,7 @@ import CollectionContext from "../../../contexts/CollectionContext";
 import useCollapsible from "../../../hooks/useCollapsible";
 import CheckboxLabel from "../../checkbox-label";
 import { LIST, TOGGLE, SPAN, CHEVRON } from "./styles";
+import useSelectable from "../../../hooks/useSelectable";
 
 export default function CollapsibleCheckboxListFilter({
   context = 'option',
@@ -36,9 +37,9 @@ export default function CollapsibleCheckboxListFilter({
       toggleList,
       dropdownHeight,
       isExpanded
-    } = useCollapsible({ options, name }),
+    } = useCollapsible({ options, name })
 
-    onMouseEnter = expandList.bind(this),
+  onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
     selectedLabel = checked ? `${name} (${selected.length})` : `Select ${name}`;
 

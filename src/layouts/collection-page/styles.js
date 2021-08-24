@@ -49,10 +49,11 @@ export const PRODUCTS = styled.div`
       height: auto;
 
       > li {
-        max-width: 33.3333%;
 
         article {
           position: relative;
+          max-width: ${240 / 16}em;
+          margin: auto;
 
           &::after {
             content: '';

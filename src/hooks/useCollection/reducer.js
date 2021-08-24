@@ -16,49 +16,50 @@ export const actionTypes = {
   reset: 'RESET'
 };
 
-const collectionReducer = (state, action) => {
-  const { type, filter = {}, sorting = 'bestSeller', options = [] } = action,
-    { filters = {} } = state,
-    { name, value } = filter;
-  switch (type) {
-    case actionTypes.add: {
-      return {
-        ...state,
-        filters: addFilter(filters, filter)
-      };
-    }
-    case actionTypes.remove: {
-      return {
-        ...state,
-        filters: removeFilter(filters, filter)
-      };
-    }
-    case actionTypes.sort: {
-      return {
-        ...state,
-        sorting
-      }
-    }
-    case actionTypes.swap: {
-      filters[name] = [];
-
-      if (value && filters[name].indexOf(value)) {
-        filters[name] = [value];
-
+const
+  collectionReducer = (state, action) => {
+    const { type, filter = {}, sorting = 'bestSeller', options = [] } = action,
+      { filters = {} } = state,
+      { name, value } = filter;
+    switch (type) {
+      case actionTypes.add: {
         return {
           ...state,
-          filters
+          filters: addFilter(filters, filter)
+        };
+      }
+      case actionTypes.remove: {
+        return {
+          ...state,
+          filters: removeFilter(filters, filter)
+        };
+      }
+      case actionTypes.sort: {
+        return {
+          ...state,
+          sorting
         }
-      } else { }
+      }
+      case actionTypes.swap: {
+        filters[name] = [];
 
-      return resetFilter(state, filters, filter, options);
-    }
-    case actionTypes.reset: return resetFilter(state, filters, filter, options);
-    default: return {
-      ...state
+        if (value && filters[name].indexOf(value)) {
+          filters[name] = [value];
+
+          return {
+            ...state,
+            filters
+          }
+        } else { }
+
+        return resetFilter(state, filters, filter, options);
+      }
+      case actionTypes.reset: return resetFilter(state, filters, filter, options);
+      default: return {
+        ...state
+      }
     }
   }
-}
 
 export { isActiveFilter };
 

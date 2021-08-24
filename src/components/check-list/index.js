@@ -1,4 +1,5 @@
 import React from "react";
+import useSelectable from "../../hooks/useSelectable";
 import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import {
   CHEVRON,
@@ -15,7 +16,14 @@ export default function CheckList({
   deselectedLabel,
   ListItem
 }) {
-  const noSelection = !selected.length;
+  const noSelection = !selected.length, {
+    dropdownRef,
+    expandList,
+    collapseList,
+    toggleList,
+    dropdownHeight,
+    isExpanded
+  } = useSelectable({ options, name });
 
   return (
     <ul>

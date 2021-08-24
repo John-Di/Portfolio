@@ -40,7 +40,6 @@ export default function ProductTile({
     <ObjectTile
       className="product-tile"
       heading={title}
-      body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit`}
       url={url}
       state={locationState}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
@@ -53,9 +52,9 @@ export default function ProductTile({
       >
         {getImage(image) && <GatsbyImage image={getImage(image)} alt={`alt`} />}
       </IMAGE>
-      <BODY>
+      {children && <BODY>
         {children}
-      </BODY>
+      </BODY>}
       <FORM>
         <ProductForm />
       </FORM>

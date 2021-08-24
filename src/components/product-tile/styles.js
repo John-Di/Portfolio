@@ -8,7 +8,6 @@ import Clearfix from '../../utils/Clearfix';
 export const IMAGE = styled(GatsbyLink)`
   width: 100%;
   grid-area: img;
-  margin-bottom: 2em;
 
   .gatsby-image-wrapper {
     max-width: 100%;
@@ -19,8 +18,8 @@ export const PRICE = styled.p`
     grid-area: price;
     font-size: 1.125em;
     text-align: center;
-    margin-bottom: 0.75em;
-    margin: 0;
+    margin: 0.5em 0;
+    vertical-align: middle;
 `;
 
 export const OPTIONS = styled.div`
@@ -58,6 +57,6 @@ export const BODY = styled.p`
 `;
 
 export const FORM = styled.div`
-  margin: 0.5em 0;
+  margin: 0;
   grid-area: form;
 `;
