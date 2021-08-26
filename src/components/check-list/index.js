@@ -28,7 +28,7 @@ export default function CheckList({
   return (
     <ul>
       {deselect &&
-        <li style={{ 'position': 'relative' }}>
+        <li>
           <ListItem
             id={[context, name, 'deselect'].join('-')}
             type="checkbox"

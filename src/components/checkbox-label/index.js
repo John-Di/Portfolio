@@ -6,9 +6,13 @@ import {
   CHECKBOX
 } from './styles';
 import CheckboxIcon from '../../images/svgs/checkbox.svg';
+import GenerateUniqueId from "../../utils/GenerateUniqueId";
+import handleize from "../../utils/handleize";
 
 
-const CheckboxLabel = ({ id, name, value, isCurrent = false, onChange, checked = false, label }) => {
+const CheckboxLabel = ({ context = 'option', name, value, isCurrent = false, onChange, checked = false, label }) => {
+  const id = handleize(`${name}-${value ? value : 'deselect'}-${GenerateUniqueId(context)}`);
+
   return (
     <LABEL
       isCurrent={checked}

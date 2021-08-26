@@ -6,6 +6,21 @@ import {
   CONTAINER
 } from './styles';
 
+
+const getOuterHeight = (element) => {
+  const height = element.offsetHeight,
+    style = window.getComputedStyle(element)
+
+  return ['top', 'bottom']
+    .map(side => parseInt(style[`margin-${side}`]))
+    .reduce((total, side) => total + side, height)
+}
+
+const getTallest = (height, li) => {
+  const tileOuterHeight = getOuterHeight(li);
+  return height > tileOuterHeight ? height : tileOuterHeight;
+};
+
 export default function Grid({
   items = [],
   ItemMap,
@@ -13,15 +28,6 @@ export default function Grid({
   selected,
   rules = []
 }) {
-
-  const outerHeight = (element) => {
-    const height = element.offsetHeight,
-      style = window.getComputedStyle(element)
-
-    return ['top', 'bottom']
-      .map(side => parseInt(style[`margin-${side}`]))
-      .reduce((total, side) => total + side, height)
-  }
   const gridRef = useRef(null);
 
   const WrapElement = (item, i) => (
@@ -29,12 +35,11 @@ export default function Grid({
       {ItemMap(item, i)}
     </li>
   );
-  const thing = () => {
+
+  const normalizeTileHeights = () => {
     if (!gridRef.current) {
       return;
     }
-
-    const getTallest = (height, li) => height > outerHeight(li) ? height : outerHeight(li);
     const totalHeight = [...gridRef.current.querySelectorAll('li')].reduce(getTallest, 0);
 
     const height = gridRef.current ? `${totalHeight / 16}em` : 'auto';
@@ -44,7 +49,7 @@ export default function Grid({
     })
 
   }
-  useEffect(thing, [])
+  useEffect(normalizeTileHeights, [])
 
   return (
     <CONTAINER rules={rules} >

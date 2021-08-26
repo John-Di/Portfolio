@@ -7,6 +7,7 @@ import {
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
 import CheckboxListFilter from "../filters/checkbox-list-filter";
+import GenerateUniqueId from "../../utils/GenerateUniqueId";
 
 export default function FiltersSideNav() {
   const {
@@ -14,7 +15,7 @@ export default function FiltersSideNav() {
     toggleFilter
   } = useContext(CollectionContext),
     onClick = (name, { target }) => toggleFilter({ name, value: target.value })
-
+  const context = GenerateUniqueId('option');
   return (
     <NAV isOpen={true}>
       {/* {arrayToComponentSiblings(Object.keys(options), (name, i) => (
@@ -27,6 +28,7 @@ export default function FiltersSideNav() {
         {arrayToComponentSiblings(Object.entries(options), ([name, values], i) => (
           <CHECKBOXLIST key={i}>
             <CheckboxListFilter
+              context={context}
               options={values}
               name={name}
             />

@@ -33,10 +33,8 @@ export default function CheckboxListFilter({
     selectedLabel = checked ? `${name} (${selected.length})` : `Select ${name}`;
 
   return (
-    <LIST    >
-      <SELECTED
-        htmlFor={id}
-      >
+    <LIST>
+      <SELECTED>
         {selectedLabel}
       </SELECTED>
       <CheckList

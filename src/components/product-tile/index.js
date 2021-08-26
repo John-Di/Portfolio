@@ -12,6 +12,7 @@ import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
 import ProductForm from "../product-form";
 import LocationContext from "../../contexts/LocationContext";
+import AdaptedImage from "../adapted-image";
 
 export default function ProductTile({
   children
@@ -29,11 +30,20 @@ export default function ProductTile({
     image
   } = variants[selectedVariantIndex];
 
+  console.log('ProductTile', image, typeof image);
+
   const values = options.filter(({ name }) => name.toLowerCase() === 'color').map(({ values }) => values).flat();
   const locationState = {
     ...state,
     product: { title },
     selectedVariantIndex
+  };
+
+  const productImage = {
+    image,
+    url,
+    locationState,
+    alt: title
   };
 
   return (
@@ -44,14 +54,7 @@ export default function ProductTile({
       state={locationState}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
     >
-      <IMAGE
-        to={url}
-        activeClassName="active"
-        partiallyActive={true}
-        state={locationState}
-      >
-        {getImage(image) && <GatsbyImage image={getImage(image)} alt={`alt`} />}
-      </IMAGE>
+      <AdaptedImage {...productImage} />
       {children && <BODY>
         {children}
       </BODY>}
