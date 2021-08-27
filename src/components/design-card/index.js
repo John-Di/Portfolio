@@ -21,8 +21,7 @@ import ChicCTA from "../chic-cta";
 export default function DesignCard({
   image,
   title,
-  products,
-  url = "#",
+  handle,
   images
 }) {
   const {
@@ -30,7 +29,7 @@ export default function DesignCard({
   } = useContext(LocationContext);
   // console.log('DesignCard', image);
 
-
+  const url = `/designs/${handle}`;
   // const values = options.filter(({ name }) => name.toLowerCase() === 'color').map(({ values }) => values).flat();
   const locationState = {
     ...state,
@@ -44,15 +43,15 @@ export default function DesignCard({
       expandList,
       collapseList,
       isExpanded
-    } = useCollapsible({ adjust: slideOverlay }),
+    } = useCollapsible({ adjust: slideOverlay.bind(this) }),
     designImage = {
       url,
       locationState,
       image,
-      src: image.url
+      src: image && image.url ? image.url : image
     },
-    onMouseEnter = e => { console.log('onMouseEnter'); expandList() },
-    onMouseLeave = e => { console.log('onMouseLeave'); collapseList() };
+    onMouseEnter = expandList,
+    onMouseLeave = collapseList;
   return (
     <CARD
       className="design-card"
@@ -64,7 +63,7 @@ export default function DesignCard({
     >
       <IMAGE
         isExpanded={isExpanded}>
-        <AdaptedImage {...designImage} />
+        <AdaptedImage {...designImage} handle={handle} />
       </IMAGE>
       <FADEINOVERLAY
         isExpanded={isExpanded}

@@ -22,6 +22,7 @@ export const LinkReset = `
   padding: 0;
   outline: 0;
   color: black;
+  pointer-events: auto;
 `;
 
 export const TableReset = `

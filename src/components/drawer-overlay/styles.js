@@ -11,7 +11,6 @@ import BasicContrast from '../../utils/BasicContrast';
 export const CARD = styled.div`
   margin: auto;
   display: grid;
-  grid-template: 'img img' auto 'title title' auto / 1fr 1fr;
   padding: 0;
   position: relative;
   overflow: hidden;
@@ -95,7 +94,7 @@ export const FADEINOVERLAY = styled.button`
 
 `;
 
-export const WHIPEINOVERLAY = styled.div`
+export const DRAWER = styled.div`
   position: absolute;
   left: 0;
   top: 0;
@@ -103,7 +102,7 @@ export const WHIPEINOVERLAY = styled.div`
   height: 100%;
   z-index: 1;
   transform: translateY(100%);
-  transition: transform 0.5s ease;
+  transition: transform 0.125s ease;
   pointer-events: none;
   color: ${BasicContrast('black')};
 

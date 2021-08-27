@@ -4,16 +4,20 @@ import DesignsPage from "../layouts/designs-page";
 import CollectionProvider from "../providers/CollectionProvider";
 import ShopPageTemplate from "./shop-page";
 
-const CollectionTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
-  const products = data.pageContext.products.map(({ node }) => node);
+const DesignTemplate = ({ location, children, activeHeader = false, hasCart = false, cart = {}, ...data }) => {
+  const {
+    products = [],
+    ...design
+  } = data.pageContext,
+    titles = products.map(({ title }) => title);
 
   return (
     <ShopPageTemplate location={location} >
       <CollectionProvider products={products}>
-        <CollectionPage products={products} />
+        <CollectionPage {...design} />
       </CollectionProvider>
     </ShopPageTemplate>
   )
 }
 
-export default CollectionTemplate;
+export default DesignTemplate;

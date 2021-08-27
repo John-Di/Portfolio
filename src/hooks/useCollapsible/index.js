@@ -41,7 +41,7 @@ function useCollapsible({
 
   const items = collapsibleRef.current ? [...collapsibleRef.current.querySelectorAll('li')] : [];
 
-  useEffect(adjust.bind(this, collapsibleRef.current, collapsibleRef.current && isExpanded), [isExpanded, items])
+  useEffect(adjust.bind(this, collapsibleRef.current, collapsibleRef.current && isExpanded), [isExpanded, items]);
 
   return {
     ...reducers,

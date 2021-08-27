@@ -38,7 +38,7 @@ export default function CollapsibleCheckboxListFilter({
       toggleList,
       dropdownHeight,
       isExpanded
-    } = useCollapsible({ adjust: adjustDropdownDimensions })
+    } = useCollapsible({ adjust: adjustDropdownDimensions.bind(this) })
 
   onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),

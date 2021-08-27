@@ -74,6 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
+  const handleize = (str) => str.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "");
 
   const products = result.data.allShopifyProduct.edges.map(({ node }) => {
     const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
@@ -91,6 +92,25 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     });
   });
+  const getRandomImage = (seed, width = 800, height = 800) => `https://picsum.photos/seed/${seed}/${width}/${height}`;
+  const randomIntegerEx = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+  const randomImage = (index = 0) => getRandomImage(randomIntegerEx(0, 10000) + index, 1920, 1920);
+
+  const designs = [
+    {
+      title: "Cookie",
+      handle: "cookie",
+      image: randomImage(1),
+      products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf('Cookie'))
+    },
+    {
+      title: "Strawberry",
+      handle: "strawberry",
+      image: randomImage(2),
+      products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf('Strawberry'))
+    }
+  ];
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
@@ -116,5 +136,24 @@ exports.createPages = async ({ graphql, actions }) => {
         products: collectionProducts,
       },
     })
-  })
+  });
+
+  createPage({
+    path: `/designs/all`,
+    component: path.resolve(`./src/templates/gallery.js`),
+    context: {
+      designs
+    }
+  });
+
+  designs.forEach((design) => {
+    createPage({
+      path: `/designs/${design.handle}`,
+      component: path.resolve(`./src/templates/design.js`),
+      context: {
+        ...design,
+        products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf(design.title))
+      }
+    })
+  });
 }

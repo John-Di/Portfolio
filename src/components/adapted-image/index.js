@@ -3,9 +3,18 @@ import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import {
   IMAGE
 } from './styles';
-import { randomImage } from "../../utils/randoms";
 
-export default function AdaptedImage({ locationState, url = "#", image, src = randomImage(), alt = 'Random Placeholder Image' }) {
+const images = {
+  "strawberry": <StaticImage src={"../../images/designs/strawberry_200x.png"} alt={'strawberry'} />,
+  "cookie": <StaticImage src={"../../images/designs/cookie_200x.png"} alt={'strawberry'} />,
+  "default": <StaticImage src={"../../images/designs/strawberry_200x.png"} alt={'strawberry'} />,
+}
+
+function getStaticImage(handle = 'default') {
+  return images[handle];
+};
+
+export default function AdaptedImage({ locationState, url = "#", image, handle, alt = 'Random Placeholder Image' }) {
 
   return (
     <IMAGE
@@ -16,7 +25,7 @@ export default function AdaptedImage({ locationState, url = "#", image, src = ra
     >
       {getImage(image) ?
         <GatsbyImage image={getImage(image)} alt={alt} /> :
-        <StaticImage src={src} alt={alt} />}
+        getStaticImage(handle)}
     </IMAGE>
   );
 }

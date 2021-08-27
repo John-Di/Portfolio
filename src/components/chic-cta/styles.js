@@ -84,6 +84,7 @@ const ButtonStyles = `
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.2px;
+  white-space: nowrap;
   transition: background-color 0.25s 0s, color 0.25s 0s, border-color 0.25s 0s;
 `
 
@@ -101,7 +102,7 @@ export const LINK = styled(GatsbyLink)`
 export const LIGHTLINK = styled(GatsbyLink)`
   ${LinkReset}
   ${ButtonStyles}
-  ${PropMap.bind(this, LightChicButtonStyles)} 
+  ${PropMap.bind(this, LightChicButtonStyles)}
 `;
 
 export const EXTERNAL = styled.a`

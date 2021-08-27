@@ -6,12 +6,10 @@ import {
   PAGE
 } from './styles';
 import Header from '../../components/header';
-import Breadcrumbs from '../../components/breadcrumbs';
 import PageContext from "../../contexts/PageContext";
-import Overlay from "../../components/overlay";
 import QuickCart from "../../components/quick-cart";
-import SiteThemeContext from '../../contexts/SiteThemeContext';
 import CartFlyoutContext from "../../contexts/CartFlyoutContext";
+import BasicOverlay from "../../components/basic-overlay";
 
 // styles
 const pageStyles = {
@@ -41,7 +39,7 @@ const Page = ({ children }) => {
         {/* <Breadcrumbs /> */}
         {children}
       </main>
-      {useContext(CartFlyoutContext) && <Overlay />}
+      {useContext(CartFlyoutContext) && <BasicOverlay />}
       <QuickCart />
       <BackToTop isActive={scrollTop > 0} />
     </PAGE>
