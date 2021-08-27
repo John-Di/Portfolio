@@ -1,7 +1,6 @@
 import {
-  useEffect, useRef, useState, useReducer
+  useEffect, useRef, useReducer
 } from "react";
-import { adjustDropdownDimensions } from "./helpers";
 import collapisbleReducer, { actionTypes } from "./reducer";
 
 
@@ -40,8 +39,9 @@ function useCollapsible({
   };
 
   const items = collapsibleRef.current ? [...collapsibleRef.current.querySelectorAll('li')] : [];
+  const adjustElement = adjust.bind(this, collapsibleRef.current, collapsibleRef.current && isExpanded);
 
-  useEffect(adjust.bind(this, collapsibleRef.current, collapsibleRef.current && isExpanded), [isExpanded, items]);
+  useEffect(adjustElement, [collapsibleRef, isExpanded, items]);
 
   return {
     ...reducers,

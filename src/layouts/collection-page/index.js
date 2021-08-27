@@ -44,13 +44,9 @@ const CollectionPage = ({ filtersStyle = 'aside' }) => {
   };
 
   const FiltersComponent = FiltersStyles[filtersStyle];
-
   return (
     <ARTICLE>
-      <br />
-      <br />
-      <br />
-      <br />
+      <p>collection-page</p>
       <BODY>
         {/* <Sort /> */}
         <FILTERS>

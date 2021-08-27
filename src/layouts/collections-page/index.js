@@ -60,10 +60,7 @@ const CollectionsPage = ({ filtersStyle = 'aside' }) => {
 
   return (
     <ARTICLE>
-      <br />
-      <br />
-      <br />
-      <br />
+      <p>collections-page</p>
       <BODY>
         {/* <Sort /> */}
         <FILTERS>

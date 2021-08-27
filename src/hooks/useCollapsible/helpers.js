@@ -8,7 +8,7 @@ const outerHeight = (element) => {
     style = window.getComputedStyle(element)
 
   return ['top', 'bottom']
-    .map(side => parseInt(style[`margin-${side}`]))
+    .map(side => ['margin'].map(type => parseInt(style[`${type}-${side}`])))
     .reduce((total, side) => total + side, height)
 }
 
@@ -17,10 +17,10 @@ const getDropdownHeight = (height, li) => height + outerHeight(li);
 
 const getOuterHeight = (element) => {
   const height = element.offsetHeight,
-    style = window.getComputedStyle(element)
+    style = window.getComputedStyle(element);
 
   return ['top', 'bottom']
-    .map(side => parseInt(style[`margin-${side}`]))
+    .map(side => ['margin'].map(type => parseInt(style[`${type}-${side}`])).reduce((acc, k, i) => acc + k, 0))
     .reduce((total, side) => total + side, height)
 }
 
@@ -45,23 +45,27 @@ export const slideOverlay = (el, isExpanded) => {
 
 };
 
-export const normalizeTileHeights = (el, isExpanded) => {
-  if (!el) {
+export const normalizeTileHeights = (listEl, isExpanded) => {
+
+  console.log('normalizeTileHeights', listEl);
+  if (!listEl) {
     return;
   }
-  console.log('el', el, el.children);
 
-  const { children } = el;
-  let tallest = 0;//[...el.childNodes].querySelector('article').reduce(getTallest, 0);
+  const items = Array.from(listEl.children);
 
-  for (let li of Array.from(children)) {
-    console.log(li, li.querySelector('article'));
-    tallest = getTallest(tallest, li.children[0]);
+  const { children } = listEl;
+  let tallest = 0;
+  let i = 0;
+
+  for (let li of items) {
+    let height = getOuterHeight(children[i++]);
+    tallest = tallest >= height ? tallest : height;
   }
 
-  const height = el ? `${(tallest / 16) + 2}em` : 'auto';
+  const height = `${(tallest / 16)}${tallest === 0 ? '' : 'em'}`;
 
-  Array.from(el.children).forEach(li => {
+  items.forEach(li => {
     li.style.height = height;
   })
 

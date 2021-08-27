@@ -54,6 +54,7 @@ export const PRODUCTS = styled.div`
           position: relative;
           max-width: ${240 / 16}em;
           margin: auto;
+          height: 100%;
 
           &::after {
             content: '';

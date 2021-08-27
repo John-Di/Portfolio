@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import useCollapsible from "../../hooks/useCollapsible";
-import { normalizeTileHeights } from "../../hooks/useCollapsible/helpers";
+import React from "react";
 import {
   arrayToComponentSiblings
 } from '../../utils/dom-builder';
 import {
   CONTAINER
 } from './styles';
+import useGrid from "./useGrid";
 
 export default function Grid({
   items = [],
@@ -15,20 +14,14 @@ export default function Grid({
   selected,
   rules = []
 }) {
-  const
-    {
-      collapsibleRef,
-      expandList,
-      collapseList,
-      isExpanded
-    } = useCollapsible({ adjust: normalizeTileHeights.bind(this) });
+  const {
+    gridRef
+  } = useGrid();
 
   const WrapElement = (item, i) => (
     <li
       key={i}
       selected={selected === i}
-      onMouseEnter={expandList}
-      onMouseLeave={collapseList}
     >
       {ItemMap(item, i)}
     </li>
@@ -36,7 +29,7 @@ export default function Grid({
 
   return (
     <CONTAINER rules={rules} >
-      <ul ref={collapsibleRef} className={className}>
+      <ul ref={gridRef} className={className}>
         {arrayToComponentSiblings(items, WrapElement)}
       </ul>
     </CONTAINER>

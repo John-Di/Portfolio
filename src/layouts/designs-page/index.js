@@ -47,10 +47,7 @@ const DesignsPage = ({ filtersStyle = 'aside', designs }) => {
 
   return (
     <ARTICLE>
-      <br />
-      <br />
-      <br />
-      <br />
+      <p>designs-page</p>
       <BODY>
         {/* <Sort /> */}
         {/* <FILTERS>
