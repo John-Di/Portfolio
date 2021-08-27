@@ -17,7 +17,7 @@ export default function CheckList({
   ListItem
 }) {
   const noSelection = !selected.length, {
-    dropdownRef,
+    collapsibleRef,
     expandList,
     collapseList,
     toggleList,

@@ -5,6 +5,7 @@ import useCollapsible from "../../../hooks/useCollapsible";
 import CheckboxLabel from "../../checkbox-label";
 import { LIST, TOGGLE, SPAN, CHEVRON } from "./styles";
 import useSelectable from "../../../hooks/useSelectable";
+import { adjustDropdownDimensions } from "../../../hooks/useCollapsible/helpers";
 
 export default function CollapsibleCheckboxListFilter({
   context = 'option',
@@ -31,13 +32,13 @@ export default function CollapsibleCheckboxListFilter({
   }
   const id = [context, name, 'none'].join('-'),
     checked = !!selected.length, {
-      dropdownRef,
+      collapsibleRef,
       expandList,
       collapseList,
       toggleList,
       dropdownHeight,
       isExpanded
-    } = useCollapsible({ options, name })
+    } = useCollapsible({ adjust: adjustDropdownDimensions })
 
   onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
@@ -45,7 +46,7 @@ export default function CollapsibleCheckboxListFilter({
 
   return (
     <LIST
-      ref={dropdownRef}
+      ref={collapsibleRef}
       dropdownHeight={dropdownHeight}
     >
       <TOGGLE

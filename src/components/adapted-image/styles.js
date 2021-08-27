@@ -6,12 +6,17 @@ import Clearfix from '../../utils/Clearfix';
 
 
 export const IMAGE = styled(GatsbyLink)`
+  display: block;
   width: 100%;
   grid-area: img;
   margin-bottom: 1em;
 
   .gatsby-image-wrapper {
     max-width: 100%;
+  }
+
+  * {
+    pointer-events: none;
   }
 `;
 

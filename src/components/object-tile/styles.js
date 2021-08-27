@@ -53,7 +53,7 @@ export const TILE = styled.article`
   ${props => conditionalProp(props.maxWidth, `max-width: ${props.maxWidth};`)}
   margin: auto;
   display: grid;
-  grid-template: 'img img' 2fr 'title title' auto 'price price' auto 'body body' auto 'form form' auto 'cta cta' auto / 1fr 1fr;
+  grid-template: 'img img' auto 'title title' auto 'price price' auto 'body body' auto 'form form' auto 'cta cta' auto / 1fr 1fr;
   padding: 0 1em 2em;
 `;
 

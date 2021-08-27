@@ -28,7 +28,7 @@ const Dropdown = ({
   } = dropdown,
     id = [context, name, 'none'].join('-'),
     {
-      dropdownRef,
+      collapsibleRef,
       expandList,
       collapseList,
       toggleList,
@@ -43,7 +43,7 @@ const Dropdown = ({
 
   return (
     <DROPDOWN
-      ref={dropdownRef}
+      ref={collapsibleRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       dropdownHeight={dropdownHeight}

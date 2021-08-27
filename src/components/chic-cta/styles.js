@@ -7,6 +7,7 @@ import AssessProps, {
   conditionalProp
 } from '../../utils/AssessProps';
 import { ButtonReset, LinkReset } from '../../utils/Resets';
+import BasicContrast from '../../utils/BasicContrast';
 
 const ChicButtonStyles = ({
   modest = { isModest: false },
@@ -39,6 +40,38 @@ const ChicButtonStyles = ({
   }
 `;
 
+
+const LightChicButtonStyles = ({
+  modest = { isModest: false },
+  maxWidth = '15em',
+  backgroundColor = null,
+  primaryColor = '#000000',
+}) => `
+
+  ${conditionalProp(maxWidth, `
+    max-width: ${maxWidth};
+  `)}
+
+  ${AssessProps({
+  backgroundColor,
+  borderColor: '#000000',
+  textColor: '#000000',
+  borderWidth: '0.25em'
+})}
+
+  padding:${conditionalProp(modest.isModest, '0.25em 2em', `0.75em 2em`)};
+
+  &:hover,
+  &:focus {
+    ${AssessProps({
+  backgroundColor: primaryColor,
+  borderColor: BasicContrast(primaryColor),
+  textColor: BasicContrast(primaryColor),
+  borderWidth: '0.25em'
+})}
+  }
+`;
+
 const ButtonStyles = `
   display: inline-block;
   cursor: pointer;
@@ -63,6 +96,12 @@ export const LINK = styled(GatsbyLink)`
   ${LinkReset}
   ${ButtonStyles}
   ${PropMap.bind(this, ChicButtonStyles)}
+`;
+
+export const LIGHTLINK = styled(GatsbyLink)`
+  ${LinkReset}
+  ${ButtonStyles}
+  ${PropMap.bind(this, LightChicButtonStyles)} 
 `;
 
 export const EXTERNAL = styled.a`

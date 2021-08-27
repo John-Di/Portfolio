@@ -1,10 +1,11 @@
 export const actionTypes = {
   expand: 'EXPAND',
-  lock: 'LOCK'
+  lock: 'LOCK',
+  height: 'HEIGHT'
 };
 
 const collapisbleReducer = (state, action) => {
-  const { type, isExpanded = false, isLocked = false } = action;
+  const { type, isExpanded = false, isLocked = false, height = 0 } = action;
 
   switch (type) {
     case actionTypes.expand: {
@@ -15,8 +16,15 @@ const collapisbleReducer = (state, action) => {
     }
     case actionTypes.lock: {
       return {
+        ...state,
         isExpanded: isLocked,
         isLocked
+      }
+    }
+    case actionTypes.height: {
+      return {
+        ...state,
+        height
       }
     }
     default: return state

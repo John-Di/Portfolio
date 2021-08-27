@@ -1,33 +1,20 @@
 import {
   useEffect, useRef, useState, useReducer
 } from "react";
+import { adjustDropdownDimensions } from "./helpers";
 import collapisbleReducer, { actionTypes } from "./reducer";
 
-/**
- * Returns the element height including margins
- * @param element - element
- * @returns {number}
- */
-const outerHeight = (element) => {
-  const height = element.offsetHeight,
-    style = window.getComputedStyle(element)
-
-  return ['top', 'bottom']
-    .map(side => parseInt(style[`margin-${side}`]))
-    .reduce((total, side) => total + side, height)
-}
-
-const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offsetWidth;
-const getDropdownHeight = (height, li) => height + outerHeight(li);
 
 function useCollapsible({
   name,
-  options = []
+  options = [],
+  adjust
 }) {
-  const dropdownRef = useRef(null);
+  const collapsibleRef = useRef(null);
   const [{
     isExpanded = false,
-    isLocked = false
+    isLocked = false,
+    height = `auto`
   }, UpdateState] = useReducer(collapisbleReducer, {
     isExpanded: false,
     isLocked: false
@@ -45,28 +32,23 @@ function useCollapsible({
     toggleList: UpdateState.bind(this, {
       type: actionTypes.lock,
       isLocked: !isLocked
+    }),
+    setHeight: height => UpdateState({
+      type: actionTypes.height,
+      height
     })
   };
 
-  const items = dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')] : []
+  const items = collapsibleRef.current ? [...collapsibleRef.current.querySelectorAll('li')] : [];
 
-  const adjustDropdownWidth = () => {
-    if (!dropdownRef) {
-      return;
-    }
-    const width = [...dropdownRef.current.querySelectorAll('li')].reduce(getLongestWidth, 0);
-    const height = isExpanded && !!dropdownRef.current ? [...dropdownRef.current.querySelectorAll('li')].reduce(getDropdownHeight, 0) : 0;
-
-    dropdownRef.current.querySelector('ul').style.height = `${(height + (height ? 2 : 0)) / 16}em`;
-  };
-
-  useEffect(adjustDropdownWidth, [isExpanded, items])
+  useEffect(adjust.bind(this, collapsibleRef.current, collapsibleRef.current && isExpanded), [isExpanded, items])
 
   return {
     ...reducers,
-    dropdownRef,
+    collapsibleRef,
     name,
     isExpanded,
+    height,
     options
   }
 };
