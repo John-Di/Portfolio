@@ -16,7 +16,7 @@ export default function Grid({
 }) {
   const {
     gridRef
-  } = useGrid();
+  } = useGrid({ items });
 
   const WrapElement = (item, i) => (
     <li

@@ -133,6 +133,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/collections/${node.handle}`,
       component: path.resolve(`./src/templates/collection.js`),
       context: {
+        title: node.title,
         products: collectionProducts,
       },
     })

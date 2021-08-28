@@ -5,41 +5,54 @@ import { device, size } from '../../utils/variables';
 export const ARTICLE = styled.article`
   margin: 0 auto;
   width: 100%;
-  max-width: ${size.laptop}px;
-  padding: 0 4%;
   flex-grow: 1;
   ${Clearfix}
-
-  @media screen and ${device.laptop} {
-    max-width: ${size.laptopL}px;
-  }
 `;
 
-export const BODY = styled.div`
+export const BODY = styled.section`
+  max-width: ${size.laptopL}px;
+  padding: 0 4%;
+  margin: 0 auto;
+  width: 100%;
+  ${Clearfix}
+`;
+
+export const CLEARFIX = styled.div`
   margin: 0 -1em;
   width: 100%;
   ${Clearfix}
 `;
 
-
 const block = `
   display: inline-block;
-  float: left;
+  float: right;
+  margin-top: 2em;
   vertical-align: top;
   padding: 0 1em;
+
+  @media screen and ${device.laptop} {
+    float: left;
+  }
 `;
 
 export const FILTERS = styled.div`
   ${block}
   position: sticky;
   top: 6em;
-  margin-top: 2em;
-  max-width: ${100 * 1 / 3}%;
+  width: 100%;
+  float: left;
+
+  @media screen and ${device.laptop} {
+    max-width: ${100 * 1 / 4}%;
+  }
 `;
 
 export const PRODUCTS = styled.div`
   ${block}
-  max-width: ${100 * 2 / 3}%;
+
+  @media screen and ${device.laptop} {
+    max-width: ${100 * 3 / 4}%;
+  }
 
   > div {
     text-align: center;

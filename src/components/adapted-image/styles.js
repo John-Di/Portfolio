@@ -4,7 +4,6 @@ import {
 } from "gatsby";
 import Clearfix from '../../utils/Clearfix';
 
-
 export const IMAGE = styled(GatsbyLink)`
   display: block;
   width: 100%;
