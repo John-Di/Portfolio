@@ -25,13 +25,12 @@ export const CLEARFIX = styled.div`
 
 const block = `
   display: inline-block;
-  float: right;
   margin-top: 2em;
   vertical-align: top;
+  width: 100%;
   padding: 0 1em;
 
   @media screen and ${device.laptop} {
-    float: left;
   }
 `;
 
@@ -39,11 +38,9 @@ export const FILTERS = styled.div`
   ${block}
   position: sticky;
   top: 6em;
-  width: 100%;
-  float: left;
 
   @media screen and ${device.laptop} {
-    max-width: ${100 * 1 / 4}%;
+    max-width: ${100 * 3 / 10}%;
   }
 `;
 
@@ -51,7 +48,7 @@ export const PRODUCTS = styled.div`
   ${block}
 
   @media screen and ${device.laptop} {
-    max-width: ${100 * 3 / 4}%;
+    max-width: ${100 * 7 / 10}%;
   }
 
   > div {
