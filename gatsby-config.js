@@ -38,12 +38,11 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: `designs`,
+        path: `${__dirname}/src/images/designs`,
       },
-      __key: "images",
     },
     {
       resolve: 'gatsby-plugin-react-svg',

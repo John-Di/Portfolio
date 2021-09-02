@@ -13,7 +13,7 @@ import {
   VIEWMORE
 } from './styles';
 import LocationContext from "../../contexts/LocationContext";
-import AdaptedImage from "../adapted-image";
+import AdaptedLinkImage from "../adapted-link-image";
 import useCollapsible from "../../hooks/useCollapsible";
 import { slideOverlay } from "../../hooks/useCollapsible/helpers";
 import ChicCTA from "../chic-cta";
@@ -63,7 +63,7 @@ export default function DesignCard({
     >
       <IMAGE
         isExpanded={isExpanded}>
-        <AdaptedImage {...designImage} handle={handle} />
+        <AdaptedLinkImage {...designImage} handle={handle} />
       </IMAGE>
       <FADEINOVERLAY
         isExpanded={isExpanded}

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../utils/AssessProps';
-import { size } from '../../utils/variables';
+import BasicContrast from '../../utils/BasicContrast';
+import { randomColor } from '../../utils/randoms';
+import { device, size } from '../../utils/variables';
+
+const bannerHeight = (size.mobileS * 1 / 2) / 16;
 
 export const SECTION = styled.section`
   display: block;
@@ -10,22 +14,43 @@ export const SECTION = styled.section`
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  max-height: ${size.mobileS / 16}em;
+  max-height: ${bannerHeight}em;
   height: 100vh;
 `;
 
 export const BANNER = styled.div`
+  background: ${background};
   display: block;
   width: 100%;
   max-width: ${size.laptopL}px;
   padding: 0 4%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  height: 100%;
 
   h1 {
-    text-transform: uppercase;
     color: white;
+    margin: 0;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+  }
+`;
+
+export const BANNERIMAGE = styled.div`
+  margin-left: auto;
+  height: 100%;
+
+  @media screen and ${device.laptop} {
+    width: ${bannerHeight}em;
+  }
+`;
+
+const background = randomColor();
+
+export const CONTENT = styled.div`
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+  h1 {
+    color: ${BasicContrast(background)};
   }
 `;

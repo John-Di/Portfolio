@@ -24,7 +24,7 @@ const FiltersStyles = {
 }
 
 // markup
-const CollectionPage = ({ filtersStyle = 'aside', title }) => {
+const CollectionPage = ({ filtersStyle = 'aside', title, handle }) => {
 
   const {
     activeProducts = []
@@ -48,7 +48,7 @@ const CollectionPage = ({ filtersStyle = 'aside', title }) => {
   const FiltersComponent = FiltersStyles[filtersStyle];
   return (
     <ARTICLE>
-      <HeroBanner />
+      <HeroBanner placeholder={handle} h1={title} />
       <BODY>
         <CLEARFIX>
           {/* <Sort /> */}

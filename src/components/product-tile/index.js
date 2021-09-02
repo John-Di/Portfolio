@@ -12,7 +12,7 @@ import ProductFormContext from "../../contexts/ProductFormContext";
 import ProductContext from "../../contexts/ProductContext";
 import ProductForm from "../product-form";
 import LocationContext from "../../contexts/LocationContext";
-import AdaptedImage from "../adapted-image";
+import AdaptedLinkImage from "../adapted-link-image";
 
 export default function ProductTile({
   children
@@ -54,7 +54,7 @@ export default function ProductTile({
       state={locationState}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
     >
-      <AdaptedImage {...productImage} />
+      <AdaptedLinkImage {...productImage} />
       {children && <BODY>
         {children}
       </BODY>}

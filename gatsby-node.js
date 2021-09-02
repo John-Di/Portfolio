@@ -5,6 +5,14 @@ exports.createPages = async ({ graphql, actions }) => {
   // Query for all products in Shopify
   const result = await graphql(`
     query Shop {
+      allFile(filter: {extension: {regex: "/(jpg)|(jpeg)|(png)/"}, relativeDirectory: {eq: "photos"}}) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
       allShopifyCollection {
         edges {
           node {
@@ -74,9 +82,25 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
+
+  const {
+    allFile = [],
+    allShopifyProduct = [],
+    allShopifyCollection = []
+  } = result.data;
+
   const handleize = (str) => str.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "");
 
-  const products = result.data.allShopifyProduct.edges.map(({ node }) => {
+  console.log('-----')
+  console.log('result.data', result.data)
+  console.log('-----')
+  console.log('-----')
+  console.log('allFile', result.data.allShopifyCollection.edges.map(({ node }) => node.name))
+  console.log('-----')
+  console.log('-----')
+  console.log('allFile', allFile)
+  console.log('-----')
+  const products = allShopifyProduct.edges.map(({ node }) => {
     const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
       images = node.variants.map(({ image }) => image.localFile).filter(
         ({ childImageSharp }, index) => ids.indexOf(childImageSharp.id) === index);
@@ -97,20 +121,23 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const randomImage = (index = 0) => getRandomImage(randomIntegerEx(0, 10000) + index, 1920, 1920);
 
-  const designs = [
-    {
-      title: "Cookie",
-      handle: "cookie",
-      image: randomImage(1),
-      products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf('Cookie'))
-    },
-    {
-      title: "Strawberry",
-      handle: "strawberry",
-      image: randomImage(2),
-      products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf('Strawberry'))
-    }
-  ];
+
+  // Iterate over all products and create a new page using a template
+  // The product "handle" is generated automatically by Shopify
+  const imageDirectories = ['designs'];
+  const images = allFile.edges.filter(({ node }, i) => node.childImageSharp && imageDirectories.includes[node.relativeDirectory]);
+
+  console.log('images', images)
+
+  const designs = ['Cookie', 'Strawberry'].map(design => ({
+    title: design,
+    handle: handleize(design),
+    image: images.find(({ name }) => !!~name.indexOf(design)),
+    products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf(handleize(design)))
+  }));
+
+  console.log('designs', designs);
+
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
@@ -126,7 +153,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
-  result.data.allShopifyCollection.edges.forEach(({ node }) => {
+  allShopifyCollection.edges.forEach(({ node }) => {
     const allProductHandles = node.products.map(({ handle }) => handle),
       collectionProducts = products.filter(({ node }) => allProductHandles.includes(node.handle));
     createPage({

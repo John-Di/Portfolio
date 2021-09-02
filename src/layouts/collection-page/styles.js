@@ -29,9 +29,6 @@ const block = `
   vertical-align: top;
   width: 100%;
   padding: 0 1em;
-
-  @media screen and ${device.laptop} {
-  }
 `;
 
 export const FILTERS = styled.div`
@@ -59,7 +56,6 @@ export const PRODUCTS = styled.div`
       height: auto;
 
       > li {
-
         article {
           position: relative;
           max-width: ${240 / 16}em;

@@ -4,14 +4,14 @@ import {
 } from "gatsby";
 import Clearfix from '../../utils/Clearfix';
 
-export const IMAGE = styled.div`
+export const IMAGE = styled(GatsbyLink)`
   display: block;
+  width: 100%;
   grid-area: img;
-  height: 100%;
+  margin-bottom: 1em;
 
   .gatsby-image-wrapper {
     max-width: 100%;
-    height: 100%;
   }
 
   * {
