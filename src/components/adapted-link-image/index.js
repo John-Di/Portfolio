@@ -6,9 +6,9 @@ import {
 import LocationContext from "../../contexts/LocationContext";
 
 const images = {
-  "strawberry": <StaticImage aspectRatio={1} src={"../../images/designs/strawberry_200x.png"} alt={'strawberry'} />,
-  "cookie": <StaticImage aspectRatio={1} src={"../../images/designs/cookie_200x.png"} alt={'Cookie'} />,
-  "default": <StaticImage aspectRatio={1} src={"../../images/designs/strawberry_200x.png"} alt={'strawberry'} />,
+  "strawberry": <StaticImage src={"../../images/designs/strawberry_200x.png"} alt={'strawberry'} />,
+  "cookie": <StaticImage src={"../../images/designs/cookie_200x.png"} alt={'Cookie'} />,
+  "default": <StaticImage src={"../../images/designs/strawberry_200x.png"} alt={'strawberry'} />,
 }
 
 export default function AdaptedLinkImage({ url = "#", image, handle, alt = 'Random Placeholder Image' }) {
@@ -29,6 +29,7 @@ export default function AdaptedLinkImage({ url = "#", image, handle, alt = 'Rand
     >
       {image && getImage(image) ?
         <GatsbyImage aspectRatio={1} image={getImage(image)} alt={alt} /> :
+        <GatsbyImage image={getImage(image)} alt={alt} /> :
         images[handle]}
     </IMAGE>
   );

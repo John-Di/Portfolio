@@ -54,7 +54,11 @@ export default function ProductTile({
       state={locationState}
       value={price && <PRICE>{`$${parseFloat(price).toFixed(2)}`}</PRICE>}
     >
-      <AdaptedLinkImage {...productImage} />
+      <AdaptedLinkImage
+        url={url}
+        locationState={locationState}
+        alt={title}
+        image={image} />
       {children && <BODY>
         {children}
       </BODY>}
