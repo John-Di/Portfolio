@@ -10,7 +10,11 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             id
             name
+            relativePath
           }
+        }
+        nodes {
+          relativePath
         }
       }
       allShopifyCollection {
@@ -36,6 +40,7 @@ exports.createPages = async ({ graphql, actions }) => {
             images {
               originalSrc
               localFile {
+                url
                 childImageSharp {
                   gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
                   id

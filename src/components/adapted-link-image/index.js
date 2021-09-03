@@ -28,7 +28,6 @@ export default function AdaptedLinkImage({ url = "#", image, handle, alt = 'Rand
       state={locationState}
     >
       {image && getImage(image) ?
-        <GatsbyImage aspectRatio={1} image={getImage(image)} alt={alt} /> :
         <GatsbyImage image={getImage(image)} alt={alt} /> :
         images[handle]}
     </IMAGE>

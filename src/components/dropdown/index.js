@@ -1,9 +1,8 @@
 import React from "react";
 import useCollapsible from "../../hooks/useCollapsible";
-import { arrayToComponentSiblings } from "../../utils/dom-builder";
 import CheckList from "../check-list";
-import CheckboxLabel from "../checkbox-label";
 import DropdownLabel from "../dropdown-label";
+import { adjustDropdownDimensions } from "../../hooks/useCollapsible/helpers";
 import {
   SPAN,
   TOGGLE,
@@ -16,15 +15,12 @@ const Dropdown = ({
   ...dropdown
 }) => {
 
-  console.log(dropdown)
-
   const {
     context = 'option',
     name,
     options = [],
     selected = [],
-    onChange,
-    icon
+    onChange
   } = dropdown,
     id = [context, name, 'none'].join('-'),
     {
@@ -34,8 +30,10 @@ const Dropdown = ({
       toggleList,
       dropdownHeight,
       isExpanded
-    } = useCollapsible(dropdown),
-
+    } = useCollapsible({
+      ...dropdown,
+      adjust: adjustDropdownDimensions.bind(this)
+    }),
     checked = selected.length,
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
@@ -70,7 +68,5 @@ const Dropdown = ({
       />
     </DROPDOWN>
   );
-
-  // <DropdownComponent {...dropdown} {...useCollapsible(dropdown)} />;
 }
 export default Dropdown;

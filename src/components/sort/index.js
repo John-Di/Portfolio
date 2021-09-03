@@ -1,58 +1,36 @@
-
 import React, { useContext } from "react";
-import { arrayToComponentSiblings } from "../../utils/dom-builder";
-
+import { sortTypes } from "../../hooks/useCollection/sorting";
 import {
   NAV,
-  UL,
-  LI
+  SORTING,
+  DROPDOWN
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
-import { sortTypes } from "../../hooks/useCollection/sorting";
+import Dropdown from "../dropdown";
 
-export default function Sort() {
+export default function Sort({ name = 'sort' }) {
   const {
     updateSorting,
+    filters = {},
     sorting
   } = useContext(CollectionContext),
-    udpateSelect = ({ target }) => updateSorting(target.value)
+    selected = filters.hasOwnProperty(name) && filters[name].length === 1 ? filters[name] : [],
+    udpateSelect = ({ target }) => updateSorting(target.value);
 
   return (
     <NAV>
-      {
-        <select
-          id="collection-sort"
-          name='sort'
-          value={sorting}
-          onChange={udpateSelect.bind(this)}>
-          {
-            arrayToComponentSiblings(Object.keys(sortTypes), (name, i) => (
-              <option
-                value={name}
-              >{sortTypes[name]}</option>
-            ))
-          }
-        </select>
-      }
-      {/* <UL>
-        {
-          arrayToComponentSiblings(Object.keys(sortTypes), (name, i) => (
-            <LI key={i}>
-              <div>
-                <input
-                  id={sortTypes[name]}
-                  name={name}
-                  type="radio" onChange={updateSorting.bind(this, name)}
-                  defaultChecked={sortTypes[name] === sorting}
-                />
-                <label htmlFor={sortTypes[name]}>
-                  {sortTypes[name]}
-                </label>
-              </div>
-            </LI>
-          ))
-        }
-      </UL> */}
+      <SORTING>
+        <DROPDOWN>
+          <Dropdown
+            id="collection-sort"
+            name={name}
+            value={sorting}
+            selected={selected}
+            options={Object.values(sortTypes)}
+            onChange={udpateSelect.bind(this)}
+          />
+        </DROPDOWN>
+      </SORTING>
     </NAV>
   );
 }
