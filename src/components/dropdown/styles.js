@@ -27,6 +27,9 @@ const dropdownStyles = () => `
 `;
 
 export const DROPDOWN = styled.div`
+  position: relative;
+  max-width: 100%;
+  width: auto;
   width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 2}em`, '100%')};
   transition: width 0.3s ease;
 
@@ -51,6 +54,7 @@ export const DROPDOWN = styled.div`
       position: relative;
       float: none;
       margin: 0;
+      background: white;
 
       label {
         border-top: none;

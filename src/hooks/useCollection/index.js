@@ -19,7 +19,7 @@ function useCollection({
     }
   ), {
     filters = {},
-    sorting = [Object.keys(sortTypes)[0]]
+    sorting = [Object.values(sortTypes)[0]]
   } = collectionState,
 
     noSelectionOrIsSelectedOption = ({ name, values }) => {

@@ -16,60 +16,26 @@ const assessTheme = ({ theme, ...props }) => {
 };
 
 export const NAV = styled.nav`
+  display: inline-block;
+  ${Clearfix}
+
   @media screen and ${device.laptop} {
     margin: auto;
     max-width: ${size.laptopL}px;
   }
-
-  padding-bottom: 27em;
 `;
 
-export const SORTING = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  margin: -0.5em auto;
-  ${Clearfix}
-`;
-
-export const CHECKBOXLIST = styled.li`
-  ${ListReset}
-  margin: 0.5em 0;
-
-  ul {
-    position: absolute;
-    left: 0;
-
-  }
-`;
 
 export const DROPDOWN = styled.div`
   ${ListReset}
-  float: left;
   list-style: none;
-  margin: 0.5em 0;
-  margin-right: 10px;
   position: relative;
   z-index: 1;
   width: auto;
-`;
 
-export const SPAN = styled.span`
-  font-weight: bold;
-`;
-
-export const LINK = styled(GatsbyLink)`
-  ${LinkReset}
-
-  &:active,
-  .active {
-    font-weight: bold;
-  }
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
+  > div {
+    margin-left: auto;
   }
 `;
+
 

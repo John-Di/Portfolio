@@ -7,6 +7,7 @@ import {
   ARTICLE,
   BODY,
   CLEARFIX,
+  SORT,
   FILTERS,
   PRODUCTS
 } from './styles';
@@ -51,7 +52,9 @@ const CollectionPage = ({ filtersStyle = 'aside', title, handle }) => {
       <HeroBanner placeholder={handle} h1={title} />
       <BODY>
         <CLEARFIX>
-          <Sort />
+          <SORT>
+            <Sort />
+          </SORT>
           <FILTERS>
             <FiltersComponent />
           </FILTERS>

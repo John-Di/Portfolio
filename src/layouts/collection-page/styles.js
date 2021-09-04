@@ -18,7 +18,6 @@ export const BODY = styled.section`
 `;
 
 export const CLEARFIX = styled.div`
-  margin: 0 -1em;
   width: 100%;
   ${Clearfix}
 `;
@@ -28,7 +27,13 @@ const block = `
   margin-top: 2em;
   vertical-align: top;
   width: 100%;
-  padding: 0 1em;
+`;
+
+export const SORT = styled.div`
+  text-align: right;
+  margin: 2em 0;
+  width: 100%;
+  ${Clearfix}
 `;
 
 export const FILTERS = styled.div`
