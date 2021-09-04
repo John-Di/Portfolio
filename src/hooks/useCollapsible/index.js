@@ -2,6 +2,7 @@ import {
   useEffect, useRef, useReducer
 } from "react";
 import collapisbleReducer, { actionTypes } from "./reducer";
+const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offsetWidth;
 
 
 function useCollapsible({

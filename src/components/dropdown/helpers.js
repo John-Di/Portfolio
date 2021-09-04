@@ -1,0 +1,1 @@
+export const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offsetWidth;

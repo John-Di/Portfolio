@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useCollapsible from "../../hooks/useCollapsible";
 import CheckList from "../check-list";
 import DropdownLabel from "../dropdown-label";
@@ -9,9 +9,11 @@ import {
   DROPDOWN,
   CHEVRON
 } from './styles';
+import { getLongestWidth } from "./helpers";
 
 const Dropdown = ({
   type = 'ul',
+  deselect = true,
   ...dropdown
 }) => {
 
@@ -22,29 +24,37 @@ const Dropdown = ({
     selected = [],
     onChange
   } = dropdown,
+    [dropdownWidth, setWidth] = useState(),
     id = [context, name, 'none'].join('-'),
     {
       collapsibleRef,
       expandList,
       collapseList,
       toggleList,
-      dropdownHeight,
       isExpanded
     } = useCollapsible({
       ...dropdown,
-      adjust: adjustDropdownDimensions.bind(this)
+      adjust: () => {
+        if (!collapsibleRef) {
+          return;
+        }
+
+        adjustDropdownDimensions(collapsibleRef.current, isExpanded);
+        if (collapsibleRef.current && !dropdownWidth) {
+          setWidth([...collapsibleRef.current.querySelectorAll('li')].reduce(getLongestWidth, 0));
+        }
+      }
     }),
     checked = selected.length,
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
     selectedLabel = checked ? selected[0] : `Select ${name}`;
-
   return (
     <DROPDOWN
       ref={collapsibleRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      dropdownHeight={dropdownHeight}
+      dropdownWidth={dropdownWidth}
     >
       <TOGGLE
         isExpanded={isExpanded}
@@ -61,7 +71,7 @@ const Dropdown = ({
         options={options}
         selected={selected}
         name={name}
-        deselect={true}
+        deselect={deselect}
         deselectedLabel={checked ? `Deselect ${name}` : `Select ${name}`}
         onChange={onChange}
         ListItem={DropdownLabel}

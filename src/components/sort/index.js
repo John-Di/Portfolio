@@ -14,7 +14,6 @@ export default function Sort({ name = 'sort' }) {
     filters = {},
     sorting
   } = useContext(CollectionContext),
-    selected = filters.hasOwnProperty(name) && filters[name].length === 1 ? filters[name] : [],
     udpateSelect = ({ target }) => updateSorting(target.value);
 
   return (
@@ -24,8 +23,9 @@ export default function Sort({ name = 'sort' }) {
           <Dropdown
             id="collection-sort"
             name={name}
-            value={sorting}
-            selected={selected}
+            value={sorting[0]}
+            selected={sorting}
+            deselect={false}
             options={Object.values(sortTypes)}
             onChange={udpateSelect.bind(this)}
           />

@@ -5,16 +5,14 @@
  */
 const outerHeight = (element) => {
   const height = element.offsetHeight,
-    style = window.getComputedStyle(element)
+    style = window.getComputedStyle(element);
 
   return ['top', 'bottom']
     .map(side => ['margin'].map(type => parseInt(style[`${type}-${side}`])))
-    .reduce((total, side) => total + side, height)
+    .reduce((total, side) => parseInt(total) + parseInt(side), height)
 }
 
-const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offsetWidth;
 const getDropdownHeight = (height, li) => height + outerHeight(li);
-
 const getOuterHeight = (element) => {
   const height = element.offsetHeight,
     style = window.getComputedStyle(element);
@@ -34,10 +32,7 @@ export const adjustDropdownDimensions = (el, isExpanded) => {
     return;
   }
   const height = isExpanded ? [...el.querySelectorAll('li')].reduce(getDropdownHeight, 0) : 0;
-  const width = [...el.querySelectorAll('li')].reduce(getLongestWidth, 0);
-
-  el.querySelector('ul').style.height = `${(height + (height ? 2 : 0)) / 16}em`;
-  el.style.width = `${width / 16}em`;
+  el.querySelector('ul').style.height = `${((height) + (height ? 2 : 0)) / 16}em`;
 };
 
 export const slideOverlay = (el, isExpanded) => {

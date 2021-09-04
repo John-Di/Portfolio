@@ -51,7 +51,7 @@ const CollectionPage = ({ filtersStyle = 'aside', title, handle }) => {
       <HeroBanner placeholder={handle} h1={title} />
       <BODY>
         <CLEARFIX>
-          {/* <Sort /> */}
+          <Sort />
           <FILTERS>
             <FiltersComponent />
           </FILTERS>

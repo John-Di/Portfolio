@@ -12,7 +12,7 @@ export default function CheckList({
   options = [],
   selected = [],
   onChange,
-  deselect,
+  deselect = false,
   deselectedLabel,
   ListItem
 }) {

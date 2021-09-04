@@ -37,7 +37,7 @@ const
       case actionTypes.sort: {
         return {
           ...state,
-          sorting
+          sorting: [sorting]
         }
       }
       case actionTypes.swap: {

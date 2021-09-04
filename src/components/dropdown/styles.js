@@ -27,7 +27,13 @@ const dropdownStyles = () => `
 `;
 
 export const DROPDOWN = styled.div`
-  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 4}em`, '100%')};
+  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 2}em`, '100%')};
+  transition: width 0.3s ease;
+
+  button {
+    width: 100%;
+  }
+
 
   ul {
     position: absolute;

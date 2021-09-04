@@ -4,14 +4,12 @@ import CollectionContext from "../../../contexts/CollectionContext";
 import useCollapsible from "../../../hooks/useCollapsible";
 import CheckboxLabel from "../../checkbox-label";
 import { LIST, TOGGLE, SPAN, CHEVRON } from "./styles";
-import useSelectable from "../../../hooks/useSelectable";
 import { adjustDropdownDimensions } from "../../../hooks/useCollapsible/helpers";
 
 export default function CollapsibleCheckboxListFilter({
   context = 'option',
   name,
-  options = [],
-  onChange
+  options = []
 }) {
   const {
     filters = {},
