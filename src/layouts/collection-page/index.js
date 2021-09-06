@@ -17,6 +17,7 @@ import Filters from "../../components/filters";
 import FiltersBar from "../../components/filters-bar";
 import FiltersSideNav from "../../components/filters-side-nav";
 import HeroBanner from "../../components/hero-banner";
+import CartFlyoutContext from "../../contexts/CartFlyoutContext";
 
 const FiltersStyles = {
   bar: FiltersBar,
@@ -29,7 +30,12 @@ const CollectionPage = ({ filtersStyle = 'aside', title, handle }) => {
 
   const {
     activeProducts = []
-  } = useContext(CollectionContext);
+  } = useContext(CollectionContext), {
+    ref,
+    isOpen,
+    footerHeight,
+    closeFlyout
+  } = useContext(CartFlyoutContext);
 
   const ProductTileMap = ({ variants = [], ...product }, index) => {
     return (
@@ -55,7 +61,10 @@ const CollectionPage = ({ filtersStyle = 'aside', title, handle }) => {
           <SORT>
             <Sort />
           </SORT>
-          <FILTERS>
+          <FILTERS
+            ref={ref}
+            isOpen={isOpen}
+          >
             <FiltersComponent />
           </FILTERS>
           <PRODUCTS>
@@ -69,6 +78,10 @@ const CollectionPage = ({ filtersStyle = 'aside', title, handle }) => {
                 breakpoint: device.mobileXL,
                 gap: [2, 1],
                 perRow: 2
+              }, {
+                breakpoint: device.tablet,
+                gap: [2, 1],
+                perRow: 3
               }, {
                 breakpoint: device.laptop,
                 gap: [2, 2],

@@ -19,9 +19,13 @@ const assessTheme = ({ theme, ...props }) => {
 export const NAV = styled.nav`
   background: white;
   height: 100%;
-  padding: 2em;
+  padding: 1em;
   z-index: 1;
   transition: left 0.25s, opacity 0.1s 0.25s;
+
+  @media screen and ${device.laptop} {
+    padding: 1em;
+  }
 
   ${props => conditionalProp(props.isOpen, `
     left: 0;

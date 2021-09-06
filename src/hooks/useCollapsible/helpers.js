@@ -31,8 +31,10 @@ export const adjustDropdownDimensions = (el, isExpanded) => {
   if (!el) {
     return;
   }
-  const height = isExpanded ? [...el.querySelectorAll('li')].reduce(getDropdownHeight, 0) : 0;
-  el.querySelector('ul').style.height = `${((height) + (height ? 2 : 0)) / 16}em`;
+
+  const height = [...el.querySelectorAll('li')].reduce(getDropdownHeight, 0);
+
+  el.querySelector('ul').style.height = isExpanded ? `${((height) + (height ? 2 : 0)) / 16}em` : 0;
 };
 
 export const slideOverlay = (el, isExpanded) => {

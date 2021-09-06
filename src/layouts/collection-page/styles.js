@@ -36,7 +36,7 @@ export const SORT = styled.div`
   ${Clearfix}
 `;
 
-const SidePanel = `
+const Drawer = `
   position: fixed;
   top: 0;
   left: 0;
@@ -48,23 +48,19 @@ const SidePanel = `
   ${block}
   position: sticky;
   top: 6em;
-  max-width: ${100 / 3}%;
+  max-width: ${100 * 1 / 3}%;
 `;
 
 export const FILTERS = styled.div`
-  ${SidePanel}
+  ${Drawer}
   width: 100%;
 
   > nav {
-    padding: 2em;
+    max-width: ${size.mobileS / 16}em;
   }
 
-  @media screen and ${device.tablet} {
+  @media screen and ${device.laptop} {
     ${StickyNav}
-
-    > nav {
-      padding: 1em;
-    }
   }
 `;
 
@@ -72,7 +68,7 @@ export const PRODUCTS = styled.div`
   ${block}
 
   @media screen and ${device.laptop} {
-    max-width: ${100 * 7 / 10}%;
+    max-width: ${100 * 2 / 3}%;
   }
 
   > div {

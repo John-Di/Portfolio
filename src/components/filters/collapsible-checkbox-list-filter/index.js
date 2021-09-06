@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CheckList from "../../check-list";
 import CollectionContext from "../../../contexts/CollectionContext";
 import useCollapsible from "../../../hooks/useCollapsible";
 import CheckboxLabel from "../../checkbox-label";
 import { LIST, TOGGLE, SPAN, CHEVRON } from "./styles";
 import { adjustDropdownDimensions } from "../../../hooks/useCollapsible/helpers";
+
+const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offsetWidth;
 
 export default function CollapsibleCheckboxListFilter({
   context = 'option',
@@ -29,23 +31,28 @@ export default function CollapsibleCheckboxListFilter({
     }
   }
   const id = [context, name, 'none'].join('-'),
+    [dropdownWidth, setWidth] = useState(),
     checked = !!selected.length, {
       collapsibleRef,
-      expandList,
-      collapseList,
       toggleList,
-      dropdownHeight,
       isExpanded
-    } = useCollapsible({ adjust: adjustDropdownDimensions.bind(this) })
+    } = useCollapsible({
+      name,
+      options,
+      adjust: () => {
+        if (!collapsibleRef) {
+          return;
+        }
 
-  onMouseEnter = expandList.bind(this),
-    onMouseLeave = collapseList.bind(this),
+        adjustDropdownDimensions(collapsibleRef.current, isExpanded);
+      }
+    }),
     selectedLabel = checked ? `${name} (${selected.length})` : `Select ${name}`;
 
   return (
     <LIST
       ref={collapsibleRef}
-      dropdownHeight={dropdownHeight}
+      dropdownWidth={dropdownWidth}
     >
       <TOGGLE
         isExpanded={isExpanded}

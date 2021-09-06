@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { conditionalProp } from '../../../utils/AssessProps';
 import { ButtonReset, ListReset } from '../../../utils/Resets';
 
-const borderWidth = 2;
+const borderWidth = 1;
 
 export const LIST = styled.div`
   position: relative;
-  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 4}em`, '100%')};
+  width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
 
   ul {
     padding: 0;
