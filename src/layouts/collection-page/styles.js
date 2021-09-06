@@ -36,13 +36,35 @@ export const SORT = styled.div`
   ${Clearfix}
 `;
 
-export const FILTERS = styled.div`
+const SidePanel = `
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  max-width: ${size.tablet / 16}em;
+  z-index: 3;
+`,
+  StickyNav = `
   ${block}
   position: sticky;
   top: 6em;
+  max-width: ${100 / 3}%;
+`;
 
-  @media screen and ${device.laptop} {
-    max-width: ${100 * 3 / 10}%;
+export const FILTERS = styled.div`
+  ${SidePanel}
+  width: 100%;
+
+  > nav {
+    padding: 2em;
+  }
+
+  @media screen and ${device.tablet} {
+    ${StickyNav}
+
+    > nav {
+      padding: 1em;
+    }
   }
 `;
 

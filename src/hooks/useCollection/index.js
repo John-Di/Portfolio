@@ -13,7 +13,7 @@ function useCollection({
   const [collectionState, UpdateState] = useReducer(
     collectionReducer,
     {
-      sorting: props.defaultSorting || [Object.keys(sortTypes)[0]],
+      sorting: props.defaultSorting || [Object.values(sortTypes)[0]],
       filters: props.activeFilters,
       activeProducts: products
     }

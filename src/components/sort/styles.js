@@ -1,19 +1,7 @@
 import styled from 'styled-components';
-import {
-  Link as GatsbyLink
-} from "gatsby";
-import { LinkReset, ListReset } from '../../utils/Resets';
+import { ListReset } from '../../utils/Resets';
 import Clearfix from '../../utils/Clearfix';
 import { device, size } from '../../utils/variables';
-import { ChicDropdownStyles } from '../../styles/Dropdowns';
-
-const assessTheme = ({ theme, ...props }) => {
-  switch (theme) {
-    case 'chic':
-    default:
-      return ChicDropdownStyles(props);
-  }
-};
 
 export const NAV = styled.nav`
   display: inline-block;
@@ -24,7 +12,6 @@ export const NAV = styled.nav`
     max-width: ${size.laptopL}px;
   }
 `;
-
 
 export const DROPDOWN = styled.div`
   ${ListReset}
