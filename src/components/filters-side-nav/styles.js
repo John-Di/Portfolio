@@ -23,10 +23,6 @@ export const NAV = styled.nav`
   z-index: 1;
   transition: left 0.25s, opacity 0.1s 0.25s;
 
-  @media screen and ${device.laptop} {
-    padding: 1em;
-  }
-
   ${props => conditionalProp(props.isOpen, `
     left: 0;
     transition: right 0.25s, opacity 0.1s 0s;
@@ -39,6 +35,11 @@ export const NAV = styled.nav`
       opacity: 0;
     }
   `)}
+
+  @media screen and ${device.laptop} {
+    padding: 1em;
+    opacity: 1;
+  }
 `;
 
 export const UL = styled.ul`
