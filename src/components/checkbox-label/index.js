@@ -27,7 +27,7 @@ const CheckboxLabel = ({ context = 'option', name, value, isCurrent = false, onC
         onChange={onChange} />
       <CHECKBOX checked={checked} />
       <SPAN>
-        {label}
+        {label ? label : value}
       </SPAN>
     </LABEL>
   )

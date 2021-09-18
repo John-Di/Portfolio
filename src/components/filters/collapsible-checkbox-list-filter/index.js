@@ -11,7 +11,8 @@ const getLongestWidth = (width, li) => width > li.offsetWidth ? width : li.offse
 export default function CollapsibleCheckboxListFilter({
   context = 'option',
   name,
-  options = []
+  options = [],
+  labels = []
 }) {
   const {
     filters = {},
@@ -47,6 +48,7 @@ export default function CollapsibleCheckboxListFilter({
         adjustDropdownDimensions(collapsibleRef.current, isExpanded);
       }
     }),
+    optionLabels = labels ? labels : options,
     selectedLabel = checked ? `${name} (${selected.length})` : `Select ${name}`;
 
   return (
@@ -67,6 +69,7 @@ export default function CollapsibleCheckboxListFilter({
       <CheckList
         context={'product-option'}
         options={options}
+        labels={optionLabels}
         selected={selected}
         name={name}
         onChange={updateSelected}
