@@ -11,9 +11,14 @@ import Dropdown from "../dropdown";
 export default function Sort({ name = 'sort' }) {
   const {
     updateSorting,
-    sorting
+    sorting = 0
   } = useContext(CollectionContext),
     udpateSelect = ({ target }) => updateSorting(target.value);
+
+
+  const keys = Object.keys(sortTypes);
+  const values = Object.values(sortTypes);
+  const selected = sorting;
 
   return (
     <NAV>
@@ -21,9 +26,10 @@ export default function Sort({ name = 'sort' }) {
         <Dropdown
           id="collection-sort"
           name={name}
-          selected={sorting}
+          selected={[+sorting]}
           deselect={false}
-          options={Object.values(sortTypes)}
+          options={keys.map((_, i) => i)}
+          labels={values}
           onChange={udpateSelect.bind(this)}
         />
       </DROPDOWN>

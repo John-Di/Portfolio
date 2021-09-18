@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { conditionalProp } from '../../utils/AssessProps';
 import Clearfix from '../../utils/Clearfix';
 import { device, size } from '../../utils/variables';
 
@@ -39,9 +40,7 @@ export const SORT = styled.div`
 const Drawer = `
   position: fixed;
   top: 0;
-  left: 0;
   bottom: 0;
-  max-width: ${size.tablet / 16}em;
   z-index: 3;
 `,
   StickyNav = `
@@ -52,11 +51,20 @@ const Drawer = `
 `;
 
 export const FILTERS = styled.div`
-  ${Drawer}
   width: 100%;
 
   > nav {
-    max-width: ${size.mobileS / 16}em;
+    width: 100%;
+  }
+
+  @media screen and ${device.max_laptop} {
+    ${Drawer}
+    max-width: ${size.tablet / 16}em;
+    left: ${size.tablet / 16}em;
+
+    ${({ isOpen }) => conditionalProp(isOpen, `
+      left: 0;
+    `)}
   }
 
   @media screen and ${device.laptop} {
@@ -70,6 +78,7 @@ export const PRODUCTS = styled.div`
   @media screen and ${device.laptop} {
     max-width: ${100 * 2 / 3}%;
   }
+
 
   > div {
     text-align: center;

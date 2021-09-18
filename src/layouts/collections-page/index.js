@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import ProductTile from "../../components/product-tile";
-import ProductProvider from "../../providers/ProductProvider";
 import Grid from "../grid";
 import { device } from '../../utils/variables';
 import {
@@ -9,7 +7,6 @@ import {
   FILTERS,
   PRODUCTS
 } from './styles';
-import Sort from "../../components/sort";
 import CollectionContext from "../../contexts/CollectionContext";
 import Filters from "../../components/filters";
 import FiltersBar from "../../components/filters-bar";
@@ -57,13 +54,17 @@ const CollectionsPage = ({ filtersStyle = 'aside' }) => {
   };
 
   const FiltersComponent = FiltersStyles[filtersStyle];
+  const {
+    isOpen,
+    ...flyout
+  } = useFlyout();
 
   return (
     <ARTICLE>
       <p>collections-page</p>
       <BODY>
         {/* <Sort /> */}
-        <FILTERS>
+        <FILTERS isOpen={isOpen}>
           <FiltersComponent />
         </FILTERS>
         <PRODUCTS>

@@ -21,6 +21,7 @@ const Dropdown = ({
     context = 'option',
     name,
     options = [],
+    labels = [],
     selected = [],
     onChange
   } = dropdown,
@@ -48,7 +49,9 @@ const Dropdown = ({
     checked = selected.length,
     onMouseEnter = expandList.bind(this),
     onMouseLeave = collapseList.bind(this),
-    selectedLabel = checked ? selected[0] : `Select ${name}`;
+    optionLabels = labels ? labels : options,
+    selectedLabel = selected.length === 1 ? optionLabels[selected[0]] : `Select ${name}`;
+
   return (
     <DROPDOWN
       ref={collapsibleRef}
@@ -69,6 +72,7 @@ const Dropdown = ({
       <CheckList
         context={'product-option'}
         options={options}
+        labels={optionLabels}
         selected={selected}
         name={name}
         deselect={deselect}

@@ -13,13 +13,13 @@ function useCollection({
   const [collectionState, UpdateState] = useReducer(
     collectionReducer,
     {
-      sorting: props.defaultSorting || [Object.values(sortTypes)[0]],
+      sorting: 0,
       filters: props.activeFilters,
       activeProducts: products
     }
   ), {
     filters = {},
-    sorting = [Object.values(sortTypes)[0]]
+    sorting = 0
   } = collectionState,
 
     noSelectionOrIsSelectedOption = ({ name, values }) => {
@@ -29,7 +29,7 @@ function useCollection({
 
     filterOptionBySelection = ({ options }) => options.every(noSelectionOrIsSelectedOption),
 
-    activeProducts = products.filter(filterOptionBySelection).sort(sortMethods[sorting]),
+    activeProducts = products.filter(filterOptionBySelection).sort(Object.values(sortMethods)[sorting]),
 
     reducers = {
       updateSorting: sorting => UpdateState({
@@ -67,6 +67,7 @@ function useCollection({
       })
     };
 
+  console.log('object.values', sorting);
   return {
     ...collectionState,
     ...reducers,

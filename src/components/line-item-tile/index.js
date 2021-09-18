@@ -6,7 +6,6 @@ import {
   CTA_WRAPPER
 } from './styles';
 import ChicCTA from '../chic-cta';
-import SiteThemeContext from "../../contexts/SiteThemeContext";
 import ProductContext from "../../contexts/ProductContext";
 
 export default function LineItemTile({

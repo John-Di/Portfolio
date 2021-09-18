@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import { conditionalProp } from '../../../utils/AssessProps';
 import { ButtonReset, ListReset } from '../../../utils/Resets';
+import { device } from '../../../utils/variables';
 
 const borderWidth = 1;
 
 export const LIST = styled.div`
+  font-size: 1.125em;
   position: relative;
   width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${dropdownWidth / 16}em`, '100%')};
 
   ul {
+    font-size: inherit;
     padding: 0;
     margin: 0;
     z-index: 0;
@@ -22,9 +25,15 @@ export const LIST = styled.div`
       float: none;
 
       label {
+        font-size: 1.125em;
+        padding: 1em 0.5em;
         border-top: none;
         width: 100%;
         transition: background color 0.3s ease, color 0.3s ease;
+
+        @media screen and ${device.laptop} {
+          padding: 0.875em;
+        }
       }
     }
 
@@ -44,7 +53,7 @@ export const LIST = styled.div`
 
 export const TOGGLE = styled.button`
   ${ButtonReset}
-  font: 700 12px Open Sans;
+  font: 700 0.75em Open Sans;
   text-transform: uppercase;
   position: relative;
   text-decoration: none;

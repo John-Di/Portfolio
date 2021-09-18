@@ -24,6 +24,7 @@ import {
 import SiteThemeContext from '../../../contexts/SiteThemeContext';
 import TextLink from "../text-link";
 import MobileMenuFlyoutContext from '../../../contexts/MobileMenuFlyoutContext';
+import useFlyout from '../../../hooks/useFlyout';
 
 const nav = [
   {
@@ -55,7 +56,7 @@ const MainNavigation = ({
   } = useContext(PageContext), {
     isOpen,
     toggleFlyout
-  } = useContext(MobileMenuFlyoutContext);
+  } = useFlyout();
 
 
   return (

@@ -6,18 +6,19 @@ import {
   CHECKBOXLIST
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
-import CheckboxListFilter from "../filters/checkbox-list-filter";
+import CollapsibleCheckboxListFilter from "../filters/collapsible-checkbox-list-filter";
 import GenerateUniqueId from "../../utils/GenerateUniqueId";
+import useFlyout from "../../hooks/useFlyout";
 
 export default function FiltersSideNav() {
   const {
     options,
     toggleFilter
   } = useContext(CollectionContext),
-    onClick = (name, { target }) => toggleFilter({ name, value: target.value })
+    onClick = (name, { target }) => toggleFilter({ name, value: target.value });
   const context = GenerateUniqueId('option');
   return (
-    <NAV isOpen={true}>
+    <NAV>
       {/* {arrayToComponentSiblings(Object.keys(options), (name, i) => (
         <button
           key={i}
@@ -27,7 +28,7 @@ export default function FiltersSideNav() {
       <UL>
         {arrayToComponentSiblings(Object.entries(options), ([name, values], i) => (
           <CHECKBOXLIST key={i}>
-            <CheckboxListFilter
+            <CollapsibleCheckboxListFilter
               context={context}
               options={values}
               name={name}

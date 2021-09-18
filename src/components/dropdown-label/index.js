@@ -22,7 +22,7 @@ const DropdownLabel = ({ id, name, value, icon, onChange, checked = false, label
         value={value}
         onChange={onChange} />
       <SPAN>
-        {label}
+        {label ? label : value}
       </SPAN>
       {icon}
     </LABEL>

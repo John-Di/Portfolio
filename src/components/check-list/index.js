@@ -10,7 +10,8 @@ export default function CheckList({
   context = 'option',
   name,
   options = [],
-  selected = [],
+  selected = [0],
+  labels = [],
   onChange,
   deselect = false,
   deselectedLabel,
@@ -25,6 +26,7 @@ export default function CheckList({
     isExpanded
   } = useSelectable({ options, name });
 
+  const optionLabels = labels ? labels : options;
   return (
     <ul>
       {deselect &&
@@ -44,14 +46,15 @@ export default function CheckList({
       {
         arrayToComponentSiblings(options, (value, i) => {
           const checked = !!~selected.indexOf(value);
+          console.log('checked', selected)
           return (
             <li style={{ 'position': 'relative' }}>
               <ListItem
                 id={[context, name, value].join('-')}
-                isCurrent={!!~selected.indexOf(value)}
+                isCurrent={checked}
                 name={name}
                 value={value}
-                label={value}
+                label={optionLabels[i]}
                 checked={checked}
                 onChange={onChange}
                 key={`${name}-${value}`}

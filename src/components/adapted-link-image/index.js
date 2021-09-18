@@ -19,7 +19,7 @@ export default function AdaptedLinkImage({ url = "#", image, handle, alt = 'Rand
     locationState = {
       ...state
     };
-
+  // console.log('ALI', handle, 'handle', image, getImage(image));
   return (
     <IMAGE
       to={url}

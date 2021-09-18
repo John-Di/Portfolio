@@ -5,6 +5,7 @@ import {
   resetFilter
 }
   from "./helpers";
+import { sortTypes } from "./sorting";
 
 export const actionTypes = {
   sort: 'SORT',
@@ -18,9 +19,10 @@ export const actionTypes = {
 
 const
   collectionReducer = (state, action) => {
-    const { type, filter = {}, sorting = 'bestSeller', options = [] } = action,
+    const { type, filter = {}, sorting = 0, options = [] } = action,
       { filters = {} } = state,
       { name, value } = filter;
+    const keys = Object.keys(sortTypes);
     switch (type) {
       case actionTypes.add: {
         return {
@@ -37,7 +39,7 @@ const
       case actionTypes.sort: {
         return {
           ...state,
-          sorting: [sorting]
+          sorting
         }
       }
       case actionTypes.swap: {

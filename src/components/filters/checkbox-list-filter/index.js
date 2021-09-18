@@ -8,8 +8,7 @@ import { LIST, SELECTED, SPAN, CHEVRON } from "./styles";
 export default function CheckboxListFilter({
   context = 'option',
   name,
-  options = [],
-  onChange
+  options = []
 }) {
   const {
     filters = {},
@@ -45,6 +44,6 @@ export default function CheckboxListFilter({
         onChange={updateSelected}
         ListItem={CheckboxLabel}
       />
-    </LIST >
+    </LIST>
   )
 }

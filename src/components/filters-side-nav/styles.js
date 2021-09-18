@@ -8,29 +8,24 @@ import { device, size } from '../../utils/variables';
 import { ChicDropdownStyles } from '../../styles/Dropdowns';
 import { conditionalProp } from '../../utils/AssessProps';
 
-const assessTheme = ({ theme, ...props }) => {
-  switch (theme) {
-    case 'chic':
-    default:
-      return ChicDropdownStyles(props);
-  }
-};
 
 export const NAV = styled.nav`
   background: white;
   height: 100%;
   padding: 1em;
   z-index: 1;
+  position: absolute;
+  left: 0;
   transition: left 0.25s, opacity 0.1s 0.25s;
 
   ${props => conditionalProp(props.isOpen, `
     left: 0;
     transition: right 0.25s, opacity 0.1s 0s;
     opacity: 1;
+    pointer-events: auto;
   `, `
-    left: -100vw;
 
-    @media screen and ${device.laptop} {
+    @media screen and ${device.max_laptop} {
       left: calc(0% - ${size.mobileM / 16 + 1}em);
       opacity: 0;
     }
@@ -38,6 +33,7 @@ export const NAV = styled.nav`
 
   @media screen and ${device.laptop} {
     padding: 1em;
+    position: relative;
     opacity: 1;
   }
 `;
