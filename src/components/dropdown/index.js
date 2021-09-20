@@ -10,6 +10,7 @@ import {
   CHEVRON
 } from './styles';
 import { getLongestWidth } from "./helpers";
+import useSelectable from "../../hooks/useSelectable";
 
 const Dropdown = ({
   type = 'ul',
@@ -18,12 +19,18 @@ const Dropdown = ({
 }) => {
 
   const {
+    selected = [],
+    optionLabels = [],
+    selectedLabel,
+    deselectedLabel,
+    labels = [],
+    values = [],
+    set
+  } = useSelectable(dropdown),
+    onChange = ({ target }) => set(target.value);
+  const {
     context = 'option',
     name,
-    options = [],
-    labels = [],
-    selected = [],
-    onChange
   } = dropdown,
     [dropdownWidth, setWidth] = useState(),
     id = [context, name, 'none'].join('-'),
@@ -45,18 +52,13 @@ const Dropdown = ({
           setWidth([...collapsibleRef.current.querySelectorAll('li')].reduce(getLongestWidth, 0));
         }
       }
-    }),
-    checked = selected.length,
-    onMouseEnter = expandList.bind(this),
-    onMouseLeave = collapseList.bind(this),
-    optionLabels = labels ? labels : options,
-    selectedLabel = selected.length === 1 ? optionLabels[selected[0]] : `Select ${name}`;
+    });
 
   return (
     <DROPDOWN
       ref={collapsibleRef}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={expandList.bind(this)}
+      onMouseLeave={collapseList.bind(this)}
       dropdownWidth={dropdownWidth}
     >
       <TOGGLE
@@ -71,12 +73,13 @@ const Dropdown = ({
       </TOGGLE>
       <CheckList
         context={'product-option'}
-        options={options}
+
+        options={values}
         labels={optionLabels}
         selected={selected}
         name={name}
         deselect={deselect}
-        deselectedLabel={checked ? `Deselect ${name}` : `Select ${name}`}
+        deselectedLabel={deselectedLabel}
         onChange={onChange}
         ListItem={DropdownLabel}
       />

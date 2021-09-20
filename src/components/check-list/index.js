@@ -17,14 +17,7 @@ export default function CheckList({
   deselectedLabel,
   ListItem
 }) {
-  const noSelection = !selected.length, {
-    collapsibleRef,
-    expandList,
-    collapseList,
-    toggleList,
-    dropdownHeight,
-    isExpanded
-  } = useSelectable({ options, name });
+  const noSelection = !selected.length;
 
   const optionLabels = labels ? labels : options;
   return (
@@ -46,7 +39,6 @@ export default function CheckList({
       {
         arrayToComponentSiblings(options, (value, i) => {
           const checked = !!~selected.indexOf(value);
-          console.log('checked', selected)
           return (
             <li style={{ 'position': 'relative' }}>
               <ListItem

@@ -35,7 +35,7 @@ function useCollection({
       updateSorting: sorting => UpdateState({
         type: actionTypes.sort,
         ...collectionState,
-        sorting
+        sorting: +sorting
       }),
       addFilter: ({ name, value }) => UpdateState({
         type: actionTypes.add,

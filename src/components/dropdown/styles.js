@@ -29,12 +29,13 @@ const dropdownStyles = () => `
 export const DROPDOWN = styled.div`
   position: relative;
   max-width: 100%;
-  width: auto;
+  width: 12.5em;
   width: ${({ dropdownWidth }) => conditionalProp(dropdownWidth, `${(dropdownWidth / 16) + 2}em`, '100%')};
   transition: width 0.3s ease;
 
   button {
     width: 100%;
+    transition: width 0.3s ease;
   }
 
 
@@ -48,7 +49,7 @@ export const DROPDOWN = styled.div`
     width: auto;
     min-width: 100%;
     height: 0;
-    transition: height 0.3s ease;
+    transition: height 0.3s ease, width 0.3s ease;
 
     li {
       position: relative;

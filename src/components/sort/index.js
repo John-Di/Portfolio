@@ -28,7 +28,7 @@ export default function Sort({ name = 'sort' }) {
           name={name}
           selected={[+sorting]}
           deselect={false}
-          options={keys.map((_, i) => i)}
+          options={keys.map((_, i) => +i)}
           labels={values}
           onChange={udpateSelect.bind(this)}
         />

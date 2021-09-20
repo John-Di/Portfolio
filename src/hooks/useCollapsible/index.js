@@ -18,9 +18,9 @@ function useCollapsible({
   }, UpdateState] = useReducer(collapisbleReducer, {
     isExpanded: false,
     isLocked: false
-  });
+  }),
 
-  const reducers = {
+  reducers = {
     expandList: UpdateState.bind(this, {
       type: actionTypes.expand,
       isExpanded: true
@@ -50,7 +50,7 @@ function useCollapsible({
     name,
     isExpanded,
     height,
-    options
+    options,
   }
 };
 
