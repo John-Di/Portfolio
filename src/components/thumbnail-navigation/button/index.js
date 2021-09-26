@@ -7,27 +7,23 @@ import {
 export default function Button({
   buttonInside = false,
   isPrev,
-  children
+  children,
+  isDisabled = false,
+  scrollSlide,
+  hasPadding,
+  images = []
 }) {
-  const {
-    atBeginning,
-    atEnd,
-    scrollNextOption,
-    scrollPreviousOption,
-    images
-  } = useContext(GalleryContext),
-    scrollSlide = isPrev ? scrollPreviousOption : scrollNextOption,
-    onClick = e => {
-      e.preventDefault();
-      scrollSlide();
-    },
-    hasNavButtons = images.length > 4;
+  const onClick = e => {
+    e.preventDefault();
+    scrollSlide();
+  };
 
   return (
     <BUTTON
       isPrev={isPrev}
-      buttonPadding={hasNavButtons && buttonInside}
-      isDisabled={isPrev ? atBeginning : atEnd}
+      buttonPadding={hasPadding}
+      isDisabled={isDisabled}
+      disabled={isDisabled}
       buttonInside={buttonInside}
       onClick={onClick}
     >

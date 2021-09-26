@@ -16,26 +16,40 @@ import {
   PRICING,
   DESCRIPTION
 } from './styles';
-import ProductGalleryProvider from "../../providers/ProductGalleryProvider";
+import ProductFormContext from "../../contexts/ProductFormContext";
+import useProductGallery from "../../providers/ProductGalleryProvider/useProductGallery";
 
 // markup
 const ProductPage = () => {
   const {
     title,
     description,
-    selectedVariant
-  } = useContext(ProductContext);
-
-  let {
+    images = [],
+    variants = []
+  } = useContext(ProductContext), {
+    selectedVariantIndex = 0
+  } = useContext(ProductFormContext), {
     price
-  } = selectedVariant;
+  } = variants[selectedVariantIndex],
+    {
+      gatsbyImages = [],
+      ...productGallery
+    } = useProductGallery({
+      images,
+      variants
+    });
+
   return (
     <ARTICLE>
       <TITLE>{title}</TITLE>
       <MEDIA>
-        <ProductGalleryProvider>
-          <ImageGallery maxWidth={`75%`} selectedFirst={randomBool()} />
-        </ProductGalleryProvider>
+        <ImageGallery
+          maxWidth={`75%`}
+          selectedFirst={randomBool()}
+          currentIndex={selectedVariantIndex}
+          images={gatsbyImages}
+          {...productGallery}
+        />
       </MEDIA>
       <PRICING>
         <PRICE>${price}</PRICE>

@@ -1,3 +1,4 @@
+import { getImage } from "gatsby-plugin-image";
 import React, { useContext } from "react";
 
 import {
@@ -9,7 +10,8 @@ export default function Thumbnail({
   isCurrent = false,
   onClick,
   image,
-  children
+  alt,
+  Image
 }) {
   return (
     <THUMBNAIL
@@ -17,7 +19,7 @@ export default function Thumbnail({
       onClick={onClick}
       transparency={1 / 3}
     >
-      {children}
+      <Image image={getImage(image)} alt={alt} />
     </THUMBNAIL>
   );
 }

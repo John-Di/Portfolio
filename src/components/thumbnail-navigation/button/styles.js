@@ -16,7 +16,7 @@ const GALLERY_NAV_BUTTON = `
   bottom: 0;
   width: ${BUTTON_WIDTH}em;
   transition: opacity 0.25s, background-color 0.25s, color 0.25s;
-  opacity: 0.25;
+  opacity: 1;
 
   &:hover,
   &:focus {
@@ -52,7 +52,10 @@ const AssessProps = ({ isPrev, buttonInside, isDisabled, hideForce = true }) => 
     `${!isPrev ? `left` : `right`}: calc(100% + 1em);`)
 )}
 
-  ${conditionalProp(isDisabled, `display: none;`)}
+  ${conditionalProp(isDisabled, `&,`)}
+  [disabled] {
+    display: none;
+  }
 `
 
 export const BUTTON = styled.button`

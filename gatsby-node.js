@@ -1,98 +1,21 @@
 const path = require(`path`);
+const shopQuery = require(`./shopify-graphql-query`);
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   // Query for all products in Shopify
-  const result = await graphql(`
-    query Shop {
-      allFile(filter: {extension: {regex: "/(jpg)|(jpeg)|(png)/"}, relativeDirectory: {eq: "photos"}}) {
-        edges {
-          node {
-            id
-            name
-            relativePath
-          }
-        }
-        nodes {
-          relativePath
-        }
-      }
-      allShopifyCollection {
-        edges {
-          node {
-            handle
-            products {
-              handle
-            }
-          }
-        }
-      }
-      allShopifyProduct {
-        edges {
-          node {
-            title
-            tags
-            productType
-            id
-            handle
-            availableForSale
-            description
-            images {
-              originalSrc
-              localFile {
-                url
-                childImageSharp {
-                  gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
-                  id
-                }
-              }
-            }
-            options {
-              name
-              values
-            }
-            variants {
-              selectedOptions {
-                name
-                value
-              }
-              priceV2 {
-                amount
-              }
-              price
-              id
-              shopifyId
-              title
-              sku
-              availableForSale
-              compareAtPrice
-              compareAtPriceV2 {
-                currencyCode
-                amount
-              }
-              image {
-                originalSrc
-                id
-                localFile {
-                  url
-                  childImageSharp {
-                    gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
-                    id
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  const result = await graphql(shopQuery);
 
   const {
     allFile = [],
     allShopifyProduct = [],
     allShopifyCollection = []
   } = result.data;
+
+  const artCollections = ['wall-art'];
+  const templates = {
+    art: ['wall-art']
+  }
 
   const handleize = (str) => str.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "");
 
@@ -147,9 +70,11 @@ exports.createPages = async ({ graphql, actions }) => {
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
   products.forEach(({ node }) => {
+    const templateName = Object.entries(templates).find(([key, handles = []]) => handles.includes(node.handle));
+    const template = templateName ? template[0] : 'product';
     createPage({
       path: `/products/${node.handle}`,
-      component: path.resolve(`./src/templates/product.js`),
+      component: path.resolve(`./src/templates/${template}.js`),
       context: {
         product: node
       }
@@ -160,13 +85,15 @@ exports.createPages = async ({ graphql, actions }) => {
   // The product "handle" is generated automatically by Shopify
   allShopifyCollection.edges.forEach(({ node }) => {
     const allProductHandles = node.products.map(({ handle }) => handle),
-      collectionProducts = products.filter(({ node }) => allProductHandles.includes(node.handle));
+      collectionProducts = products.filter(({ node }) => allProductHandles.includes(node.handle)),
+      template = Object.entries(templates).find(([key, handles = []]) => handles.includes(node.handle));
     createPage({
       path: `/collections/${node.handle}`,
       component: path.resolve(`./src/templates/collection.js`),
       context: {
-        title: node.title,
+        ...node,
         products: collectionProducts,
+        template: template ? template[0] : ''
       },
     })
   });

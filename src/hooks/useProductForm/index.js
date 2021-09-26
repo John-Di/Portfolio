@@ -5,11 +5,10 @@ import {
 } from "react";
 import LocationContext from "../../contexts/LocationContext";
 import ShopContext from "../../contexts/ShopContext";
-import useProduct from "../useProduct";
 import productFormReducer, { actionTypes } from './reducer';
 
 
-function useProductForm({ product = { selectedVariantIndex: 0 } }) {
+function useProductForm({ product }) {
   const shop = useContext(ShopContext), {
     addVariantToCart,
     removeLineItem
@@ -17,35 +16,33 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
     location = useContext(LocationContext), {
       variants = []
     } = product,
-    selectedVariant = variants[location.selectedVariantIndex || 0];
+    selectedVariantIndex = location.selectedVariantIndex || 0,
+    selectedVariant = variants[selectedVariantIndex];
 
   const [formState, UpdateFormState] = useReducer(productFormReducer, {
-    ...useProduct({
-      product,
-      ...location
-    }),
+    ...product,
     ...selectedVariant,
-    selectedVariantIndex: location.selectedVariantIndex || 0,
+    selectedVariantIndex,
     value: selectedVariant.shopifyId
   }), {
-    selectedVariantIndex,
     selectedOptions = variants[selectedVariantIndex].selectedOptions
   } = formState, {
     shopifyId
-  } = variants[selectedVariantIndex];
+  } = variants[formState.selectedVariantIndex];
 
-  const updateVariant = shopifyId => UpdateFormState({
-    type: actionTypes.id,
-    shopifyId
-  }),
-    updateOption = selectedOption => UpdateFormState({
+  const reducers = {
+    updateVariant: shopifyId => UpdateFormState({
+      type: actionTypes.id,
+      shopifyId
+    }),
+    updateOption: selectedOption => UpdateFormState({
       type: actionTypes.option,
       selectedOption,
       variants,
       selectedOptions,
-      selectedVariantIndex
-    });
-
+      selectedVariantIndex: formState.selectedVariantIndex
+    })
+  }
   // console.log('useProductForm.shopifyId', shopifyId);
 
   const addToCart = (async e => {
@@ -64,12 +61,10 @@ function useProductForm({ product = { selectedVariantIndex: 0 } }) {
     }
 
   return {
-    product,
     selectedOptions,
     ...formState,
+    ...reducers,
     optionIsSelected,
-    updateVariant,
-    updateOption,
     addToCart,
     removeFromCart
   };
