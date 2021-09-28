@@ -18,6 +18,7 @@ import {
 } from './styles';
 import ProductFormContext from "../../contexts/ProductFormContext";
 import useProductGallery from "../../providers/ProductGalleryProvider/useProductGallery";
+import ProductGalleryProvider from "../../providers/ProductGalleryProvider";
 
 // markup
 const ProductPage = () => {
@@ -43,13 +44,16 @@ const ProductPage = () => {
     <ARTICLE>
       <TITLE>{title}</TITLE>
       <MEDIA>
-        <ImageGallery
-          maxWidth={`75%`}
-          selectedFirst={randomBool()}
-          currentIndex={selectedVariantIndex}
-          images={gatsbyImages}
-          {...productGallery}
-        />
+        <ProductGalleryProvider {...{
+          images,
+          variants
+        }}>
+          <ImageGallery
+            maxWidth={`75%`}
+            selectedFirst={randomBool()}
+            currentIndex={selectedVariantIndex}
+          />
+        </ProductGalleryProvider>
       </MEDIA>
       <PRICING>
         <PRICE>${price}</PRICE>

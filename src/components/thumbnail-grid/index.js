@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import GalleryContext from "../../contexts/GalleryContext";
 import {
   arrayToComponentSiblings
 } from '../../utils/dom-builder';
@@ -11,15 +12,20 @@ import {
 export default function ThumbnailGrid({
   gutterOffset = 1.5,
   perRow = 4,
-  Image,
-  updateByVisibleOption,
-  isCurrent,
-  images
+
 }) {
+  const {
+    Image,
+    updateByVisibleOption,
+    isCurrent,
+    images = []
+
+  } = useContext(GalleryContext);
   const onClick = (i, e) => {
     e.preventDefault();
     updateByVisibleOption(i);
   };
+  console.log('ThumbnailGrid', images)
 
   const ThumbnailItem = (image, i) => (
     <ITEM key={i} gutter={gutterOffset} maxWidth={perRow ? `${100 / perRow}%` : null}>

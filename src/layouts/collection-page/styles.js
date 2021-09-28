@@ -55,6 +55,8 @@ export const FILTERS = styled.div`
 
   > nav {
     width: 100%;
+    max-width: 40em;
+    margin-right: auto;
   }
 
   @media screen and ${device.max_laptop} {
@@ -69,6 +71,10 @@ export const FILTERS = styled.div`
 
   @media screen and ${device.laptop} {
     ${StickyNav}
+
+    > nav {
+      max-width: 20em;
+    }
   }
 `;
 

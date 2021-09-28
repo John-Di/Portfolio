@@ -6,12 +6,11 @@ import {
   LI,
 } from './styles';
 import CollectionContext from "../../contexts/CollectionContext";
-import DropdownFilter from "./dropdown-filter";
 import CheckboxListFilter from "./checkbox-list-filter";
 
 const OptionType = {
   'Color': CheckboxListFilter,
-  'Size': DropdownFilter
+  'Size': CheckboxListFilter
 };
 
 export default function Filters() {

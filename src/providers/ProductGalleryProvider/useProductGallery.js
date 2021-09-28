@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import ProductContext from "../../contexts/ProductContext";
 import ProductFormContext from "../../contexts/ProductFormContext";
 import useGallery from "../../hooks/useGallery";
 import { isSelectedOption, variantGatsbyImages } from "./helper";

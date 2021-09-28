@@ -17,6 +17,10 @@ export default function Button({
     e.preventDefault();
     scrollSlide();
   };
+  console.log('Button.isPrev', isPrev)
+  console.log('Button.isDisabled', isDisabled)
+  console.log('Button.isDisabled', '---------')
+
 
   return (
     <BUTTON

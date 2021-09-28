@@ -11,11 +11,10 @@ import ThumbnailNavigation from "../thumbnail-navigation";
 export default function ImageGallery({
   gap = 0.75,
   maxWidth = '100%',
-  hasPadding = false,
-  ...gallery
+  hasPadding = false
 }) {
 
-  const {
+  const gallery = useContext(GalleryContext), {
     Image,
     mainImage,
     selectedIndex = 0,
@@ -29,8 +28,7 @@ export default function ImageGallery({
         <MAIN_IMAGE className="image-gallery__main-image">
           <Image image={mainImage} alt={`gallery main image`} />
         </MAIN_IMAGE>
-        <ThumbnailNavigation
-          {...gallery} />
+        <ThumbnailNavigation />
       </GALLERY>
     </WRAPPER>
   );

@@ -16,21 +16,13 @@ function useGallery({ images = [], currentIndex = 0, max }) {
     Image = typeof mainImage === 'object' ? GatsbyImage : undefined;
 
   const ScrollController = () => {
-    if (!scrollRef) {
+    if (!scrollRef || !scrollRef.current) {
       return;
     }
 
     const nav = scrollRef.current.querySelector('nav'),
       list = nav.querySelector('ul');
-    let itemWidth = list.querySelector('li').offsetWidth,
-      visibleMaxIndex = selectedFirst ? 0 : Math.floor(nav.offsetWidth / itemWidth),
-      left = selectedFirst || index > visibleMaxIndex ? (index - visibleMaxIndex) * itemWidth : 0;
 
-    list.scroll({
-      left,
-      top: 0,
-      behavior: 'smooth'
-    })
   };
   useEffect(ScrollController, [index]);
   useEffect(() => {

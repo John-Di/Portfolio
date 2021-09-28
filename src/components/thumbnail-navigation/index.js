@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ThumbnailGrid from "../thumbnail-grid";
 import LeftChevron from '../../images/svgs/left-chevron.svg';
 import RightChevron from '../../images/svgs/right-chevron.svg';
@@ -7,11 +7,11 @@ import {
   SCROLLABLE,
   NAVIGATION,
 } from './styles';
+import GalleryContext from "../../contexts/GalleryContext";
 
 export default function ThumbnailNavigation({
   Image,
   images = [],
-  scrollRef,
   gap = 0.75,
   maxWidth = '100%',
   buttonsInside = true,
@@ -23,9 +23,12 @@ export default function ThumbnailNavigation({
     atBeginning,
     atEnd,
     scrollPreviousOption,
-    scrollNextOption
+    scrollNextOption,
+    scrollRef
 
-  } = buttons;
+  } = useContext(GalleryContext);
+  console.log('ThumbnailNavigation', images.length, buttons)
+  // isPrev ? atBeginning : atEnd
   return (
     <SCROLLABLE
       ref={scrollRef}
