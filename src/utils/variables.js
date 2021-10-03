@@ -36,6 +36,7 @@ export const color = {
   'Black': "#27262b",
   'Dark Grey': "#444444",
   'Dark Grey Heather': "#3e3c3d",
+  'Espresso': "#504339",
   'Forest': "#1f4a2e",
   'Green': "#82e6e3",
   'Heather Deep Teal': "#487485",
