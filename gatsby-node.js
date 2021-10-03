@@ -1,4 +1,5 @@
 const path = require(`path`);
+const { Template } = require("webpack");
 const shopQuery = require(`./shopify-graphql-query`);
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -12,86 +13,81 @@ exports.createPages = async ({ graphql, actions }) => {
     allShopifyCollection = []
   } = result.data;
 
-  const artCollections = ['wall-art'];
+  const nodeMap = (list = []) => list.edges.map(({ node }) => node);
+  const allFiles = nodeMap(allFile),
+    allShopifyCollections = nodeMap(allShopifyCollection),
+    allShopifyProducts = nodeMap(allShopifyProduct).map(product => {
+      const collections = allShopifyCollections.filter(({ products }) => products.map(({ handle }) => handle).includes(product.handle));
+
+      return {
+        ...product,
+        collections
+      }
+    });
+
   const templates = {
     art: ['wall-art']
   }
 
   const handleize = (str) => str.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "");
-
-  console.log('-----')
-  console.log('result.data', result.data)
-  console.log('-----')
-  console.log('-----')
-  console.log('allFile', result.data.allShopifyCollection.edges.map(({ node }) => node.name))
-  console.log('-----')
-  console.log('-----')
-  console.log('allFile', allFile)
-  console.log('-----')
-  const products = allShopifyProduct.edges.map(({ node }) => {
-    const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
-      images = node.variants.map(({ image }) => image.localFile).filter(
+  const products = allShopifyProducts.map(({ variants = [], handle, ...product }) => {
+    const ids = variants.map(({ image }) => image.localFile.childImageSharp.id),
+      images = variants.map(({ image }) => image.localFile).filter(
         ({ childImageSharp }, index) => ids.indexOf(childImageSharp.id) === index);
-    return ({
-      node: {
-        ...node,
-        images,
-        url: `/products/${node.handle}`,
-        variants: node.variants.map(({ image, ...variant }) => ({
-          image: image.localFile,
-          ...variant
-        }))
-      }
-    });
+    return {
+      ...product,
+      handle,
+      images,
+      url: `/products/${handle}`,
+      variants: variants.map(({ image, ...variant }) => ({
+        image: image.localFile,
+        ...variant
+      }))
+    };
   });
-  const getRandomImage = (seed, width = 800, height = 800) => `https://picsum.photos/seed/${seed}/${width}/${height}`;
-  const randomIntegerEx = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-
-  const randomImage = (index = 0) => getRandomImage(randomIntegerEx(0, 10000) + index, 1920, 1920);
-
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
   const imageDirectories = ['designs'];
-  const images = allFile.edges.filter(({ node }, i) => node.childImageSharp && imageDirectories.includes[node.relativeDirectory]);
-
-  console.log('images', images)
-
+  const images = allFiles.filter(({ childImageSharp, relativeDirectory }) => childImageSharp && imageDirectories.includes[relativeDirectory]);
   const designs = ['Cookie', 'Strawberry'].map(design => ({
     title: design,
     handle: handleize(design),
     image: images.find(({ name }) => !!~name.indexOf(design)),
-    products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf(handleize(design)))
+    products: allShopifyProducts.filter(({ title }) => !!~title.indexOf(handleize(design)))
   }));
-
-  console.log('designs', designs);
-
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
-  products.forEach(({ node }) => {
-    const templateName = Object.entries(templates).find(([key, handles = []]) => handles.includes(node.handle));
-    const template = templateName ? template[0] : 'product';
+  products.forEach(product => {
+    const { handle, collections = [] } = product;
+    const collectionHandles = collections.map(({ handle }) => handle);
+    const getTemplate = (template, [type, handles = []]) => handles.some(handle => collectionHandles.includes(handle)) ? type : template
+    const template = Object.entries(templates).reduce(getTemplate, `product`);
+
     createPage({
-      path: `/products/${node.handle}`,
-      component: path.resolve(`./src/templates/${template}.js`),
+      path: `/products/${handle}`,
+      component: path.resolve(`./src/templates/${`product`}.js`),
       context: {
-        product: node
+        product: {
+          ...product,
+          template
+        }
       }
     })
   })
 
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
-  allShopifyCollection.edges.forEach(({ node }) => {
-    const allProductHandles = node.products.map(({ handle }) => handle),
-      collectionProducts = products.filter(({ node }) => allProductHandles.includes(node.handle)),
-      template = Object.entries(templates).find(([key, handles = []]) => handles.includes(node.handle));
+  allShopifyCollections.forEach(collection => {
+    const allProductHandles = collection.products.map(({ handle }) => handle),
+      collectionProducts = products.filter(product => allProductHandles.includes(product.handle)),
+      template = Object.entries(templates).find(([key, handles = []]) => handles.includes(collection.handle));
     createPage({
-      path: `/collections/${node.handle}`,
+      path: `/collections/${collection.handle}`,
       component: path.resolve(`./src/templates/collection.js`),
       context: {
-        ...node,
+        ...collection,
         products: collectionProducts,
         template: template ? template[0] : ''
       },
@@ -112,7 +108,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/design.js`),
       context: {
         ...design,
-        products: products.map(({ node }) => node).filter(({ title }) => !!~title.indexOf(design.title))
+        products: products.filter(({ title }) => !!~title.indexOf(design.title))
       }
     })
   });
