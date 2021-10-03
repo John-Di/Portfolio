@@ -20,8 +20,10 @@ import ProductFormContext from "../../contexts/ProductFormContext";
 import useProductGallery from "../../providers/ProductGalleryProvider/useProductGallery";
 import ProductGalleryProvider from "../../providers/ProductGalleryProvider";
 
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
 // markup
-const ProductPage = () => {
+const ArtProductPage = () => {
   const {
     title,
     description,
@@ -30,17 +32,19 @@ const ProductPage = () => {
     variants = []
   } = galleryData, {
     selectedVariantIndex = 0
-  } = useContext(ProductFormContext), {
-    price
-  } = variants[selectedVariantIndex],
+  } = useContext(ProductFormContext),
     {
       gatsbyImages = [],
       ...productGallery
     } = useProductGallery(galleryData);
 
+  console.log('ArtProductPage', clamp(selectedVariantIndex, -1, variants.length))
+
+  let {
+    price
+  } = variants[clamp(selectedVariantIndex, -1, variants.length)];
   return (
     <ARTICLE>
-      <TITLE>{title}</TITLE>
       <MEDIA>
         <ProductGalleryProvider {...galleryData}>
           <ImageGallery
@@ -49,6 +53,7 @@ const ProductPage = () => {
           />
         </ProductGalleryProvider>
       </MEDIA>
+      <TITLE>{title}</TITLE>
       <PRICING>
         <PRICE>${price}</PRICE>
       </PRICING>
@@ -60,4 +65,4 @@ const ProductPage = () => {
   )
 }
 
-export default ProductPage;
+export default ArtProductPage;

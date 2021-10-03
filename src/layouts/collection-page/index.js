@@ -32,9 +32,7 @@ const CollectionPage = ({ filtersStyle = 'aside', title, handle }) => {
     activeProducts = []
   } = useContext(CollectionContext), {
     ref,
-    isOpen,
-    footerHeight,
-    closeFlyout
+    isOpen
   } = useContext(CartFlyoutContext);
 
   const ProductTileMap = ({ variants = [], ...product }, index) => {

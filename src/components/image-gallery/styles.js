@@ -10,15 +10,15 @@ export const WRAPPER = styled.div`
   width: 100%;
   margin: 0 auto;
   ${props => conditionalProp(props.hasPadding, `
-    padding: 2% 0;
 
     @media screen and ${device.laptop} {
       padding: 8% 0;
     }
   `)}
-  ${props => conditionalProp(props.maxWidth, `
-    max-width: ${size.mobileXL + 'px'};
-  `)}
+
+  [data-gatsby-image-wrapper] {
+    width: 100%;
+  }
 `;
 
 export const GALLERY = styled.div`

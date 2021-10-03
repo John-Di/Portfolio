@@ -20,13 +20,8 @@ const pageRight = `
 export const ARTICLE = styled.article`
   margin: 0 auto;
   width: 100%;
-  max-width: ${size.mobileXL}px;
   flex-grow: 1;
   ${Clearfix}
-
-  @media screen and ${device.max_laptop} {
-    padding: 0 4%;
-  }
 
   @media screen and ${device.laptop} {
     max-width: ${size.laptopL}px;
@@ -53,10 +48,19 @@ export const MEDIA = styled.div`
       margin-right: 0;
     }
   }
+
+  ~ * {
+    @media screen and ${device.max_laptop} {
+      max-width: ${size.mobileXL}px;
+      padding: 0 4%;
+      margin: 0 auto;
+    }
+  }
 `;
 
 export const DESCRIPTION = styled.p`
-  margin: 0.5em 0;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   max-width: ${size.mobileXL / 16}em;
   text-align: left;
   line-height: 1.33;
@@ -84,7 +88,8 @@ export const PRICING = styled.p`
   font-size: 2em;
   font-family: 'Roboto', 'Montserrat', serif;
   line-height: 1.33;
-  margin: 1em auto 1em 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
 
   @media screen and ${device.max_laptop} {
     text-align: right;

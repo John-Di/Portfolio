@@ -1,5 +1,5 @@
 import React from "react";
-import ArtProductPage from '../layouts/art-product-page';
+import ArtProductPage from "../layouts/art-product-page";
 import ProductProvider from "../providers/ProductProvider";
 import ShopPageTemplate from "./shop-page";
 

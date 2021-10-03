@@ -20,13 +20,8 @@ const pageRight = `
 export const ARTICLE = styled.article`
   margin: 0 auto;
   width: 100%;
-  max-width: ${size.mobileXL}px;
   flex-grow: 1;
   ${Clearfix}
-
-  @media screen and ${device.max_laptop} {
-    padding: 0 4%;
-  }
 
   @media screen and ${device.laptop} {
     max-width: ${size.laptopL}px;
