@@ -28,100 +28,101 @@ import ShopPageTemplate from "../templates/shop-page";
 import CollectionPage from "../layouts/collection-page";
 
 
-export const query = graphql`
-  {
-    allShopifyProduct {
-      edges {
-        node {
-          title
-          tags
-          productType
-          id
-          handle
-          availableForSale
-          description
-          images {
-            originalSrc
-            localFile {
-              childImageSharp {
-                gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
-                id
-              }
-            }
-          }
-          options {
-            name
-            values
-          }
-          variants {
-            selectedOptions {
-              name
-              value
-            }
-            priceV2 {
-              amount
-            }
-            price
-            id
-            shopifyId
-            title
-            sku
-            availableForSale
-            compareAtPrice
-            compareAtPriceV2 {
-              currencyCode
-              amount
-            }
-            image {
-              originalSrc
-              id
-              localFile {
-                url
-                childImageSharp {
-                  gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
-                  id
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   {
+//     allShopifyProduct {
+//       edges {
+//         node {
+//           title
+//           tags
+//           productType
+//           id
+//           handle
+//           availableForSale
+//           description
+//           images {
+//             originalSrc
+//             localFile {
+//               childImageSharp {
+//                 gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
+//                 id
+//               }
+//             }
+//           }
+//           options {
+//             name
+//             values
+//           }
+//           variants {
+//             selectedOptions {
+//               name
+//               value
+//             }
+//             priceV2 {
+//               amount
+//             }
+//             price
+//             id
+//             shopifyId
+//             title
+//             sku
+//             availableForSale
+//             compareAtPrice
+//             compareAtPriceV2 {
+//               currencyCode
+//               amount
+//             }
+//             image {
+//               originalSrc
+//               id
+//               localFile {
+//                 url
+//                 childImageSharp {
+//                   gatsbyImageData(width: 800, placeholder: NONE, formats: [AUTO, WEBP, AVIF])
+//                   id
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
 // markup
 const StyleGuidePage = ({ location = {}, data }) => {
-  let accentColor = randomColor();
-  let heroWidth = randomBool(1);
-  let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
+  // let accentColor = randomColor();
+  // let heroWidth = randomBool(1);
+  // let heroImage = randomBool() ? randomImage(randomIntegerEx(0, 10000) + 1, 1920, 1920) : null;
 
-  const featured_products = data.allShopifyProduct.edges.filter((_, i) => i < 4).map(({ node }) => {
-    const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
-      images = node.variants.map(({ image }) => image.localFile).filter(
-        ({ childImageSharp }, index) => ids.indexOf(childImageSharp.id) === index);
+  // const featured_products = data.allShopifyProduct.edges.filter((_, i) => i < 4).map(({ node }) => {
+  //   const ids = node.variants.map(({ image }) => image.localFile.childImageSharp.id),
+  //     images = node.variants.map(({ image }) => image.localFile).filter(
+  //       ({ childImageSharp }, index) => ids.indexOf(childImageSharp.id) === index);
 
-    return {
-      ...node,
-      images,
-      url: `/products/${node.handle}`,
-      variants: node.variants.map(({ image, ...variant }) => ({
-        image: image.localFile,
-        ...variant
-      }))
-    }
-  });
+  //   return {
+  //     ...node,
+  //     images,
+  //     url: `/products/${node.handle}`,
+  //     variants: node.variants.map(({ image, ...variant }) => ({
+  //       image: image.localFile,
+  //       ...variant
+  //     }))
+  //   }
+  // });
 
   return (
-    <ShopPageTemplate
-      accentColor={accentColor}
-      hasCart={true}
-      location={location}
-    >
-      <StyleGuideArticle>
-        <CollectionPage products={featured_products} />
-      </StyleGuideArticle>
-    </ShopPageTemplate>
+    <h1>Style Guide</h1>
+    // <ShopPageTemplate
+    //   accentColor={accentColor}
+    //   hasCart={true}
+    //   location={location}
+    // >
+    //   <StyleGuideArticle>
+    //     <CollectionPage products={featured_products} />
+    //   </StyleGuideArticle>
+    // </ShopPageTemplate>
   )
 }
 

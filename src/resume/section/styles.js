@@ -4,6 +4,11 @@ export const WRAPPER = styled.div`
 	&:not(:first-child):not(:last-child) {
 		margin: 1.375em 0;
 	}
+
+	@media print {
+    display: flex;
+    flex-flow: column nowrap;
+  }
 `;
 
 export const HEADING = styled.h2`

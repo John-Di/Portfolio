@@ -65,6 +65,10 @@ export const BASICS = styled.section`
 		@media ${device.laptop} {
 			height: auto !important;
 		}
+
+    @media print {
+      page-break-after: always;
+    }
 	}
 `;
 

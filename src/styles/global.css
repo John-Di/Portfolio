@@ -84,13 +84,6 @@ a {
 	}
 }
 
-@media print {
-	.Collapsible--career .Collapsible__contentInner > div > div:nth-child(even) {
-		page-break-after: always;
-	}
-}
-
-
 
 @keyframes expandMenuDrawer {
   0% {
